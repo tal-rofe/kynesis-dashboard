@@ -18,7 +18,7 @@ export const promptLinkedInUrl = (callback: (finalUrl: string) => void) => {
   const defaultUrl = profilesList[0];
   const grayDefaultUrl = chalk.gray(defaultUrl);
 
-  rl.question(`Please enter LinkedIn profile URL (${grayDefaultUrl}):`, (url) => {
+  rl.question(`> Please enter LinkedIn profile URL (${grayDefaultUrl}):`, (url) => {
     let finalUrl = url.trim();
     if (finalUrl === "") {
       console.log(`💬 Using default URL: ${chalk.yellowBright(defaultUrl)}`);
@@ -38,7 +38,7 @@ export const selectOpenaiServicePromptType = (
   const promptOptions = Object.keys(prompts)
     .map((key, index) => `${index + 1}. ${key}`)
     .join("\n");
-  const question = `Please select an option for the type of message you want to send:\n${promptOptions}\nSelect a number: `;
+  const question = `\nPlease select an option for the type of message you want to send:\n\n${promptOptions}\n\nSelect a number: `;
 
   rl.question(question, (answer: string) => {
     const selectedIndex = parseInt(answer, 10) - 1;

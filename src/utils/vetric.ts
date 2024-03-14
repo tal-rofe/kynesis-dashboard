@@ -32,6 +32,7 @@ export const fetchLinkedInData = async (identifier: string, scope: keyof typeof 
     });
 
     console.log(chalk.bold.green(`\n\n\n🚀 LinkedIn ${scope} data fetched successfully\n\n`));
+    console.log(allData);
     return allData;
   } catch (error) {
     console.error("Error fetching LinkedIn data:", error);
