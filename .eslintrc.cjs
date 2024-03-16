@@ -7,7 +7,7 @@ module.exports = {
 	reportUnusedDisableDirectives: true,
 	parser: '@typescript-eslint/parser',
 	parserOptions: {
-		ecmaVersion: 12,
+		ecmaVersion: 'latest',
 		project: './tsconfig.eslint.json',
 		tsconfigRootDir: __dirname,
 		sourceType: 'module',
