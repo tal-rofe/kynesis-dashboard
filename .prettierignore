@@ -1,0 +1,7 @@
+node_modules
+build
+pnpm-workspace.yaml
+dist
+pnpm-lock.yaml
+.next
+apps/frontend/storybook-static/

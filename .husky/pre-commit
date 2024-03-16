@@ -1,0 +1,4 @@
+#!/bin/sh
+. "$(dirname "$0")/_/husky.sh"
+
+pnpm knip && pnpm exec lint-staged && pnpm type-check:all && pnpm inflint

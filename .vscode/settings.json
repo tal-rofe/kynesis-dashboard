@@ -1,59 +1,24 @@
 {
 	"editor.formatOnSave": true,
 	"editor.defaultFormatter": "esbenp.prettier-vscode",
-	"editor.codeActionsOnSave": {
-		"source.fixAll.stylelint": "explicit"
-	},
-	"stylelint.validate": ["css", "scss"],
 	"typescript.tsdk": "node_modules/typescript/lib",
 	"search.exclude": {
 		"**/node_modules": true,
-		"**/dist": true
+		"**/dist": true,
+		"pnpm-lock.yaml": true
 	},
-	"files.associations": {
-		"commit-msg": "shellscript"
+	"files.exclude": {
+		"tsconfig.tsbuildinfo": true
 	},
-	// Copy all below to your user settings to get nice visual
 	"material-icon-theme.files.associations": {
-		"*.routes.ts": "routing",
-		"*.strategy.ts": "nest-gateway"
+		"routes.ts": "routing",
+		"inflint.config.cjs": "Minecraft",
+		".env.production.test": "Tune",
+		".env.qa.test": "Tune"
 	},
 	"material-icon-theme.folders.associations": {
-		".volumes": "database",
-		"decorators": "meta",
-		"interceptors": "connection",
-		"strategies": "mappings",
-		"queries": "shader",
-		"secrets": "keys",
-		"user": "client",
-		"_templates": "template"
+		"_templates": "template",
+		".turbo": "Dump"
 	},
-	"material-icon-theme.activeIconPack": "nest",
-	"task.allowAutomaticTasks": "on",
-	"[terraform]": {
-		"editor.defaultFormatter": "hashicorp.terraform",
-		"editor.formatOnSave": true,
-		"editor.formatOnSaveMode": "file"
-	},
-	"[terraform-vars]": {
-		"editor.defaultFormatter": "hashicorp.terraform",
-		"editor.formatOnSave": true,
-		"editor.formatOnSaveMode": "file"
-	},
-	"terraform.experimentalFeatures.validateOnSave": true,
-	"[shellscript]": {
-		"editor.defaultFormatter": "foxundermoon.shell-format"
-	},
-	"[dockerfile]": {
-		"editor.defaultFormatter": "foxundermoon.shell-format"
-	},
-	"[ignore]": {
-		"editor.defaultFormatter": "foxundermoon.shell-format"
-	},
-	"[dotenv]": {
-		"editor.defaultFormatter": "foxundermoon.shell-format"
-	},
-	"[properties]": {
-		"editor.defaultFormatter": "foxundermoon.shell-format"
-	}
+	"task.allowAutomaticTasks": "on"
 }
