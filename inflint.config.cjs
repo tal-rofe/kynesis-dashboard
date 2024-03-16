@@ -3,6 +3,7 @@ const inflintConfig = {
 		'[UIComponent]': `UI([A-Z][a-z0-9]+)((\d)|([A-Z0-9][a-z0-9]+))*([A-Z])?`,
 	},
 	rules: {
+		'**/*.yml': 2,
 		'apps/frontend/src/lib/{data,providers,types,utils}/**/*': [2, 'kebab-case'],
 		'apps/frontend/src/lib/hooks/*': [2, 'camelCase'],
 		'apps/frontend/src/components/{layouts,wrappers}/*': [2, 'PascalCase.Point'],

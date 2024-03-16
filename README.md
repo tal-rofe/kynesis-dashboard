@@ -1,6 +1,6 @@
 # Kynesis.io
 
-The website for Kynesis dashboard, including frontend web application.
+The website for Kynesis Dashboard, including frontend web application.
 
 ## Environment
 
