@@ -2,6 +2,7 @@
 	"name": "@kynesis/frontend",
 	"version": "0.1.0",
 	"private": true,
+	"type": "module",
 	"scripts": {
 		"dev": "dotenv -e envs/.env.development -- next dev",
 		"build": "dotenv -e envs/.env.production -- next build",

@@ -1,9 +1,10 @@
 {
 	"name": "@leumit/monorepo-client",
 	"version": "1.0.0",
-	"description": "Leumit Monorepo Client",
+	"description": "Kynesis.io Monorepo",
 	"private": true,
 	"license": "ISC",
+	"type": "module",
 	"scripts": {
 		"preinstall": "npx only-allow pnpm",
 		"husky:install": "husky install",
