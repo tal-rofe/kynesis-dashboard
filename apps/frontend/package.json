@@ -11,7 +11,7 @@
 		"storybook": "storybook dev -p 6006",
 		"build-storybook": "storybook build --quiet",
 		"test-storybook": "test-storybook",
-		"chromatic": "npx chromatic --exit-zero-on-changes",
+		"chromatic": "npx chromatic --exit-zero-on-changes --project-token=chpt_f4be45fcd406508",
 		"stylelint": "stylelint --config ./stylelint.config.cjs \"./src/**/*.scss\"",
 		"template:page": "hygen component new-page",
 		"template:module": "hygen component new-module",
