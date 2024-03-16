@@ -14,7 +14,12 @@
 		"routes.ts": "routing",
 		"inflint.config.cjs": "Minecraft",
 		".env.production.test": "Tune",
-		".env.qa.test": "Tune"
+		".env.qa.test": "Tune",
+		"next.config.cjs": "next",
+		"cspell.json": "I18n",
+		".cz.json": "Smarty",
+		"czvinyl.config.cjs": "Smarty",
+		"chromatic.config.json": "Storybook"
 	},
 	"material-icon-theme.folders.associations": {
 		"_templates": "template",
