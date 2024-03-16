@@ -2,6 +2,7 @@
 	"language": "en",
 	"ignorePaths": [
 		"./pnpm-lock.yaml",
+		"./renovate.json",
 		"**/*/package.json",
 		"./.vscode",
 		"**/*.env.*",
