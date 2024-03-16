@@ -26,4 +26,4 @@ jobs:
               with:
                   zip: true
                   projectToken: ${{ secrets.CHROMATIC_PROJECT_TOKEN }}
-                  workingDir: apps/web
+                  workingDir: apps/frontend
