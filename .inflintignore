@@ -1,0 +1,5 @@
+node_modules
+apps/frontend/node_modules
+apps/frontend/dist
+packages/common/dist
+packages/common/node_modules

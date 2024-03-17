@@ -1,9 +1,3 @@
 {
-	"recommendations": [
-		"esbenp.prettier-vscode",
-		"dbaeumer.vscode-eslint",
-		"aaron-bond.better-comments",
-		"stylelint.vscode-stylelint",
-		"nrwl.angular-console"
-	]
+	"recommendations": ["esbenp.prettier-vscode", "dbaeumer.vscode-eslint", "stylelint.vscode-stylelint"]
 }

@@ -1,0 +1,46 @@
+{
+	"$schema": "https://turborepo.org/schema.json",
+	"pipeline": {
+		"start": {
+			"outputs": []
+		},
+		"build": {
+			"dependsOn": ["lint", "type-check"],
+			"outputs": [".next/**", "dist/**", "storybook-static/**"]
+		},
+		"dev": {
+			"dependsOn": ["^build"],
+			"cache": false,
+			"persistent": true
+		},
+		"prod": {
+			"dependsOn": ["^build"],
+			"cache": false,
+			"persistent": true
+		},
+		"lint": {
+			"outputs": []
+		},
+		"type-check": {
+			"outputs": []
+		},
+		"storybook": {
+			"cache": false,
+			"persistent": true
+		},
+		"build-storybook": {
+			"cache": false,
+			"outputs": ["storybook-static/**"]
+		},
+		"test-storybook": {
+			"persistent": true
+		},
+		"chromatic": {
+			"cache": false,
+			"persistent": true
+		},
+		"stylelint": {
+			"outputs": []
+		}
+	}
+}

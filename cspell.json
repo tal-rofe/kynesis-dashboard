@@ -1,0 +1,13 @@
+{
+	"language": "en",
+	"ignorePaths": [
+		"./pnpm-lock.yaml",
+		"./renovate.json",
+		"**/*/package.json",
+		"./.vscode",
+		"**/*.env.*",
+		"./apps/frontend/src/stories/assets/**/*",
+		"./apps/frontend/src/stories/Configure.mdx"
+	],
+	"words": ["yazif", "kynesis", "toploader", "zustand", "inflint", "czvinyl", "autodocs", "CODEOWNERS", "shimol"]
+}

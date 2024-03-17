@@ -1,5 +1,29 @@
-# POC for Kynesis.io
+# Kynesis.io
 
-#
+Kynesis Dashboard
 
-# This is a simple POC for Kynesis.io. It uses the Vetric API to fetch the required data for kyneis.io.
+## Development
+
+Install the specific Node.js version:
+
+```bash
+nvm install
+```
+
+Use the installed Node.js version:
+
+```bash
+nvm use
+```
+
+Install PNPM globally:
+
+```bash
+npm i -g pnpm
+```
+
+Install repository dependencies:
+
+```bash
+pnpm i
+```
