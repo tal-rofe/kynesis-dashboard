@@ -3,19 +3,6 @@
 	"extends": ["config:base", ":semanticCommitTypeAll(chore)", ":semanticCommitScopeDisabled"],
 	"regexManagers": [
 		{
-			"fileMatch": ["^(\\.github\\/workflows)\\/[^/]+\\.yaml$"],
-			"matchStrings": ["pnpm-version: (?<currentValue>.*)", "package-manager-version: (?<currentValue>.*)"],
-			"depNameTemplate": "pnpm",
-			"datasourceTemplate": "npm"
-		},
-		{
-			"fileMatch": ["^(\\.github\\/workflows)\\/[^/]+\\.yaml$"],
-			"matchStrings": ["FROM node:(?<currentValue>.*)", "node-version: (?<currentValue>.*)"],
-			"depNameTemplate": "node",
-			"datasourceTemplate": "node",
-			"versioningTemplate": "node"
-		},
-		{
 			"fileMatch": ["package.json"],
 			"matchStrings": ["\"node\": \"(?<currentValue>.*)\""],
 			"depNameTemplate": "node",
@@ -27,14 +14,8 @@
 		{
 			"updateTypes": ["minor", "patch"],
 			"automerge": true
-		},
-		{
-			"matchPackageNames": ["node"],
-			"matchManagers": ["dockerfile"],
-			"enabled": false
 		}
 	],
-	"ignoreDeps": ["chalk"],
 	"commitMessageAction": "🤖 Update",
 	"stabilityDays": 7,
 	"reviewersFromCodeOwners": true

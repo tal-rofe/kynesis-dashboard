@@ -61,7 +61,7 @@ const defaultCommitTypes = [
 	},
 ];
 
-module.exports = {
+const config = {
 	plugins: [
 		{
 			rules: {
@@ -112,3 +112,5 @@ module.exports = {
 		'scope-empty': [2, 'always'],
 	},
 };
+
+module.exports = config;

@@ -2,9 +2,7 @@
 	"editor.formatOnSave": true,
 	"editor.defaultFormatter": "esbenp.prettier-vscode",
 	"typescript.tsdk": "node_modules/typescript/lib",
-	"editor.codeActionsOnSave": {
-		"source.fixAll.stylelint": "explicit"
-	},
+	"editor.codeActionsOnSave": { "source.fixAll.stylelint": "explicit" },
 	"stylelint.validate": ["css", "scss"],
 	"search.exclude": {
 		"**/node_modules": true,
@@ -14,20 +12,11 @@
 	"files.exclude": {
 		"tsconfig.tsbuildinfo": true
 	},
-	"material-icon-theme.files.associations": {
-		"routes.ts": "routing",
-		"inflint.config.cjs": "Minecraft",
-		".env.production.test": "Tune",
-		".env.qa.test": "Tune",
-		"next.config.cjs": "next",
-		"cspell.json": "I18n",
-		".cz.json": "Smarty",
-		"czvinyl.config.cjs": "Smarty",
-		"chromatic.config.json": "Storybook"
+	"task.allowAutomaticTasks": "on",
+	"[properties]": {
+		"editor.defaultFormatter": "foxundermoon.shell-format"
 	},
-	"material-icon-theme.folders.associations": {
-		"_templates": "template",
-		".turbo": "Dump"
-	},
-	"task.allowAutomaticTasks": "on"
+	"[shellscript]": {
+		"editor.defaultFormatter": "foxundermoon.shell-format"
+	}
 }

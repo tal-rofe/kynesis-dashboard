@@ -1,8 +1,0 @@
-{
-	"extends": "../../tsconfig.base.json",
-	"display": "@kynesis/common",
-	"compilerOptions": {
-		"baseUrl": "./",
-		"typeRoots": ["./@types", "./node_modules/@types"]
-	}
-}

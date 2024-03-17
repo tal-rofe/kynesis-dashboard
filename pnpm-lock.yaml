@@ -24,8 +24,8 @@ importers:
         specifier: 6.18.1
         version: 6.18.1(eslint@8.44.0)(typescript@5.3.3)
       chalk:
-        specifier: 4.1.2
-        version: 4.1.2
+        specifier: 5.3.0
+        version: 5.3.0
       commitizen:
         specifier: 4.3.0
         version: 4.3.0(@types/node@20.11.0)(typescript@5.3.3)
@@ -33,8 +33,8 @@ importers:
         specifier: 8.3.2
         version: 8.3.2
       cz-vinyl:
-        specifier: 2.5.0
-        version: 2.5.0(@types/node@20.11.0)(inquirer@8.2.6)(typescript@5.3.3)
+        specifier: 2.5.1
+        version: 2.5.1(@types/node@20.11.0)(inquirer@8.2.6)(typescript@5.3.3)
       eslint:
         specifier: 8.44.0
         version: 8.44.0
@@ -101,9 +101,6 @@ importers:
 
   apps/frontend:
     dependencies:
-      '@kynesis/common':
-        specifier: workspace:*
-        version: link:../../packages/common
       next:
         specifier: 14.0.4
         version: 14.0.4(@babel/core@7.24.0)(react-dom@18.2.0)(react@18.2.0)(sass@1.69.3)
@@ -7397,8 +7394,8 @@ packages:
       - typescript
     dev: true
 
-  /cz-vinyl@2.5.0(@types/node@20.11.0)(inquirer@8.2.6)(typescript@5.3.3):
-    resolution: {integrity: sha512-fBqe4TX+fwx0XJ0CmSTumYBOvlz2mDYj2M/pvXr1BNGegjJPZvcX7vyVUo8/zgb2PI35ZIQekYdVS1itF+mh3Q==}
+  /cz-vinyl@2.5.1(@types/node@20.11.0)(inquirer@8.2.6)(typescript@5.3.3):
+    resolution: {integrity: sha512-epmoiqd/CLSPKp9ub1KF0emjLnPRKNISz/wn1OvyK94K28Jtv6E06/c3/6UQ4+Y3pFEYyI+WrCdV50GxajZ8dA==}
     engines: {node: '>=14.16'}
     dependencies:
       cosmiconfig: 9.0.0(typescript@5.3.3)
@@ -14826,7 +14823,7 @@ packages:
     dev: true
 
   /string-template@1.0.0:
-    resolution: {integrity: sha1-np8iM9wA8hhxjsN5oopWc+zKi5Y=}
+    resolution: {integrity: sha512-SLqR3GBUXuoPP5MmYtD7ompvXiG87QjT6lzOszyXjTM86Uu7At7vNnt2xgyTLq5o9T4IxTYFyGxcULqpsmsfdg==}
     dev: true
 
   /string-width@2.1.1:
@@ -15226,7 +15223,7 @@ packages:
     dev: true
 
   /symbol-observable@1.0.1:
-    resolution: {integrity: sha1-g0D8RwLDEi310iKI+IKD9RPT/dQ=}
+    resolution: {integrity: sha512-Kb3PrPYz4HanVF1LVGuAdW6LoVgIwjUYJGzFe7NDrBLCN4lsV/5J0MFurV+ygS4bRVwrCEt2c7MQ1R2a72oJDw==}
     engines: {node: '>=0.10.0'}
     dev: true
 

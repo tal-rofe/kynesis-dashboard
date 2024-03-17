@@ -1,9 +1,10 @@
 {
-	"name": "@leumit/monorepo-client",
+	"name": "kynesis",
 	"version": "1.0.0",
-	"description": "Kynesis.io Monorepo",
+	"description": "Kynesis Dashboard",
 	"private": true,
-	"license": "ISC",
+	"license": "UNLICENSED",
+	"author": "Kynesis <dev@kynesis.io> (https://kynesis.io)",
 	"type": "module",
 	"scripts": {
 		"preinstall": "npx only-allow pnpm",
@@ -36,10 +37,10 @@
 		"@types/node": "20.11.0",
 		"@typescript-eslint/eslint-plugin": "6.18.1",
 		"@typescript-eslint/parser": "6.18.1",
-		"chalk": "4.1.2",
+		"chalk": "5.3.0",
 		"commitizen": "4.3.0",
 		"cspell": "8.3.2",
-		"cz-vinyl": "2.5.0",
+		"cz-vinyl": "2.5.1",
 		"eslint": "8.44.0",
 		"eslint-config-prettier": "9.0.0",
 		"eslint-plugin-deprecation": "1.4.1",
@@ -65,6 +66,6 @@
 	"packageManager": "pnpm@8.15.4",
 	"engines": {
 		"pnpm": "8.15.4",
-		"node": "20.11.0"
+		"node": "20.11.1"
 	}
 }
