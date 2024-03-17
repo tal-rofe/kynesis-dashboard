@@ -1,7 +1,6 @@
-import type { NextConfig } from 'next';
 import { PHASE_DEVELOPMENT_SERVER } from 'next/constants';
 
-const config = (phase: string): NextConfig => {
+const config = (phase) => {
 	const shouldAdjustToProduction = phase !== PHASE_DEVELOPMENT_SERVER && process.env.AUTOMATION !== 'true';
 
 	return {

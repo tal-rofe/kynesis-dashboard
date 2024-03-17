@@ -12,7 +12,7 @@
 		"git:config": "git config --local include.path ../.gitconfig",
 		"setdev": "run-p husky:install git:config",
 		"prepare": "run-s setdev onboarding",
-		"onboarding": "node ./scripts/onboarding.cjs",
+		"onboarding": "node ./scripts/onboarding.js",
 		"dev:frontend": "turbo dev --filter=\"{./apps/frontend}...\"",
 		"prod:frontend": "turbo prod --filter=\"{./apps/frontend}...\"",
 		"build:frontend": "turbo build --filter=\"{./apps/frontend}...\"",
