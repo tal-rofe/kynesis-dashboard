@@ -34,7 +34,7 @@
 	"devDependencies": {
 		"@commitlint/cli": "18.4.4",
 		"@exlint.io/inflint": "2.1.1",
-		"@types/node": "20.11.0",
+		"@types/node": "20.11.25",
 		"@typescript-eslint/eslint-plugin": "6.18.1",
 		"@typescript-eslint/parser": "6.18.1",
 		"chalk": "5.3.0",
