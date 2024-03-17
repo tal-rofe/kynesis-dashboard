@@ -37,7 +37,7 @@
 		"@storybook/react": "^8.0.0",
 		"@storybook/test": "^8.0.0",
 		"@storybook/test-runner": "^0.17.0",
-		"@types/node": "20.11.0",
+		"@types/node": "20.11.25",
 		"@types/react": "18.2.47",
 		"@types/react-dom": "18.2.18",
 		"@typescript-eslint/eslint-plugin": "6.18.1",
@@ -67,7 +67,7 @@
 		"typescript": "5.3.3"
 	},
 	"peerDependencies": {
-		"@types/node": "20.11.0",
+		"@types/node": "20.11.25",
 		"@typescript-eslint/parser": "6.18.1",
 		"eslint": "8.44.0",
 		"prettier": "2.8.8"
