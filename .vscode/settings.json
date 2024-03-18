@@ -7,6 +7,7 @@
 		"**/dist": true,
 		"pnpm-lock.yaml": true
 	},
+	"material-icon-theme.activeIconPack": "nest",
 	"files.exclude": {
 		"tsconfig.tsbuildinfo": true
 	},
@@ -15,6 +16,9 @@
 		"editor.defaultFormatter": "foxundermoon.shell-format"
 	},
 	"[shellscript]": {
+		"editor.defaultFormatter": "foxundermoon.shell-format"
+	},
+	"[dotenv]": {
 		"editor.defaultFormatter": "foxundermoon.shell-format"
 	}
 }
