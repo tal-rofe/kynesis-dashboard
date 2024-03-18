@@ -6,7 +6,7 @@ type Props = {
 
 const AppWrapper = (props: Props) => {
 	return (
-		<html lang="en">
+		<html lang="en" suppressHydrationWarning>
 			<body suppressHydrationWarning>
 				<NextTopLoader
 					color="#2299DD"
