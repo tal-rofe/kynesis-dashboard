@@ -9,7 +9,7 @@ const Dashboard = () => {
 	const { theme, setTheme } = useTheme();
 
 	return (
-		<div>
+		<>
 			<div className="w-fit">
 				<UIAccordion type="single" collapsible>
 					<UIAccordionItem value="item-1">
@@ -26,7 +26,7 @@ const Dashboard = () => {
 			>
 				Toggle Mode
 			</button>
-		</div>
+		</>
 	);
 };
 
