@@ -4,9 +4,11 @@ import React from 'react';
 import { useTheme } from 'next-themes';
 import { UIAccordion, UIAccordionContent, UIAccordionItem, UIAccordionTrigger } from '@/ui/UIAccordion';
 import { UIInput } from '@/ui/UIInput';
+import { UICalendar } from '@/ui/UICalendar';
 
 const Dashboard = () => {
 	const { theme, setTheme } = useTheme();
+	const [date, setDate] = React.useState<Date | undefined>(new Date());
 
 	return (
 		<>
@@ -18,6 +20,8 @@ const Dashboard = () => {
 					</UIAccordionItem>
 				</UIAccordion>
 				<UIInput />
+
+				<UICalendar mode="single" selected={date} className="rounded-md border" onSelect={setDate} />
 			</div>
 			<button
 				type="button"
