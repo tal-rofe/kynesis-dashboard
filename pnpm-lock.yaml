@@ -42,8 +42,8 @@ importers:
         specifier: 9.1.0
         version: 9.1.0(eslint@8.57.0)
       eslint-plugin-deprecation:
-        specifier: 1.4.1
-        version: 1.4.1(eslint@8.57.0)(typescript@5.3.3)
+        specifier: 1.5.0
+        version: 1.5.0(eslint@8.57.0)(typescript@5.3.3)
       eslint-plugin-i18next:
         specifier: 6.0.3
         version: 6.0.3
@@ -199,8 +199,8 @@ importers:
         specifier: 9.1.0
         version: 9.1.0(eslint@8.57.0)
       eslint-plugin-deprecation:
-        specifier: 1.4.1
-        version: 1.4.1(eslint@8.57.0)(typescript@5.3.3)
+        specifier: 1.5.0
+        version: 1.5.0(eslint@8.57.0)(typescript@5.3.3)
       eslint-plugin-i18next:
         specifier: 6.0.3
         version: 6.0.3
@@ -7752,8 +7752,8 @@ packages:
       - supports-color
     dev: true
 
-  /eslint-plugin-deprecation@1.4.1(eslint@8.57.0)(typescript@5.3.3):
-    resolution: {integrity: sha512-4vxTghWzxsBukPJVQupi6xlTuDc8Pyi1QlRCrFiLgwLPMJQW3cJCNaehJUKQqQFvuue5m4W27e179Y3Qjzeghg==}
+  /eslint-plugin-deprecation@1.5.0(eslint@8.57.0)(typescript@5.3.3):
+    resolution: {integrity: sha512-mRcssI/tLROueBQ6yf4LnnGTijbMsTCPIpbRbPj5R5wGYVCpk1zDmAS0SEkgcUDXOPc22qMNFR24Qw7vSPrlTA==}
     peerDependencies:
       eslint: ^6.0.0 || ^7.0.0 || ^8.0.0
       typescript: ^3.7.5 || ^4.0.0 || ^5.0.0
