@@ -1,9 +1,6 @@
 import React, { type CSSProperties } from 'react';
 
-import { concatDiverseClasses } from '@/lib/utils/component';
 import icons from '@/public/icons';
-
-import classes from './USvg.module.scss';
 
 type Props = {
 	readonly name: keyof typeof icons;
@@ -13,8 +10,6 @@ type Props = {
 };
 
 const UISvgView = (props: Props) => {
-	const svgClasses = concatDiverseClasses(classes['container'], props.className);
-
 	const clickHandler = (e: React.MouseEvent) => {
 		e.preventDefault();
 		e.stopPropagation();
@@ -25,7 +20,7 @@ const UISvgView = (props: Props) => {
 	return (
 		<svg
 			style={props.style}
-			className={svgClasses}
+			className={`h-5 w-5 ${props.className}`}
 			version="1.1"
 			xmlnsXlink="http://www.w3.org/1999/xlink"
 			xmlns="http://www.w3.org/2000/svg"

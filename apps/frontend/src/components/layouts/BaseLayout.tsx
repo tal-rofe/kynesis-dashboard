@@ -7,7 +7,7 @@ type PageProps = {
 
 const BaseLayout = (props: PageProps) => {
 	return (
-		<section>
+		<section className="px-4 py-3">
 			<PageWrapper>{props.children}</PageWrapper>
 		</section>
 	);

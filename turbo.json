@@ -38,9 +38,6 @@
 		"chromatic": {
 			"cache": false,
 			"persistent": true
-		},
-		"stylelint": {
-			"outputs": []
 		}
 	}
 }

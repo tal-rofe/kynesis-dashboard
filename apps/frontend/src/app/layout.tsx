@@ -1,8 +1,10 @@
 import type { Metadata } from 'next';
 
-import '@/styles/variables.module.scss';
+import '../styles/globals.css';
 
 import AppWrapper from '@/wrappers/AppWrapper';
+
+import ThemeProvider from '@/providers/ThemeProvider';
 
 type Props = {
 	readonly children: React.ReactNode;
@@ -14,7 +16,13 @@ export const metadata: Metadata = {
 };
 
 const RootLayout = (props: Props) => {
-	return <AppWrapper>{props.children}</AppWrapper>;
+	return (
+		<AppWrapper>
+			<ThemeProvider attribute="class" defaultTheme="system" enableSystem>
+				{props.children}
+			</ThemeProvider>
+		</AppWrapper>
+	);
 };
 
 export default RootLayout;

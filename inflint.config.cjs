@@ -4,7 +4,7 @@ const inflintConfig = {
 	},
 	rules: {
 		'**/*.yml': 2,
-		'apps/frontend/src/lib/{data,providers,types,utils}/**/*': [2, 'kebab-case'],
+		'apps/frontend/src/lib/{data,types,utils}/**/*': [2, 'kebab-case'],
 		'apps/frontend/src/lib/hooks/*': [2, 'camelCase'],
 		'apps/frontend/src/components/{layouts,wrappers}/*': [2, 'PascalCase.Point'],
 		'apps/frontend/src/components/ui/*': [2, '[UIComponent]'],
