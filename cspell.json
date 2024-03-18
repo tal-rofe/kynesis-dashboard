@@ -9,5 +9,5 @@
 		"./apps/frontend/src/stories/assets/**/*",
 		"./apps/frontend/src/stories/Configure.mdx"
 	],
-	"words": ["yazif", "kynesis", "toploader", "zustand", "inflint", "czvinyl", "autodocs", "CODEOWNERS", "shimol"]
+	"words": ["yazif", "kynesis", "toploader", "zustand", "inflint", "czvinyl", "autodocs", "CODEOWNERS", "shimol", "inflintignore"]
 }

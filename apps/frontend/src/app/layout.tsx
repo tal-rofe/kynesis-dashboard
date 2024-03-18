@@ -1,6 +1,6 @@
 import type { Metadata } from 'next';
 
-import '@/styles/variables.module.scss';
+import '../styles/globals.css';
 
 import AppWrapper from '@/wrappers/AppWrapper';
 

@@ -1,9 +1,0 @@
-$colors: (
-	whites-white: #fefefe,
-);
-
-:export {
-	@each $key, $value in $colors {
-		#{unquote($key)}: $value;
-	}
-}

@@ -1,11 +1,20 @@
 {
 	"ignore": ["inflint.config.cjs", "czvinyl.config.ts", "scripts/onboarding.js", "release.config.cjs"],
 	"ignoreDependencies": ["commitizen"],
-	"ignoreBinaries": ["only-allow", "concurrently", "magenta,blue", "playwright", "stylelint"],
+	"ignoreBinaries": ["only-allow", "concurrently", "magenta,blue", "playwright"],
 	"workspaces": {
 		"apps/frontend": {
 			"ignore": ["_templates/**/*", "@types/next/index.d.ts", "@types/**/*", "public/**/*", "src/**/*"],
-			"ignoreDependencies": ["@storybook/blocks", "zustand", "@storybook/test", "autoprefixer"]
+			"ignoreDependencies": [
+				"@storybook/blocks",
+				"zustand",
+				"@storybook/test",
+				"postcss-nesting",
+				"clsx",
+				"tailwind-merge",
+				"class-variance-authority",
+				"lucide-react"
+			]
 		}
 	}
 }
