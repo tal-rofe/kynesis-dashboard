@@ -1,6 +1,6 @@
 {
 	"ignore": ["inflint.config.cjs", "czvinyl.config.ts", "scripts/onboarding.js", "release.config.cjs", "./docker/scripts/open-dashboard.js"],
-	"ignoreDependencies": ["commitizen", "open", "wait-on"],
+	"ignoreDependencies": ["commitizen", "open", "wait-on", "lint-staged", "@commitlint/cli"],
 	"ignoreBinaries": ["only-allow", "concurrently", "magenta,blue", "playwright", "storybook:build", "storybook:test"],
 	"workspaces": {
 		"apps/frontend": {
