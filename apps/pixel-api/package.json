@@ -28,7 +28,7 @@
 	"devDependencies": {
 		"@compodoc/compodoc": "1.1.23",
 		"@nestjs/cli": "10.3.2",
-		"@nestjs/swagger": "7.2.0",
+		"@nestjs/swagger": "7.3.0",
 		"@total-typescript/ts-reset": "0.5.1",
 		"@typescript-eslint/eslint-plugin": "5.62.0",
 		"@typescript-eslint/parser": "5.62.0",
