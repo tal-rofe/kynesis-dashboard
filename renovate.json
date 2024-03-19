@@ -16,7 +16,9 @@
 			"automerge": true
 		}
 	],
+	"timezone": "Europe/Jerusalem",
 	"commitMessageAction": "🤖 Update",
 	"stabilityDays": 7,
-	"reviewersFromCodeOwners": true
+	"reviewersFromCodeOwners": true,
+	"schedule": ["after 00:00 and before 06:00"]
 }
