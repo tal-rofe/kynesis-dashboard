@@ -14,9 +14,8 @@
 		"./lint-staged.config.cjs",
 		"./inflint.config.cjs",
 		"./docker/Dockerfile.frontend-dev",
-		"./docker/Dockerfile.pixel-api-dev",
 		"./apps/frontend/src/stories/assets/**/*",
 		"./apps/frontend/src/stories/Configure.mdx"
 	],
-	"words": ["kynesis", "czvinyl", "autodocs", "toploader"]
+	"words": ["kynesis", "czvinyl", "autodocs", "toploader", "outfile"]
 }

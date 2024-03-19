@@ -8,11 +8,9 @@
 			"ignoreDependencies": ["@storybook/blocks", "postcss-nesting", "class-variance-authority", "lucide-react"]
 		},
 		"apps/pixel-api": {
-			"entry": "./src/main.ts",
+			"entry": "./src/index.ts",
 			"project": "./src/**/*",
-			"ignore": ["@types/**/*"],
-			"ignoreDependencies": ["ts-loader", "webpack", "webpack-node-externals"],
-			"webpack": false
+			"ignoreDependencies": ["esbuild"]
 		}
 	}
 }
