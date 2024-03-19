@@ -48,7 +48,7 @@
 			"outputs": []
 		},
 		"prettier": {
-			"inputs": ["**/*.{ts,js,cjs,json,yaml}"],
+			"inputs": ["{workspaceRoot}/**/*.{ts,js,cjs,json,yaml}"],
 			"outputs": []
 		},
 		"cspell": {
