@@ -3,3 +3,4 @@ apps/frontend/node_modules
 apps/frontend/dist
 packages/api/dist
 packages/api/node_modules
+apps/pixel-api/node_modules

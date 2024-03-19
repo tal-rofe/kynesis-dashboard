@@ -13,17 +13,16 @@ jobs:
         runs-on: ubuntu-latest
 
         steps:
-            - uses: actions/checkout@v3
-            - uses: actions/setup-node@v3
+            - uses: actions/checkout@v4
+
+            - uses: actions/setup-node@v4
               with:
                   node-version-file: '.nvmrc'
+
             - uses: pnpm/action-setup@v3
               with:
                   version: 8.15.4
                   run_install: true
-
-            - name: Build Common
-              run: pnpm build:common
 
             - name: Run Knip
               run: pnpm knip
@@ -33,17 +32,16 @@ jobs:
         runs-on: ubuntu-latest
 
         steps:
-            - uses: actions/checkout@v3
-            - uses: actions/setup-node@v3
+            - uses: actions/checkout@v4
+
+            - uses: actions/setup-node@v4
               with:
                   node-version-file: '.nvmrc'
+
             - uses: pnpm/action-setup@v3
               with:
                   version: 8.15.4
                   run_install: true
-
-            - name: Build Common
-              run: pnpm build:common
 
             - name: Run Inflint
               run: pnpm inflint
@@ -53,19 +51,18 @@ jobs:
         runs-on: ubuntu-latest
 
         steps:
-            - uses: actions/checkout@v3
-            - uses: actions/setup-node@v3
+            - uses: actions/checkout@v4
+
+            - uses: actions/setup-node@v4
               with:
                   node-version-file: '.nvmrc'
+
             - uses: pnpm/action-setup@v3
               with:
                   version: 8.15.4
                   run_install: true
 
-            - name: Build Common
-              run: pnpm build:common
-
-            - name: Test TypeScript
+            - name: Run TypeScript
               run: pnpm run type-check:all
 
     eslint:
@@ -73,19 +70,18 @@ jobs:
         runs-on: ubuntu-latest
 
         steps:
-            - uses: actions/checkout@v3
-            - uses: actions/setup-node@v3
+            - uses: actions/checkout@v4
+
+            - uses: actions/setup-node@v4
               with:
                   node-version-file: '.nvmrc'
+
             - uses: pnpm/action-setup@v3
               with:
                   version: 8.15.4
                   run_install: true
 
-            - name: Build Common
-              run: pnpm build:common
-
-            - name: Test ESLint
+            - name: Run ESLint
               run: pnpm lint:all
 
     build:
@@ -93,19 +89,18 @@ jobs:
         runs-on: ubuntu-latest
 
         steps:
-            - uses: actions/checkout@v3
-            - uses: actions/setup-node@v3
+            - uses: actions/checkout@v4
+
+            - uses: actions/setup-node@v4
               with:
                   node-version-file: '.nvmrc'
+
             - uses: pnpm/action-setup@v3
               with:
                   version: 8.15.4
                   run_install: true
 
-            - name: Build Common
-              run: pnpm build:common
-
-            - name: Test build
+            - name: Run build
               run: pnpm build:nested
 
     cspell:
@@ -113,24 +108,28 @@ jobs:
         runs-on: ubuntu-latest
 
         steps:
-            - uses: actions/checkout@v3
-            - uses: actions/setup-node@v3
+            - uses: actions/checkout@v4
+
+            - uses: actions/setup-node@v4
               with:
                   node-version-file: '.nvmrc'
+
             - uses: pnpm/action-setup@v3
               with:
                   version: 8.15.4
                   run_install: true
 
-            - name: Test build
-              run: pnpm build:nested
+            - name: Run CSpell
+              run: pnpm cspell
 
     storybook:
         timeout-minutes: 60
         runs-on: ubuntu-latest
+
         steps:
-            - uses: actions/checkout@v3
-            - uses: actions/setup-node@v3
+            - uses: actions/checkout@v4
+
+            - uses: actions/setup-node@v4
               with:
                   node-version-file: '.nvmrc'
 
@@ -141,15 +140,20 @@ jobs:
 
             - name: Install Playwright
               run: npx playwright install --with-deps
+
             - name: Build Storybook
-              run: pnpm build-storybook
+              run: pnpm --filter frontend storybook:build
+
             - name: Serve Storybook and run tests
               run: |
                   npx concurrently -k -s first -n "SB,TEST" -c "magenta,blue" \
-                    "npx http-server ./apps/frontend/storybook-static --port 6006 --silent" \
-                    "npx wait-on tcp:6006 && pnpm test-storybook"
+                  "npx http-server ./apps/frontend/storybook-static --port 6006 --silent" \
+                  "npx wait-on tcp:6006 && pnpm --filter frontend storybook:test"
+
     chromatic:
+        name: Chromatic
         runs-on: ubuntu-latest
+
         steps:
             - name: Checkout code
               uses: actions/checkout@v4
@@ -157,7 +161,7 @@ jobs:
                   fetch-depth: 0
 
             - name: Set up Node.js
-              uses: actions/setup-node@v3
+              uses: actions/setup-node@v4
               with:
                   node-version-file: '.nvmrc'
 
@@ -171,4 +175,4 @@ jobs:
               with:
                   zip: true
                   projectToken: ${{ secrets.CHROMATIC_PROJECT_TOKEN }}
-                  workingDir: apps/frontend
+                  workingDir: ./apps/frontend

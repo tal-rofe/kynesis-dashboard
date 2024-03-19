@@ -1,0 +1,44 @@
+version: '3.8'
+
+services:
+    pixel-api:
+        container_name: pixel-api
+        build:
+            context: .
+            dockerfile: ./docker/Dockerfile.pixel-api-dev
+        env_file:
+            - ./apps/pixel-api/envs/.env.development
+        ports:
+            - 3000:3000
+        restart: always
+        networks:
+            - dashboard_network
+        volumes:
+            - type: bind
+              source: ./apps/pixel-api/src
+              target: /dashboard/apps/pixel-api/src
+            - /dashboard/apps/pixel-api/node_modules
+
+    frontend:
+        container_name: frontend
+        build:
+            context: .
+            dockerfile: ./docker/Dockerfile.frontend-dev
+        env_file:
+            - ./apps/frontend/envs/.env.development
+        ports:
+            - 8080:8080
+        restart: always
+        depends_on:
+            - pixel-api
+        networks:
+            - dashboard_network
+        volumes:
+            - type: bind
+              source: ./apps/frontend/src
+              target: /dashboard/apps/frontend/src
+            - /dashboard/apps/frontend/node_modules
+
+networks:
+    dashboard_network:
+        driver: bridge
