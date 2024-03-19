@@ -1,4 +1,4 @@
-import type { CzVinylConfig} from 'cz-vinyl'
+import type { CzVinylConfig } from 'cz-vinyl';
 
 const czvinylConfig: CzVinylConfig = {
 	headerFormat: '{type}: {emoji} {subject}',

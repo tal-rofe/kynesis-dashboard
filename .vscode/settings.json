@@ -8,6 +8,9 @@
 		"pnpm-lock.yaml": true
 	},
 	"material-icon-theme.activeIconPack": "nest",
+	"material-icon-theme.files.associations": {
+		"*.routes.ts": "routing"
+	},
 	"files.exclude": {
 		"tsconfig.tsbuildinfo": true
 	},
@@ -20,5 +23,11 @@
 	},
 	"[dotenv]": {
 		"editor.defaultFormatter": "foxundermoon.shell-format"
+	},
+	"[ignore]": {
+		"editor.defaultFormatter": "foxundermoon.shell-format"
+	},
+	"[dockerfile]": {
+		"editor.defaultFormatter": "ms-azuretools.vscode-docker"
 	}
 }

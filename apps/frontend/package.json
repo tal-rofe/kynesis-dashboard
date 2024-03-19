@@ -4,14 +4,16 @@
 	"private": true,
 	"type": "module",
 	"scripts": {
-		"dev": "dotenv -e envs/.env.development -- next dev",
+		"postinstall": "playwright install --with-deps",
 		"build": "dotenv -e envs/.env.production -- next build",
-		"start": "next start",
+		"start:dev": "dotenv -e envs/.env.development -- next dev -p 8080",
+		"start:dev:docker": "next dev -p 8080",
+		"start:prod": "next start -p 8080",
 		"lint": "eslint -c ./.eslintrc.cjs --ignore-path ./.eslintignore \"./**/*.{ts,tsx,cjs}\"",
 		"type-check": "tsc --project ./tsconfig.json",
 		"storybook": "storybook dev -p 6006",
-		"build-storybook": "storybook build --quiet",
-		"test-storybook": "test-storybook",
+		"storybook:build": "storybook build --quiet",
+		"storybook:test": "test-storybook",
 		"chromatic": "npx chromatic --exit-zero-on-changes",
 		"template:page": "hygen component new-page",
 		"template:module": "hygen component new-module",
@@ -29,8 +31,7 @@
 		"nextjs-toploader": "1.6.6",
 		"react": "18.2.0",
 		"tailwind-merge": "2.2.2",
-		"tailwindcss-animate": "1.0.7",
-		"zustand": "4.5.2"
+		"tailwindcss-animate": "1.0.7"
 	},
 	"devDependencies": {
 		"@chromatic-com/storybook": "1.2.18",
@@ -65,6 +66,7 @@
 		"eslint-plugin-unicorn": "47.0.0",
 		"eslint-plugin-unused-imports": "3.1.0",
 		"hygen": "6.2.11",
+		"playwright": "1.42.1",
 		"postcss": "8.4.36",
 		"postcss-import": "16.0.1",
 		"postcss-nesting": "12.1.0",

@@ -1,13 +1,15 @@
 {
 	"ignore": ["inflint.config.cjs", "czvinyl.config.ts", "scripts/onboarding.js", "release.config.cjs"],
 	"ignoreDependencies": ["commitizen"],
-	"ignoreBinaries": ["only-allow", "concurrently", "magenta,blue", "playwright"],
+	"ignoreBinaries": ["only-allow", "concurrently", "magenta,blue", "playwright", "storybook:build", "storybook:test"],
 	"workspaces": {
 		"apps/frontend": {
-			"ignore": ["_templates/**/*", "@types/next/index.d.ts", "@types/**/*", "public/**/*", "src/**/*"],
-			"ignoreDependencies": ["@storybook/blocks", "zustand", "postcss-nesting", "class-variance-authority", "lucide-react"]
+			"ignore": ["_templates/**/*", "@types/next/index.d.ts", "@types/**/*", "public/**/*", "./src/components/ui/**/*"],
+			"ignoreDependencies": ["@storybook/blocks", "postcss-nesting", "class-variance-authority", "lucide-react"]
 		},
 		"apps/pixel-api": {
+			"entry": "./src/main.ts",
+			"project": "./src/**/*",
 			"ignore": ["@types/**/*"],
 			"ignoreDependencies": ["ts-loader"]
 		}
