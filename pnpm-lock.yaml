@@ -59,6 +59,12 @@ importers:
       husky:
         specifier: 8.0.3
         version: 8.0.3
+      is-ci:
+        specifier: 3.0.1
+        version: 3.0.1
+      is-docker:
+        specifier: 3.0.0
+        version: 3.0.0
       knip:
         specifier: 4.2.0
         version: 4.2.0(@types/node@20.11.26)(typescript@5.4.2)
@@ -71,6 +77,9 @@ importers:
       nx:
         specifier: 18.1.2
         version: 18.1.2
+      open:
+        specifier: 10.1.0
+        version: 10.1.0
       pnpm:
         specifier: 8.15.4
         version: 8.15.4
@@ -83,6 +92,9 @@ importers:
       typescript:
         specifier: 5.4.2
         version: 5.4.2
+      wait-on:
+        specifier: 7.2.0
+        version: 7.2.0
 
   apps/frontend:
     dependencies:
@@ -11310,6 +11322,13 @@ packages:
   /is-callable@1.2.7:
     resolution: {integrity: sha512-1BC0BVFhS/p0qtw6enp8e+8OD0UrK0oFLztSjNzhcKA3WDuJxxAPXzPuPtKkjEY9UUoEWlX/8fgKeu2S8i9JTA==}
     engines: {node: '>= 0.4'}
+    dev: true
+
+  /is-ci@3.0.1:
+    resolution: {integrity: sha512-ZYvCgrefwqoQ6yTyYUbQu64HsITZ3NfKX1lzaEYdkTDcfKzzCI/wthRRYKkdjHKFVgNiXKAKm65Zo1pk2as/QQ==}
+    hasBin: true
+    dependencies:
+      ci-info: 3.9.0
     dev: true
 
   /is-core-module@2.13.1:

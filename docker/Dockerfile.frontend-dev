@@ -1,0 +1,16 @@
+FROM node:20.11.1
+
+RUN npm i -g pnpm@8.15.4
+
+WORKDIR /dashboard
+
+COPY ./package.json ./pnpm-workspace.yaml ./.npmrc ./
+COPY ./apps/frontend/package.json ./apps/frontend/
+
+RUN pnpm i -w
+RUN PLAYWRIGHT_SKIP_BROWSER_DOWNLOAD=1 pnpm --filter frontend i
+
+COPY ./tsconfig.base.json ./nx.json ./
+COPY ./apps/frontend/ ./apps/frontend/
+
+CMD ["pnpm", "exec", "nx", "start:dev", "@kynesis/frontend"]

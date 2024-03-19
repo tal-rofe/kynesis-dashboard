@@ -9,6 +9,7 @@
 	"scripts": {
 		"build": "nest build",
 		"start:dev": "dotenv -e ./envs/.env.development -- nest start --watch",
+		"start:dev:docker": "nest start --watch",
 		"compodoc": "compodoc && open-cli ./documentation/index.html",
 		"lint": "eslint -c ./.eslintrc.cjs --ignore-path ./.eslintignore \"./**/*.ts\"",
 		"type-check": "tsc --project ./tsconfig.json"

@@ -5,9 +5,10 @@
 	"type": "module",
 	"scripts": {
 		"postinstall": "playwright install --with-deps",
-		"dev": "dotenv -e envs/.env.development -- next dev",
 		"build": "dotenv -e envs/.env.production -- next build",
-		"start": "next start",
+		"start:dev": "dotenv -e envs/.env.development -- next dev -p 8080",
+		"start:dev:docker": "next dev -p 8080",
+		"start:prod": "next start -p 8080",
 		"lint": "eslint -c ./.eslintrc.cjs --ignore-path ./.eslintignore \"./**/*.{ts,tsx,cjs}\"",
 		"type-check": "tsc --project ./tsconfig.json",
 		"storybook": "storybook dev -p 6006",
