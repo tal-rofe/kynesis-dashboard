@@ -2,7 +2,7 @@ import { type routes } from '../routes';
 
 type Routes = typeof routes;
 
-export type Route = {
+type Route = {
 	readonly path: string;
 	readonly title: string;
 	readonly isRequiredAuth?: boolean;

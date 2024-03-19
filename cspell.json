@@ -6,8 +6,15 @@
 		"**/*/package.json",
 		"./.vscode",
 		"**/*.env.*",
+		"./CHANGELOG.md",
+		"./CODEOWNERS",
+		"./knip.json",
+		"./cspell.json",
+		"./nx.json",
+		"./lint-staged.config.cjs",
+		"./inflint.config.cjs",
 		"./apps/frontend/src/stories/assets/**/*",
 		"./apps/frontend/src/stories/Configure.mdx"
 	],
-	"words": ["yazif", "kynesis", "toploader", "zustand", "inflint", "czvinyl", "autodocs", "CODEOWNERS", "shimol", "inflintignore"]
+	"words": ["kynesis", "czvinyl", "autodocs", "toploader"]
 }
