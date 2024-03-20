@@ -1,7 +1,12 @@
-
 # Kynesis.io
 
 Kynesis Dashboard
+
+## System Architectures
+
+### Pixel API
+
+<img src="./assets/pixel-api-system-architecture.png" width="100%"/>
 
 ## Development
 

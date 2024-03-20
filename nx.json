@@ -48,19 +48,19 @@
 			"outputs": []
 		},
 		"prettier": {
-			"inputs": ["**/*.{ts,js,cjs,json,yaml}"],
+			"inputs": ["{workspaceRoot}/**/*.{ts,js,cjs,json,yaml}"],
 			"outputs": []
 		},
 		"cspell": {
-			"inputs": ["**"],
+			"inputs": ["{workspaceRoot}/**"],
 			"outputs": []
 		},
 		"type-check:root": {
-			"inputs": ["!(apps)/**/*.ts", "{workspaceRoot}/tsconfig.json", "{workspaceRoot}/tsconfig.base.json"],
+			"inputs": ["{workspaceRoot}/**/*.ts", "!{workspaceRoot}/apps/**", "{workspaceRoot}/tsconfig.json", "{workspaceRoot}/tsconfig.base.json"],
 			"outputs": []
 		},
 		"lint:root": {
-			"inputs": ["!(apps)/**/*.{ts,js,cjs}", "{workspaceRoot}/.eslintrc.cjs", "{workspaceRoot}/.eslintignore"],
+			"inputs": ["{workspaceRoot}/**/*.{ts,js,cjs}", "!{workspaceRoot}/apps/**", "{workspaceRoot}/.eslintrc.cjs", "{workspaceRoot}/.eslintignore"],
 			"outputs": []
 		},
 		"storybook:build": {
