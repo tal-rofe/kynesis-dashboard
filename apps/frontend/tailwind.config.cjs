@@ -86,6 +86,9 @@ module.exports = {
 				'fadeIn': 'fadeIn 0.5s ease-out forwards',
 				'fadeOut': 'fadeOut 0.5s ease-in forwards',
 			},
+			backgroundImage: {
+				onboarding: 'url("/images/onboarding-background.png")',
+			},
 		},
 	},
 	plugins: [require('tailwindcss-animate')],

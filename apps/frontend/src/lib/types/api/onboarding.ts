@@ -4,6 +4,6 @@ export type WelcomeFormInputs = {
 	readonly companyLinkedInURL: string;
 };
 
-export type OnboardingSteps = 'welcome' | 'company' | 'trackingScript' | 'htmlScript';
+export type OnboardingSteps = 'welcome' | 'trackingScript' | 'htmlScript' | 'company';
 
 export type ScriptDomainType = 'everySubDomain' | 'specificSubDomain';

@@ -28,7 +28,7 @@ const TrackingScriptView = (props: Props) => {
 				<UICardDescription>Choose the configuration for tracking visitors on your website</UICardDescription>
 			</UICardHeader>
 			<UICardContent>
-				<UIProgress value={50} />
+				<UIProgress value={25} />
 				<div className="grid w-full items-center gap-1.5 my-4">
 					<UILabel htmlFor="websiteUrl">Your website</UILabel>
 					<UIInput

@@ -24,7 +24,7 @@ const CompanyView = (props: Props) => {
 				<UICardDescription>Share your company's details for enhanced AI email personalization</UICardDescription>
 			</UICardHeader>
 			<UICardContent>
-				<UIProgress value={25} />
+				<UIProgress value={75} />
 				<div className="flex items-center gap-2 my-4">
 					<UISvg name="wand" />
 					<span className="text-slate-950 text-sm font-medium font-['Inter'] leading-tight">Here’s what our AI found:</span>
