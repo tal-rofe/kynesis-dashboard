@@ -14,6 +14,7 @@ const config = {
 	},
 	plugins: ['@typescript-eslint', 'unused-imports', 'import', 'deprecation', 'unicorn', 'node'],
 	rules: {
+		'no-console': 'error',
 		'max-lines': ['error', { max: 150, skipBlankLines: true, skipComments: true }],
 		'quotes': ['error', 'single', { avoidEscape: true }],
 		'semi': ['error', 'always'],
@@ -157,6 +158,12 @@ const config = {
 		'node/no-sync': 'error',
 	},
 	overrides: [
+		{
+			files: ['./scripts/onboarding.js', './docker/scripts/open-dashboard.js'],
+			rules: {
+				'no-console': 'off',
+			},
+		},
 		{
 			files: ['**/*.{cjs,js}'],
 			rules: {
