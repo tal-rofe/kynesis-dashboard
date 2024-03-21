@@ -9,4 +9,9 @@ export const routes = {
 		title: 'Login',
 		isRequiredAuth: false,
 	},
+	onboarding: {
+		path: '/onboarding',
+		title: 'Onboarding',
+		isRequiredAuth: false,
+	},
 } as const;
