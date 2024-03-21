@@ -35,3 +35,11 @@ apps/frontend/node_modules
 apps/frontend/.next
 apps/frontend/tsconfig.eslint.json
 apps/frontend/_templates
+
+apps/pixel-api/tsconfig.tsbuildinfo
+apps/pixel-api/.gitignore
+apps/pixel-api/.eslintrc.cjs
+apps/pixel-api/.eslintignore
+apps/pixel-api/node_modules
+apps/pixel-api/build
+apps/pixel-api/tsconfig.eslint.json
