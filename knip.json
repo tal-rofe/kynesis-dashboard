@@ -10,7 +10,7 @@
 		"apps/pixel-api": {
 			"entry": "./src/index.ts",
 			"project": "./src/**/*",
-			"ignoreDependencies": ["esbuild"]
+			"ignoreDependencies": ["esbuild", "serverless", "serverless-offline"]
 		}
 	}
 }

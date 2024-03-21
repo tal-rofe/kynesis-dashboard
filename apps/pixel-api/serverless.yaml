@@ -1,0 +1,29 @@
+org: kynesis
+app: pixel-api
+console: true
+service: pixel-http-api
+frameworkVersion: '3'
+configValidationMode: error
+
+provider:
+    name: aws
+    stage: development
+
+custom:
+    serverless-offline:
+        # * https://forum.serverless.com/t/possible-to-run-serverless-in-a-docker-container/5764/4
+        host: 0.0.0.0
+
+plugins:
+    - serverless-offline
+
+functions:
+    pixel-api:
+        name: pixel-api
+        runtime: nodejs20.x
+        handler: ./build/index.handler
+        events:
+            - http:
+                  path: /
+                  method: POST
+                  cors: true

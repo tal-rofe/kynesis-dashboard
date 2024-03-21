@@ -7,6 +7,7 @@
 		"**/dist": true,
 		"pnpm-lock.yaml": true
 	},
+	"yaml.customTags": ["!Ref"],
 	"material-icon-theme.activeIconPack": "nest",
 	"material-icon-theme.files.associations": {
 		"*.routes.ts": "routing"

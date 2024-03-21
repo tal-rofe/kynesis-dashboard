@@ -6,12 +6,10 @@ const SECOND = 1 * 1000;
 const MINUTE = 60 * SECOND;
 
 const waitOnOptions = {
-	resources: ['http-get://localhost:8080', 'http-get://localhost:3000/health/version'],
+	resources: ['http-get://localhost:8080'],
 	timeout: 30 * MINUTE,
 	validateStatus: (status) => status === 200,
-	headers: {
-		accept: 'text/html',
-	},
+	headers: { accept: 'text/html' },
 };
 
 (async () => {
