@@ -3,7 +3,7 @@ type Props = {
 };
 
 const PageWrapper = (props: Props) => {
-	return <div>{props.children}</div>;
+	return <section className="h-full w-full">{props.children}</section>;
 };
 
 export default PageWrapper;

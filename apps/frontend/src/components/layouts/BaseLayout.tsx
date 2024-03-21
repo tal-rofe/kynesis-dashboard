@@ -7,9 +7,9 @@ type PageProps = {
 
 const BaseLayout = (props: PageProps) => {
 	return (
-		<section className="px-4 py-3">
+		<div className="w-full h-full bg-gradient-to-b from-neutral-200 to-neutral-200 backdrop-blur-3xl">
 			<PageWrapper>{props.children}</PageWrapper>
-		</section>
+		</div>
 	);
 };
 
