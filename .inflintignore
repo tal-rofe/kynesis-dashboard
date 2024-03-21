@@ -1,4 +1,7 @@
 node_modules
+
 apps/frontend/node_modules
-apps/frontend/dist
+apps/frontend/.next
+
 apps/pixel-api/node_modules
+apps/pixel-api/build
