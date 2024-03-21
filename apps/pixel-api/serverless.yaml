@@ -7,7 +7,15 @@ configValidationMode: error
 
 provider:
     name: aws
-    stage: development
+    httpApi:
+        cors:
+            allowedOrigins:
+                - '*'
+            allowedHeaders:
+                - Content-Type
+            allowedMethods:
+                - POST
+            allowCredentials: false
 
 custom:
     serverless-offline:
@@ -23,7 +31,6 @@ functions:
         runtime: nodejs20.x
         handler: ./build/index.handler
         events:
-            - http:
+            - httpApi:
                   path: /
                   method: POST
-                  cors: true
