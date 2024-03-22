@@ -5,7 +5,7 @@ import { type RoutesPath, routes } from '@/lib/routes';
 const middleware = (request: NextRequest) => {
 	const { pathname } = request.nextUrl;
 
-	const isAuthenticate = false;
+	const isAuthenticate = true;
 
 	const authorizedRoutes = Object.values(routes)
 		.filter((route) => route.isRequiredAuth)
@@ -15,7 +15,7 @@ const middleware = (request: NextRequest) => {
 		.filter((route) => route.isRequiredAuth === false)
 		.map((route) => route.path);
 
-	const absoluteAuthorizedRoutesURL = new URL(routes.dashboard.path, request.nextUrl.origin);
+	const absoluteAuthorizedRoutesURL = new URL(routes.visitors.path, request.nextUrl.origin);
 	const absoluteUnAuthorizedRoutesURL = new URL(routes.onboarding.path, request.nextUrl.origin);
 
 	if (authorizedRoutes.includes(pathname as RoutesPath) && !isAuthenticate) {

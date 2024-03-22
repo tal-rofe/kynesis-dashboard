@@ -20,7 +20,7 @@ const UISvgView = (props: Props) => {
 	return (
 		<svg
 			style={props.style}
-			className={`h-5 w-5 ${props.className}`}
+			className={`h-4 w-4 fill-transparent ${props.className}`}
 			version="1.1"
 			xmlnsXlink="http://www.w3.org/1999/xlink"
 			xmlns="http://www.w3.org/2000/svg"

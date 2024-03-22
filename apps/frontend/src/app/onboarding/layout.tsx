@@ -1,4 +1,4 @@
-import OnboardingLayoutBase from '@/layouts/Onboarding';
+import OnboardingLayoutBase from '@/layouts/OnboardingLayout';
 
 type Props = {
 	readonly children: React.ReactNode;

@@ -1,15 +1,24 @@
 import React from 'react';
 import PageWrapper from '../wrappers/PageWrapper';
+import Sidebar from './Sidebar';
+import Header from './Header';
 
 type PageProps = {
 	readonly children: React.ReactNode;
+	readonly sidebar?: boolean;
+	readonly header?: boolean;
 };
 
 const BaseLayout = (props: PageProps) => {
 	return (
-		<div className="w-full h-full bg-gradient-to-b from-neutral-200 to-neutral-200 backdrop-blur-3xl">
-			<PageWrapper>{props.children}</PageWrapper>
-		</div>
+		<section className="flex items-start w-full h-full overflow-hidden">
+			{props.sidebar && <Sidebar />}
+			<div className="flex flex-col w-full h-full">
+				{props.header && <Header />}
+
+				<PageWrapper className="flex flex-col w-full h-full px-8 py-6">{props.children}</PageWrapper>
+			</div>
+		</section>
 	);
 };
 
