@@ -2,7 +2,7 @@
 
 RED='\033[0;31m'
 
-docker-compose -f ./docker-compose.dev.yaml restart
+docker-compose -f ./docker/docker-compose.dev.yaml restart
 
 if [ $? = 1 ]; then
     echo -e "\n${RED}Failed to restart Docker services"
