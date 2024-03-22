@@ -79,7 +79,6 @@
 	}
 	body {
 		@apply bg-background text-foreground;
-		@apply dark:bg-gray-800 bg-slate-400;
 		height: 100%;
 		margin: 0;
 		overflow-x: hidden;

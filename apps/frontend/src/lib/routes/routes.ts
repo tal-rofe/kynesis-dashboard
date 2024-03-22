@@ -4,6 +4,21 @@ export const routes = {
 		title: 'Dashboard',
 		isRequiredAuth: true,
 	},
+	settings: {
+		path: '/settings',
+		title: 'Settings',
+		isRequiredAuth: true,
+	},
+	visitors: {
+		path: '/visitors',
+		title: 'Visitors',
+		isRequiredAuth: true,
+	},
+	prospects: {
+		path: '/prospects',
+		title: 'Prospects',
+		isRequiredAuth: true,
+	},
 	login: {
 		path: '/login',
 		title: 'Login',
