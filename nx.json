@@ -30,8 +30,15 @@
 	},
 	"targetDefaults": {
 		"build": {
-			"inputs": ["source"],
-			"outputs": ["{projectRoot}/dist", "{projectRoot}/.next"]
+			"inputs": [
+				"source",
+				"{projectRoot}/next.config.cjs",
+				"{projectRoot}/tsconfig.base.json",
+				"{workspaceRoot}/tsconfig.base.json",
+				"{projectRoot}/tsconfig.build.json",
+				"{projectRoot}/esbuild.js"
+			],
+			"outputs": ["{projectRoot}/build", "{projectRoot}/.next"]
 		},
 		"lint": {
 			"inputs": [

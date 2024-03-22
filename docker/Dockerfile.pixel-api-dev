@@ -13,4 +13,4 @@ RUN pnpm --filter pixel-api i
 COPY ./tsconfig.base.json ./nx.json ./
 COPY ./apps/pixel-api/ ./apps/pixel-api/
 
-CMD ["pnpm", "exec", "nx", "start:dev:docker", "@kynesis/pixel-api"]
+CMD ["pnpm", "exec", "nx", "start:dev", "@kynesis/pixel-api"]

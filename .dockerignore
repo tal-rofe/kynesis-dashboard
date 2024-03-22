@@ -27,15 +27,6 @@ tsconfig.eslint.json
 tsconfig.json
 tsconfig.tsbuildinfo
 
-apps/pixel-api/tsconfig.tsbuildinfo
-apps/backend/.gitignore
-apps/backend/.eslintrc.cjs
-apps/backend/.eslintignore
-apps/backend/node_modules
-apps/backend/dist
-apps/backend/tsconfig.doc.json
-apps/backend/tsconfig.eslint.json
-
 apps/frontend/tsconfig.tsbuildinfo
 apps/frontend/.gitignore
 apps/frontend/.eslintrc.cjs
@@ -44,3 +35,11 @@ apps/frontend/node_modules
 apps/frontend/.next
 apps/frontend/tsconfig.eslint.json
 apps/frontend/_templates
+
+apps/pixel-api/tsconfig.tsbuildinfo
+apps/pixel-api/.gitignore
+apps/pixel-api/.eslintrc.cjs
+apps/pixel-api/.eslintignore
+apps/pixel-api/node_modules
+apps/pixel-api/build
+apps/pixel-api/tsconfig.eslint.json

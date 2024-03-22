@@ -1,0 +1,6 @@
+{
+	"$schema": "https://json.schemastore.org/nodemon.json",
+	"watch": ["./src", "./serverless.yaml"],
+	"ext": "ts,json",
+	"exec": "node ./esbuild.js && sls offline --httpPort 3000"
+}

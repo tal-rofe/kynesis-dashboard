@@ -9,7 +9,6 @@ const inflintConfig = {
 		'apps/frontend/src/lib/hooks/*': [2, 'camelCase'],
 		'apps/frontend/src/components/{layouts,wrappers}/*': [2, 'PascalCase.Point'],
 		'apps/frontend/src/components/ui/*': [2, '[UIComponent]'],
-		'packages/common/lib/{types}/**/*': [2, 'kebab-case'],
 	},
 };
 

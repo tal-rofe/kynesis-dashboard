@@ -7,16 +7,4 @@ module.exports = {
 		tsconfigRootDir: __dirname,
 		sourceType: 'module',
 	},
-	plugins: ['node'],
-	rules: {
-		'node/no-sync': 'error',
-	},
-	overrides: [
-		{
-			files: ['./@types/global/index.d.ts'],
-			rules: {
-				'@typescript-eslint/consistent-type-definitions': 'off',
-			},
-		},
-	],
 };

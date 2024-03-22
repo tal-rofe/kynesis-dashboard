@@ -10,7 +10,6 @@ type Props = {
 const Error = (props: Props) => {
 	useEffect(() => {
 		// Log the error to an error reporting service
-		console.error(props.error);
 	}, [props.error]);
 
 	return (

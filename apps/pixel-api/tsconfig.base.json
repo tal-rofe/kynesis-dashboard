@@ -2,14 +2,9 @@
 	"extends": "../../tsconfig.base.json",
 	"compilerOptions": {
 		"target": "ESNext",
-		"moduleResolution": "Bundler",
 		"module": "ESNext",
+		"moduleResolution": "Bundler",
 		"baseUrl": "./",
-		"emitDecoratorMetadata": true,
-		"experimentalDecorators": true,
-		"paths": {
-			"@/config/*": ["src/config/*"]
-		},
 		"typeRoots": ["./node_modules/@types", "./@types"]
 	}
 }
