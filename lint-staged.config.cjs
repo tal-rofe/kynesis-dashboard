@@ -3,5 +3,5 @@ module.exports = {
 	'apps/pixel-api/**/*.{ts,js,cjs}': 'pnpm --filter pixel-api exec eslint -c ./.eslintrc.cjs --ignore-path ./.eslintignore --fix',
 	'!(apps)**/*.{ts,js,cjs}': 'eslint -c ./.eslintrc.cjs --fix',
 	'**/*.{ts,js,cjs,json,yaml}': 'prettier --write',
-	'**/*': 'inflint -c ./inflint.config.cjs',
+	'**/*': 'inflint -c ./inflint.config.ts',
 };

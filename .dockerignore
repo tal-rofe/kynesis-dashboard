@@ -18,7 +18,7 @@ knip.json
 CHANGELOG.md
 commitlint.config.cjs
 czvinyl.config.ts
-inflint.config.cjs
+inflint.config.ts
 lint-staged.config.cjs
 README.md
 release.config.cjs

@@ -18,7 +18,7 @@
 		"cluster:stop": "pnpm exec ./docker/scripts/stop-cluster.sh",
 		"cluster:restart": "pnpm exec ./docker/scripts/restart-cluster.sh",
 		"build:nested": "nx run-many --target=build --nx-bail",
-		"inflint": "inflint -c ./inflint.config.cjs",
+		"inflint": "inflint -c ./inflint.config.ts",
 		"inflint:nx": "nx inflint",
 		"knip": "knip -c ./knip.json",
 		"knip:nx": "nx knip",
