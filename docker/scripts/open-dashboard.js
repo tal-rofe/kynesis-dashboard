@@ -6,7 +6,7 @@ const SECOND = 1 * 1000;
 const MINUTE = 60 * SECOND;
 
 const waitOnOptions = {
-	resources: ['http-get://localhost:8080'],
+	resources: ['http-get://localhost:8080', 'tcp:localhost:3000'],
 	timeout: 30 * MINUTE,
 	validateStatus: (status) => status === 200,
 	headers: { accept: 'text/html' },
