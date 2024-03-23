@@ -4,8 +4,8 @@ services:
     pixel-api:
         container_name: pixel-api
         build:
-            context: .
-            dockerfile: ./Dockerfile.pixel-api-dev
+            context: ..
+            dockerfile: ./docker/Dockerfile.pixel-api-dev
         ports:
             - 3000:3000
         restart: always
@@ -13,7 +13,7 @@ services:
             - dashboard_network
         volumes:
             - type: bind
-              source: ./apps/pixel-api/src
+              source: ../apps/pixel-api/src
               target: /dashboard/apps/pixel-api/src
             - /dashboard/apps/pixel-api/node_modules
             - /dashboard/node_modules
@@ -21,8 +21,8 @@ services:
     frontend:
         container_name: frontend
         build:
-            context: .
-            dockerfile: ./Dockerfile.frontend-dev
+            context: ..
+            dockerfile: ./docker/Dockerfile.frontend-dev
         env_file:
             - ../apps/frontend/envs/.env.development
         ports:

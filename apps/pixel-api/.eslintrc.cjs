@@ -7,4 +7,12 @@ module.exports = {
 		tsconfigRootDir: __dirname,
 		sourceType: 'module',
 	},
+	overrides: [
+		{
+			files: ['./src/**/*'],
+			rules: {
+				'no-console': 'off',
+			},
+		},
+	],
 };

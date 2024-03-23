@@ -5,3 +5,4 @@ apps/frontend/.next
 
 apps/pixel-api/node_modules
 apps/pixel-api/build
+apps/pixel-api/src/**/*.d.ts
