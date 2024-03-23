@@ -5,6 +5,7 @@ import Bourne from '@hapi/bourne';
 import RequestBodySchema from './schemas/request-body';
 
 export const handler: APIGatewayProxyHandler = async (event) => {
+	// * Catch runtime errors only, so function code won't be exposed to end user
 	try {
 		const requestBody = event.body;
 
