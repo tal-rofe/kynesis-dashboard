@@ -92,9 +92,7 @@ export const ModalProvider: React.FC<{ readonly children: ReactNode }> = ({ chil
 					} transition-opacity duration-200 bg-[#3636361A]`}
 					onClick={hideModal}
 				>
-					<div className=" flex justify-center w-full" onClick={(event) => event.stopPropagation()}>
-						{content}
-					</div>
+					{content}
 				</div>
 			)}
 		</ModalContext.Provider>

@@ -5,6 +5,7 @@ import { type SidebarElement } from '@/lib/types/ui/nav-element';
 import UISvg from '@/ui/UISvg';
 import { UIMenubarShortcut } from '@/ui/UIMenu';
 import { UIButton } from '@/ui/UIButton';
+import { UIModal } from '@/ui/UIModal';
 
 type Props = {
 	readonly pages: SidebarElement[];
@@ -12,7 +13,7 @@ type Props = {
 
 const SearchModalView = (props: Props) => {
 	return (
-		<div className="bg-white px-1 pb-1.5 max-w-[472px] w-full rounded-md overflow-hidden shadow">
+		<UIModal>
 			<div className="flex items-center justify-start border-b pl-1">
 				<UISvg name="search" />
 				<UIInput
@@ -44,7 +45,7 @@ const SearchModalView = (props: Props) => {
 					})}
 				</div>
 			</div>
-		</div>
+		</UIModal>
 	);
 };
 
