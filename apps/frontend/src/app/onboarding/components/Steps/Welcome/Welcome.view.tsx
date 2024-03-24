@@ -13,7 +13,7 @@ type Props = {
 	readonly animationClass: string;
 	readonly onInputChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
 	readonly onInputPaste: (key: keyof WelcomeFormInputs, e: React.ClipboardEvent<HTMLInputElement>) => void;
-	readonly onNextStep: () => void;
+	readonly onNextStep: VoidFunction;
 };
 
 const WelcomeView = (props: Props) => {

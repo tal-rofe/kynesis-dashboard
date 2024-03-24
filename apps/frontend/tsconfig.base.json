@@ -21,7 +21,9 @@
 			"@/providers/*": ["src/lib/providers/*"],
 			"@/types/*": ["src/lib/types/*"],
 			"@/utils/*": ["src/utils/*"],
-			"@/styles/*": ["src/styles/*"]
+			"@/styles/*": ["src/styles/*"],
+			"@/contexts/*": ["src/components/contexts/*"],
+			"@/modals/*": ["src/components/modals/*"]
 		},
 		"typeRoots": ["./@types", "./node_modules/@types"]
 	}

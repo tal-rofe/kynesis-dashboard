@@ -13,8 +13,8 @@ type Props = {
 	readonly selectedScriptDomainType: ScriptDomainType | undefined;
 	readonly isFormValid: boolean;
 	readonly websiteUrl: string;
-	readonly onNextStep: () => void;
-	readonly onPrevStep: () => void;
+	readonly onNextStep: VoidFunction;
+	readonly onPrevStep: VoidFunction;
 	readonly onSelectScriptDomainType: (scriptDomainType: ScriptDomainType) => void;
 	readonly onChangeWebsiteUrl: (e: React.ChangeEvent<HTMLInputElement>) => void;
 	readonly onPateWebsiteUrl: (e: React.ClipboardEvent<HTMLInputElement>) => void;
