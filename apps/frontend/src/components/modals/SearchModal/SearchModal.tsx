@@ -1,24 +1,21 @@
 'use client';
 
-import React, { useEffect, useRef } from 'react';
+import React from 'react';
 import { usePathname } from 'next/navigation';
 import { navElements } from '@/lib/data/nav-elements';
+import { useVisitorsStore } from '@/lib/store/useVisitorsStore';
 
 import SearchModalView from './SearchModal.view';
 
 const SearchModal = () => {
 	const pathname = usePathname();
-	const searchInputRef = useRef<HTMLInputElement | null>(null);
-
-	useEffect(() => {
-		if (!searchInputRef.current) return;
-
-		searchInputRef.current.focus();
-	}, []);
 
 	const pages = navElements.filter((element) => element.link !== pathname);
 
-	return <SearchModalView pages={pages} ref={searchInputRef} />;
+	const previousVisitors = useVisitorsStore((state) => state.previousVisitors);
+	const setCurrentVisitor = useVisitorsStore((state) => state.setCurrentVisitor);
+
+	return <SearchModalView pages={pages} setCurrentVisitor={setCurrentVisitor} previousVisitors={previousVisitors} />;
 };
 
 export default React.memo(SearchModal);

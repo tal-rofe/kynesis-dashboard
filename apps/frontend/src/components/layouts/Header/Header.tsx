@@ -1,17 +1,29 @@
 'use client';
 
 import React from 'react';
-import { usePathname } from 'next/navigation';
+import { usePathname, useRouter } from 'next/navigation';
 import { navElements } from '@/lib/data/nav-elements';
+import { useVisitorsStore } from '@/lib/store/useVisitorsStore';
 
 import HeaderView from './Header.view';
 
 const Header = () => {
 	const pathname = usePathname();
+	const router = useRouter();
+	const currentVisitor = useVisitorsStore((state) => state.currentVisitor);
+	const setCurrentVisitor = useVisitorsStore((state) => state.setCurrentVisitor);
 
-	const currentPage = navElements.find((element) => element.link === pathname);
+	const currentPage = navElements.find((element) => element.link === `/${pathname.split('/')[1]}`);
 
-	return <HeaderView currentPage={currentPage} />;
+	const onNavBack = () => {
+		const newPathname = pathname.split('/').slice(0, -1).join('/');
+
+		setCurrentVisitor(undefined);
+
+		router.push(newPathname);
+	};
+
+	return <HeaderView currentVisitor={currentVisitor} currentPage={currentPage} onNavBack={onNavBack} />;
 };
 
 export default React.memo(Header);

@@ -1,6 +1,6 @@
 /* eslint-disable max-lines */
 'use client';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import {
 	type ColumnDef,
 	type ColumnFiltersState,
@@ -15,9 +15,11 @@ import {
 } from '@tanstack/react-table';
 import { DropdownMenuCheckboxItem } from '@radix-ui/react-dropdown-menu';
 import { ArrowUpDown, ChevronDown, MoreHorizontal } from 'lucide-react';
+import Link from 'next/link';
 
+import { type Visitor } from '@/lib/types/ui/visitor';
 import { UIButton } from '@/ui/UIButton';
-import { UIInput } from '@/ui/UIInput';
+
 import { UITable, UITableHeader, UITableRow, UITableHead, UITableBody, UITableCell } from '@/ui/UITable';
 import { UICheckbox } from '@/ui/UICheckbox';
 import {
@@ -28,6 +30,8 @@ import {
 	UIDropdownMenuItem,
 	UIDropdownMenuSeparator,
 } from '@/ui/UIDropdownMenu';
+import { routes } from '@/lib/routes';
+import { useVisitorsStore } from '@/lib/store/useVisitorsStore';
 
 const data: Visitor[] = [
 	{
@@ -39,41 +43,33 @@ const data: Visitor[] = [
 	},
 	{
 		id: '123123',
-		fullName: 'Almog Aharon',
-		email: 'almogi107@gmail.com',
+		fullName: 'Dozi Aharon',
+		email: 'doza@gmail.com',
 		status: 'success',
 		priority: 'medium',
 	},
 	{
 		id: '12312ds3',
-		fullName: 'Almog Aharon',
-		email: 'almogi107@gmail.com',
+		fullName: 'Bear Aharon',
+		email: 'mogi@gmail.com',
 		status: 'success',
 		priority: 'medium',
 	},
 	{
 		id: '12312sd3',
-		fullName: 'Almog Aharon',
-		email: 'almogi107@gmail.com',
+		fullName: 'Bar Aharon',
+		email: 'misteralmog@gmail.com',
 		status: 'success',
 		priority: 'medium',
 	},
 	{
 		id: '123asd123',
-		fullName: 'Almog Aharon',
+		fullName: 'Yazif Aharon',
 		email: 'almogi107@gmail.com',
 		status: 'success',
 		priority: 'medium',
 	},
 ];
-
-type Visitor = {
-	readonly id: string;
-	readonly fullName: string;
-	readonly email: string;
-	readonly status: 'pending' | 'processing' | 'success' | 'failed';
-	readonly priority: 'low' | 'medium' | 'high';
-};
 
 const columns: ColumnDef<Visitor>[] = [
 	{
@@ -154,6 +150,17 @@ const Visitors = () => {
 	const [columnVisibility, setColumnVisibility] = useState<VisibilityState>({});
 	const [rowSelection, setRowSelection] = useState({});
 
+	const selectedRowIndex = Object.keys(rowSelection)[0] ?? '-1';
+	const selectedRow = data.find((_, index) => index.toString() === selectedRowIndex);
+
+	const setVisitors = useVisitorsStore((state) => state.setVisitors);
+	const setCurrentVisitor = useVisitorsStore((state) => state.setCurrentVisitor);
+
+	useEffect(() => {
+		setVisitors(data);
+		setCurrentVisitor(undefined);
+	}, []);
+
 	const table = useReactTable({
 		data,
 		columns,
@@ -173,15 +180,30 @@ const Visitors = () => {
 		},
 	});
 
+	const onSetCurrentVisitor = () => {
+		if (!selectedRow) return;
+
+		setCurrentVisitor(selectedRow);
+	};
+
 	return (
 		<div className="w-full">
-			<div className="flex items-center py-4">
-				<UIInput
+			<div className="flex items-center py-4 gap-2">
+				<Link href={`${routes.visitors.path}/${selectedRow?.id}`} passHref>
+					<UIButton className="rounded-3xl" variant="outline" onClick={onSetCurrentVisitor}>
+						Message
+					</UIButton>
+				</Link>
+
+				<UIButton className="rounded-3xl" variant="secondary">
+					Export to CSV
+				</UIButton>
+				{/* <UIInput
 					placeholder="Filter emails..."
 					value={(table.getColumn('email')?.getFilterValue() as string) ?? ''}
 					className="max-w-sm"
 					onChange={(event) => table.getColumn('email')?.setFilterValue(event.target.value)}
-				/>
+				/> */}
 				<UIDropdownMenu>
 					<UIDropdownMenuTrigger asChild>
 						<UIButton variant="outline" className="ml-auto">
