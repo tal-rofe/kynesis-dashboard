@@ -70,6 +70,7 @@ export const ModalProvider: React.FC<{ readonly children: ReactNode }> = ({ chil
 
 				if (activeElement && (activeElement.tagName === 'BUTTON' || activeElement.tagName === 'A')) {
 					(activeElement as HTMLButtonElement | HTMLAnchorElement).click();
+					hideModal();
 				}
 			}
 		};
