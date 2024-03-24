@@ -1,5 +1,5 @@
 import React from 'react';
-import VisitorPage from '@/modules/Visitor';
+import VisitorPage from '@/ui/modules/Visitor';
 
 const Visitor = () => {
 	return <VisitorPage />;
