@@ -32,6 +32,7 @@ import {
 } from '@/ui/UIDropdownMenu';
 import { routes } from '@/lib/routes';
 import { useVisitorsStore } from '@/lib/store/useVisitorsStore';
+import { cn } from '@/lib/utils/component';
 
 const data: Visitor[] = [
 	{
@@ -149,12 +150,17 @@ const Visitors = () => {
 	const [columnFilters, setColumnFilters] = useState<ColumnFiltersState>([]);
 	const [columnVisibility, setColumnVisibility] = useState<VisibilityState>({});
 	const [rowSelection, setRowSelection] = useState({});
-
-	const selectedRowIndex = Object.keys(rowSelection)[0] ?? '-1';
-	const selectedRow = data.find((_, index) => index.toString() === selectedRowIndex);
+	const [currentVisitorState, setCurrentVisitorState] = useState<Visitor | undefined>(undefined);
 
 	const setVisitors = useVisitorsStore((state) => state.setVisitors);
 	const setCurrentVisitor = useVisitorsStore((state) => state.setCurrentVisitor);
+
+	useEffect(() => {
+		const selectedRowIndex = Object.keys(rowSelection)[0] ?? '-1';
+		const selectedRow = data.find((_, index) => index.toString() === selectedRowIndex);
+
+		setCurrentVisitorState(selectedRow);
+	}, [rowSelection]);
 
 	useEffect(() => {
 		setVisitors(data);
@@ -181,15 +187,20 @@ const Visitors = () => {
 	});
 
 	const onSetCurrentVisitor = () => {
-		if (!selectedRow) return;
-
-		setCurrentVisitor(selectedRow);
+		if (currentVisitorState) {
+			setCurrentVisitor(currentVisitorState);
+		}
 	};
 
 	return (
 		<div className="w-full">
 			<div className="flex items-center py-4 gap-2">
-				<Link href={`${routes.visitors.path}/${selectedRow?.id}`} passHref>
+				<Link
+					href={`${routes.visitors.path}/${currentVisitorState?.id}`}
+					className={cn(!currentVisitorState && 'pointer-events-none')}
+					aria-disabled={!currentVisitorState}
+					tabIndex={!currentVisitorState ? -1 : undefined}
+				>
 					<UIButton className="rounded-3xl" variant="outline" onClick={onSetCurrentVisitor}>
 						Message
 					</UIButton>

@@ -1,12 +1,13 @@
 'use client';
 
 import { motion } from 'framer-motion';
+import React from 'react';
 
 type Props = {
 	readonly children: React.ReactNode;
 };
 
-const PageTransition = (props: Props) => {
+const PageTransitionWrapper = (props: Props) => {
 	return (
 		<motion.div
 			className="h-full w-full"
@@ -20,4 +21,4 @@ const PageTransition = (props: Props) => {
 	);
 };
 
-export default PageTransition;
+export default React.memo(PageTransitionWrapper);

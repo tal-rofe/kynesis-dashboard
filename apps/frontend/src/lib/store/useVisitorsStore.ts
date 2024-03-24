@@ -8,20 +8,19 @@ type State = {
 	previousVisitors: Visitor[];
 };
 
-type Actions = {
+type Action = {
 	setVisitors: (visitors: Visitor[]) => void;
 	updateVisitors: (visitors: Partial<Visitor>[]) => void;
 	setCurrentVisitor: (visitor?: Visitor) => void;
 };
 
-type VisitorsStore = State & Actions;
+type VisitorsStore = State & Action;
 
 const visitorsStore = persist<VisitorsStore>(
 	(set) => ({
 		visitors: [],
 		currentVisitor: undefined,
 		previousVisitors: [],
-
 		setVisitors: (visitors) => {
 			if (visitors.length === 0) {
 				return;
@@ -31,7 +30,6 @@ const visitorsStore = persist<VisitorsStore>(
 				visitors,
 			});
 		},
-
 		setCurrentVisitor: (visitor) => {
 			set((state) => {
 				if (!visitor || (state.previousVisitors[0] && state.previousVisitors[0].id === visitor.id)) {
