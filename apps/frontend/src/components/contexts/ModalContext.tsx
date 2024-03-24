@@ -41,14 +41,26 @@ export const ModalProvider: React.FC<{ readonly children: ReactNode }> = ({ chil
 		const handleKeyDown = (e: KeyboardEvent) => {
 			if (e.key === 'Escape') hideModal();
 
-			if (e.key === 'Tab') {
+			if (['Tab', 'ArrowDown', 'ArrowUp'].includes(e.key)) {
 				e.preventDefault();
 				const currentIndex = focusableModalElements.indexOf(document.activeElement as HTMLElement);
-				let nextIndex = currentIndex + (e.shiftKey ? -1 : 1);
+				let nextIndex = currentIndex;
 
-				if (nextIndex >= focusableModalElements.length) nextIndex = 0;
+				if (e.key === 'Tab' && e.shiftKey) {
+					nextIndex = currentIndex - 1;
+				} else if (e.key === 'Tab' && !e.shiftKey) {
+					nextIndex = currentIndex + 1;
+				} else if (e.key === 'ArrowDown') {
+					nextIndex = currentIndex + 1;
+				} else if (e.key === 'ArrowUp') {
+					nextIndex = currentIndex - 1;
+				}
 
-				if (nextIndex < 0) nextIndex = focusableModalElements.length - 1;
+				if (nextIndex >= focusableModalElements.length) {
+					nextIndex = 0;
+				} else if (nextIndex < 0) {
+					nextIndex = focusableModalElements.length - 1;
+				}
 
 				(focusableModalElements[nextIndex] as HTMLElement)?.focus();
 			}
