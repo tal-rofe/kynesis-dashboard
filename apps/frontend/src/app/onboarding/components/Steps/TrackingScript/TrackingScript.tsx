@@ -5,8 +5,8 @@ import { isValidWebsiteUrl } from '@/lib/utils/regex';
 import TrackingScriptView from './TrackingScript.view';
 
 type Props = {
-	readonly onNextStep: () => void;
-	readonly onPrevStep: () => void;
+	readonly onNextStep: VoidFunction;
+	readonly onPrevStep: VoidFunction;
 };
 
 const TrackingScript = (props: Props) => {

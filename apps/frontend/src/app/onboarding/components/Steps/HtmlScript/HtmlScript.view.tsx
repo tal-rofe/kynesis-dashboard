@@ -11,8 +11,8 @@ import { UIBadge } from '@/ui/UIBadge';
 
 type Props = {
 	readonly animationClass: string;
-	readonly onNextStep: () => void;
-	readonly onPrevStep: () => void;
+	readonly onNextStep: VoidFunction;
+	readonly onPrevStep: VoidFunction;
 };
 
 const HtmlScriptView = (props: Props) => {

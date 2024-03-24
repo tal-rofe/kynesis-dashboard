@@ -12,8 +12,8 @@ import { UIInput } from '@/ui/UIInput';
 
 type Props = {
 	readonly animationClass: string;
-	readonly onNextStep: () => void;
-	readonly onPrevStep: () => void;
+	readonly onNextStep: VoidFunction;
+	readonly onPrevStep: VoidFunction;
 };
 
 const CompanyView = (props: Props) => {

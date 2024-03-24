@@ -3,8 +3,8 @@ import React, { useState } from 'react';
 import HtmlScriptView from './HtmlScript.view';
 
 type Props = {
-	readonly onNextStep: () => void;
-	readonly onPrevStep: () => void;
+	readonly onNextStep: VoidFunction;
+	readonly onPrevStep: VoidFunction;
 };
 
 const HtmlScript = (props: Props) => {

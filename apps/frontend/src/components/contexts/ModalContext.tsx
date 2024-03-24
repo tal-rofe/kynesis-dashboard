@@ -5,7 +5,7 @@ import React, { createContext, useContext, useState, type ReactNode, useEffect }
 type Props = {
 	readonly isModalOpen: boolean;
 	readonly showModal: (content: ReactNode) => void;
-	readonly hideModal: () => void;
+	readonly hideModal: VoidFunction;
 };
 
 const ModalContext = createContext<Props | undefined>(undefined);
