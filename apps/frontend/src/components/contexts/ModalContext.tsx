@@ -1,6 +1,6 @@
 'use client';
 
-import React, { createContext, useContext, useState, type ReactNode, useEffect } from 'react';
+import React, { createContext, useContext, useState, useRef, useEffect, type ReactNode } from 'react';
 
 type Props = {
 	readonly isModalOpen: boolean;
@@ -11,44 +11,73 @@ type Props = {
 const ModalContext = createContext<Props | undefined>(undefined);
 
 export const ModalProvider: React.FC<{ readonly children: ReactNode }> = ({ children }) => {
-	const [isModalOpen, seIsModalOpen] = useState<boolean>(false);
+	const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
 	const [content, setContent] = useState<ReactNode>(null);
 	const [shouldRender, setShouldRender] = useState<boolean>(false);
-	const [animationClass, setAnimationClass] = useState<string>('');
+	const modalRef = useRef<HTMLDivElement>(null);
 
 	const showModal = (content: ReactNode) => {
 		setContent(content);
-		seIsModalOpen(true);
+		setIsModalOpen(true);
 		setShouldRender(true);
-		setAnimationClass('animate-fadeIn');
 	};
 
 	const hideModal = () => {
-		seIsModalOpen(false);
-		setAnimationClass('animate-fadeOut');
+		setIsModalOpen(false);
 		setTimeout(() => {
 			setShouldRender(false);
 		}, 200);
 	};
 
 	useEffect(() => {
-		if (!isModalOpen && shouldRender) {
-			const timer = setTimeout(() => {
-				setShouldRender(false);
-			}, 300);
+		const focusableModalElements = modalRef.current
+			? Array.from(modalRef.current.querySelectorAll('a[href], button, textarea, input, select, [tabindex]:not([tabindex="-1"])'))
+			: [];
 
-			return () => clearTimeout(timer);
+		const firstElement = focusableModalElements[0] as HTMLElement | undefined;
+
+		if (isModalOpen && firstElement) firstElement.focus();
+
+		const handleKeyDown = (e: KeyboardEvent) => {
+			if (e.key === 'Escape') hideModal();
+
+			if (e.key === 'Tab') {
+				e.preventDefault();
+				const currentIndex = focusableModalElements.indexOf(document.activeElement as HTMLElement);
+				let nextIndex = currentIndex + (e.shiftKey ? -1 : 1);
+
+				if (nextIndex >= focusableModalElements.length) nextIndex = 0;
+
+				if (nextIndex < 0) nextIndex = focusableModalElements.length - 1;
+
+				(focusableModalElements[nextIndex] as HTMLElement)?.focus();
+			}
+
+			if (e.key === 'Enter') {
+				const activeElement = document.activeElement;
+
+				if (activeElement && (activeElement.tagName === 'BUTTON' || activeElement.tagName === 'A')) {
+					(activeElement as HTMLButtonElement | HTMLAnchorElement).click();
+				}
+			}
+		};
+
+		if (isModalOpen) {
+			document.addEventListener('keydown', handleKeyDown);
 		}
 
-		return;
-	}, [isModalOpen, shouldRender]);
+		return () => document.removeEventListener('keydown', handleKeyDown);
+	}, [isModalOpen, content]);
 
 	return (
 		<ModalContext.Provider value={{ isModalOpen, showModal, hideModal }}>
 			{children}
 			{shouldRender && (
 				<div
-					className={`fixed inset-0 z-40 flex items-center justify-center ${animationClass} transition-opacity duration-200 bg-[#3636361A]`}
+					ref={modalRef}
+					className={`fixed inset-0 z-40 flex items-center justify-center ${
+						isModalOpen ? 'animate-fadeIn' : 'animate-fadeOut'
+					} transition-opacity duration-200 bg-[#3636361A]`}
 					onClick={hideModal}
 				>
 					<div className=" flex justify-center w-full" onClick={(event) => event.stopPropagation()}>
