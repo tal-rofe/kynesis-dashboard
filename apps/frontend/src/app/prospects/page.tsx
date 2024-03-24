@@ -1,11 +1,5 @@
-import React from 'react';
-
 const Prospects = () => {
-	return (
-		<section>
-			<div>this is a Prospects page</div>
-		</section>
-	);
+	return <div>Hello</div>;
 };
 
-export default React.memo(Prospects);
+export default Prospects;
