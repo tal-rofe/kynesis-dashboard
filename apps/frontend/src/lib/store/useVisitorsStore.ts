@@ -4,14 +4,14 @@ import { type Visitor } from '../types/ui/visitor';
 
 type State = {
 	visitors: Visitor[];
-	currentVisitor: Visitor | undefined;
+	currentVisitor?: Visitor;
 	previousVisitors: Visitor[];
 };
 
 type Actions = {
 	setVisitors: (visitors: Visitor[]) => void;
 	updateVisitors: (visitors: Partial<Visitor>[]) => void;
-	setCurrentVisitor: (visitor: Visitor | undefined) => void;
+	setCurrentVisitor: (visitor?: Visitor) => void;
 };
 
 type VisitorsStore = State & Actions;
