@@ -1,14 +1,15 @@
 {
-	"name": "@kynesis/pixel-api",
+	"name": "@kynesis/pixel-api-function",
 	"version": "1.0.0",
 	"private": true,
-	"description": "Lambda function to collect pixel data and send customer enriched visitor's Linkedin profile data",
+	"description": "Lambda function to collect pixel data and push SQS messages with the data",
 	"license": "UNLICENSED",
 	"author": "Kynesis <dev@kynesis.io> (https://kynesis.io)",
 	"type": "module",
 	"scripts": {
 		"build": "node ./esbuild.js",
 		"start:dev": "nodemon",
+		"start:dev:docker": "nodemon",
 		"type-check": "tsc --project ./tsconfig.json",
 		"lint": "eslint -c ./.eslintrc.cjs --ignore-path ./.eslintignore \"./**/*.{ts,js,cjs}\""
 	},
@@ -23,8 +24,9 @@
 		"serverless-offline": "13.3.3"
 	},
 	"dependencies": {
+		"@aws-sdk/client-sqs": "3.540.0",
 		"@hapi/bourne": "3.0.0",
-		"zod": "3.22.4",
+		"@kynesis/common-functions-types": "workspace:*",
 		"zod-validation-error": "3.0.3"
 	}
 }

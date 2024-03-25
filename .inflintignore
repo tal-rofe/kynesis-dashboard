@@ -3,6 +3,13 @@ node_modules
 apps/frontend/node_modules
 apps/frontend/.next
 
-apps/pixel-api/node_modules
-apps/pixel-api/build
-apps/pixel-api/src/**/*.d.ts
+apps/pixel-api-function/node_modules
+apps/pixel-api-function/build
+apps/pixel-api-function/src/**/*.d.ts
+
+apps/pixel-enrichment-function/node_modules
+apps/pixel-enrichment-function/build
+apps/pixel-enrichment-function/src/**/*.d.ts
+
+packages/common-functions-types/node_modules
+apps/pixel-enrichment-function/dist

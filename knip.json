@@ -7,10 +7,19 @@
 			"ignore": ["_templates/**/*", "@types/next/index.d.ts", "@types/**/*", "public/**/*", "./src/components/ui/**/*"],
 			"ignoreDependencies": ["@storybook/blocks", "postcss-nesting", "lucide-react"]
 		},
-		"apps/pixel-api": {
+		"apps/pixel-api-function": {
 			"entry": "./src/index.ts",
 			"project": "./src/**/*",
 			"ignoreDependencies": ["esbuild", "serverless", "serverless-offline"]
+		},
+		"apps/pixel-enrichment-function": {
+			"entry": "./src/index.ts",
+			"project": "./src/**/*",
+			"ignoreDependencies": ["esbuild"]
+		},
+		"packages/common-functions-types": {
+			"entry": "./src/index.ts",
+			"project": "./src/**/*"
 		}
 	}
 }

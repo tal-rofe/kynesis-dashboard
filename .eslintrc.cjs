@@ -102,7 +102,7 @@ const config = {
 		'@typescript-eslint/no-use-before-define': ['error'],
 		'@typescript-eslint/consistent-type-imports': ['error'],
 		'@typescript-eslint/await-thenable': 'error',
-		'@typescript-eslint/explicit-member-accessibility': ['error'],
+		'@typescript-eslint/explicit-member-accessibility': ['error', { accessibility: 'explicit', overrides: { constructors: 'off' } }],
 		'@typescript-eslint/naming-convention': [
 			'error',
 			{

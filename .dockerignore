@@ -36,10 +36,19 @@ apps/frontend/.next
 apps/frontend/tsconfig.eslint.json
 apps/frontend/_templates
 
-apps/pixel-api/tsconfig.tsbuildinfo
-apps/pixel-api/.gitignore
-apps/pixel-api/.eslintrc.cjs
-apps/pixel-api/.eslintignore
-apps/pixel-api/node_modules
-apps/pixel-api/build
-apps/pixel-api/tsconfig.eslint.json
+apps/pixel-api-function/tsconfig.tsbuildinfo
+apps/pixel-api-function/.gitignore
+apps/pixel-api-function/.eslintrc.cjs
+apps/pixel-api-function/.eslintignore
+apps/pixel-api-function/node_modules
+apps/pixel-api-function/build
+apps/pixel-api-function/tsconfig.eslint.json
+
+packages/common-functions-types/tsconfig.tsbuildinfo
+packages/common-functions-types/.gitignore
+packages/common-functions-types/.eslintrc.cjs
+packages/common-functions-types/.eslintignore
+packages/common-functions-types/node_modules
+packages/common-functions-types/dist
+packages/common-functions-types/tsconfig.json
+packages/common-functions-types/tsconfig.eslint.json
