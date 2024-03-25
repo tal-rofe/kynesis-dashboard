@@ -3,4 +3,4 @@ import ProxycurlPersonLookupApi from '../apis/linkedin-url/proxycurl.person-look
 import ProxycurlReverseEmailLookupApi from '../apis/linkedin-url/proxycurl.reverse-email-lookup';
 import RampedupApi from '../apis/linkedin-url/rampedup';
 
-export const apisData: LinkedinUrl[] = [new ProxycurlReverseEmailLookupApi(), new ProxycurlPersonLookupApi(), new RampedupApi()];
+export const linkedinUrlApis: LinkedinUrl[] = [new ProxycurlReverseEmailLookupApi(), new ProxycurlPersonLookupApi(), new RampedupApi()];

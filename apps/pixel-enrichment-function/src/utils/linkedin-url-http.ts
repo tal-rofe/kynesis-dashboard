@@ -2,7 +2,7 @@ import got from 'got';
 
 import { API_CALL_RETRIES, API_CALL_TIMEOUT } from '../constants/http-api';
 
-export const httpGet = <TResponse extends Record<string, unknown>>(url: string, params: URLSearchParams, apiKey: string) =>
+export const linkedinUrlHttpGet = <TResponse extends Record<string, unknown>>(url: string, params: URLSearchParams, apiKey: string) =>
 	got
 		.get(url, {
 			searchParams: params,
@@ -13,12 +13,12 @@ export const httpGet = <TResponse extends Record<string, unknown>>(url: string, 
 			retry: {
 				limit: API_CALL_RETRIES,
 				methods: ['HEAD', 'OPTIONS', 'TRACE', 'GET'],
-				// Keep others (backoff limit, ...) as default
+				// * Keep others (backoff limit, ...) as default
 			},
 		})
 		.json<TResponse>();
 
-export const httpPost = <TResponse extends Record<string, unknown>>(url: string, data: Record<string, unknown>, apiKey: string) =>
+export const linkedinUrlHttpPost = <TResponse extends Record<string, unknown>>(url: string, data: Record<string, unknown>, apiKey: string) =>
 	got
 		.post(url, {
 			json: data,
@@ -30,7 +30,7 @@ export const httpPost = <TResponse extends Record<string, unknown>>(url: string,
 			retry: {
 				limit: API_CALL_RETRIES,
 				methods: ['HEAD', 'OPTIONS', 'TRACE', 'GET'],
-				// Keep others (backoff limit, ...) as default
+				// * Keep others (backoff limit, ...) as default
 			},
 		})
 		.json<TResponse>();

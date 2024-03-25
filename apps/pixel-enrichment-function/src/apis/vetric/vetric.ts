@@ -1,6 +1,7 @@
 import deepmerge from 'deepmerge';
 
-import { httpGet } from '@/utils/vetric-http';
+import { vetricHttpGet } from '@/utils/vetric-http';
+import LoggerService from '@/services/logger';
 
 const apiUrls = [
 	'https://api.vetric.io/linkedin/v1/profile/:identifier/overview',
@@ -20,13 +21,19 @@ const apiUrls = [
 	'https://api.vetric.io/linkedin/v1/profile/:identifier/languages',
 ];
 
-export const getEnrichedData = async (linkedinUrl: string) => {
-	const allResponses = await Promise.allSettled(apiUrls.map((apiUrl) => httpGet(apiUrl, linkedinUrl, process.env.VETRIC_API_KEY)));
+export const getEnrichedData = async (requestId: string, linkedinUrl: string) => {
+	const logger = new LoggerService(requestId);
+
+	logger.log(`Trying to enrich data for Linkedin URL: "${linkedinUrl}"`);
+
+	const allResponses = await Promise.allSettled(apiUrls.map((apiUrl) => vetricHttpGet(apiUrl, linkedinUrl, process.env.VETRIC_API_KEY)));
 	let baseObject: Record<string, unknown> = {};
 
-	for (const response of allResponses) {
+	for (const [index, response] of allResponses.entries()) {
 		if (response.status === 'fulfilled') {
 			baseObject = deepmerge(baseObject, response.value);
+		} else {
+			logger.log(`Failed to get response from Vetric API: "${apiUrls[index]}" with an error: ${response.reason}`);
 		}
 	}
 

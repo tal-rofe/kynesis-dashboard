@@ -5,7 +5,7 @@ import { API_CALL_RETRIES, API_CALL_TIMEOUT } from '../constants/http-api';
 
 type VetricResponse = Record<string, unknown> & { cursor?: string | null };
 
-export const httpGet = async (url: string, linkedinUrl: string, apiKey: string) => {
+export const vetricHttpGet = async (url: string, linkedinUrl: string, apiKey: string) => {
 	const linkedinIdentifier = new URL(linkedinUrl)?.pathname?.split('/')?.[2];
 
 	if (!linkedinIdentifier) {
@@ -21,7 +21,7 @@ export const httpGet = async (url: string, linkedinUrl: string, apiKey: string) 
 			retry: {
 				limit: API_CALL_RETRIES,
 				methods: ['HEAD', 'OPTIONS', 'TRACE', 'GET'],
-				// Keep others (backoff limit, ...) as default
+				// * Keep others (backoff limit, ...) as default
 			},
 		})
 		.json<VetricResponse>();
@@ -33,7 +33,7 @@ export const httpGet = async (url: string, linkedinUrl: string, apiKey: string) 
 	while (response.cursor !== 'undefined' && response.cursor !== null) {
 		const newApiUrl = new URLSearchParams(apiUrlWithIdentifier);
 
-		newApiUrl.set('cursor', response['cursor']!);
+		newApiUrl.set('cursor', response.cursor!);
 
 		const newResponse = await got
 			.get(newApiUrl.toString(), {
@@ -42,14 +42,21 @@ export const httpGet = async (url: string, linkedinUrl: string, apiKey: string) 
 				retry: {
 					limit: API_CALL_RETRIES,
 					methods: ['HEAD', 'OPTIONS', 'TRACE', 'GET'],
-					// Keep others (backoff limit, ...) as default
+					// * Keep others (backoff limit, ...) as default
 				},
 			})
 			.json<VetricResponse>();
 
+		/**
+		 * * Delete it so the most updated value of "cursor" will be of "newResponse",
+		 * * because maybe "cursor" is missing from "newResponse" - then we might enter infinite loop
+		 */
+		delete response.cursor;
+
 		response = deepmerge(response, newResponse);
 	}
 
+	// * Irrelevant data for customer
 	delete response.cursor;
 
 	return response;

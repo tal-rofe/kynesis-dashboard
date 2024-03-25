@@ -2,7 +2,7 @@ import freeEmailDomains from 'free-email-domains';
 import type { PixelApiRequestBodySchema } from '@kynesis/common-functions-types';
 
 import type { LinkedinUrlResponse } from '@/interfaces/linkedin-url';
-import { httpGet } from '@/utils/linkedin-url-http';
+import { linkedinUrlHttpGet } from '@/utils/linkedin-url-http';
 
 import LinkedinUrl from './linkedin-url.abstract';
 
@@ -32,7 +32,7 @@ class ProxycurlPersonLookupApi extends LinkedinUrl {
 		requestSearchParams.append('location', 'United States');
 		requestSearchParams.append('last_name', data.lastName);
 
-		const apiResponse = await httpGet<ApiResponse>(this.apiUrl, requestSearchParams, process.env.PROXYCURL_API_KEY);
+		const apiResponse = await linkedinUrlHttpGet<ApiResponse>(this.apiUrl, requestSearchParams, process.env.PROXYCURL_API_KEY);
 
 		return apiResponse.url;
 	}

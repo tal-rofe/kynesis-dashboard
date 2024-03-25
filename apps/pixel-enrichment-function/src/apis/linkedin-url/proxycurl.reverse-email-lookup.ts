@@ -1,7 +1,7 @@
 import type { PixelApiRequestBodySchema } from '@kynesis/common-functions-types';
 
 import type { LinkedinUrlResponse } from '@/interfaces/linkedin-url';
-import { httpGet } from '@/utils/linkedin-url-http';
+import { linkedinUrlHttpGet } from '@/utils/linkedin-url-http';
 
 import LinkedinUrl from './linkedin-url.abstract';
 
@@ -17,7 +17,7 @@ class ProxycurlReverseEmailLookupApi extends LinkedinUrl {
 		requestSearchParams.append('email', data.email);
 		requestSearchParams.append('enrich_profile', 'skip');
 
-		const apiResponse = await httpGet<ApiResponse>(this.apiUrl, requestSearchParams, process.env.PROXYCURL_API_KEY);
+		const apiResponse = await linkedinUrlHttpGet<ApiResponse>(this.apiUrl, requestSearchParams, process.env.PROXYCURL_API_KEY);
 
 		return apiResponse.linkedin_profile_url;
 	}

@@ -2,7 +2,7 @@ import freeEmailDomains from 'free-email-domains';
 import type { PixelApiRequestBodySchema } from '@kynesis/common-functions-types';
 
 import type { LinkedinUrlResponse } from '@/interfaces/linkedin-url';
-import { httpPost } from '@/utils/linkedin-url-http';
+import { linkedinUrlHttpPost } from '@/utils/linkedin-url-http';
 
 import LinkedinUrl from './linkedin-url.abstract';
 
@@ -23,7 +23,7 @@ class RampedupApi extends LinkedinUrl {
 			extraData['company'] = emailDomainSplitted.at(-2)!;
 		}
 
-		const apiResponse = await httpPost<ApiResponse>(
+		const apiResponse = await linkedinUrlHttpPost<ApiResponse>(
 			this.apiUrl,
 			{
 				emailAddress: data.email,
