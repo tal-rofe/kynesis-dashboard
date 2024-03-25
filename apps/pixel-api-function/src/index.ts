@@ -4,12 +4,16 @@ import Bourne from '@hapi/bourne';
 import { SQSClient, SendMessageCommand } from '@aws-sdk/client-sqs';
 import { pixelApiRequestBodySchema } from '@kynesis/common-functions-types';
 
-export const handler: APIGatewayProxyHandler = async (event) => {
-	// * Catch runtime errors only, so function code won't be exposed to end user
+import LoggerService from './services/logger';
+
+export const handler: APIGatewayProxyHandler = async (event, context) => {
+	const logger = new LoggerService(context.awsRequestId);
+
+	// * Catch runtime errors only, so function code won't be exposed to end user (As AWS does for runtime errors)
 	try {
 		const requestBody = event.body;
 
-		console.log(`Request body is: ${requestBody}`);
+		logger.log(`Request body is: ${requestBody}`);
 
 		if (!requestBody) {
 			return {
@@ -27,7 +31,7 @@ export const handler: APIGatewayProxyHandler = async (event) => {
 		const validatedRequestBody = await pixelApiRequestBodySchema.safeParseAsync(parsedRequestBody);
 
 		if (!validatedRequestBody.success) {
-			console.log(`Failed to parse request body with an error: ${validatedRequestBody.error}`);
+			logger.log(`Failed to parse request body with an error: ${validatedRequestBody.error}`);
 
 			const plainErrorText = fromZodError(validatedRequestBody.error).toString();
 
@@ -40,8 +44,13 @@ export const handler: APIGatewayProxyHandler = async (event) => {
 			};
 		}
 
-		const sqsClient = new SQSClient({ region: process.env.AWS_REGION, maxAttempts: 2 });
+		// * Use default retry strategies of the SDK
+		const sqsClient = new SQSClient({ region: process.env.AWS_REGION, maxAttempts: 3 });
 
+		/**
+		 * * Use "MessageGroupId" so only 1 Lambda handles each email,
+		 * * but multiple emails will be handled concurrently (AWS will scale the Lambdas)
+		 */
 		const sendMessageSqsCommand = new SendMessageCommand({
 			QueueUrl: process.env.SQS_URL,
 			MessageBody: JSON.stringify({ ...validatedRequestBody.data, apiIndex: 0 }),
@@ -51,7 +60,7 @@ export const handler: APIGatewayProxyHandler = async (event) => {
 		try {
 			await sqsClient.send(sendMessageSqsCommand);
 		} catch (error: unknown) {
-			console.log(`Failed to send SQS message with an error: ${error}`);
+			logger.log(`Failed to send SQS message with an error: ${error}`);
 
 			return {
 				statusCode: 500,
@@ -62,7 +71,7 @@ export const handler: APIGatewayProxyHandler = async (event) => {
 			};
 		}
 
-		console.log('Successfully pushed message to SQS to be handled');
+		logger.log('Successfully pushed message to SQS to be handled');
 
 		return {
 			statusCode: 200,
@@ -72,7 +81,7 @@ export const handler: APIGatewayProxyHandler = async (event) => {
 			},
 		};
 	} catch (error: unknown) {
-		console.log(`Runtime error: ${error}`);
+		logger.log(`Runtime error: ${error}`);
 
 		return {
 			statusCode: 500,

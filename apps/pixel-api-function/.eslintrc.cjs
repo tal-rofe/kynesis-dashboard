@@ -9,7 +9,7 @@ module.exports = {
 	},
 	overrides: [
 		{
-			files: ['./src/**/*'],
+			files: ['./src/services/logger.ts'],
 			rules: {
 				'no-console': 'off',
 			},
