@@ -6,7 +6,7 @@ type Props = {
 };
 
 const PageWrapper = (props: Props) => {
-	return <section className={cn(props.className, 'flex flex-cols h-full w-full')}>{props.children}</section>;
+	return <section className={cn(props.className, 'flex flex-cols h-full w-full px-8 py-6')}>{props.children}</section>;
 };
 
 export default PageWrapper;

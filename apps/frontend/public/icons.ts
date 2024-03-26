@@ -75,6 +75,20 @@ const icons = {
 			<path d="M10 12L6 8L10 4" stroke="#0F172A" stroke-linecap="round" stroke-linejoin="round"/>
 		`,
 	],
+	plus: [
+		'16 16',
+		`
+			<path d="M8 3.33334V12.6667" stroke="#0F172A" stroke-linecap="round" stroke-linejoin="round"/>
+			<path d="M3.33337 8H12.6667" stroke="#0F172A" stroke-linecap="round" stroke-linejoin="round"/>
+		`,
+	],
+	arrow: [
+		'16 16',
+		`
+			<path d="M8 12.6667V3.33337" stroke="#F8FAFC" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+			<path d="M3.33331 8.00004L7.99998 3.33337L12.6666 8.00004" stroke="#F8FAFC" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+		`,
+	],
 };
 
 export default icons;

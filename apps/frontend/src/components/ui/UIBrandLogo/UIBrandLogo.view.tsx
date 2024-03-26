@@ -14,7 +14,7 @@ const BrandIcon = () => {
 };
 
 const BrandText = () => {
-	return <UISvg name="brandLogoText" className="!w-40 !h-full" />;
+	return <UISvg name="brandLogoText" className="!w-40 !h-full !fill-black" />;
 };
 
 const UIBrandLogoView = (props: Props) => {

@@ -3,15 +3,15 @@ import { createJSONStorage, persist } from 'zustand/middleware';
 import { type Visitor } from '../types/ui/visitor';
 
 type State = {
-	visitors: Visitor[];
-	currentVisitor?: Visitor;
-	previousVisitors: Visitor[];
+	readonly visitors: Visitor[];
+	readonly currentVisitor?: Visitor;
+	readonly previousVisitors: Visitor[];
 };
 
 type Action = {
-	setVisitors: (visitors: Visitor[]) => void;
-	updateVisitors: (visitors: Partial<Visitor>[]) => void;
-	setCurrentVisitor: (visitor?: Visitor) => void;
+	readonly setVisitors: (visitors: Visitor[]) => void;
+	readonly updateVisitors: (visitors: Partial<Visitor>[]) => void;
+	readonly setCurrentVisitor: (visitor?: Visitor) => void;
 };
 
 type VisitorsStore = State & Action;

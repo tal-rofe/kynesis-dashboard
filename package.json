@@ -61,15 +61,15 @@
 		"npm-run-all2": "5.0.2",
 		"nx": "18.1.2",
 		"open": "10.1.0",
-		"pnpm": "8.15.4",
+		"pnpm": "8.15.5",
 		"prettier": "2.8.8",
 		"prettier-plugin-sh": "0.14.0",
 		"typescript": "5.4.2",
 		"wait-on": "7.2.0"
 	},
-	"packageManager": "pnpm@8.15.4",
+	"packageManager": "pnpm@8.15.5",
 	"engines": {
-		"pnpm": "8.15.4",
+		"pnpm": "8.15.5",
 		"node": "20.11.1"
 	}
 }

@@ -1,11 +1,18 @@
 import { NextResponse, type NextRequest } from 'next/server';
 
 import { type RoutesPath, routes } from '@/lib/routes';
+import { ValidateJWT } from './lib/utils/validate-jwt';
 
 const middleware = (request: NextRequest) => {
+	const { cookies } = request;
 	const { pathname } = request.nextUrl;
 
-	const isAuthenticate = true;
+	const userTokenCookie = cookies.get('token');
+
+	const userToken = userTokenCookie ? userTokenCookie.value : null;
+
+	const isAuthenticate = ValidateJWT(userToken);
+	// const isAuthenticate = true;
 
 	const authorizedRoutes = Object.values(routes)
 		.filter((route) => route.isRequiredAuth)
