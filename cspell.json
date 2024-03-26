@@ -17,5 +17,5 @@
 		"./apps/frontend/src/stories/assets/**/*",
 		"./apps/frontend/src/stories/Configure.mdx"
 	],
-	"words": ["kynesis", "czvinyl", "autodocs", "toploader", "acmeinc", "Almog", "Aharon", "WORKDIR", "paramtypes", "returntype", "outfile"]
+	"words": ["kynesis", "czvinyl", "autodocs", "toploader", "acmeinc", "Almog", "Aharon", "WORKDIR", "paramtypes", "returntype", "outfile", "signup"]
 }
