@@ -16,7 +16,7 @@ const SidebarElement = (props: Props) => {
 	const { showModal } = useModal();
 	const pathname = usePathname();
 
-	const isActive = pathname === props.sidebarElement.link;
+	const isActive = pathname.includes(props.sidebarElement.link ?? '');
 
 	const { sidebarElement } = props;
 

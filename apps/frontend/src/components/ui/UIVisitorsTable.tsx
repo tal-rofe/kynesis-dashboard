@@ -33,6 +33,7 @@ import {
 } from './UIDropdownMenu';
 import UISvg from './UISvg';
 import { UIInput } from './UIInput';
+import { UITooltip, UITooltipContent, UITooltipProvider, UITooltipTrigger } from './UITooltip';
 
 const columns: ColumnDef<Visitor>[] = [
 	{
@@ -186,16 +187,27 @@ const UIVisitorsTable = (props: Props) => {
 	return (
 		<div className="w-full">
 			<div className="flex items-center py-4 gap-2">
-				<Link
-					href={`${routes.visitors.path}/${currentVisitorState?.id}`}
-					className={cn(!currentVisitorState && 'pointer-events-none')}
-					aria-disabled={!currentVisitorState}
-					tabIndex={!currentVisitorState ? -1 : undefined}
-				>
-					<UIButton className="rounded-3xl" variant="outline" onClick={onSetCurrentVisitor}>
-						Message
-					</UIButton>
-				</Link>
+				<UITooltipProvider>
+					<UITooltip>
+						<UITooltipTrigger className={cn(!currentVisitorState && 'cursor-not-allowed')}>
+							<Link
+								href={`${pathname}/${currentVisitorState?.id}`}
+								className={cn(!currentVisitorState && 'pointer-events-none')}
+								aria-disabled={!currentVisitorState}
+								tabIndex={!currentVisitorState ? -1 : undefined}
+							>
+								<UIButton className="rounded-3xl" variant="outline" onClick={onSetCurrentVisitor}>
+									Message
+								</UIButton>
+							</Link>
+						</UITooltipTrigger>
+						{!currentVisitorState && (
+							<UITooltipContent>
+								<span>You have to choose a visitor</span>
+							</UITooltipContent>
+						)}
+					</UITooltip>
+				</UITooltipProvider>
 
 				<UIButton className="rounded-3xl" variant="secondary">
 					Export to CSV

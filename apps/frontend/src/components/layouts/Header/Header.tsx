@@ -12,6 +12,7 @@ const Header = () => {
 	const router = useRouter();
 	const currentVisitor = useVisitorsStore((state) => state.currentVisitor);
 	const setCurrentVisitor = useVisitorsStore((state) => state.setCurrentVisitor);
+	const resetEmailSubjects = useVisitorsStore((state) => state.resetEmailSubjects);
 
 	const currentPage = navElements.find((element) => element.link === `/${pathname.split('/')[1]}`);
 
@@ -19,6 +20,7 @@ const Header = () => {
 		const newPathname = pathname.split('/').slice(0, -1).join('/');
 
 		setCurrentVisitor(undefined);
+		resetEmailSubjects();
 
 		router.push(newPathname);
 	};

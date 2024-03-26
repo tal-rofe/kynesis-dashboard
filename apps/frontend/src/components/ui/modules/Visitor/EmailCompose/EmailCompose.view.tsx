@@ -1,12 +1,16 @@
 import React from 'react';
 import { UIButton } from '@/ui/UIButton';
+import { type EmailSubjects } from '@/lib/types/ui/email-subjects';
 import { type Visitor } from '@/lib/types/ui/visitor';
 import { UIInput } from '@/ui/UIInput';
 import UISvg from '@/ui/UISvg';
 import { UIAvatar, UIAvatarImage, UIAvatarFallback } from '@/ui/UIAvatar';
+import { UIBadge } from '@/ui/UIBadge';
 
 type Props = {
 	readonly currentVisitor?: Visitor;
+	readonly emailSubjects: Record<EmailSubjects, string>[] | undefined;
+	readonly setEmailSubjects: (key: EmailSubjects, value: string) => void;
 };
 
 const EmailComposeView = (props: Props) => {
@@ -25,7 +29,18 @@ const EmailComposeView = (props: Props) => {
 						</div>
 					</div>
 					<span className=" text-gray-400 font-normal">{'Subject '}</span>
-					<p className=" text-gray-400 font-normal">{'Generated email goes here '}</p>
+					<div className=" text-gray-400 font-normal">
+						{props.emailSubjects?.map((object) => {
+							if (!object) return null;
+
+							return Object.entries(object).map(([key, value]) => (
+								<UIBadge className="mr-4 mb-4 text-base animate-fadeIn" variant="outline" key={value}>
+									<UISvg name="x" className="mr-2 cursor-pointer " onClick={() => props.setEmailSubjects(key as EmailSubjects, value)} />
+									{`${key}: ${value.length > 16 ? value.slice(0, 15) + '...' : value}`}
+								</UIBadge>
+							));
+						})}
+					</div>
 				</div>
 				<UIButton variant="outline" className="w-full">
 					<div className="flex items-center">

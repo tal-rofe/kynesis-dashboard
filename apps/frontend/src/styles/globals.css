@@ -102,5 +102,6 @@
 		margin: 0;
 		overflow-x: hidden;
 		direction: ltr;
+		font-size: 14px;
 	}
 }
