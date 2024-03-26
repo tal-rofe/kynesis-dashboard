@@ -1,6 +1,7 @@
 /* eslint-disable max-lines */
 'use client';
 import React, { useState } from 'react';
+import { signOut } from 'next-auth/react';
 import {
 	type ColumnDef,
 	type ColumnFiltersState,
@@ -175,6 +176,9 @@ const Visitors = () => {
 
 	return (
 		<div className="w-full">
+			<button type="button" onClick={() => signOut()}>
+				sign out
+			</button>
 			<div className="flex items-center py-4">
 				<UIInput
 					placeholder="Filter emails..."

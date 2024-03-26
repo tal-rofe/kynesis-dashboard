@@ -1,11 +1,14 @@
-import { NextResponse, type NextRequest } from 'next/server';
+import { getToken } from 'next-auth/jwt';
+import { type NextRequest, NextResponse } from 'next/server';
 
 import { type RoutesPath, routes } from '@/lib/routes';
 
-const middleware = (request: NextRequest) => {
+const middleware = async (request: NextRequest) => {
 	const { pathname } = request.nextUrl;
 
-	const isAuthenticate = true;
+	const session = await getToken({ req: request, secret: process.env['NEXTAUTH_SECRET'] });
+
+	const isAuthenticate = Boolean(session);
 
 	const authorizedRoutes = Object.values(routes)
 		.filter((route) => route.isRequiredAuth)
