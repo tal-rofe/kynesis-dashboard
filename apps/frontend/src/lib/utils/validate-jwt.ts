@@ -11,7 +11,7 @@ import jwt from 'jsonwebtoken';
  * @param {string | null} token - The JWT to be validated. Can be a string or null.
  * @returns {boolean} - Returns `true` if the JWT is valid, `false` otherwise.
  */
-export const ValidateJWT = (token: string | null): boolean => {
+export const validateJWT = (token: string | null): boolean => {
 	if (!token) return false;
 
 	const decodedToken = jwt.decode(token);

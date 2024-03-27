@@ -1,7 +1,7 @@
 import { NextResponse, type NextRequest } from 'next/server';
 
 import { type RoutesPath, routes } from '@/lib/routes';
-import { ValidateJWT } from './lib/utils/validate-jwt';
+import { validateJWT } from './lib/utils/validate-jwt';
 
 const middleware = (request: NextRequest) => {
 	const { cookies } = request;
@@ -11,7 +11,7 @@ const middleware = (request: NextRequest) => {
 
 	const userToken = userTokenCookie ? userTokenCookie.value : null;
 
-	const isAuthenticate = ValidateJWT(userToken);
+	const isAuthenticate = validateJWT(userToken);
 	// const isAuthenticate = true;
 
 	const authorizedRoutes = Object.values(routes)
