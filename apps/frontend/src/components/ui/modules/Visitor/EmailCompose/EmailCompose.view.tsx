@@ -6,6 +6,7 @@ import { UIInput } from '@/ui/UIInput';
 import UISvg from '@/ui/UISvg';
 import { UIAvatar, UIAvatarImage, UIAvatarFallback } from '@/ui/UIAvatar';
 import { UIBadge } from '@/ui/UIBadge';
+import { addEllipsis } from '@/lib/utils/text';
 
 type Props = {
 	readonly currentVisitor?: Visitor;
@@ -15,7 +16,7 @@ type Props = {
 
 const EmailComposeView = (props: Props) => {
 	return (
-		<div className="flex flex-col justify-between p-8 w-1/2 h-full border-l border-gray-400 bg-accent gap-4">
+		<div className="flex flex-col justify-between p-8 w-full h-full border-b lg:border-l border-gray-400 bg-accent gap-4">
 			<div className="p-6 flex flex-col justify-between h-full bg-white ">
 				<div className="flex flex-col h-full gap-4">
 					<div className="border-b border-gray-400 flex items-center gap-4 pb-4">
@@ -34,9 +35,9 @@ const EmailComposeView = (props: Props) => {
 							if (!object) return null;
 
 							return Object.entries(object).map(([key, value]) => (
-								<UIBadge className="mr-4 mb-4 text-base animate-fadeIn" variant="outline" key={value}>
+								<UIBadge className="mr-4 mb-4 text-base" variant="outline" key={key + '-' + value}>
 									<UISvg name="x" className="mr-2 cursor-pointer " onClick={() => props.setEmailSubjects(key as EmailSubjects, value)} />
-									{`${key}: ${value.length > 16 ? value.slice(0, 15) + '...' : value}`}
+									{`${key}: ${addEllipsis(value, 16)}`}
 								</UIBadge>
 							));
 						})}

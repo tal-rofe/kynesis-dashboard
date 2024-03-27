@@ -11,6 +11,7 @@ import { UICheckbox } from '@/ui/UICheckbox';
 import { linkedinActivitiesMock } from '@/lib/data/mock/linkedin-activity';
 import { cn } from '@/lib/utils/component';
 import { useVisitorsStore } from '@/lib/store/useVisitorsStore';
+import { addEllipsis } from '@/lib/utils/text';
 
 type Props = {
 	readonly selectedActivityType: ActivityTypes;
@@ -40,7 +41,7 @@ const ActivityCard = (props: ActivityCardProps) => {
 				</div>
 				<div className="flex h-full items-center gap-2 ">
 					<Image src={props.image ?? workHistoryPlaceholder} alt="work history placeholder" className="h-[49px] w-auto" />
-					<span>{props.content}</span>
+					<span>{addEllipsis(props.content, 150)}</span>
 				</div>
 			</div>
 			<UICheckbox

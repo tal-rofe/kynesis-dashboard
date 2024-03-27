@@ -190,16 +190,17 @@ const UIVisitorsTable = (props: Props) => {
 				<UITooltipProvider>
 					<UITooltip>
 						<UITooltipTrigger className={cn(!currentVisitorState && 'cursor-not-allowed')}>
-							<Link
-								href={`${pathname}/${currentVisitorState?.id}`}
-								className={cn(!currentVisitorState && 'pointer-events-none')}
-								aria-disabled={!currentVisitorState}
-								tabIndex={!currentVisitorState ? -1 : undefined}
-							>
-								<UIButton className="rounded-3xl" variant="outline" onClick={onSetCurrentVisitor}>
+							<UIButton className="rounded-3xl" variant="outline" asChild onClick={onSetCurrentVisitor}>
+								<Link
+									href={`${pathname}/${currentVisitorState?.id}`}
+									className={cn(!currentVisitorState && 'pointer-events-none')}
+									aria-disabled={!currentVisitorState}
+									tabIndex={!currentVisitorState ? -1 : undefined}
+									passHref
+								>
 									Message
-								</UIButton>
-							</Link>
+								</Link>
+							</UIButton>
 						</UITooltipTrigger>
 						{!currentVisitorState && (
 							<UITooltipContent>
