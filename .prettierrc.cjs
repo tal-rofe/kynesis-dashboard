@@ -1,7 +1,7 @@
 const config = {
 	plugins: ['prettier-plugin-sh'],
 	tabWidth: 4,
-	printWidth: 160,
+	printWidth: 150,
 	useTabs: true,
 	semi: true,
 	singleQuote: true,

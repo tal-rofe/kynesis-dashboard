@@ -17,5 +17,23 @@
 		"./apps/frontend/src/stories/assets/**/*",
 		"./apps/frontend/src/stories/Configure.mdx"
 	],
-	"words": ["kynesis", "czvinyl", "autodocs", "toploader", "acmeinc", "outfile", "WORKDIR", "deepmerge", "Vetric", "Rampedup", "Proxycurl"]
+	"words": [
+		"kynesis",
+		"czvinyl",
+		"autodocs",
+		"toploader",
+		"acmeinc",
+		"outfile",
+		"WORKDIR",
+		"deepmerge",
+		"Vetric",
+		"Rampedup",
+		"Proxycurl",
+		"cloudfronts",
+		"Rofe",
+		"apigatewayv",
+		"filemd",
+		"etag",
+		"tfstate"
+	]
 }

@@ -47,14 +47,17 @@ export const handler: APIGatewayProxyHandler = async (event, context) => {
 		// * Use default retry strategies of the SDK
 		const sqsClient = new SQSClient({ region: process.env.AWS_REGION, maxAttempts: 3 });
 
+		// * This will be defined because of API Gateway cors
+		const originDomain = event.headers['host']!;
+
 		/**
 		 * * Use "MessageGroupId" so only 1 Lambda handles each email,
 		 * * but multiple emails will be handled concurrently (AWS will scale the Lambdas)
 		 */
 		const sendMessageSqsCommand = new SendMessageCommand({
 			QueueUrl: process.env.SQS_URL,
-			MessageBody: JSON.stringify({ ...validatedRequestBody.data, apiIndex: 0 }),
-			MessageGroupId: validatedRequestBody.data.email,
+			MessageBody: JSON.stringify({ ...validatedRequestBody.data, apiIndex: 0, originDomain }),
+			MessageGroupId: `${validatedRequestBody.data.email}#${originDomain}`,
 		});
 
 		try {

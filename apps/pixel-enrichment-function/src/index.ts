@@ -1,5 +1,5 @@
 import type { SQSHandler } from 'aws-lambda';
-import { SQSClient, SendMessageCommand } from '@aws-sdk/client-sqs';
+import { SQSClient, SendMessageCommand, DeleteMessageCommand } from '@aws-sdk/client-sqs';
 
 import type { SqsBody } from './interfaces/sqs-body';
 import { linkedinUrlApis } from './data/linkedin-url-apis';
@@ -10,8 +10,25 @@ export const handler: SQSHandler = async (event, context) => {
 	const logger = new LoggerService(context.awsRequestId);
 
 	// * As the ownership of the SQS is Kynesis, it will have valid message body
-	const messageBody = event.Records[0]!.body;
+	const sqsMessage = event.Records[0]!;
+	const messageBody = sqsMessage.body;
 	const parsedMessageBody = JSON.parse(messageBody) as SqsBody;
+
+	const sqsClient = new SQSClient({ region: process.env.AWS_REGION, maxAttempts: 3 });
+	const deleteMessageSqsCommand = new DeleteMessageCommand({ QueueUrl: process.env.SQS_URL, ReceiptHandle: sqsMessage.receiptHandle });
+
+	/**
+	 * * Immediately delete the message because if processing it will fail, we just continue on to next API
+	 * * we don't want to handle same message twice
+	 */
+	sqsClient
+		.send(deleteMessageSqsCommand)
+		.then(() => {
+			logger.log('Successfully deleted SQS message');
+		})
+		.catch((error) => {
+			logger.log(`Failed to delete SQS message with an error: ${error}`);
+		});
 
 	logger.log(`Start processing SQS message with body: ${messageBody}`);
 
@@ -35,13 +52,11 @@ export const handler: SQSHandler = async (event, context) => {
 			return;
 		}
 
-		const sqsClient = new SQSClient({ region: process.env.AWS_REGION, maxAttempts: 3 });
-
 		// * Increment "apiIndex" to handle next API handler
 		const sendMessageSqsCommand = new SendMessageCommand({
 			QueueUrl: process.env.SQS_URL,
 			MessageBody: JSON.stringify({ ...parsedMessageBody, apiIndex: parsedMessageBody.apiIndex + 1 }),
-			MessageGroupId: parsedMessageBody.email,
+			MessageGroupId: `${parsedMessageBody.email}#${parsedMessageBody.originDomain}`,
 		});
 
 		try {
