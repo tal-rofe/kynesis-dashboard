@@ -37,8 +37,8 @@ resource "aws_iam_role_policy_attachment" "pixel_api_policy_attachment" {
 # * This allows Lambda to send messages to SQS
 data "aws_iam_policy_document" "pixel_api_lambda_send_sqs_policy_document" {
   statement {
-    effect = "Allow"
-    actions = ["sqs:SendMessage"]
+    effect    = "Allow"
+    actions   = ["sqs:SendMessage"]
     resources = [aws_sqs_queue.pixel_api_enrichment_sqs_fifo.arn]
   }
 }

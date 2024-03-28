@@ -1,10 +1,10 @@
 resource "aws_sqs_queue" "pixel_api_enrichment_sqs_fifo" {
-    # * For a FIFO (first-in-first-out) queue, the name must end with the .fifo suffix
-  name                        = "pixel-api-enrichment-sqs.fifo"
-  fifo_queue                  = true
+  # * For a FIFO (first-in-first-out) queue, the name must end with the .fifo suffix
+  name                       = "pixel-api-enrichment-sqs.fifo"
+  fifo_queue                 = true
   visibility_timeout_seconds = 30
-  deduplication_scope = "queue"
-  
+  deduplication_scope        = "queue"
+
   tags = merge(
     var.common_tags,
     {
