@@ -2,7 +2,7 @@ import type { Metadata } from 'next';
 
 import AppWrapper from '@/wrappers/AppWrapper';
 import ThemeProvider from '@/providers/ThemeProvider';
-import SessionProviderWrapper from '@/wrappers/SessionProviderWrapper';
+import AuthSessionProvider from '@/lib/providers/AuthSessionProvider';
 
 import '../styles/globals.css';
 
@@ -17,13 +17,13 @@ export const metadata: Metadata = {
 
 const RootLayout = (props: Props) => {
 	return (
-		<SessionProviderWrapper>
+		<AuthSessionProvider>
 			<AppWrapper>
 				<ThemeProvider attribute="class" defaultTheme="system" enableSystem>
 					{props.children}
 				</ThemeProvider>
 			</AppWrapper>
-		</SessionProviderWrapper>
+		</AuthSessionProvider>
 	);
 };
 
