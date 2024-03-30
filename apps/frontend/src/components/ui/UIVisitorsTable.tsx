@@ -20,6 +20,7 @@ import { useVisitorsStore } from '@/lib/store/useVisitorsStore';
 import { type Visitor } from '@/lib/types/ui/visitor';
 import { cn } from '@/lib/utils/component';
 import { routes } from '@/lib/routes';
+import { addEllipsis } from '@/lib/utils/text';
 import { UITable, UITableHeader, UITableRow, UITableHead, UITableBody, UITableCell } from './UITable';
 import { UIButton } from './UIButton';
 import { UICheckbox } from './UICheckbox';
@@ -67,7 +68,7 @@ const columns: ColumnDef<Visitor>[] = [
 				</UIButton>
 			);
 		},
-		cell: ({ row }) => <div className="lowercase min-w-16">{row.getValue('email')}</div>,
+		cell: ({ row }) => <div className="lowercase min-w-16">{addEllipsis(row.getValue('email'), 20)}</div>,
 	},
 	{
 		accessorKey: 'status',

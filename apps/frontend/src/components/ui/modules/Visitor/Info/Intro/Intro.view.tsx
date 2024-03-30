@@ -28,10 +28,10 @@ const WorkHistoryCard = (props: WorkHistory) => {
 		<div className="flex items-center justify-between h-full">
 			<div className="flex gap-4">
 				<Image src={workHistoryPlaceholder} alt="work history placeholder" className=" h-10 w-auto" />
-				<div className="flex flex-col">
-					<div className="text-sm">{props.companyName}</div>
-					<div className="text-secondary-foreground text-sm">{props.position}</div>
-					<span className="text-secondary-foreground text-sm">/ Current</span>
+				<div className="flex flex-col gap-px">
+					<div className="font-medium">{props.companyName}</div>
+					<div className="text-secondary-foreground text-xs">{props.position}</div>
+					<span className="text-secondary-foreground text-xs">/ Current</span>
 				</div>
 			</div>
 			<UICheckbox
@@ -67,7 +67,7 @@ const IntroView = (props: Props) => {
 				<div className="flex flex-col w-1/2">
 					<UICardHeader className="flex flex-row items-center border-b ">
 						<div className="flex flex-col">
-							<UICardTitle>Contact information</UICardTitle>
+							<UICardTitle className="text-lg">Contact information</UICardTitle>
 						</div>
 					</UICardHeader>
 					<UICardContent className="pt-4">
@@ -104,7 +104,7 @@ const IntroView = (props: Props) => {
 				<div className="flex flex-col w-1/2  border-l">
 					<UICardHeader className="flex flex-row items-center border-b">
 						<div className="flex flex-col !mt-0">
-							<UICardTitle>Work history</UICardTitle>
+							<UICardTitle className="text-lg">Work history</UICardTitle>
 						</div>
 					</UICardHeader>
 					<UICardContent className="flex flex-col gap-2 py-4 px-6 overflow-y-auto h-44">

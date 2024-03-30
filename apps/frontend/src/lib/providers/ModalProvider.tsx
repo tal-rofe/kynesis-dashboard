@@ -43,6 +43,8 @@ export const ModalProvider: React.FC<{ readonly children: ReactNode }> = ({ chil
 
 			if (['Tab', 'ArrowDown', 'ArrowUp'].includes(e.key)) {
 				e.preventDefault();
+				e.stopPropagation();
+
 				const currentIndex = focusableModalElements.indexOf(document.activeElement as HTMLElement);
 				let nextIndex = currentIndex;
 
@@ -88,7 +90,7 @@ export const ModalProvider: React.FC<{ readonly children: ReactNode }> = ({ chil
 			{shouldRender && (
 				<div
 					ref={modalRef}
-					className={`fixed inset-0 z-40 flex items-center justify-center ${
+					className={`fixed pt-32 inset-0 z-40 flex items-start justify-center ${
 						isModalOpen ? 'animate-fadeIn' : 'animate-fadeOut'
 					} transition-opacity duration-200 bg-[#3636361A]`}
 					onClick={hideModal}
