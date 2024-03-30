@@ -4,12 +4,13 @@ import React from 'react';
 import Link from 'next/link';
 import { signIn } from 'next-auth/react';
 
+import { routes } from '@/lib/routes';
 import UISvg from '@/ui/UISvg';
 import UIBrandLogo from '@/ui/UIBrandLogo';
 
 const Login = () => {
 	return (
-		<section className="flex flex-col items-center backdrop-blur-2xl shadow-white bg-auth h-screen">
+		<div className="flex flex-col items-center backdrop-blur-2xl shadow-white bg-auth h-screen">
 			<span className="mt-12">
 				<UIBrandLogo type="icon-text" />
 			</span>
@@ -27,12 +28,12 @@ const Login = () => {
 				<span className="gap-1 mt-8">
 					<span>Not signed up yet?</span>
 					&nbsp;
-					<Link className="font-medium" href="/">
+					<Link className="font-medium" href={routes.visitors.path}>
 						Create your account
 					</Link>
 				</span>
 			</div>
-		</section>
+		</div>
 	);
 };
 

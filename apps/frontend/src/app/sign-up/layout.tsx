@@ -1,11 +1,11 @@
-import AuthLayoutBase from '@/layouts/AuthLayout';
+import AuthLayout from '@/layouts/AuthLayout';
 
 type Props = {
 	readonly children: React.ReactNode;
 };
 
 const SignupLayout = (props: Props) => {
-	return <AuthLayoutBase>{props.children}</AuthLayoutBase>;
+	return <AuthLayout>{props.children}</AuthLayout>;
 };
 
 export default SignupLayout;

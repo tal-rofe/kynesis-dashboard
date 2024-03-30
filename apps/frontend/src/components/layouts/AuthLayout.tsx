@@ -1,7 +1,7 @@
 import React from 'react';
 import Image from 'next/image';
 
-import authBackground from '../../../public/images/auth-background.png';
+import authBackground from '@/public/images/auth-background.png';
 
 type PageProps = {
 	readonly children: React.ReactNode;

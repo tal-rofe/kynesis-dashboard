@@ -4,7 +4,7 @@ import UIBrandLogo from '@/ui/UIBrandLogo';
 
 const LeftSide = () => {
 	return (
-		<section className="flex flex-col justify-between w-6/12 min-w-[630px]">
+		<div className="flex flex-col justify-between w-6/12 min-w-[630px]">
 			<div className="pt-12 pl-12">
 				<UIBrandLogo type="icon-text" />
 			</div>
@@ -13,7 +13,7 @@ const LeftSide = () => {
 				<span>Kynesis.io transforms website visits into deep, actionable insights,</span>
 				<span>fueling targeted and effective sales strategies.</span>
 			</div>
-		</section>
+		</div>
 	);
 };
 

@@ -7,8 +7,8 @@ type Props = {
 	readonly children: React.ReactNode;
 };
 
-const SessionProviderWrapper = (props: Props) => {
+const AuthSessionProvider = (props: Props) => {
 	return <SessionProvider>{props.children}</SessionProvider>;
 };
 
-export default React.memo(SessionProviderWrapper);
+export default React.memo(AuthSessionProvider);

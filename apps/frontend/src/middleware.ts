@@ -6,7 +6,7 @@ import { type RoutesPath, routes } from '@/lib/routes';
 const middleware = async (request: NextRequest) => {
 	const { pathname } = request.nextUrl;
 
-	const session = await getToken({ req: request, secret: process.env['NEXTAUTH_SECRET'] });
+	const session = await getToken({ req: request, secret: process.env.NEXTAUTH_SECRET });
 
 	const isAuthenticate = Boolean(session);
 

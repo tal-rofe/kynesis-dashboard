@@ -8,7 +8,7 @@ import UISvg from '@/ui/UISvg';
 
 const RightSide = () => {
 	return (
-		<section className="flex flex-col w-1/2 backdrop-blur-2xl shadow-white bg-auth min-w-[630px]">
+		<div className="flex flex-col w-1/2 backdrop-blur-2xl shadow-white bg-auth min-w-[630px]">
 			<div className="pt-12 pr-12 text-black self-end">Login</div>
 			<div className="flex flex-col items-center text-black mt-56">
 				<h1 className="flex flex-col items-center text-primary-foreground text-2xl font-semibold">Create your account</h1>
@@ -32,7 +32,7 @@ const RightSide = () => {
 					</Link>
 				</span>
 			</div>
-		</section>
+		</div>
 	);
 };
 
