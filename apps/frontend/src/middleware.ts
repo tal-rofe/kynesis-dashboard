@@ -19,7 +19,7 @@ const middleware = async (request: NextRequest) => {
 		.map((route) => route.path);
 
 	const absoluteAuthorizedRoutesURL = new URL(routes.visitors.path, request.nextUrl.origin);
-	const absoluteUnAuthorizedRoutesURL = new URL(routes.onboarding.path, request.nextUrl.origin);
+	const absoluteUnAuthorizedRoutesURL = new URL(routes.login.path, request.nextUrl.origin);
 
 	if (authorizedRoutes.includes(pathname as RoutesPath) && !isAuthenticate) {
 		return NextResponse.redirect(absoluteUnAuthorizedRoutesURL.toString());

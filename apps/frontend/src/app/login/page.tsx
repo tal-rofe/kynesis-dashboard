@@ -19,7 +19,7 @@ const Login = () => {
 				<button
 					className="flex items-center justify-center text-base gap-2 font-medium mt-8 py-2 px-4 bg-white rounded-sm w-[407px]"
 					type="button"
-					onClick={() => signIn()}
+					onClick={() => signIn('google')}
 				>
 					<UISvg name="googleIcon" />
 					Sign up with Google
