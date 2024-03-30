@@ -20,6 +20,7 @@ import { useVisitorsStore } from '@/lib/store/useVisitorsStore';
 import { type Visitor } from '@/lib/types/ui/visitor';
 import { cn } from '@/lib/utils/component';
 import { routes } from '@/lib/routes';
+import { addEllipsis } from '@/lib/utils/text';
 import { UITable, UITableHeader, UITableRow, UITableHead, UITableBody, UITableCell } from './UITable';
 import { UIButton } from './UIButton';
 import { UICheckbox } from './UICheckbox';
@@ -33,6 +34,7 @@ import {
 } from './UIDropdownMenu';
 import UISvg from './UISvg';
 import { UIInput } from './UIInput';
+import { UITooltip, UITooltipContent, UITooltipProvider, UITooltipTrigger } from './UITooltip';
 
 const columns: ColumnDef<Visitor>[] = [
 	{
@@ -66,7 +68,7 @@ const columns: ColumnDef<Visitor>[] = [
 				</UIButton>
 			);
 		},
-		cell: ({ row }) => <div className="lowercase min-w-16">{row.getValue('email')}</div>,
+		cell: ({ row }) => <div className="lowercase min-w-16">{addEllipsis(row.getValue('email'), 20)}</div>,
 	},
 	{
 		accessorKey: 'status',
@@ -186,16 +188,28 @@ const UIVisitorsTable = (props: Props) => {
 	return (
 		<div className="w-full">
 			<div className="flex items-center py-4 gap-2">
-				<Link
-					href={`${routes.visitors.path}/${currentVisitorState?.id}`}
-					className={cn(!currentVisitorState && 'pointer-events-none')}
-					aria-disabled={!currentVisitorState}
-					tabIndex={!currentVisitorState ? -1 : undefined}
-				>
-					<UIButton className="rounded-3xl" variant="outline" onClick={onSetCurrentVisitor}>
-						Message
-					</UIButton>
-				</Link>
+				<UITooltipProvider>
+					<UITooltip>
+						<UITooltipTrigger className={cn(!currentVisitorState && 'cursor-not-allowed')}>
+							<UIButton className="rounded-3xl" variant="outline" asChild onClick={onSetCurrentVisitor}>
+								<Link
+									href={`${pathname}/${currentVisitorState?.id}`}
+									className={cn(!currentVisitorState && 'pointer-events-none')}
+									aria-disabled={!currentVisitorState}
+									tabIndex={!currentVisitorState ? -1 : undefined}
+									passHref
+								>
+									Message
+								</Link>
+							</UIButton>
+						</UITooltipTrigger>
+						{!currentVisitorState && (
+							<UITooltipContent>
+								<span>You have to choose a visitor</span>
+							</UITooltipContent>
+						)}
+					</UITooltip>
+				</UITooltipProvider>
 
 				<UIButton className="rounded-3xl" variant="secondary">
 					Export to CSV

@@ -13,15 +13,15 @@ type Props = {
 };
 
 const SidebarElement = (props: Props) => {
-	const { showModal } = useModal();
+	const { showModal, hideModal } = useModal();
 	const pathname = usePathname();
 
-	const isActive = pathname === props.sidebarElement.link;
+	const isActive = pathname.includes(props.sidebarElement.link ?? '');
 
 	const { sidebarElement } = props;
 
 	const onShowSearchModal = () => {
-		showModal(<SearchModal />);
+		showModal(<SearchModal hideModal={hideModal} />);
 	};
 
 	return <SidebarElementView isActive={isActive} sidebarElement={sidebarElement} onShowSearchModal={onShowSearchModal} />;

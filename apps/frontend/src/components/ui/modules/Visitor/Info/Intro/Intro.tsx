@@ -3,14 +3,14 @@
 import React from 'react';
 
 import { useVisitorsStore } from '@/lib/store/useVisitorsStore';
-import EmailComposeView from './EmailCompose.view';
+import IntroView from './Intro.view';
 
-const EmailCompose = () => {
+const Intro = () => {
 	const currentVisitor = useVisitorsStore((state) => state.currentVisitor);
 	const emailSubjects = useVisitorsStore((state) => state.emailSubjects);
 	const setEmailSubjects = useVisitorsStore((state) => state.setEmailSubjects);
 
-	return <EmailComposeView currentVisitor={currentVisitor} emailSubjects={emailSubjects} setEmailSubjects={setEmailSubjects} />;
+	return <IntroView currentVisitor={currentVisitor} emailSubjects={emailSubjects} setEmailSubjects={setEmailSubjects} />;
 };
 
-export default React.memo(EmailCompose);
+export default React.memo(Intro);

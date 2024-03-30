@@ -16,7 +16,7 @@ const Sidebar = () => {
 		if (isModalOpen) {
 			hideModal();
 		} else {
-			showModal(<SearchModal />);
+			showModal(<SearchModal hideModal={hideModal} />);
 		}
 	};
 

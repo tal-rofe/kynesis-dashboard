@@ -16,7 +16,9 @@
 		"./docker/Dockerfile.frontend-dev",
 		"./apps/frontend/src/stories/assets/**/*",
 		"./apps/frontend/src/stories/Configure.mdx",
-		"./apps/frontend/src/app/onboarding/components/Steps/Steps.tsx"
+		"./apps/frontend/src/app/onboarding/components/Steps/Steps.tsx",
+		"./apps/frontend/src/lib/data/mock/**/*",
+		"./apps/frontend/src/components/ui/modules/Visitor/EmailCompose/EmailCompose.view.tsx"
 	],
 	"words": [
 		"kynesis",
@@ -33,6 +35,7 @@
 		"Dozi",
 		"Yazif",
 		"zustand",
-		"Greenholtz"
+		"Greenholtz",
+		"repost"
 	]
 }

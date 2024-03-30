@@ -1,10 +1,11 @@
 import React from 'react';
 import EmailCompose from './EmailCompose';
+import Info from './Info';
 
 const VisitorView = () => {
 	return (
-		<div className="flex items-center w-full h-full">
-			<div className="w-1/2 h-full px-8 py-6">amir</div>
+		<div className="flex items-center flex-col-reverse lg:flex-row w-full h-svh overflow-hidden max-h-[calc(100%-5rem)]">
+			<Info />
 			<EmailCompose />
 		</div>
 	);
