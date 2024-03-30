@@ -2,13 +2,18 @@ import { getToken } from 'next-auth/jwt';
 import { type NextRequest, NextResponse } from 'next/server';
 
 import { type RoutesPath, routes } from '@/lib/routes';
+import { validateJWT } from './lib/utils/validate-jwt';
 
 const middleware = async (request: NextRequest) => {
+	const { cookies } = request;
 	const { pathname } = request.nextUrl;
+
+	const userTokenCookie = cookies.get('token');
+	const userToken = userTokenCookie ? userTokenCookie.value : null;
 
 	const session = await getToken({ req: request, secret: process.env.NEXTAUTH_SECRET });
 
-	const isAuthenticate = Boolean(session);
+	const isAuthenticate = Boolean(session) && validateJWT(userToken);
 
 	const authorizedRoutes = Object.values(routes)
 		.filter((route) => route.isRequiredAuth)

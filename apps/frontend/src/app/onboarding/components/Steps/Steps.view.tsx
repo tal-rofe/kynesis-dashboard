@@ -7,8 +7,8 @@ import Company from './Company';
 
 type Props = {
 	readonly currentStep: OnboardingSteps;
-	readonly onNextStep: () => void;
-	readonly onPrevStep: () => void;
+	readonly onNextStep: VoidFunction;
+	readonly onPrevStep: VoidFunction;
 };
 
 const StepsView = (props: Props) => {

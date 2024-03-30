@@ -77,6 +77,10 @@ module.exports = {
 					'0%': { opacity: 1 },
 					'100%': { opacity: 0 },
 				},
+				'pulse': {
+					'0%, 100%': { transform: 'scale(1)' },
+					'50%': { transform: 'scale(1.5)' },
+				},
 			},
 			animation: {
 				'accordion-down': 'accordion-down 0.2s ease-out',
@@ -85,6 +89,7 @@ module.exports = {
 				'slideOut': 'slideOut 0.5s ease-in forwards',
 				'fadeIn': 'fadeIn 0.5s ease-out forwards',
 				'fadeOut': 'fadeOut 0.5s ease-in forwards',
+				'pulse-slow': 'pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite',
 			},
 			backgroundImage: {
 				onboarding: 'url("/images/onboarding-background.png")',

@@ -11,6 +11,7 @@ import { cn } from '@/lib/utils/component';
 type Props = {
 	readonly isActive: boolean;
 	readonly sidebarElement: SidebarElement;
+	readonly onShowSearchModal: VoidFunction;
 };
 
 const SidebarElementView = (props: Props) => {
@@ -29,7 +30,7 @@ const SidebarElementView = (props: Props) => {
 
 	if (!sidebarElement.link) {
 		return (
-			<UIButton variant="ghost" className="w-full justify-start">
+			<UIButton variant="ghost" className=" w-full justify-start" onClick={props.onShowSearchModal}>
 				<UISvg name={sidebarElement.icon} className="mr-1" />
 				{sidebarElement.label}
 				{sidebarElement.icon === 'search' && <UIMenubarShortcut>⌘K</UIMenubarShortcut>}

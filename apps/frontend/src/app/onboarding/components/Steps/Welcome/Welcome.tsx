@@ -7,7 +7,7 @@ import { isValidLinkedInURL } from '@/lib/utils/regex';
 import WelcomeView from './Welcome.view';
 
 type Props = {
-	readonly onNextStep: () => void;
+	readonly onNextStep: VoidFunction;
 };
 
 const Welcome = (props: Props) => {

@@ -4,7 +4,7 @@ import { useEffect } from 'react';
 
 type Props = {
 	readonly error: Error & { digest?: string };
-	readonly reset: () => void;
+	readonly reset: VoidFunction;
 };
 
 const Error = (props: Props) => {
