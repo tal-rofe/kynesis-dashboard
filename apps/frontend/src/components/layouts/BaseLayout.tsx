@@ -1,7 +1,6 @@
 import React from 'react';
 import PageTransitionWrapper from '@/wrappers/PageTransitionWrapper';
 import { ModalProvider } from '@/lib/providers/ModalProvider';
-import PageWrapper from '../wrappers/PageWrapper';
 import Sidebar from './Sidebar';
 import Header from './Header';
 
@@ -19,9 +18,7 @@ const BaseLayout = (props: PageProps) => {
 				<div className="flex flex-col w-full h-full">
 					{props.header && <Header />}
 
-					<PageTransitionWrapper>
-						<PageWrapper className="flex flex-col w-full h-full px-8 py-6">{props.children}</PageWrapper>
-					</PageTransitionWrapper>
+					<PageTransitionWrapper>{props.children}</PageTransitionWrapper>
 				</div>
 			</section>
 		</ModalProvider>

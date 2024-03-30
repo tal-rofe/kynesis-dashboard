@@ -21,7 +21,7 @@ jobs:
 
             - uses: pnpm/action-setup@v3
               with:
-                  version: 8.15.4
+                  version: 8.15.5
                   run_install: true
 
             - name: Run Knip
@@ -40,7 +40,7 @@ jobs:
 
             - uses: pnpm/action-setup@v3
               with:
-                  version: 8.15.4
+                  version: 8.15.5
                   run_install: true
 
             - name: Run Inflint
@@ -59,7 +59,7 @@ jobs:
 
             - uses: pnpm/action-setup@v3
               with:
-                  version: 8.15.4
+                  version: 8.15.5
                   run_install: true
 
             - name: Run TypeScript
@@ -78,7 +78,7 @@ jobs:
 
             - uses: pnpm/action-setup@v3
               with:
-                  version: 8.15.4
+                  version: 8.15.5
                   run_install: true
 
             - name: Run ESLint
@@ -97,7 +97,7 @@ jobs:
 
             - uses: pnpm/action-setup@v3
               with:
-                  version: 8.15.4
+                  version: 8.15.5
                   run_install: true
 
             - name: Run build
@@ -116,7 +116,7 @@ jobs:
 
             - uses: pnpm/action-setup@v3
               with:
-                  version: 8.15.4
+                  version: 8.15.5
                   run_install: true
 
             - name: Run CSpell
@@ -135,7 +135,7 @@ jobs:
 
             - uses: pnpm/action-setup@v3
               with:
-                  version: 8.15.4
+                  version: 8.15.5
                   run_install: true
 
             - name: Install Playwright
@@ -167,7 +167,7 @@ jobs:
 
             - uses: pnpm/action-setup@v3
               with:
-                  version: 8.15.4
+                  version: 8.15.5
                   run_install: true
 
             - name: Publish Web project to Chromatic
