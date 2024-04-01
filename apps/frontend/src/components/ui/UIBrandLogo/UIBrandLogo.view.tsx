@@ -9,14 +9,6 @@ type Props = {
 	readonly onClick?: VoidFunction;
 };
 
-const BrandIcon = () => {
-	return <UISvg name="brandLogoIcon" className="!h-[51px] !w-[51px] fill-transparent" />;
-};
-
-const BrandText = () => {
-	return <UISvg name="brandLogoText" className="!w-40 !h-full !fill-black" />;
-};
-
 const UIBrandLogoView = (props: Props) => {
 	const clickHandler = (e: React.MouseEvent) => {
 		e.preventDefault();
@@ -25,11 +17,14 @@ const UIBrandLogoView = (props: Props) => {
 		props.onClick!();
 	};
 
+	const brandIcon = <UISvg name="brandLogoIcon" className="!h-[51px] !w-[51px] fill-transparent" />;
+	const brandText = <UISvg name="brandLogoText" className="!w-40 !h-full fill-[#222222]" />;
+
 	if (props.onClick) {
 		return (
 			<button className={cn(props.className, 'flex items-center gap-[6px] h-[53px]')} type="button" onClick={clickHandler}>
-				<BrandIcon />
-				<BrandText />
+				{brandIcon}
+				{brandText}
 			</button>
 		);
 	}
@@ -37,16 +32,16 @@ const UIBrandLogoView = (props: Props) => {
 	if (props.type === 'icon-text') {
 		return (
 			<div className={cn(props.className, 'flex items-center gap-[6px] h-[53px]')}>
-				<BrandIcon />
-				<BrandText />
+				{brandIcon}
+				{brandText}
 			</div>
 		);
 	}
 
 	return (
 		<>
-			{props.type === 'text' && <BrandIcon />}
-			{props.type === 'icon' && <BrandText />}
+			{props.type === 'text' && brandIcon}
+			{props.type === 'icon' && brandText}
 		</>
 	);
 };

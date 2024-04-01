@@ -4,8 +4,9 @@ import { type SidebarElement } from '@/lib/types/ui/nav-element';
 import SidebarSection from './SidebarSection';
 
 type Props = {
-	readonly stickySidebarElements: SidebarElement[];
 	readonly sidebarElements: SidebarElement[];
+	readonly stickySidebarElements: SidebarElement[];
+	readonly logoutSidebarElements: SidebarElement[];
 };
 
 const SidebarView = (props: Props) => {
@@ -21,9 +22,14 @@ const SidebarView = (props: Props) => {
 					<span className="text-gray-600 text-xs">31 Contacts</span>
 				</div>
 			</div>
-			<div className="flex flex-col gap-4">
-				<SidebarSection elements={props.stickySidebarElements} />
-				<SidebarSection label="Data tables" elements={props.sidebarElements} />
+			<div className="flex flex-col justify-between h-full">
+				<div className="flex flex-col gap-4">
+					<SidebarSection elements={props.stickySidebarElements} />
+					<SidebarSection label="Data tables" elements={props.sidebarElements} />
+				</div>
+				<div className="flex flex-col">
+					<SidebarSection elements={props.logoutSidebarElements} />
+				</div>
 			</div>
 		</div>
 	);

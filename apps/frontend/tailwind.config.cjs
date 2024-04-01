@@ -93,6 +93,10 @@ module.exports = {
 			},
 			backgroundImage: {
 				onboarding: 'url("/images/onboarding-background.png")',
+				auth: 'linear-gradient(180deg, rgba(230, 230, 230, 0.30) 0%, rgba(226, 226, 226, 0.30) 100%)',
+			},
+			boxShadow: {
+				white: '3px 0px 22.9px 0px rgba(102, 102, 102, 0.10) inset',
 			},
 		},
 	},

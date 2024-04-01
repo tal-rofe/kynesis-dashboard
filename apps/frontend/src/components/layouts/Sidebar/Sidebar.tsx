@@ -11,6 +11,7 @@ const Sidebar = () => {
 	const { isModalOpen, showModal, hideModal } = useModal();
 	const stickySidebarElements = navElements.filter((element) => element.sticky);
 	const sidebarElements = navElements.filter((element) => !element.sticky);
+	const logoutSidebarElements = navElements.filter((element) => element.logout);
 
 	const toggleModal = () => {
 		if (isModalOpen) {
@@ -33,7 +34,7 @@ const Sidebar = () => {
 		return () => window.removeEventListener('keydown', handleKeyDown);
 	}, [isModalOpen]);
 
-	return <SidebarView sidebarElements={sidebarElements} stickySidebarElements={stickySidebarElements} />;
+	return <SidebarView sidebarElements={sidebarElements} stickySidebarElements={stickySidebarElements} logoutSidebarElements={logoutSidebarElements} />;
 };
 
 export default React.memo(Sidebar);

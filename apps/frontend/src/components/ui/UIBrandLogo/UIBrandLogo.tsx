@@ -8,8 +8,8 @@ type Props = {
 	readonly onClick?: VoidFunction;
 };
 
-const USvg = (props: Props) => {
+const UIBrandLogo = (props: Props) => {
 	return <UIBrandLogoView className={props.className} type={props.type} onClick={props.onClick} />;
 };
 
-export default React.memo(USvg);
+export default React.memo(UIBrandLogo);

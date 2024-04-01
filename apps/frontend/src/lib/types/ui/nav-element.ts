@@ -6,4 +6,5 @@ export type SidebarElement = {
 	readonly icon: keyof typeof icons;
 	readonly link?: RoutesPath;
 	readonly sticky?: boolean;
+	readonly logout?: boolean;
 };

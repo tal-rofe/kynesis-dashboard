@@ -1,5 +1,6 @@
 import React from 'react';
 import Link from 'next/link';
+import { signOut } from 'next-auth/react';
 
 import { UIButton } from '@/ui/UIButton';
 import UISvg from '@/ui/UISvg';
@@ -15,6 +16,17 @@ type Props = {
 
 const SidebarElementView = (props: Props) => {
 	const { sidebarElement } = props;
+
+	if (sidebarElement.logout) {
+		return (
+			<UIButton asChild variant="ghost" className="w-full justify-start">
+				<button type="button" onClick={() => signOut()}>
+					<UISvg name={sidebarElement.icon} className="mr-1" />
+					{sidebarElement.label}
+				</button>
+			</UIButton>
+		);
+	}
 
 	if (!sidebarElement.link) {
 		return (
