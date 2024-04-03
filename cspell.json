@@ -12,10 +12,7 @@
 		"./cspell.json",
 		"./nx.json",
 		"./lint-staged.config.cjs",
-		"./inflint.config.ts",
-		"./docker/Dockerfile.frontend-dev",
-		"./apps/frontend/src/stories/assets/**/*",
-		"./apps/frontend/src/stories/Configure.mdx"
+		"./inflint.config.ts"
 	],
 	"words": [
 		"kynesis",

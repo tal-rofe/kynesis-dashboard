@@ -4,5 +4,4 @@ pnpm-workspace.yaml
 dist
 pnpm-lock.yaml
 .next
-apps/frontend/storybook-static/
 .nx
