@@ -1,0 +1,1 @@
+export const SQS_SEND_MESSAGE_MAX_ATTEMPTS = 3;
