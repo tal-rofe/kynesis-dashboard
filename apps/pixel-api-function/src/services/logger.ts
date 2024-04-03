@@ -5,8 +5,12 @@ class LoggerService {
 		this.requestId = requestId;
 	}
 
-	public log(message: string) {
-		console.log(`[Request ID: ${this.requestId}] ${message}`);
+	public info(message: string) {
+		console.log(`[Request ID: ${this.requestId}] [INFO] ${message}`);
+	}
+
+	public error(message: string) {
+		console.log(`[Request ID: ${this.requestId}] [ERROR] ${message}`);
 	}
 }
 

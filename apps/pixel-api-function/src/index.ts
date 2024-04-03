@@ -13,7 +13,7 @@ export const handler: APIGatewayProxyHandler = async (event, context) => {
 	try {
 		const requestBody = event.body;
 
-		logger.log(`Request body is: ${requestBody}`);
+		logger.info(`Request body is: ${requestBody}`);
 
 		if (!requestBody) {
 			return {
@@ -31,7 +31,7 @@ export const handler: APIGatewayProxyHandler = async (event, context) => {
 		const validatedRequestBody = await pixelApiRequestBodySchema.safeParseAsync(parsedRequestBody);
 
 		if (!validatedRequestBody.success) {
-			logger.log(`Failed to parse request body with an error: ${validatedRequestBody.error}`);
+			logger.error(`Failed to parse request body with an error: ${validatedRequestBody.error}`);
 
 			const plainErrorText = fromZodError(validatedRequestBody.error).toString();
 
@@ -63,7 +63,7 @@ export const handler: APIGatewayProxyHandler = async (event, context) => {
 		try {
 			await sqsClient.send(sendMessageSqsCommand);
 		} catch (error: unknown) {
-			logger.log(`Failed to send SQS message with an error: ${error}`);
+			logger.error(`Failed to send SQS message with an error: ${error}`);
 
 			return {
 				statusCode: 500,
@@ -74,7 +74,7 @@ export const handler: APIGatewayProxyHandler = async (event, context) => {
 			};
 		}
 
-		logger.log('Successfully pushed message to SQS to be handled');
+		logger.info('Successfully pushed message to SQS to be handled');
 
 		return {
 			statusCode: 200,
@@ -84,7 +84,7 @@ export const handler: APIGatewayProxyHandler = async (event, context) => {
 			},
 		};
 	} catch (error: unknown) {
-		logger.log(`Runtime error: ${error}`);
+		logger.error(`Runtime error: ${error}`);
 
 		return {
 			statusCode: 500,

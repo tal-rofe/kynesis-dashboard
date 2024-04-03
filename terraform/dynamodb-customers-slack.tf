@@ -4,7 +4,7 @@ resource "aws_dynamodb_table" "dynamodb_customers_slack_table" {
   read_capacity  = 1
   write_capacity = 5
   hash_key       = "CustomerDomain"
-  range_key      = "CustomerSlack"
+  range_key      = "CustomerSlackChannelId"
 
   attribute {
     name = "CustomerDomain"
@@ -12,14 +12,14 @@ resource "aws_dynamodb_table" "dynamodb_customers_slack_table" {
   }
 
   attribute {
-    name = "CustomerSlack"
+    name = "CustomerSlackChannelId"
     type = "S"
   }
 
   tags = merge(
     var.common_tags,
     {
-      Name  = "${var.project}-Dynamo-DB-Customers-Slack"
+      Name  = "${var.project}-DynamoDB-Customers-Slack"
       Stack = "Backend"
     }
   )
