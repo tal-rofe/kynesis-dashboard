@@ -1,5 +1,5 @@
 org: kynesis
-app: pixel-api
+app: pixel-api-function
 console: true
 service: pixel-http-api
 frameworkVersion: '3'
@@ -26,8 +26,8 @@ plugins:
     - serverless-offline
 
 functions:
-    pixel-api:
-        name: pixel-api
+    pixel-api-function:
+        name: pixel-api-function
         runtime: nodejs20.x
         handler: ./build/index.handler
         events:

@@ -1,0 +1,15 @@
+{
+	"extends": "../../tsconfig.base.json",
+	"compilerOptions": {
+		"target": "ESNext",
+		"module": "ESNext",
+		"moduleResolution": "Bundler",
+		"baseUrl": "./",
+		"typeRoots": ["./node_modules/@types", "./@types"],
+		"paths": {
+			"@/interfaces/*": ["src/interfaces/*"],
+			"@/utils/*": ["src/utils/*"],
+			"@/services/*": ["src/services/*"]
+		}
+	}
+}

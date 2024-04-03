@@ -1,28 +1,50 @@
 version: '3.8'
 
 services:
-    pixel-api:
-        container_name: pixel-api
+    common-functions-types:
+        container_name: common-functions-types
         build:
-            context: .
-            dockerfile: ./Dockerfile.pixel-api-dev
-        ports:
-            - 3000:3000
+            context: ..
+            dockerfile: ./docker/Dockerfile.common-functions-types-dev
         restart: always
         networks:
             - dashboard_network
         volumes:
             - type: bind
-              source: ./apps/pixel-api/src
-              target: /dashboard/apps/pixel-api/src
-            - /dashboard/apps/pixel-api/node_modules
+              source: ../packages/common-functions-types/src
+              target: /dashboard/packages/common-functions-types/src
+            - type: bind
+              source: ../packages/common-functions-types/dist
+              target: /dashboard/packages/common-functions-types/dist
+            - /dashboard/packages/common-functions-types/node_modules
+
+    pixel-api-function:
+        container_name: pixel-api-function
+        build:
+            context: ..
+            dockerfile: ./docker/Dockerfile.pixel-api-function-dev
+        ports:
+            - 3000:3000
+        restart: always
+        depends_on:
+            - common-functions-types
+        networks:
+            - dashboard_network
+        volumes:
+            - type: bind
+              source: ../apps/pixel-api-function/src
+              target: /dashboard/apps/pixel-api-function/src
+            - type: bind
+              source: ../packages/common-functions-types/dist
+              target: /dashboard/packages/common-functions-types/dist
+            - /dashboard/apps/pixel-api-function/node_modules
             - /dashboard/node_modules
 
     frontend:
         container_name: frontend
         build:
-            context: .
-            dockerfile: ./Dockerfile.frontend-dev
+            context: ..
+            dockerfile: ./docker/Dockerfile.frontend-dev
         env_file:
             - ../apps/frontend/envs/.env.development
         ports:
