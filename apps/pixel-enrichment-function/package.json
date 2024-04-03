@@ -12,8 +12,10 @@
 		"lint": "eslint -c ./.eslintrc.cjs --ignore-path ./.eslintignore \"./**/*.{ts,js,cjs}\""
 	},
 	"dependencies": {
+		"@aws-sdk/client-dynamodb": "3.540.0",
 		"@aws-sdk/client-sqs": "3.540.0",
 		"@kynesis/common-functions-types": "workspace:*",
+		"@slack/web-api": "7.0.2",
 		"deepmerge": "4.3.1",
 		"free-email-domains": "1.2.13",
 		"got": "14.2.1"

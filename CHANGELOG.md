@@ -1,3 +1,10 @@
+# [1.1.0](https://github.com/kynesis-io/dashboard/compare/v1.0.0...v1.1.0) (2024-04-03)
+
+
+### Features
+
+* 🔥 Add new components and files for onboarding process ([d4bec0a](https://github.com/kynesis-io/dashboard/commit/d4bec0ab1128da8d8be235e1ef2e4dbf5fe37cf2))
+
 # 1.0.0 (2024-03-17)
 
 

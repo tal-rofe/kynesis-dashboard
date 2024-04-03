@@ -44,6 +44,25 @@ resource "aws_iam_role_policy_attachment" "pixel_enrichment_sqs_policy_attachmen
   policy_arn = data.aws_iam_policy.pixel_enrichment_lambda_sqs_execution_policy.arn
 }
 
+# * This allows Lambda to read DynamoDB table
+data "aws_iam_policy_document" "pixel_api_lambda_send_read_dynamodb_policy_document" {
+  statement {
+    effect    = "Allow"
+    actions   = ["dynamodb:GetItem"]
+    resources = [aws_dynamodb_table.dynamodb_customers_slack_table.arn]
+  }
+}
+
+resource "aws_iam_policy" "pixel_enrichment_lambda_read_dynamodb_policy" {
+  name   = "pixel-enrichment-lambda-read-dynamodb-policy"
+  policy = data.aws_iam_policy_document.pixel_api_lambda_send_read_dynamodb_policy_document.json
+}
+
+resource "aws_iam_role_policy_attachment" "pixel_enrichment_read_dynamodb_policy_attachment" {
+  role       = aws_iam_role.iam_for_pixel_enrichment_lambda.id
+  policy_arn = data.aws_iam_policy.pixel_enrichment_lambda_read_dynamodb_policy.arn
+}
+
 
 data "archive_file" "lambda_pixel_enrichment_zip" {
   type        = "zip"
@@ -78,7 +97,12 @@ resource "aws_lambda_function" "pixel_enrichment_lambda" {
 
   environment {
     variables = {
-      SQS_URL = aws_sqs_queue.pixel_api_enrichment_sqs_fifo.url
+      SQS_URL             = aws_sqs_queue.pixel_api_enrichment_sqs_fifo.url
+      PROXYCURL_API_KEY   = var.proxycurl_api_key
+      RAMPEDUP_API_KEY    = var.rampedup_api_key
+      VETRIC_API_KEY      = var.vetric_api_key
+      DYNAMODB_TABLE_NAME = aws_dynamodb_table.dynamodb_customers_slack_table.name
+      SLACK_TOKEN         = var.slack_token
     }
   }
 
