@@ -29,7 +29,7 @@ data "aws_iam_policy" "pixel_api_lambda_basic_execution_policy" {
   arn = "arn:aws:iam::aws:policy/service-role/AWSLambdaBasicExecutionRole"
 }
 
-resource "aws_iam_role_policy_attachment" "pixel_api_policy_attachment" {
+resource "aws_iam_role_policy_attachment" "pixel_api__cloudwatch_policy_attachment" {
   role       = aws_iam_role.iam_for_pixel_api_lambda.id
   policy_arn = data.aws_iam_policy.pixel_api_lambda_basic_execution_policy.arn
 }
@@ -48,7 +48,7 @@ resource "aws_iam_policy" "pixel_api_lambda_send_sqs_policy" {
   policy = data.aws_iam_policy_document.pixel_api_lambda_send_sqs_policy_document.json
 }
 
-resource "aws_iam_role_policy_attachment" "pixel_api_policy_attachment" {
+resource "aws_iam_role_policy_attachment" "pixel_api_send_sqs_policy_attachment" {
   role       = aws_iam_role.iam_for_pixel_api_lambda.id
   policy_arn = data.aws_iam_policy.pixel_api_lambda_send_sqs_policy.arn
 }
