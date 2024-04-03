@@ -14,9 +14,11 @@ export const handler: APIGatewayProxyHandler = async (event, context) => {
 	try {
 		const requestBody = event.body;
 
-		logger.info(`Request body is: ${requestBody}`);
+		logger.info('Start processing request', { requestBody });
 
 		if (!requestBody) {
+			logger.info('Missing request body, abort');
+
 			return {
 				statusCode: 400,
 				body: JSON.stringify({ message: 'Missing pixel data' }),
@@ -77,9 +79,10 @@ export const handler: APIGatewayProxyHandler = async (event, context) => {
 			};
 		}
 
-		logger.info(
-			`Successfully pushed message to SQS to be handled, with message ID: "${sendMessageSqsOutput.MessageId}" and AWS SQS request ID: "${sendMessageSqsOutput.$metadata.requestId}"`,
-		);
+		logger.info('Successfully pushed message to SQS to be handled', {
+			messageId: sendMessageSqsOutput.MessageId,
+			awsRequestId: sendMessageSqsOutput.$metadata.requestId,
+		});
 
 		return {
 			statusCode: 200,

@@ -5,12 +5,12 @@ class LoggerService {
 		this.requestId = requestId;
 	}
 
-	public info(message: string) {
-		console.log(`[Request ID: ${this.requestId}] [INFO] ${message}`);
+	public info(message: string, metadata: Record<string, unknown> = {}) {
+		console.log(`[Request ID: ${this.requestId}] [INFO] ${message} [Metadata: ${JSON.stringify(metadata)}]`);
 	}
 
-	public error(message: string) {
-		console.log(`[Request ID: ${this.requestId}] [ERROR] ${message}`);
+	public error(message: string, metadata: Record<string, unknown> = {}) {
+		console.log(`[Request ID: ${this.requestId}] [ERROR] ${message} [Metadata: ${JSON.stringify(metadata)}]`);
 	}
 }
 

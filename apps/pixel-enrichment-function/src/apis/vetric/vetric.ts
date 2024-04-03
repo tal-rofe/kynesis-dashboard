@@ -25,7 +25,7 @@ const apiUrls = [
 export const getEnrichedData = async (requestId: string, linkedinUrl: string) => {
 	const logger = new LoggerService(requestId);
 
-	logger.info(`Trying to enrich data for Linkedin URL: "${linkedinUrl}"`);
+	logger.info('Trying to enrich data for Linkedin URL', { linkedinUrl });
 
 	const allResponses = await Promise.allSettled(apiUrls.map((apiUrl) => vetricHttpGet(apiUrl, linkedinUrl, process.env.VETRIC_API_KEY)));
 	let baseObject: Record<string, unknown> = {};
@@ -33,8 +33,10 @@ export const getEnrichedData = async (requestId: string, linkedinUrl: string) =>
 	for (const [index, response] of allResponses.entries()) {
 		if (response.status === 'fulfilled') {
 			baseObject = deepmerge(baseObject, response.value);
+
+			logger.info('Successfully enriched data from single API', { apiUrl: apiUrls[index] });
 		} else {
-			logger.warn(`Failed to get response from Vetric API: "${apiUrls[index]}" with an error: ${response.reason}`);
+			logger.warn(`Failed to get response from single API with an error: ${response.reason}`, { apiUrl: apiUrls[index] });
 		}
 	}
 
