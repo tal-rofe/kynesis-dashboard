@@ -50,7 +50,9 @@ export const handler: SQSHandler = async (event, context) => {
 	try {
 		linkedinUrl = await apiHandler.getLinkedinUrl(parsedMessageBody);
 	} catch (error: unknown) {
-		logger.error(`Failed to match Linkedin profile URL with pixel data, with an error: ${error}`);
+		logger.error(
+			`Failed to match Linkedin profile URL with pixel data, using API index: "${parsedMessageBody.apiIndex}", with an error: ${error}`,
+		);
 
 		if (parsedMessageBody.apiIndex === linkedinUrlApis.length - 1) {
 			logger.error('Failed to match Linkedin profile URL using all APIs providers');
