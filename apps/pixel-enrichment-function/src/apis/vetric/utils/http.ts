@@ -1,6 +1,6 @@
 import got from 'got';
 
-import { API_CALL_RETRIES, API_CALL_TIMEOUT } from '../constants/http-api';
+import { API_CALL_RETRIES, API_CALL_TIMEOUT } from '@/constants/http-api';
 
 type VetricResponse = Record<string, unknown> & { cursor?: string | null };
 
@@ -13,6 +13,7 @@ export const vetricHttpGet = async (url: string, linkedinUrl: string, apiKey: st
 
 	const apiUrlWithIdentifier = url.replace(':identifier', linkedinIdentifier);
 
+	// * Not using "cursor" just to minimize costs at the meantime
 	const response = await got
 		.get(apiUrlWithIdentifier, {
 			headers: { 'x-api-key': apiKey },

@@ -1,8 +1,7 @@
 import type { PixelApiRequestBodySchema } from '@kynesis/common-functions-types';
 
-import type { LinkedinUrlResponse } from '@/interfaces/linkedin-url';
-import { linkedinUrlHttpGet } from '@/utils/linkedin-url-http';
-
+import type { LinkedinUrlResponse } from './interfaces/response';
+import { linkedinUrlHttpGet } from './utils/http';
 import LinkedinUrl from './linkedin-url.abstract';
 
 type ApiResponse = { readonly linkedin_profile_url: string };

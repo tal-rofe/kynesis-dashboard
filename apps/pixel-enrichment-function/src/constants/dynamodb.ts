@@ -1,1 +1,1 @@
-export const MAX_ATTEMPTS = 2;
+export const DYNAMODB_MAX_ATTEMPTS = 2;

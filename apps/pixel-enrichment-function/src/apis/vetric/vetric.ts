@@ -1,7 +1,8 @@
 import deepmerge from 'deepmerge';
 
-import { vetricHttpGet } from '@/utils/vetric-http';
 import LoggerService from '@/services/logger';
+
+import { vetricHttpGet } from './utils/http';
 
 const apiUrls = [
 	'https://api.vetric.io/linkedin/v1/profile/:identifier/overview',

@@ -1,9 +1,8 @@
 import freeEmailDomains from 'free-email-domains';
 import type { PixelApiRequestBodySchema } from '@kynesis/common-functions-types';
 
-import type { LinkedinUrlResponse } from '@/interfaces/linkedin-url';
-import { linkedinUrlHttpPost } from '@/utils/linkedin-url-http';
-
+import type { LinkedinUrlResponse } from './interfaces/response';
+import { linkedinUrlHttpPost } from './utils/http';
 import LinkedinUrl from './linkedin-url.abstract';
 
 type ApiResponse = { readonly contactLinkedinUrl: string };

@@ -1,13 +1,14 @@
 import type { SQSHandler } from 'aws-lambda';
-import { SQSClient, SendMessageCommand, DeleteMessageCommand } from '@aws-sdk/client-sqs';
-import { DynamoDBClient, GetItemCommand } from '@aws-sdk/client-dynamodb';
+import { SQSClient, SendMessageCommand, DeleteMessageCommand, type SendMessageCommandOutput } from '@aws-sdk/client-sqs';
+import { DynamoDBClient, GetItemCommand, type GetItemCommandOutput } from '@aws-sdk/client-dynamodb';
 import { WebClient } from '@slack/web-api';
 
 import type { SqsBody } from './interfaces/sqs-body';
 import { linkedinUrlApis } from './data/linkedin-url-apis';
 import { getEnrichedData } from './apis/vetric/vetric';
 import LoggerService from './services/logger';
-import { MAX_ATTEMPTS } from './constants/dynamodb';
+import { DYNAMODB_MAX_ATTEMPTS } from './constants/dynamodb';
+import { SQS_MAX_ATTEMPTS } from './constants/sqs';
 
 export const handler: SQSHandler = async (event, context) => {
 	const logger = new LoggerService(context.awsRequestId);
@@ -17,17 +18,17 @@ export const handler: SQSHandler = async (event, context) => {
 	const messageBody = sqsMessage.body;
 	const parsedMessageBody = JSON.parse(messageBody) as SqsBody;
 
-	const sqsClient = new SQSClient({ region: process.env.AWS_REGION, maxAttempts: 3 });
+	const sqsClient = new SQSClient({ region: process.env.AWS_REGION, maxAttempts: SQS_MAX_ATTEMPTS });
 	const deleteMessageSqsCommand = new DeleteMessageCommand({ QueueUrl: process.env.SQS_URL, ReceiptHandle: sqsMessage.receiptHandle });
 
 	/**
-	 * * Immediately delete the message because if processing it will fail, we just continue on to next API
+	 * * Immediately delete the message because if processing it fails, we just continue on to the next API
 	 * * we don't want to handle same message twice
 	 */
 	sqsClient
 		.send(deleteMessageSqsCommand)
-		.then(() => {
-			logger.info('Successfully deleted SQS message');
+		.then((deleteMessageSqsOutput) => {
+			logger.info(`Successfully deleted SQS message with AWS request ID: ${deleteMessageSqsOutput.$metadata.requestId}`);
 		})
 		.catch((error) => {
 			logger.warn(`Failed to delete SQS message with an error: ${error}`);
@@ -36,7 +37,9 @@ export const handler: SQSHandler = async (event, context) => {
 	logger.info(`Start processing SQS message with body: ${messageBody}`);
 
 	if (parsedMessageBody.apiIndex >= linkedinUrlApis.length) {
-		logger.error('Got invalid index to process, abort process');
+		logger.error(
+			`Got invalid index to process: "${parsedMessageBody.apiIndex}" while max index is "${linkedinUrlApis.length - 1}" - abort process`,
+		);
 
 		return;
 	}
@@ -62,15 +65,19 @@ export const handler: SQSHandler = async (event, context) => {
 			MessageGroupId: `${parsedMessageBody.email}#${parsedMessageBody.originDomain}`,
 		});
 
+		let sendMessageSqsOutput: SendMessageCommandOutput;
+
 		try {
-			await sqsClient.send(sendMessageSqsCommand);
+			sendMessageSqsOutput = await sqsClient.send(sendMessageSqsCommand);
 		} catch (error: unknown) {
 			logger.error(`Failed to send SQS message with an error: ${error}`);
 
 			return;
 		}
 
-		logger.info('Successfully pushed message to SQS to be handled');
+		logger.info(
+			`Successfully pushed message to SQS to be handled, with message ID: "${sendMessageSqsOutput.MessageId}" and AWS SQS request ID: "${sendMessageSqsOutput.$metadata.requestId}"`,
+		);
 
 		return;
 	}
@@ -87,7 +94,7 @@ export const handler: SQSHandler = async (event, context) => {
 
 	logger.info('Successfully enriched data for Linkedin Profile');
 
-	const dynamoDbClient = new DynamoDBClient({ region: process.env.AWS_REGION, maxAttempts: MAX_ATTEMPTS });
+	const dynamoDbClient = new DynamoDBClient({ region: process.env.AWS_REGION, maxAttempts: DYNAMODB_MAX_ATTEMPTS });
 
 	const getItemCommand = new GetItemCommand({
 		TableName: process.env.DYNAMODB_TABLE_NAME,
@@ -96,25 +103,30 @@ export const handler: SQSHandler = async (event, context) => {
 		},
 	});
 
+	let dynamoDbGetItemCommandOutput: GetItemCommandOutput;
 	let customerSlackChannelId: string;
 
 	try {
-		const customerSlackItem = await dynamoDbClient.send(getItemCommand);
+		dynamoDbGetItemCommandOutput = await dynamoDbClient.send(getItemCommand);
 
-		if (!customerSlackItem.Item) {
-			logger.error("Failed to retrieve customer's Slack channel ID from DynamoDB");
+		if (!dynamoDbGetItemCommandOutput.Item) {
+			logger.error(
+				`Failed to retrieve customer's Slack channel ID from DynamoDB with command request ID: "${dynamoDbGetItemCommandOutput.$metadata.requestId}"`,
+			);
 
 			return;
 		}
 
-		customerSlackChannelId = customerSlackItem.Item['CustomerSlackChannelId']!.S!;
+		customerSlackChannelId = dynamoDbGetItemCommandOutput.Item['CustomerSlackChannelId']!.S!;
 	} catch (error: unknown) {
 		logger.error(`Failed to get item from DynamoDB with an error: ${error}`);
 
 		return;
 	}
 
-	logger.info(`Retrieved customer's Slack channel ID: "${customerSlackChannelId}"`);
+	logger.info(
+		`Successfully retrieved customer's Slack channel ID: "${customerSlackChannelId}" with command request ID: "${dynamoDbGetItemCommandOutput.$metadata.requestId}"`,
+	);
 
 	const slackClient = new WebClient(process.env.SLACK_TOKEN);
 

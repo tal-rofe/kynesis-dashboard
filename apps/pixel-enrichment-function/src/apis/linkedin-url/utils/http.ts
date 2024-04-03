@@ -1,6 +1,6 @@
 import got from 'got';
 
-import { API_CALL_RETRIES, API_CALL_TIMEOUT } from '../constants/http-api';
+import { API_CALL_RETRIES, API_CALL_TIMEOUT } from '@/constants/http-api';
 
 export const linkedinUrlHttpGet = <TResponse extends Record<string, unknown>>(url: string, params: URLSearchParams, apiKey: string) =>
 	got
