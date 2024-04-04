@@ -12,6 +12,7 @@ import {
 	getSortedRowModel,
 	useReactTable,
 } from '@tanstack/react-table';
+import { CSVLink } from 'react-csv';
 import { ArrowUpDown, ChevronDown, MoreHorizontal } from 'lucide-react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
@@ -139,12 +140,24 @@ type Props = {
 
 const UIVisitorsTable = (props: Props) => {
 	const pathname = usePathname();
+	const currentDate = new Date();
 	const [sorting, setSorting] = useState<SortingState>([]);
 	const [columnFilters, setColumnFilters] = useState<ColumnFiltersState>([]);
 	const [columnVisibility, setColumnVisibility] = useState<VisibilityState>({});
 	const [rowSelection, setRowSelection] = useState({});
 	const [currentVisitorState, setCurrentVisitorState] = useState<Visitor | undefined>(undefined);
 	const isLiveUpdates = pathname === routes.visitors.path;
+
+	const csvHeaders = [
+		{ label: 'Full name', key: 'fullName' },
+		{ label: 'Email', key: 'email' },
+		{ label: 'Phone Number', key: 'phoneNumber' },
+		{ label: 'Status', key: 'status' },
+		{ label: 'Priority', key: 'priority' },
+		{ label: 'Country', key: 'country' },
+		{ label: 'City', key: 'city' },
+		{ label: 'Gender', key: 'gender' },
+	];
 
 	const setCurrentVisitor = useVisitorsStore((state) => state.setCurrentVisitor);
 
@@ -210,10 +223,18 @@ const UIVisitorsTable = (props: Props) => {
 						)}
 					</UITooltip>
 				</UITooltipProvider>
-
-				<UIButton className="rounded-3xl" variant="secondary">
-					Export to CSV
+				<UIButton className="rounded-3xl" variant="secondary" asChild>
+					<CSVLink
+						data={props.data}
+						headers={csvHeaders}
+						filename={`visitors-${currentDate.getDate()}-${
+							currentDate.getMonth() + 1
+						}-${currentDate.getFullYear()}-${currentDate.getHours()}-${currentDate.getMinutes()}-${currentDate.getSeconds()}`}
+					>
+						Export to CSV
+					</CSVLink>
 				</UIButton>
+
 				<UIInput
 					placeholder="Filter emails..."
 					value={(table.getColumn('email')?.getFilterValue() as string) ?? ''}
@@ -288,7 +309,7 @@ const UIVisitorsTable = (props: Props) => {
 					</div>
 				) : (
 					<UIButton variant="ghost" size="sm" onClick={() => table.previousPage()}>
-						<UISvg name="plus" className="mr-1" />
+						<UISvg name="plus" className="mr-1 stroke-[#0F172A] dark:stroke-white" />
 						Add prospect
 					</UIButton>
 				)}

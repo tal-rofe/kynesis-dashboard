@@ -176,6 +176,9 @@ importers:
       react:
         specifier: 18.2.0
         version: 18.2.0
+      react-csv:
+        specifier: 2.2.2
+        version: 2.2.2
       react-type-animation:
         specifier: 3.2.0
         version: 3.2.0(prop-types@15.8.1)(react-dom@18.2.0)(react@18.2.0)
@@ -231,6 +234,9 @@ importers:
       '@types/react':
         specifier: 18.2.65
         version: 18.2.65
+      '@types/react-csv':
+        specifier: 1.1.10
+        version: 1.1.10
       '@types/react-dom':
         specifier: 18.2.21
         version: 18.2.21
@@ -6896,6 +6902,12 @@ packages:
 
   /@types/range-parser@1.2.7:
     resolution: {integrity: sha512-hKormJbkJqzQGhziax5PItDUTMAM9uE2XXQmM37dyd4hVM+5aVl7oVxMVUiVQn2oCQFN/LKCZdvSM0pFRqbSmQ==}
+    dev: true
+
+  /@types/react-csv@1.1.10:
+    resolution: {integrity: sha512-PESAyASL7Nfi/IyBR3ufd8qZkyoS+7jOylKmJxRZUZLFASLo4NZaRsJ8rNP8pCcbIziADyWBbLPD1nPddhsL4g==}
+    dependencies:
+      '@types/react': 18.2.65
     dev: true
 
   /@types/react-dom@18.2.21:
@@ -16642,6 +16654,10 @@ packages:
       react: 18.2.0
       tween-functions: 1.2.0
     dev: true
+
+  /react-csv@2.2.2:
+    resolution: {integrity: sha512-RG5hOcZKZFigIGE8LxIEV/OgS1vigFQT4EkaHeKgyuCbUAu9Nbd/1RYq++bJcJJ9VOqO/n9TZRADsXNDR4VEpw==}
+    dev: false
 
   /react-docgen-typescript@2.2.2(typescript@5.4.2):
     resolution: {integrity: sha512-tvg2ZtOpOi6QDwsb3GZhOjDkkX0h8Z2gipvTg6OVMUyoYoURhEiRNePT8NZItTVCDh39JJHnLdfCOkzoLbFnTg==}

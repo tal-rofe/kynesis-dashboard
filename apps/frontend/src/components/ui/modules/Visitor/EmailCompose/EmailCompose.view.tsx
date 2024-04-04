@@ -19,17 +19,17 @@ const EmailComposeView = (props: Props) => {
 	const [pressed, setIsPressted] = React.useState(false);
 
 	return (
-		<div className="flex flex-col justify-between p-8 w-full h-full md:border-l border-gray-400 bg-accent gap-4">
+		<div className="flex flex-col justify-between p-8 w-full h-full md:border-l border-gray-400 bg-accent gap-4 dark:bg-card ">
 			<div className="p-6 flex flex-col justify-between h-full bg-background rounded-lg border">
 				<div className="flex flex-col h-full gap-4">
 					<div className="border-b flex items-center gap-4 pb-4">
-						<span className="text-gray-600">To</span>
+						<span className="text-gray-600 dark:text-white">To</span>
 						<div className="flex items-center gap-2">
 							<UIAvatar className="w-7 h-7 border">
 								<UIAvatarImage src="https://github.com/shadcn.png" />
 								<UIAvatarFallback>CN</UIAvatarFallback>
 							</UIAvatar>
-							<span className="text-gray-600">{props.currentVisitor?.fullName}</span>
+							<span className="text-gray-600 dark:text-white">{props.currentVisitor?.fullName}</span>
 						</div>
 					</div>
 					{!pressed && <span className=" text-gray-400 font-medium text-base">{'Subject '}</span>}
