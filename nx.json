@@ -1,8 +1,7 @@
 {
 	"$schema": "./node_modules/nx/schemas/nx-schema.json",
 	"workspaceLayout": {
-		"appsDir": "apps",
-		"libsDir": "packages"
+		"appsDir": "apps"
 	},
 	"tasksRunnerOptions": {
 		"default": {
@@ -39,8 +38,7 @@
 				"{projectRoot}/tsconfig.build.json",
 				"{projectRoot}/esbuild.js"
 			],
-			"outputs": ["{projectRoot}/build", "{projectRoot}/.next"],
-			"dependsOn": ["^build"]
+			"outputs": ["{projectRoot}/build", "{projectRoot}/.next"]
 		},
 		"lint": {
 			"inputs": [
@@ -54,8 +52,7 @@
 		},
 		"type-check": {
 			"inputs": ["reactTsSource", "{projectRoot}/tsconfig.json", "{projectRoot}/tsconfig.base.json", "{workspaceRoot}/tsconfig.base.json"],
-			"outputs": [],
-			"dependsOn": ["^build"]
+			"outputs": []
 		},
 		"prettier": {
 			"inputs": ["{workspaceRoot}/**/*.{ts,js,cjs,json,yaml}"],
@@ -70,7 +67,12 @@
 			"outputs": []
 		},
 		"lint:root": {
-			"inputs": ["{workspaceRoot}/**/*.{ts,js,cjs}", "!{workspaceRoot}/apps/**", "{workspaceRoot}/.eslintrc.cjs", "{workspaceRoot}/.eslintignore"],
+			"inputs": [
+				"{workspaceRoot}/**/*.{ts,js,cjs}",
+				"!{workspaceRoot}/apps/**",
+				"{workspaceRoot}/.eslintrc.cjs",
+				"{workspaceRoot}/.eslintignore"
+			],
 			"outputs": []
 		},
 		"storybook:build": {
@@ -80,9 +82,6 @@
 		"storybook:test": {
 			"inputs": ["{projectRoot}/.storybook", "{projectRoot}/src/components/ui/**/*", "{projectRoot}/src/stories/**/*"],
 			"outputs": []
-		},
-		"start:dev": {
-			"dependsOn": ["^start:dev"]
 		}
 	}
 }

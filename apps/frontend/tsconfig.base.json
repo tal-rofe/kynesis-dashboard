@@ -1,0 +1,30 @@
+{
+	"extends": "../../tsconfig.base.json",
+	"display": "@kynesis/frontend",
+	"compilerOptions": {
+		"target": "es5",
+		"module": "esnext",
+		"lib": ["dom", "dom.iterable", "esnext"],
+		"baseUrl": "./",
+		"jsx": "preserve",
+		"moduleResolution": "node",
+		"paths": {
+			"@/public/*": ["public/*"],
+			"@/images/*": ["public/images/*"],
+			"@/modules/*": ["src/components/modules/*"],
+			"@/layouts/*": ["src/components/layouts/*"],
+			"@/ui/*": ["src/components/ui/*"],
+			"@/wrappers/*": ["src/components/wrappers/*"],
+			"@/lib/*": ["src/lib/*"],
+			"@/data/*": ["src/lib/data/*"],
+			"@/hooks/*": ["src/lib/hooks/*"],
+			"@/providers/*": ["src/lib/providers/*"],
+			"@/types/*": ["src/lib/types/*"],
+			"@/utils/*": ["src/utils/*"],
+			"@/styles/*": ["src/styles/*"],
+			"@/contexts/*": ["src/components/contexts/*"],
+			"@/modals/*": ["src/components/modals/*"]
+		},
+		"typeRoots": ["./@types", "./node_modules/@types"]
+	}
+}

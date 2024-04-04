@@ -66,10 +66,5 @@
 		"prettier-plugin-sh": "0.14.0",
 		"typescript": "5.4.2",
 		"wait-on": "7.2.0"
-	},
-	"packageManager": "pnpm@8.15.4",
-	"engines": {
-		"pnpm": "8.15.4",
-		"node": "20.11.1"
 	}
 }
