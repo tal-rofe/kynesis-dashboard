@@ -123,6 +123,7 @@ jobs:
               run: pnpm cspell
 
     storybook:
+        name: Storybook
         timeout-minutes: 60
         runs-on: ubuntu-latest
 
