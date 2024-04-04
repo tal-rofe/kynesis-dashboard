@@ -1,7 +1,8 @@
 {
 	"$schema": "./node_modules/nx/schemas/nx-schema.json",
 	"workspaceLayout": {
-		"appsDir": "apps"
+		"appsDir": "apps",
+		"libsDir": "packages"
 	},
 	"tasksRunnerOptions": {
 		"default": {
@@ -38,7 +39,8 @@
 				"{projectRoot}/tsconfig.build.json",
 				"{projectRoot}/esbuild.js"
 			],
-			"outputs": ["{projectRoot}/build", "{projectRoot}/.next"]
+			"outputs": ["{projectRoot}/build", "{projectRoot}/.next"],
+			"dependsOn": ["^build"]
 		},
 		"lint": {
 			"inputs": [
@@ -52,7 +54,8 @@
 		},
 		"type-check": {
 			"inputs": ["reactTsSource", "{projectRoot}/tsconfig.json", "{projectRoot}/tsconfig.base.json", "{workspaceRoot}/tsconfig.base.json"],
-			"outputs": []
+			"outputs": [],
+			"dependsOn": ["^build"]
 		},
 		"prettier": {
 			"inputs": ["{workspaceRoot}/**/*.{ts,js,cjs,json,yaml}"],
@@ -82,6 +85,9 @@
 		"storybook:test": {
 			"inputs": ["{projectRoot}/.storybook", "{projectRoot}/src/components/ui/**/*", "{projectRoot}/src/stories/**/*"],
 			"outputs": []
+		},
+		"start:dev": {
+			"dependsOn": ["^start:dev"]
 		}
 	}
 }
