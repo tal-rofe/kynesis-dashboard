@@ -24,7 +24,7 @@ const SearchModalView = (props: Props) => {
 	return (
 		<UIModal>
 			<div className="flex items-center justify-start border-b pl-1">
-				<UISvg name="search" />
+				<UISvg name="search" className="stroke-[#4B5563] dark:stroke-white" />
 				<UIInput
 					className="w-full border-none rounded-none focus:border-none focus:outline-none focus:ring-0 focus:ring-offset-0 focus:ring-offset-transparent focus:ring-transparent focus-visible:ring-transparent focus-visible:ring-offset pl-2"
 					type="text"
@@ -83,7 +83,7 @@ const SearchModalView = (props: Props) => {
 										onClick={props.hideModal}
 									>
 										<Link href={page.link} className="flex items-center gap-2 w-full">
-											<UISvg name={page.icon} />
+											<UISvg name={page.icon} className="stroke-[#4B5563] dark:stroke-white" />
 											<div className="w-full flex items-center justify-between">
 												<span>{page.label}</span>
 												<UIMenubarShortcut>{`⌘${page.label[0]}`}</UIMenubarShortcut>
@@ -140,7 +140,7 @@ const SearchModalView = (props: Props) => {
 								onClick={props.hideModal}
 							>
 								<Link href={page.link} className="flex items-center gap-2 w-full">
-									<UISvg name={page.icon} />
+									<UISvg name={page.icon} className="stroke-[#4B5563] dark:stroke-white" />
 									<div className="w-full flex items-center justify-between">
 										<span>{page.label}</span>
 										<UIMenubarShortcut>{`⌘${page.label[0]}`}</UIMenubarShortcut>

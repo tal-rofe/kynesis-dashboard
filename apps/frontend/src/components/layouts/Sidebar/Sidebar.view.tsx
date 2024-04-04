@@ -17,8 +17,8 @@ const SidebarView = (props: Props) => {
 					<UIAvatarFallback>CN</UIAvatarFallback>
 				</UIAvatar>
 				<div className="flex flex-col">
-					<span className="text-gray-600 text-sm font-semibold leading-tight">Organization</span>
-					<span className="text-gray-600 text-xs">31 Contacts</span>
+					<span className="text-gray-600 dark:text-white text-sm font-semibold leading-tight">Organization</span>
+					<span className="text-gray-600 dark:text-white text-xs">31 Contacts</span>
 				</div>
 			</div>
 			<div className="flex flex-col gap-4">

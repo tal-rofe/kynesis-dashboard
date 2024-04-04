@@ -11,7 +11,7 @@ const Settings = () => {
 
 	return (
 		<PageWrapper>
-			<div className="flex items-center gap-4">
+			<div className="flex items-center gap-4 rounded card buttonContainer">
 				<UILabel>Dark mode</UILabel>
 				<UISwitch checked={theme === 'dark'} onCheckedChange={() => (theme === 'dark' ? setTheme('light') : setTheme('dark'))} />
 			</div>
