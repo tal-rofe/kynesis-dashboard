@@ -139,7 +139,7 @@ jobs:
                   run_install: true
 
             - name: Install Playwright
-              run: pnpm exec playwright install --with-deps
+              run: pnpm exec --filter frontend -- playwright install --with-deps
 
             - name: Build Storybook
               run: pnpm --filter frontend storybook:build
