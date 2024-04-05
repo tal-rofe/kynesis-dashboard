@@ -154,11 +154,11 @@ jobs:
                   tflint_version: v0.50.3
 
             - name: Init TFLint
-              working-dir: terraform
+              working-directory: terraform
               run: tflint --init
               env:
                   GITHUB_TOKEN: ${{ github.token }}
 
             - name: Run TFLint
-              working-dir: terraform
+              working-directory: terraform
               run: tflint -f compact
