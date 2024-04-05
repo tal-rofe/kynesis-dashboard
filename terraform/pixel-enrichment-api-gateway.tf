@@ -1,5 +1,6 @@
 module "pixel_enrichment_api_gateway" {
-  source = "terraform-aws-modules/apigateway-v2/aws"
+  source  = "terraform-aws-modules/apigateway-v2/aws"
+  version = "4.0.0"
 
   name                        = "pixel-enrichment-api-gateway"
   description                 = "API gateway for pixel enrichment"

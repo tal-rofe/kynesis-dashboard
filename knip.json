@@ -1,7 +1,7 @@
 {
 	"ignore": ["inflint.config.ts", "czvinyl.config.ts", "scripts/onboarding.js", "release.config.cjs", "./docker/scripts/open-dashboard.js"],
 	"ignoreDependencies": ["commitizen", "open", "wait-on"],
-	"ignoreBinaries": ["only-allow", "terraform"],
+	"ignoreBinaries": ["only-allow", "terraform", "tflint"],
 	"workspaces": {
 		"apps/pixel-api-function": {
 			"entry": "./src/index.ts",

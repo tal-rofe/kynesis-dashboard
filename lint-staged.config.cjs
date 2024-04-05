@@ -9,5 +9,5 @@ module.exports = {
 	'!({apps,packages})**/*.{ts,js,cjs}': 'eslint -c ./.eslintrc.cjs --fix',
 	'**/*.{ts,js,cjs,json,yaml}': 'prettier --write',
 	'**/*': 'inflint -c ./inflint.config.ts',
-	'**/*.tf': 'terraform fmt',
+	'**/*.tf': ['terraform fmt', (filesnames) => filesnames.map((filename) => `tflint --filter ${filename}`).join(';')],
 };

@@ -87,7 +87,7 @@ resource "aws_lambda_function" "slack_webhook_register_lambda" {
   environment {
     variables = {
       DYNAMODB_TABLE_NAME = aws_dynamodb_table.dynamodb_customers_slack_table.name
-      SLACK_CLIENT_ID = var.slack_client_id
+      SLACK_CLIENT_ID     = var.slack_client_id
       SLACK_CLIENT_SECRET = var.slack_client_secret
     }
   }

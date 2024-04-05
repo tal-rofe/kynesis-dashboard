@@ -140,3 +140,25 @@ jobs:
 
             - name: Run Prettier
               run: pnpm prettier
+
+    tflint:
+        name: TFLint
+        runs-on: ubuntu-latest
+
+        steps:
+            - uses: actions/checkout@v4
+
+            - uses: terraform-linters/setup-tflint@v4
+              name: Setup TFLint
+              with:
+                  tflint_version: v0.50.3
+
+            - name: Init TFLint
+              working-dir: terraform
+              run: tflint --init
+              env:
+                  GITHUB_TOKEN: ${{ github.token }}
+
+            - name: Run TFLint
+              working-dir: terraform
+              run: tflint -f compact
