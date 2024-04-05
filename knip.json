@@ -13,6 +13,11 @@
 			"project": "./src/**/*",
 			"ignoreDependencies": ["@kynesis/common-functions-types"]
 		},
+		"apps/slack-webhook-register-function": {
+			"entry": "./src/index.ts",
+			"project": "./src/**/*",
+			"ignoreDependencies": ["serverless", "serverless-offline"]
+		},
 		"packages/common-functions-types": {
 			"entry": "./src/index.ts",
 			"project": "./src/**/*"

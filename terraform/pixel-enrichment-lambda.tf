@@ -45,7 +45,7 @@ resource "aws_iam_role_policy_attachment" "pixel_enrichment_sqs_policy_attachmen
 }
 
 # * This allows Lambda to read DynamoDB table
-data "aws_iam_policy_document" "pixel_api_lambda_send_read_dynamodb_policy_document" {
+data "aws_iam_policy_document" "pixel_enrichment_lambda_read_dynamodb_policy_document" {
   statement {
     effect    = "Allow"
     actions   = ["dynamodb:GetItem"]
@@ -55,7 +55,7 @@ data "aws_iam_policy_document" "pixel_api_lambda_send_read_dynamodb_policy_docum
 
 resource "aws_iam_policy" "pixel_enrichment_lambda_read_dynamodb_policy" {
   name   = "pixel-enrichment-lambda-read-dynamodb-policy"
-  policy = data.aws_iam_policy_document.pixel_api_lambda_send_read_dynamodb_policy_document.json
+  policy = data.aws_iam_policy_document.pixel_enrichment_lambda_read_dynamodb_policy_document.json
 }
 
 resource "aws_iam_role_policy_attachment" "pixel_enrichment_read_dynamodb_policy_attachment" {
@@ -102,7 +102,6 @@ resource "aws_lambda_function" "pixel_enrichment_lambda" {
       RAMPEDUP_API_KEY    = var.rampedup_api_key
       VETRIC_API_KEY      = var.vetric_api_key
       DYNAMODB_TABLE_NAME = aws_dynamodb_table.dynamodb_customers_slack_table.name
-      SLACK_TOKEN         = var.slack_token
     }
   }
 

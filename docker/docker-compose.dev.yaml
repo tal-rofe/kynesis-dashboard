@@ -40,6 +40,23 @@ services:
             - /dashboard/apps/pixel-api-function/node_modules
             - /dashboard/node_modules
 
+    slack-webhook-register-function:
+        container_name: slack-webhook-register-function
+        build:
+            context: ..
+            dockerfile: ./docker/Dockerfile.slack-webhook-register-function-dev
+        ports:
+            - 3001:3001
+        restart: always
+        networks:
+            - dashboard_network
+        volumes:
+            - type: bind
+              source: ../apps/slack-webhook-register-function/src
+              target: /dashboard/apps/slack-webhook-register-function/src
+            - /dashboard/apps/slack-webhook-register-function/node_modules
+            - /dashboard/node_modules
+
 networks:
     dashboard_network:
         driver: bridge

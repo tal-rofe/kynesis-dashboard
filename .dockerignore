@@ -43,3 +43,11 @@ packages/common-functions-types/node_modules
 packages/common-functions-types/dist
 packages/common-functions-types/tsconfig.json
 packages/common-functions-types/tsconfig.eslint.json
+
+apps/slack-webhook-register-function/tsconfig.tsbuildinfo
+apps/slack-webhook-register-function/.gitignore
+apps/slack-webhook-register-function/.eslintrc.cjs
+apps/slack-webhook-register-function/.eslintignore
+apps/slack-webhook-register-function/node_modules
+apps/slack-webhook-register-function/build
+apps/slack-webhook-register-function/tsconfig.eslint.json

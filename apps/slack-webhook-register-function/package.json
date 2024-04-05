@@ -1,0 +1,34 @@
+{
+	"name": "@kynesis/slack-webhook-register-function",
+	"version": "1.0.0",
+	"private": true,
+	"description": "Lambda function to register customer webhook of Slack",
+	"license": "UNLICENSED",
+	"author": "Kynesis <dev@kynesis.io> (https://kynesis.io)",
+	"type": "module",
+	"scripts": {
+		"build": "node ./esbuild.js",
+		"start:dev": "nodemon",
+		"start:dev:docker": "nodemon",
+		"type-check": "tsc --project ./tsconfig.json",
+		"lint": "eslint -c ./.eslintrc.cjs --ignore-path ./.eslintignore \"./**/*.{ts,js,cjs}\""
+	},
+	"devDependencies": {
+		"@total-typescript/ts-reset": "0.5.1",
+		"@types/aws-lambda": "8.10.136",
+		"@types/node": "20.11.30",
+		"esbuild": "0.20.2",
+		"esbuild-plugin-tsc": "0.4.0",
+		"nodemon": "3.1.0",
+		"serverless": "3.38.0",
+		"serverless-offline": "13.3.3"
+	},
+	"dependencies": {
+		"@aws-sdk/client-dynamodb": "3.540.0",
+		"@aws-sdk/client-sqs": "3.540.0",
+		"@hapi/bourne": "3.0.0",
+		"got": "14.2.1",
+		"zod": "3.22.4",
+		"zod-validation-error": "3.0.3"
+	}
+}
