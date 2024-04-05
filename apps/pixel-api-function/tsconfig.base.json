@@ -2,8 +2,7 @@
 	"extends": "../../tsconfig.base.json",
 	"compilerOptions": {
 		"target": "ESNext",
-		"module": "ESNext",
-		"moduleResolution": "Bundler",
+		"module": "Preserve",
 		"baseUrl": "./",
 		"typeRoots": ["./node_modules/@types", "./@types"]
 	}

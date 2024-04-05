@@ -1,17 +1,17 @@
 {
 	"ignore": ["inflint.config.ts", "czvinyl.config.ts", "scripts/onboarding.js", "release.config.cjs", "./docker/scripts/open-dashboard.js"],
-	"ignoreDependencies": ["commitizen", "open", "wait-on", "@commitlint/cli", "lint-staged"],
+	"ignoreDependencies": ["commitizen", "open", "wait-on"],
 	"ignoreBinaries": ["only-allow", "terraform"],
 	"workspaces": {
 		"apps/pixel-api-function": {
 			"entry": "./src/index.ts",
 			"project": "./src/**/*",
-			"ignoreDependencies": ["esbuild", "serverless", "serverless-offline"]
+			"ignoreDependencies": ["serverless", "serverless-offline", "@kynesis/common-functions-types"]
 		},
 		"apps/pixel-enrichment-function": {
 			"entry": "./src/index.ts",
 			"project": "./src/**/*",
-			"ignoreDependencies": ["esbuild"]
+			"ignoreDependencies": ["@kynesis/common-functions-types"]
 		},
 		"packages/common-functions-types": {
 			"entry": "./src/index.ts",
