@@ -25,7 +25,7 @@
 		"@types/aws-lambda": "8.10.136",
 		"@types/got": "9.6.12",
 		"@types/node": "20.11.30",
-		"esbuild": "0.20.1",
+		"esbuild": "0.20.2",
 		"esbuild-plugin-tsc": "0.4.0"
 	}
 }
