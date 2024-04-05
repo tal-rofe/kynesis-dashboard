@@ -1,7 +1,7 @@
 org: kynesis
-app: pixel-api-function
+app: slack-webhook-register-function
 console: true
-service: pixel-api-service
+service: slack-webhook-register-service
 frameworkVersion: '3'
 configValidationMode: error
 
@@ -14,7 +14,7 @@ provider:
             allowedHeaders:
                 - Content-Type
             allowedMethods:
-                - POST
+                - GET
             allowCredentials: false
 
 custom:
@@ -26,11 +26,11 @@ plugins:
     - serverless-offline
 
 functions:
-    pixel-api-function:
-        name: pixel-api-function
+    slack-webhook-register-function:
+        name: slack-webhook-register-function
         runtime: nodejs20.x
         handler: ./build/index.handler
         events:
             - httpApi:
                   path: /
-                  method: POST
+                  method: GET

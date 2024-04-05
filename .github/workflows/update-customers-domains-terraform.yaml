@@ -16,7 +16,8 @@ jobs:
             TF_VAR_proxycurl_api_key: ${{ secrets.PROXYCURL_API_KEY }}
             TF_VAR_rampedup_api_key: ${{ var.RAMPEDUP_API_KEY }}
             TF_VAR_vetric_api_key: ${{ var.VETRIC_API_KEY }}
-            TF_VAR_slack_token: ${{ var.SLACK_TOKEN }}
+            TF_VAR_slack_client_id: ${{ secrets.SLACK_CLIENT_ID }}
+            TF_VAR_slack_client_secret: ${{ secrets.SLACK_CLIENT_SECRET }}
 
         steps:
             - uses: actions/checkout@v4
@@ -46,7 +47,7 @@ jobs:
 
             - name: Terraform plan
               working-directory: terraform
-              run: terraform plan -no-color -target=module.pixel_api_api_gateway -out state.tfplan
+              run: terraform plan -no-color -target=module.pixel_enrichment_api_gateway -out state.tfplan
 
             - name: Terraform apply
               working-directory: terraform

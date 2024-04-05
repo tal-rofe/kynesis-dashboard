@@ -1,7 +1,7 @@
 {
 	"ignore": ["inflint.config.ts", "czvinyl.config.ts", "scripts/onboarding.js", "release.config.cjs", "./docker/scripts/open-dashboard.js"],
 	"ignoreDependencies": ["commitizen", "open", "wait-on"],
-	"ignoreBinaries": ["only-allow", "terraform"],
+	"ignoreBinaries": ["only-allow", "terraform", "tflint"],
 	"workspaces": {
 		"apps/pixel-api-function": {
 			"entry": "./src/index.ts",
@@ -12,6 +12,11 @@
 			"entry": "./src/index.ts",
 			"project": "./src/**/*",
 			"ignoreDependencies": ["@kynesis/common-functions-types"]
+		},
+		"apps/slack-webhook-register-function": {
+			"entry": "./src/index.ts",
+			"project": "./src/**/*",
+			"ignoreDependencies": ["serverless", "serverless-offline"]
 		},
 		"packages/common-functions-types": {
 			"entry": "./src/index.ts",

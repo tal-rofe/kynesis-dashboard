@@ -13,6 +13,11 @@ variable "pixel_api_lambda_function_name" {
   type        = string
 }
 
+variable "slack_webhook_register_lambda_function_name" {
+  description = "Name of the lambda function dedicated for Slack webhook register"
+  type        = string
+}
+
 variable "pixel_enrichment_lambda_function_name" {
   description = "Name of the lambda function dedicated for pixel enrichment"
   type        = string
@@ -38,8 +43,13 @@ variable "vetric_api_key" {
   type        = string
 }
 
-variable "slack_token" {
-  description = "The Slack token"
+variable "slack_client_id" {
+  description = "The Slack client ID"
+  type        = string
+}
+
+variable "slack_client_secret" {
+  description = "The slack client secret"
   type        = string
 }
 
