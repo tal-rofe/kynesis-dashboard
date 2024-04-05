@@ -63,7 +63,6 @@ resource "aws_iam_role_policy_attachment" "pixel_enrichment_read_dynamodb_policy
   policy_arn = data.aws_iam_policy.pixel_enrichment_lambda_read_dynamodb_policy.arn
 }
 
-
 data "archive_file" "lambda_pixel_enrichment_zip" {
   type        = "zip"
   source_dir  = "${path.module}/../apps/pixel-enrichment-function/build"
