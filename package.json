@@ -36,7 +36,7 @@
 		"cspell:nx": "nx cspell"
 	},
 	"devDependencies": {
-		"@commitlint/cli": "19.1.0",
+		"@commitlint/cli": "19.2.1",
 		"@exlint.io/inflint": "2.1.1",
 		"@types/node": "20.11.30",
 		"@typescript-eslint/eslint-plugin": "7.4.0",
