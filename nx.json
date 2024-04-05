@@ -70,7 +70,12 @@
 			"outputs": []
 		},
 		"lint:root": {
-			"inputs": ["{workspaceRoot}/**/*.{ts,js,cjs}", "!{workspaceRoot}/apps/**", "{workspaceRoot}/.eslintrc.cjs", "{workspaceRoot}/.eslintignore"],
+			"inputs": [
+				"{workspaceRoot}/**/*.{ts,js,cjs}",
+				"!{workspaceRoot}/apps/**",
+				"{workspaceRoot}/.eslintrc.cjs",
+				"{workspaceRoot}/.eslintignore"
+			],
 			"outputs": []
 		},
 		"storybook:build": {

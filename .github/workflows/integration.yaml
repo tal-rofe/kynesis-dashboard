@@ -121,3 +121,22 @@ jobs:
 
             - name: Run CSpell
               run: pnpm cspell
+
+    prettier:
+        name: Prettier
+        runs-on: ubuntu-latest
+
+        steps:
+            - uses: actions/checkout@v4
+
+            - uses: actions/setup-node@v4
+              with:
+                  node-version-file: '.nvmrc'
+
+            - uses: pnpm/action-setup@v3
+              with:
+                  version: 8.15.4
+                  run_install: true
+
+            - name: Run Prettier
+              run: pnpm prettier
