@@ -43,14 +43,14 @@ data "aws_iam_policy_document" "slack_webhook_register_lambda_put_dynamodb_polic
   }
 }
 
-resource "aws_iam_policy" "slack_webhook_register_lambda_read_dynamodb_policy" {
+resource "aws_iam_policy" "slack_webhook_register_lambda_put_dynamodb_policy" {
   name   = "slack-webhook-register-lambda-put-dynamodb-policy"
   policy = data.aws_iam_policy_document.slack_webhook_register_lambda_put_dynamodb_policy_document.json
 }
 
-resource "aws_iam_role_policy_attachment" "pixel_enrichment_read_dynamodb_policy_attachment" {
+resource "aws_iam_role_policy_attachment" "slack_webhook_register_lambda_put_dynamodb_policy_attachment" {
   role       = aws_iam_role.iam_for_slack_webhook_register_lambda.id
-  policy_arn = data.aws_iam_policy.slack_webhook_register_lambda_read_dynamodb_policy.arn
+  policy_arn = aws_iam_policy.slack_webhook_register_lambda_put_dynamodb_policy.arn
 }
 
 data "archive_file" "lambda_slack_webhook_register_zip" {

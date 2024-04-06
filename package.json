@@ -9,7 +9,7 @@
 	"nx": {},
 	"scripts": {
 		"preinstall": "npx only-allow pnpm",
-		"husky:install": "husky install",
+		"husky:install": "husky",
 		"git:config": "git config --local include.path ../.gitconfig",
 		"setdev": "run-p husky:install git:config",
 		"onboarding": "node ./scripts/onboarding.js",
