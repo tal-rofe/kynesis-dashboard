@@ -1,3 +1,4 @@
+production = false
 project                                     = "Kynesis-Dashboard"
 domain_name                                 = "kynesis.io"
 pixel_api_lambda_function_name              = "pixel-api-lambda"

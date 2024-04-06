@@ -12,7 +12,8 @@
 		"./cspell.json",
 		"./nx.json",
 		"./lint-staged.config.cjs",
-		"./inflint.config.ts"
+		"./inflint.config.ts",
+		"./docker/docker-compose.dev.yaml"
 	],
 	"words": [
 		"kynesis",
