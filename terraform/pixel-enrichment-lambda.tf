@@ -58,9 +58,9 @@ resource "aws_iam_policy" "pixel_enrichment_lambda_read_dynamodb_policy" {
   policy = data.aws_iam_policy_document.pixel_enrichment_lambda_read_dynamodb_policy_document.json
 }
 
-resource "aws_iam_role_policy_attachment" "pixel_enrichment_read_dynamodb_policy_attachment" {
+resource "aws_iam_role_policy_attachment" "pixel_enrichment_lambda_read_dynamodb_policy_attachment" {
   role       = aws_iam_role.iam_for_pixel_enrichment_lambda.id
-  policy_arn = data.aws_iam_policy.pixel_enrichment_lambda_read_dynamodb_policy.arn
+  policy_arn = aws_iam_policy.pixel_enrichment_lambda_read_dynamodb_policy.arn
 }
 
 data "archive_file" "lambda_pixel_enrichment_zip" {
