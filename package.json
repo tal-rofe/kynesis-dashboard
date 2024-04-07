@@ -22,7 +22,7 @@
 		"inflint:nx": "nx inflint",
 		"knip": "knip -c ./knip.json",
 		"knip:nx": "nx knip",
-		"lint:root": "eslint -c ./.eslintrc.cjs --ignore-pattern \"apps\" \"**/*.{ts,js,cjs}\" --resolve-plugins-relative-to .",
+		"lint:root": "eslint -c ./.eslintrc.cjs --ignore-pattern \"apps\" --ignore-pattern \"packages\" \"**/*.{ts,js,cjs}\" --resolve-plugins-relative-to .",
 		"lint:root:nx": "nx lint:root",
 		"lint:nested": "nx run-many --target=lint --nx-bail",
 		"lint:all": "run-p lint:root:nx lint:nested",
