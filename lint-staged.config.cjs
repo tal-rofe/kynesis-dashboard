@@ -6,6 +6,7 @@ module.exports = {
 		'pnpm --filter slack-webhook-register-function exec eslint -c ./.eslintrc.cjs --ignore-path ./.eslintignore --fix',
 	'packages/common-functions-types/**/*.ts':
 		'pnpm --filter common-functions-types exec eslint -c ./.eslintrc.cjs --ignore-path ./.eslintignore --fix',
+	'packages/lambda-logger/**/*.ts': 'pnpm --filter lambda-logger exec eslint -c ./.eslintrc.cjs --ignore-path ./.eslintignore --fix',
 	'!({apps,packages})**/*.{ts,js,cjs}': 'eslint -c ./.eslintrc.cjs --fix',
 	'**/*.{ts,js,cjs,json,yaml}': 'prettier --write',
 	'**/*': 'inflint -c ./inflint.config.ts',

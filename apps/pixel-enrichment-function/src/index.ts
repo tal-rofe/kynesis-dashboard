@@ -2,11 +2,11 @@ import type { SQSHandler } from 'aws-lambda';
 import { SQSClient, SendMessageCommand, DeleteMessageCommand, type SendMessageCommandOutput } from '@aws-sdk/client-sqs';
 import { DynamoDBClient, GetItemCommand, type GetItemCommandOutput } from '@aws-sdk/client-dynamodb';
 import got from 'got';
+import LoggerService from '@kynesis/lambda-logger';
 
 import type { SqsBody } from './interfaces/sqs-body';
 import { linkedinUrlApis } from './data/linkedin-url-apis';
 import { getEnrichedData } from './apis/vetric/vetric';
-import LoggerService from './services/logger';
 import { DYNAMODB_MAX_ATTEMPTS } from './constants/dynamodb';
 import { SQS_MAX_ATTEMPTS } from './constants/sqs';
 import { SLACK_API_CALL_RETRIES, SLACK_API_CALL_TIMEOUT } from './constants/slack-api';

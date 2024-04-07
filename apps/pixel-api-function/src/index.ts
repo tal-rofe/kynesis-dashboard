@@ -3,8 +3,8 @@ import { fromZodError } from 'zod-validation-error';
 import Bourne from '@hapi/bourne';
 import { SQSClient, SendMessageCommand, type SendMessageCommandOutput } from '@aws-sdk/client-sqs';
 import { pixelApiRequestBodySchema } from '@kynesis/common-functions-types';
+import LoggerService from '@kynesis/lambda-logger';
 
-import LoggerService from './services/logger';
 import { SQS_SEND_MESSAGE_MAX_ATTEMPTS } from './constants/sqs';
 
 export const handler: APIGatewayProxyHandler = async (event, context) => {
