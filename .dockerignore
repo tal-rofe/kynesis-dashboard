@@ -44,6 +44,15 @@ packages/common-functions-types/dist
 packages/common-functions-types/tsconfig.json
 packages/common-functions-types/tsconfig.eslint.json
 
+packages/lambda-logger/tsconfig.tsbuildinfo
+packages/lambda-logger/.gitignore
+packages/lambda-logger/.eslintrc.cjs
+packages/lambda-logger/.eslintignore
+packages/lambda-logger/node_modules
+packages/lambda-logger/dist
+packages/lambda-logger/tsconfig.json
+packages/lambda-logger/tsconfig.eslint.json
+
 apps/slack-webhook-register-function/tsconfig.tsbuildinfo
 apps/slack-webhook-register-function/.gitignore
 apps/slack-webhook-register-function/.eslintrc.cjs

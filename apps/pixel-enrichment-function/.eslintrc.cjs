@@ -9,12 +9,6 @@ module.exports = {
 	},
 	overrides: [
 		{
-			files: ['./src/services/logger.ts'],
-			rules: {
-				'no-console': 'off',
-			},
-		},
-		{
 			files: ['./**/*.d.ts'],
 			rules: {
 				'@typescript-eslint/consistent-type-definitions': 'off',

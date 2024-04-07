@@ -1,24 +1,28 @@
 {
 	"ignore": ["inflint.config.ts", "czvinyl.config.ts", "scripts/onboarding.js", "release.config.cjs", "./docker/scripts/open-dashboard.js"],
 	"ignoreDependencies": ["commitizen", "open", "wait-on"],
-	"ignoreBinaries": ["only-allow", "terraform", "tflint"],
+	"ignoreBinaries": ["only-allow", "terraform"],
 	"workspaces": {
 		"apps/pixel-api-function": {
 			"entry": "./src/index.ts",
 			"project": "./src/**/*",
-			"ignoreDependencies": ["serverless", "serverless-offline", "@kynesis/common-functions-types"]
+			"ignoreDependencies": ["serverless", "serverless-offline", "@kynesis/common-functions-types", "@kynesis/lambda-logger"]
 		},
 		"apps/pixel-enrichment-function": {
 			"entry": "./src/index.ts",
 			"project": "./src/**/*",
-			"ignoreDependencies": ["@kynesis/common-functions-types"]
+			"ignoreDependencies": ["@kynesis/common-functions-types", "@kynesis/lambda-logger"]
 		},
 		"apps/slack-webhook-register-function": {
 			"entry": "./src/index.ts",
 			"project": "./src/**/*",
-			"ignoreDependencies": ["serverless", "serverless-offline"]
+			"ignoreDependencies": ["serverless", "serverless-offline", "@kynesis/lambda-logger"]
 		},
 		"packages/common-functions-types": {
+			"entry": "./src/index.ts",
+			"project": "./src/**/*"
+		},
+		"packages/lambda-logger": {
 			"entry": "./src/index.ts",
 			"project": "./src/**/*"
 		}

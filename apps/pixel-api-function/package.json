@@ -27,6 +27,7 @@
 		"@aws-sdk/client-sqs": "3.540.0",
 		"@hapi/bourne": "3.0.0",
 		"@kynesis/common-functions-types": "workspace:*",
+		"@kynesis/lambda-logger": "workspace:*",
 		"zod-validation-error": "3.0.3"
 	}
 }
