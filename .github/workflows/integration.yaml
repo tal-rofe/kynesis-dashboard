@@ -21,7 +21,6 @@ jobs:
 
             - uses: pnpm/action-setup@v3
               with:
-                  version: 8.15.5
                   run_install: true
 
             - name: Run Knip
@@ -40,7 +39,6 @@ jobs:
 
             - uses: pnpm/action-setup@v3
               with:
-                  version: 8.15.5
                   run_install: true
 
             - name: Run Inflint
@@ -59,7 +57,6 @@ jobs:
 
             - uses: pnpm/action-setup@v3
               with:
-                  version: 8.15.5
                   run_install: true
 
             - name: Run TypeScript
@@ -78,7 +75,6 @@ jobs:
 
             - uses: pnpm/action-setup@v3
               with:
-                  version: 8.15.5
                   run_install: true
 
             - name: Run ESLint
@@ -97,7 +93,6 @@ jobs:
 
             - uses: pnpm/action-setup@v3
               with:
-                  version: 8.15.5
                   run_install: true
 
             - name: Run build
@@ -116,7 +111,6 @@ jobs:
 
             - uses: pnpm/action-setup@v3
               with:
-                  version: 8.15.5
                   run_install: true
 
             - name: Run CSpell
@@ -135,7 +129,6 @@ jobs:
 
             - uses: pnpm/action-setup@v3
               with:
-                  version: 8.15.5
                   run_install: true
 
             - name: Run Prettier
