@@ -1,0 +1,25 @@
+{
+	"name": "@kynesis/lambda-logger",
+	"version": "1.0.0",
+	"private": true,
+	"description": "Lambda logger",
+	"author": "Kynesis <dev@kynesis.io> (https://kynesis.io)",
+	"license": "UNLICENSED",
+	"exports": {
+		".": {
+			"types": "./dist/index.d.ts",
+			"import": "./dist/index.js"
+		}
+	},
+	"files": [
+		"./dist/index.d.ts",
+		"./dist/index.js"
+	],
+	"type": "module",
+	"scripts": {
+		"build": "tsc --project ./tsconfig.build.json",
+		"start:dev": "tsc --project ./tsconfig.build.json --watch",
+		"lint": "eslint -c ./.eslintrc.cjs --ignore-path ./.eslintignore \"./**/*.ts\"",
+		"type-check": "tsc --project ./tsconfig.json"
+	}
+}

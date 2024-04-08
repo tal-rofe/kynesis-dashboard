@@ -13,4 +13,7 @@ apps/slack-webhook-register-function/build
 apps/slack-webhook-register-function/src/**/*.d.ts
 
 packages/common-functions-types/node_modules
+
+packages/lambda-logger/node_modules
+
 apps/pixel-enrichment-function/dist

@@ -21,7 +21,8 @@
 		"esbuild-plugin-tsc": "0.4.0",
 		"nodemon": "3.1.0",
 		"serverless": "3.38.0",
-		"serverless-offline": "13.3.3"
+		"serverless-offline": "13.3.3",
+		"@kynesis/lambda-logger": "workspace:*"
 	},
 	"dependencies": {
 		"@aws-sdk/client-dynamodb": "3.540.0",

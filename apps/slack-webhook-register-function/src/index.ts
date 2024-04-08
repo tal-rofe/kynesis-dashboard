@@ -2,8 +2,8 @@ import type { APIGatewayProxyHandler } from 'aws-lambda';
 import { fromZodError } from 'zod-validation-error';
 import got from 'got';
 import { DynamoDBClient, PutItemCommand, type PutItemCommandOutput } from '@aws-sdk/client-dynamodb';
+import LoggerService from '@kynesis/lambda-logger';
 
-import LoggerService from './services/logger';
 import { requestQueriesSchema } from './schemas/request-queries';
 import type { SlackAuthResponse } from './interfaces/slack-auth-response';
 import { DYNAMODB_MAX_ATTEMPTS } from './constants/dynamodb';
