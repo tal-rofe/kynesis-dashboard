@@ -15,9 +15,13 @@ const inflintConfig: Config = {
 
 		'./apps/pixel-api-function/src/**/*': [2, 'kebab-case'],
 
+		'./apps/slack-webhook-register-function/src/**/*': [2, 'kebab-case'],
+
 		'./apps/pixel-enrichment-function/src/**/*': [2, 'kebab-case.point'],
 
 		'./packages/common-functions-types/src/**/*': [2, 'kebab-case'],
+
+		'./packages/lambda-logger/src/**/*': [2, 'kebab-case'],
 	},
 };
 

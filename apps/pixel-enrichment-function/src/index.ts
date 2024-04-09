@@ -1,14 +1,15 @@
 import type { SQSHandler } from 'aws-lambda';
 import { SQSClient, SendMessageCommand, DeleteMessageCommand, type SendMessageCommandOutput } from '@aws-sdk/client-sqs';
 import { DynamoDBClient, GetItemCommand, type GetItemCommandOutput } from '@aws-sdk/client-dynamodb';
-import { WebClient } from '@slack/web-api';
+import got from 'got';
+import LoggerService from '@kynesis/lambda-logger';
 
 import type { SqsBody } from './interfaces/sqs-body';
 import { linkedinUrlApis } from './data/linkedin-url-apis';
 import { getEnrichedData } from './apis/vetric/vetric';
-import LoggerService from './services/logger';
 import { DYNAMODB_MAX_ATTEMPTS } from './constants/dynamodb';
 import { SQS_MAX_ATTEMPTS } from './constants/sqs';
+import { SLACK_API_CALL_RETRIES, SLACK_API_CALL_TIMEOUT } from './constants/slack-api';
 
 export const handler: SQSHandler = async (event, context) => {
 	const logger = new LoggerService(context.awsRequestId);
@@ -124,13 +125,13 @@ export const handler: SQSHandler = async (event, context) => {
 	});
 
 	let dynamoDbGetItemCommandOutput: GetItemCommandOutput;
-	let customerSlackChannelId: string;
+	let customerSlackWebhookUrl: string;
 
 	try {
 		dynamoDbGetItemCommandOutput = await dynamoDbClient.send(getItemCommand);
 
 		if (!dynamoDbGetItemCommandOutput.Item) {
-			logger.error("Failed to retrieve customer's Slack channel ID from DynamoDB, got empty item", {
+			logger.error("Failed to retrieve customer's Slack Webhook URL from DynamoDB, got empty item", {
 				messageBody,
 				awsRequestId: dynamoDbGetItemCommandOutput.$metadata.requestId,
 				originDomain: parsedMessageBody.originDomain,
@@ -139,31 +140,49 @@ export const handler: SQSHandler = async (event, context) => {
 			return;
 		}
 
-		customerSlackChannelId = dynamoDbGetItemCommandOutput.Item['CustomerSlackChannelId']!.S!;
+		customerSlackWebhookUrl = dynamoDbGetItemCommandOutput.Item['CustomerSlackWebhookURL']!.S!;
 	} catch (error: unknown) {
 		logger.error(`Failed to get item from DynamoDB with an error: ${error}`, { messageBody });
 
 		return;
 	}
 
-	logger.info("Successfully retrieved customer's Slack channel ID", {
+	logger.info("Successfully retrieved customer's Slack Webhook URL", {
 		messageBody,
-		customerSlackChannelId,
+		customerSlackWebhookUrl,
 		awsRequestId: dynamoDbGetItemCommandOutput.$metadata.requestId,
 	});
 
-	const slackClient = new WebClient(process.env.SLACK_TOKEN);
-
 	try {
-		await slackClient.chat.postMessage({
-			text: JSON.stringify(enrichedData),
-			channel: customerSlackChannelId,
-		});
+		const response = await got
+			.post(customerSlackWebhookUrl, {
+				headers: {
+					'Content-Type': 'application/json',
+				},
+				timeout: { request: SLACK_API_CALL_TIMEOUT },
+				retry: {
+					limit: SLACK_API_CALL_RETRIES,
+					methods: ['HEAD', 'OPTIONS', 'TRACE', 'POST'],
+					// * Keep others (backoff limit, ...) as default
+				},
+				json: { text: enrichedData },
+			})
+			.text();
+
+		if (response !== 'ok') {
+			logger.error(`Failed to send message to customer's Slack channel with response: ${response}`, {
+				messageBody,
+				customerSlackWebhookUrl,
+				response,
+			});
+
+			return;
+		}
 	} catch (error: unknown) {
-		logger.error(`Failed to send message to customer's Slack channel with an error: ${error}`, { messageBody });
+		logger.error(`Failed to send message to customer's Slack channel with an error: ${error}`, { messageBody, customerSlackWebhookUrl });
 
 		return;
 	}
 
-	logger.info("Successfully sent data to customer's Slack channel", { messageBody, customerSlackChannelId });
+	logger.info("Successfully sent data to customer's Slack channel", { messageBody, customerSlackWebhookUrl });
 };

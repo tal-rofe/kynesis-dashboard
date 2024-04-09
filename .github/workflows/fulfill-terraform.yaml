@@ -16,7 +16,8 @@ jobs:
             TF_VAR_proxycurl_api_key: ${{ secrets.PROXYCURL_API_KEY }}
             TF_VAR_rampedup_api_key: ${{ var.RAMPEDUP_API_KEY }}
             TF_VAR_vetric_api_key: ${{ var.VETRIC_API_KEY }}
-            TF_VAR_slack_token: ${{ var.SLACK_TOKEN }}
+            TF_VAR_slack_client_id: ${{ secrets.SLACK_CLIENT_ID }}
+            TF_VAR_slack_client_secret: ${{ secrets.SLACK_CLIENT_SECRET }}
 
         steps:
             - uses: actions/checkout@v4
@@ -27,7 +28,6 @@ jobs:
 
             - uses: pnpm/action-setup@v3
               with:
-                  version: 8.15.5
                   run_install: true
 
             - name: Configure AWS credentials
@@ -42,6 +42,9 @@ jobs:
 
             - name: Build pixel-enrichment-function Lambda function
               run: pnpm exec nx build @kynesis/pixel-enrichment-function
+
+            - name: Build slack-webhook-register-function Lambda function
+              run: pnpm exec nx build @kynesis/slack-webhook-register-function
 
             - name: Terraform setup
               uses: hashicorp/setup-terraform@v3

@@ -18,6 +18,23 @@ services:
               target: /dashboard/packages/common-functions-types/dist
             - /dashboard/packages/common-functions-types/node_modules
 
+    lambda-logger:
+        container_name: lambda-logger
+        build:
+            context: ..
+            dockerfile: ./docker/Dockerfile.lambda-logger-dev
+        restart: always
+        networks:
+            - dashboard_network
+        volumes:
+            - type: bind
+              source: ../packages/lambda-logger/src
+              target: /dashboard/packages/lambda-logger/src
+            - type: bind
+              source: ../packages/lambda-logger/dist
+              target: /dashboard/packages/lambda-logger/dist
+            - /dashboard/packages/lambda-logger/node_modules
+
     pixel-api-function:
         container_name: pixel-api-function
         build:
@@ -28,6 +45,7 @@ services:
         restart: always
         depends_on:
             - common-functions-types
+            - lambda-logger
         networks:
             - dashboard_network
         volumes:
@@ -38,6 +56,25 @@ services:
               source: ../packages/common-functions-types/dist
               target: /dashboard/packages/common-functions-types/dist
             - /dashboard/apps/pixel-api-function/node_modules
+            - /dashboard/node_modules
+
+    slack-webhook-register-function:
+        container_name: slack-webhook-register-function
+        build:
+            context: ..
+            dockerfile: ./docker/Dockerfile.slack-webhook-register-function-dev
+        ports:
+            - 3001:3001
+        restart: always
+        depends_on:
+            - lambda-logger
+        networks:
+            - dashboard_network
+        volumes:
+            - type: bind
+              source: ../apps/slack-webhook-register-function/src
+              target: /dashboard/apps/slack-webhook-register-function/src
+            - /dashboard/apps/slack-webhook-register-function/node_modules
             - /dashboard/node_modules
 
 networks:

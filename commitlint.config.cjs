@@ -6,7 +6,9 @@ const commitTicketIdRegex = /(\[((((?<!([A-Z]{1,10})-?)[A-Z]+-\d+)))\])/;
 const emptyCommitTicketIdRegex = /(\[((((?<!([A-Z]{1,10})-?)[A-Z]+-0+)))\])/;
 const commitMessageRegex = /([^\s]+\s)*[^\s]+/;
 
-const commitRegex = new RegExp(`^(${commitTypeRegex.source}): (${commitEmojiRegex.source} )?(${commitTicketIdRegex.source} )?(${commitMessageRegex.source})$`);
+const commitRegex = new RegExp(
+	`^(${commitTypeRegex.source}): (${commitEmojiRegex.source} )?(${commitTicketIdRegex.source} )?(${commitMessageRegex.source})$`,
+);
 
 const defaultCommitTypes = [
 	{

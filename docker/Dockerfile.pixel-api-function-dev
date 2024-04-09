@@ -1,12 +1,13 @@
-FROM node:20.11.1
+FROM node:20.12.1
 
-RUN npm i -g pnpm@8.15.5
+RUN npm i -g pnpm@8.15.6
 
 WORKDIR /dashboard
 
 COPY ./package.json ./pnpm-workspace.yaml ./.npmrc ./
 COPY ./apps/pixel-api-function/package.json ./apps/pixel-api-function/
 COPY ./packages/common-functions-types/package.json ./packages/common-functions-types/
+COPY ./packages/lambda-logger/package.json ./packages/lambda-logger/
 
 RUN pnpm i -w
 RUN pnpm --filter pixel-api-function i

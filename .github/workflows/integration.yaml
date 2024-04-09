@@ -21,7 +21,6 @@ jobs:
 
             - uses: pnpm/action-setup@v3
               with:
-                  version: 8.15.5
                   run_install: true
 
             - name: Run Knip
@@ -40,7 +39,6 @@ jobs:
 
             - uses: pnpm/action-setup@v3
               with:
-                  version: 8.15.5
                   run_install: true
 
             - name: Run Inflint
@@ -59,7 +57,6 @@ jobs:
 
             - uses: pnpm/action-setup@v3
               with:
-                  version: 8.15.5
                   run_install: true
 
             - name: Run TypeScript
@@ -78,7 +75,6 @@ jobs:
 
             - uses: pnpm/action-setup@v3
               with:
-                  version: 8.15.5
                   run_install: true
 
             - name: Run ESLint
@@ -97,7 +93,6 @@ jobs:
 
             - uses: pnpm/action-setup@v3
               with:
-                  version: 8.15.5
                   run_install: true
 
             - name: Run build
@@ -116,15 +111,13 @@ jobs:
 
             - uses: pnpm/action-setup@v3
               with:
-                  version: 8.15.5
                   run_install: true
 
             - name: Run CSpell
               run: pnpm cspell
 
-    storybook:
-        name: Storybook
-        timeout-minutes: 60
+    prettier:
+        name: Prettier
         runs-on: ubuntu-latest
 
         steps:
@@ -136,44 +129,29 @@ jobs:
 
             - uses: pnpm/action-setup@v3
               with:
-                  version: 8.15.5
                   run_install: true
 
-            - name: Install Playwright
-              run: pnpm --filter frontend exec -- playwright install --with-deps
+            - name: Run Prettier
+              run: pnpm prettier
 
-            - name: Build Storybook
-              run: pnpm --filter frontend storybook:build
-
-            - name: Serve Storybook and run tests
-              run: |
-                  npx concurrently -k -s first -n "SB,TEST" -c "magenta,blue" \
-                  "npx http-server ./apps/frontend/storybook-static --port 6006 --silent" \
-                  "npx wait-on tcp:6006 && pnpm --filter frontend storybook:test"
-
-    chromatic:
-        name: Chromatic
+    tflint:
+        name: TFLint
         runs-on: ubuntu-latest
 
         steps:
-            - name: Checkout code
-              uses: actions/checkout@v4
-              with:
-                  fetch-depth: 0
+            - uses: actions/checkout@v4
 
-            - name: Set up Node.js
-              uses: actions/setup-node@v4
+            - uses: terraform-linters/setup-tflint@v4
+              name: Setup TFLint
               with:
-                  node-version-file: '.nvmrc'
+                  tflint_version: v0.50.3
 
-            - uses: pnpm/action-setup@v3
-              with:
-                  version: 8.15.5
-                  run_install: true
+            - name: Init TFLint
+              working-directory: terraform
+              run: tflint --init
+              env:
+                  GITHUB_TOKEN: ${{ github.token }}
 
-            - name: Publish Web project to Chromatic
-              uses: chromaui/action@latest
-              with:
-                  zip: true
-                  projectToken: ${{ secrets.CHROMATIC_PROJECT_TOKEN }}
-                  workingDir: ./apps/frontend
+            - name: Run TFLint
+              working-directory: terraform
+              run: tflint -f compact

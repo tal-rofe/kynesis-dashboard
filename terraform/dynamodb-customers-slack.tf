@@ -4,7 +4,7 @@ resource "aws_dynamodb_table" "dynamodb_customers_slack_table" {
   read_capacity  = 1
   write_capacity = 5
   hash_key       = "CustomerDomain"
-  range_key      = "CustomerSlackChannelId"
+  range_key      = "CustomerSlackWebhookURL"
 
   attribute {
     name = "CustomerDomain"
@@ -12,7 +12,7 @@ resource "aws_dynamodb_table" "dynamodb_customers_slack_table" {
   }
 
   attribute {
-    name = "CustomerSlackChannelId"
+    name = "CustomerSlackWebhookURL"
     type = "S"
   }
 

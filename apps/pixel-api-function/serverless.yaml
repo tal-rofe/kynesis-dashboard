@@ -1,7 +1,7 @@
 org: kynesis
 app: pixel-api-function
 console: true
-service: pixel-http-api
+service: pixel-api-service
 frameworkVersion: '3'
 configValidationMode: error
 

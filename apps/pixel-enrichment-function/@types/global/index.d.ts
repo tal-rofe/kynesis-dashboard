@@ -7,7 +7,6 @@ declare global {
 			readonly RAMPEDUP_API_KEY: string;
 			readonly VETRIC_API_KEY: string;
 			readonly DYNAMODB_TABLE_NAME: string;
-			readonly SLACK_TOKEN: string;
 		}
 	}
 }

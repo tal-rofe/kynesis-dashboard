@@ -12,7 +12,7 @@ const config = {
 		tsconfigRootDir: __dirname,
 		sourceType: 'module',
 	},
-	plugins: ['@typescript-eslint', 'unused-imports', 'import', 'deprecation', 'unicorn', 'node'],
+	plugins: ['@typescript-eslint', 'unused-imports', 'import', 'deprecation', 'unicorn', 'n'],
 	rules: {
 		'no-console': 'error',
 		'max-lines': ['error', { max: 150, skipBlankLines: true, skipComments: true }],
@@ -155,7 +155,7 @@ const config = {
 		'unicorn/switch-case-braces': 'error',
 		'unicorn/no-empty-file': 'error',
 
-		'node/no-sync': 'error',
+		'n/no-sync': 'error',
 	},
 	overrides: [
 		{
