@@ -193,8 +193,8 @@ importers:
         version: 4.5.2(@types/react@18.2.65)(react@18.2.0)
     devDependencies:
       '@chromatic-com/storybook':
-        specifier: 1.2.18
-        version: 1.2.18(react@18.2.0)
+        specifier: 1.2.26
+        version: 1.2.26(react@18.2.0)
       '@storybook/addon-a11y':
         specifier: ^8.0.0
         version: 8.0.6
@@ -2740,11 +2740,11 @@ packages:
     resolution: {integrity: sha512-0hYQ8SB4Db5zvZB4axdMHGwEaQjkZzFjQiN9LVYvIFB2nSUHW9tYpxWriPrWDASIxiaXax83REcLxuSdnGPZtw==}
     dev: true
 
-  /@chromatic-com/storybook@1.2.18(react@18.2.0):
-    resolution: {integrity: sha512-Fi3T4gO1zIRr77mz6tqRZRusFneA6MtJxQT38Csizez2ZViOmTUd81sHVC4MDHvhnwDaksqnDKvNUYcl1m3nIA==}
+  /@chromatic-com/storybook@1.2.26(react@18.2.0):
+    resolution: {integrity: sha512-uLZ0gURTkDTr545g35rq0jXbpg3MTjUB763Z5tWyGuQj3JO0j+t3vkwNUvD6Nas0YGl4MWgrkqqekM/2jpQ70w==}
     engines: {node: '>=16.0.0', yarn: '>=1.22.18'}
     dependencies:
-      chromatic: 11.0.8
+      chromatic: 11.3.0
       filesize: 10.1.0
       jsonfile: 6.1.0
       react-confetti: 6.1.0(react@18.2.0)
@@ -9394,6 +9394,19 @@ packages:
 
   /chromatic@11.0.8:
     resolution: {integrity: sha512-+zJ5h0/Eu5z26KCNLIw2tknbK69gUO8q3Jsew4oU0Q/i/NPhIwcXhvPP7u75aLJgX1EI61+ndiGJA/yeQZQcgw==}
+    hasBin: true
+    peerDependencies:
+      '@chromatic-com/cypress': ^0.*.* || ^1.0.0
+      '@chromatic-com/playwright': ^0.*.* || ^1.0.0
+    peerDependenciesMeta:
+      '@chromatic-com/cypress':
+        optional: true
+      '@chromatic-com/playwright':
+        optional: true
+    dev: true
+
+  /chromatic@11.3.0:
+    resolution: {integrity: sha512-q1ZtJDJrjLGnz60ivpC16gmd7KFzcaA4eTb7gcytCqbaKqlHhCFr1xQmcUDsm14CK7JsqdkFU6S+JQdOd2ZNJg==}
     hasBin: true
     peerDependencies:
       '@chromatic-com/cypress': ^0.*.* || ^1.0.0
