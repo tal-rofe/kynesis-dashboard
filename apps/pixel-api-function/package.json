@@ -2,7 +2,7 @@
 	"name": "@kynesis/pixel-api-function",
 	"version": "1.0.0",
 	"private": true,
-	"description": "Lambda function to collect pixel data and push SQS messages with the data",
+	"description": "Lambda function to collect pixel data and push SQS messages with the data test",
 	"license": "UNLICENSED",
 	"author": "Kynesis <dev@kynesis.io> (https://kynesis.io)",
 	"type": "module",
