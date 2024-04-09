@@ -5,3 +5,4 @@ dist
 pnpm-lock.yaml
 .next
 .nx
+.github/workflows/frontend-integration.yaml
