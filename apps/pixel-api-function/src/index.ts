@@ -16,6 +16,8 @@ export const handler: APIGatewayProxyHandler = async (event, context) => {
 
 		logger.info('Start processing request', { requestBody });
 
+		logger.info('Start processing request', { requestBody });
+
 		if (!requestBody) {
 			logger.info('Missing request body, abort');
 
