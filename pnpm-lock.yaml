@@ -304,8 +304,8 @@ importers:
         specifier: 16.0.1
         version: 16.0.1(postcss@8.4.38)
       postcss-nesting:
-        specifier: 12.1.0
-        version: 12.1.0(postcss@8.4.38)
+        specifier: 12.1.1
+        version: 12.1.1(postcss@8.4.38)
       storybook:
         specifier: ^8.0.0
         version: 8.0.6(react-dom@18.2.0)(react@18.2.0)
@@ -15322,8 +15322,8 @@ packages:
       postcss: 8.4.38
       postcss-selector-parser: 6.0.16
 
-  /postcss-nesting@12.1.0(postcss@8.4.38):
-    resolution: {integrity: sha512-QOYnosaZ+mlP6plQrAxFw09UUp2Sgtxj1BVHN+rSVbtV0Yx48zRt9/9F/ZOoxOKBBEsaJk2MYhhVRjeRRw5yuw==}
+  /postcss-nesting@12.1.1(postcss@8.4.38):
+    resolution: {integrity: sha512-qc74KvIAQNa5ujZKG1UV286dhaDW6basbUy2i9AzNU/T8C9hpvGu9NZzm1SfePe2yP7sPYgpA8d4sPVopn2Hhw==}
     engines: {node: ^14 || ^16 || >=18}
     peerDependencies:
       postcss: ^8.4
