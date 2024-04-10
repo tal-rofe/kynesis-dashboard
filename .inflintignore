@@ -1,5 +1,9 @@
 node_modules
 
+apps/frontend/node_modules
+apps/frontend/.next
+apps/frontend/src/components/ui/modules/
+
 apps/pixel-api-function/node_modules
 apps/pixel-api-function/build
 apps/pixel-api-function/src/**/*.d.ts

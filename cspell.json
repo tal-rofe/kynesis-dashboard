@@ -13,7 +13,12 @@
 		"./nx.json",
 		"./lint-staged.config.cjs",
 		"./inflint.config.ts",
-		"./docker/docker-compose.dev.yaml"
+		"./docker/docker-compose.dev.yaml",
+		"./apps/frontend/src/stories/assets/**/*",
+		"./apps/frontend/src/stories/Configure.mdx",
+		"./apps/frontend/src/app/onboarding/components/Steps/Steps.tsx",
+		"./apps/frontend/src/lib/data/mock/**/*",
+		"./apps/frontend/src/components/ui/modules/Visitor/EmailCompose/EmailCompose.view.tsx"
 	],
 	"words": [
 		"kynesis",
@@ -21,6 +26,8 @@
 		"autodocs",
 		"toploader",
 		"acmeinc",
+		"Almog",
+		"Aharon",
 		"outfile",
 		"WORKDIR",
 		"deepmerge",
@@ -32,6 +39,12 @@
 		"apigatewayv",
 		"filemd",
 		"etag",
-		"tfstate"
+		"tfstate",
+		"Dozi",
+		"Yazif",
+		"zustand",
+		"Greenholtz",
+		"repost",
+		"signup"
 	]
 }
