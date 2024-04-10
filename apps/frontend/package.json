@@ -87,7 +87,7 @@
 		"eslint-plugin-unused-imports": "3.1.0",
 		"hygen": "6.2.11",
 		"playwright": "1.42.1",
-		"postcss": "8.4.36",
+		"postcss": "8.4.38",
 		"postcss-import": "16.0.1",
 		"postcss-nesting": "12.1.0",
 		"storybook": "^8.0.0",
