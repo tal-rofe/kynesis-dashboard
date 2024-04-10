@@ -1,3 +1,9 @@
+variable "aws_region" {
+  description = "The region to deploy resources in"
+  type        = string
+  default     = "us-east-1"
+}
+
 variable "production" {
   description = "Do we run on production (true) or development (false)"
   type        = bool
