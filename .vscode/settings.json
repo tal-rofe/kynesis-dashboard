@@ -14,7 +14,8 @@
 	"search.exclude": {
 		"**/node_modules": true,
 		"**/dist": true,
-		"pnpm-lock.yaml": true
+		"pnpm-lock.yaml": true,
+		"**/.terraform": true
 	},
 	"material-icon-theme.activeIconPack": "nest",
 	"material-icon-theme.files.associations": {

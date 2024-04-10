@@ -39,9 +39,6 @@ jobs:
                   aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
                   aws-region: ${{ var.AWS_REGION }}
 
-            - name: Build pixel-api-function Lambda function
-              run: pnpm exec nx build @kynesis/pixel-api-function
-
             - name: Build pixel-enrichment-function Lambda function
               run: pnpm exec nx build @kynesis/pixel-enrichment-function
 

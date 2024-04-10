@@ -19,8 +19,9 @@ resource "aws_dynamodb_table" "dynamodb_customers_slack_table" {
   tags = merge(
     var.common_tags,
     {
-      Name  = "${var.project}-DynamoDB-Customers-Slack"
-      Stack = "Backend"
+      Name      = "${var.project}-DynamoDB-Customers-Slack"
+      Stack     = "Backend"
+      Namespace = "PixelAPI"
     }
   )
 }

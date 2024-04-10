@@ -18,8 +18,9 @@ resource "aws_iam_role" "iam_for_slack_webhook_register_lambda" {
   tags = merge(
     var.common_tags,
     {
-      Name  = "${var.project}-Slack-Webhook-Register-Lambda-IAM-Role"
-      Stack = "Backend"
+      Name      = "${var.project}-Slack-Webhook-Register-Lambda-IAM-Role"
+      Stack     = "Backend"
+      Namespace = "PixelAPI"
     }
   )
 }
@@ -68,8 +69,9 @@ resource "aws_s3_object" "slack_webhook_register_lambda_s3_object" {
   tags = merge(
     var.common_tags,
     {
-      Name  = "${var.project}-Slack-Webhook-Register-Lambda-S3-Object"
-      Stack = "Backend"
+      Name      = "${var.project}-Slack-Webhook-Register-Lambda-S3-Object"
+      Stack     = "Backend"
+      Namespace = "PixelAPI"
     }
   )
 }
@@ -95,8 +97,9 @@ resource "aws_lambda_function" "slack_webhook_register_lambda" {
   tags = merge(
     var.common_tags,
     {
-      Name  = "${var.project}-Slack-Webhook-Register-Lambda-Function"
-      Stack = "Backend"
+      Name      = "${var.project}-Slack-Webhook-Register-Lambda-Function"
+      Stack     = "Backend"
+      Namespace = "PixelAPI"
     }
   )
 }

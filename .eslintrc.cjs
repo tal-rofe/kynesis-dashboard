@@ -89,6 +89,7 @@ const config = {
 				message: 'The year is not 2015 anymore',
 			},
 		],
+		'no-warning-comments': 'error',
 
 		'@typescript-eslint/consistent-type-definitions': ['error', 'type'],
 		'@typescript-eslint/no-unused-vars': ['error'],
@@ -108,6 +109,15 @@ const config = {
 			{
 				selector: 'typeLike',
 				format: ['PascalCase'],
+			},
+		],
+		'@typescript-eslint/ban-types': [
+			'error',
+			{
+				types: {
+					'{}': "Don't use {} because everything in JavaScript is an object",
+				},
+				extendDefaults: true,
 			},
 		],
 

@@ -4,10 +4,6 @@ apps/frontend/node_modules
 apps/frontend/.next
 apps/frontend/src/components/ui/modules/
 
-apps/pixel-api-function/node_modules
-apps/pixel-api-function/build
-apps/pixel-api-function/src/**/*.d.ts
-
 apps/pixel-enrichment-function/node_modules
 apps/pixel-enrichment-function/build
 apps/pixel-enrichment-function/src/**/*.d.ts
@@ -16,7 +12,7 @@ apps/slack-webhook-register-function/node_modules
 apps/slack-webhook-register-function/build
 apps/slack-webhook-register-function/src/**/*.d.ts
 
-packages/common-functions-types/node_modules
+packages/pixel-enrichment-sqs/node_modules
 
 packages/lambda-logger/node_modules
 

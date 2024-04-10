@@ -18,8 +18,9 @@ resource "aws_iam_role" "iam_for_pixel_enrichment_lambda" {
   tags = merge(
     var.common_tags,
     {
-      Name  = "${var.project}-Pixel-Enrichment-Lambda-IAM-Role"
-      Stack = "Backend"
+      Name      = "${var.project}-Pixel-Enrichment-Lambda-IAM-Role"
+      Stack     = "Backend"
+      Namespace = "PixelAPI"
     }
   )
 }
@@ -78,8 +79,9 @@ resource "aws_s3_object" "pixel_enrichment_lambda_s3_object" {
   tags = merge(
     var.common_tags,
     {
-      Name  = "${var.project}-Pixel-Enrichment-Lambda-S3-Object"
-      Stack = "Backend"
+      Name      = "${var.project}-Pixel-Enrichment-Lambda-S3-Object"
+      Stack     = "Backend"
+      Namespace = "PixelAPI"
     }
   )
 }
@@ -107,8 +109,9 @@ resource "aws_lambda_function" "pixel_enrichment_lambda" {
   tags = merge(
     var.common_tags,
     {
-      Name  = "${var.project}-Pixel-Enrichment-Lambda-Function"
-      Stack = "Backend"
+      Name      = "${var.project}-Pixel-Enrichment-Lambda-Function"
+      Stack     = "Backend"
+      Namespace = "PixelAPI"
     }
   )
 }

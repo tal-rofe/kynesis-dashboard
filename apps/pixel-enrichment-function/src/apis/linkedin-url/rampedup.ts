@@ -1,5 +1,5 @@
 import freeEmailDomains from 'free-email-domains';
-import type { PixelApiRequestBodySchema } from '@kynesis/common-functions-types';
+import type { PixelCollectionData } from '@kynesis/pixel-enrichment-sqs';
 
 import type { LinkedinUrlResponse } from './interfaces/response';
 import { linkedinUrlHttpPost } from './utils/http';
@@ -10,7 +10,7 @@ type ApiResponse = { readonly contactLinkedinUrl: string };
 class RampedupApi extends LinkedinUrl {
 	protected override apiUrl = 'https://basic.rampedup.io/api/manualappend/contact';
 
-	public override async getLinkedinUrl(data: PixelApiRequestBodySchema): Promise<LinkedinUrlResponse> {
+	public override async getLinkedinUrl(data: PixelCollectionData): Promise<LinkedinUrlResponse> {
 		// * Email will be valid as it is being validated on "pixel-api-function"
 		const emailDomain = data.email.split('@')[1]!;
 		const emailDomainSplitted = emailDomain.split('.');
