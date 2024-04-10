@@ -1,7 +1,7 @@
 /**
  * Validates a JWT (JSON Web Token).
  *
- * This function checks if it is valid. A JWT is considered valid if
+ * This function checks if JWT token is valid. A JWT is considered valid if
  * the expiration time is in the future (i.e., it has not expired).
  *
  * @param {number} tokenExpiration - The token expiration time.
