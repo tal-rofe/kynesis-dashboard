@@ -316,49 +316,6 @@ importers:
         specifier: 5.4.2
         version: 5.4.2
 
-  apps/pixel-api-function:
-    dependencies:
-      '@aws-sdk/client-sqs':
-        specifier: 3.540.0
-        version: 3.540.0
-      '@hapi/bourne':
-        specifier: 3.0.0
-        version: 3.0.0
-      '@kynesis/common-functions-types':
-        specifier: workspace:*
-        version: link:../../packages/common-functions-types
-      '@kynesis/lambda-logger':
-        specifier: workspace:*
-        version: link:../../packages/lambda-logger
-      zod-validation-error:
-        specifier: 3.0.3
-        version: 3.0.3(zod@3.22.4)
-    devDependencies:
-      '@total-typescript/ts-reset':
-        specifier: 0.5.1
-        version: 0.5.1
-      '@types/aws-lambda':
-        specifier: 8.10.136
-        version: 8.10.136
-      '@types/node':
-        specifier: 20.12.4
-        version: 20.12.4
-      esbuild:
-        specifier: 0.20.2
-        version: 0.20.2
-      esbuild-plugin-tsc:
-        specifier: 0.4.0
-        version: 0.4.0(typescript@5.4.3)
-      nodemon:
-        specifier: 3.1.0
-        version: 3.1.0
-      serverless:
-        specifier: 3.38.0
-        version: 3.38.0(@aws-sdk/credential-provider-node@3.540.0)
-      serverless-offline:
-        specifier: 13.3.3
-        version: 13.3.3(serverless@3.38.0)
-
   apps/pixel-enrichment-function:
     dependencies:
       '@aws-sdk/client-dynamodb':
@@ -367,12 +324,12 @@ importers:
       '@aws-sdk/client-sqs':
         specifier: 3.540.0
         version: 3.540.0
-      '@kynesis/common-functions-types':
-        specifier: workspace:*
-        version: link:../../packages/common-functions-types
       '@kynesis/lambda-logger':
         specifier: workspace:*
         version: link:../../packages/lambda-logger
+      '@kynesis/pixel-enrichment-sqs':
+        specifier: workspace:*
+        version: link:../../packages/pixel-enrichment-sqs
       deepmerge:
         specifier: 4.3.1
         version: 4.3.1
@@ -445,13 +402,9 @@ importers:
         specifier: 13.3.3
         version: 13.3.3(serverless@3.38.0)
 
-  packages/common-functions-types:
-    dependencies:
-      zod:
-        specifier: 3.22.4
-        version: 3.22.4
-
   packages/lambda-logger: {}
+
+  packages/pixel-enrichment-sqs: {}
 
 packages:
 
@@ -3616,6 +3569,7 @@ packages:
 
   /@hapi/bourne@3.0.0:
     resolution: {integrity: sha512-Waj1cwPXJDucOib4a3bAISsKJVb15MKi9IvmTI/7ssVEm6sywXGjVJDhl6/umt1pK1ZS7PacXU3A1PmFKHEZ2w==}
+    dev: true
 
   /@hapi/call@9.0.1:
     resolution: {integrity: sha512-uPojQRqEL1GRZR4xXPqcLMujQGaEpyVPRyBlD8Pp5rqgIwLhtveF9PkixiKru2THXvuN8mUrLeet5fqxKAAMGg==}

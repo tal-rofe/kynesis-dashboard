@@ -7,22 +7,17 @@
 			"ignore": ["_templates/**/*", "@types/next/index.d.ts", "@types/**/*", "public/**/*", "./src/components/ui/**/*"],
 			"ignoreDependencies": ["@storybook/blocks", "postcss-nesting", "@radix-ui/react-icons", "@radix-ui/react-accordion"]
 		},
-		"apps/pixel-api-function": {
-			"entry": "./src/index.ts",
-			"project": "./src/**/*",
-			"ignoreDependencies": ["serverless", "serverless-offline", "@kynesis/common-functions-types", "@kynesis/lambda-logger"]
-		},
 		"apps/pixel-enrichment-function": {
 			"entry": "./src/index.ts",
 			"project": "./src/**/*",
-			"ignoreDependencies": ["@kynesis/common-functions-types", "@kynesis/lambda-logger"]
+			"ignoreDependencies": ["@kynesis/pixel-enrichment-sqs", "@kynesis/lambda-logger"]
 		},
 		"apps/slack-webhook-register-function": {
 			"entry": "./src/index.ts",
 			"project": "./src/**/*",
 			"ignoreDependencies": ["serverless", "serverless-offline", "@kynesis/lambda-logger"]
 		},
-		"packages/common-functions-types": {
+		"packages/pixel-enrichment-sqs": {
 			"entry": "./src/index.ts",
 			"project": "./src/**/*"
 		},

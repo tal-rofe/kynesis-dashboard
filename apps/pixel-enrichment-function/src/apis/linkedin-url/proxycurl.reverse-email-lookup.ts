@@ -1,4 +1,4 @@
-import type { PixelApiRequestBodySchema } from '@kynesis/common-functions-types';
+import type { PixelCollectionData } from '@kynesis/pixel-enrichment-sqs';
 
 import type { LinkedinUrlResponse } from './interfaces/response';
 import { linkedinUrlHttpGet } from './utils/http';
@@ -9,7 +9,7 @@ type ApiResponse = { readonly linkedin_profile_url: string };
 class ProxycurlReverseEmailLookupApi extends LinkedinUrl {
 	protected override apiUrl = 'https://nubela.co/proxycurl/api/linkedin/profile/resolve/email';
 
-	public override async getLinkedinUrl(data: PixelApiRequestBodySchema): Promise<LinkedinUrlResponse> {
+	public override async getLinkedinUrl(data: PixelCollectionData): Promise<LinkedinUrlResponse> {
 		const requestSearchParams = new URLSearchParams();
 
 		requestSearchParams.append('lookup_depth', 'superficial');

@@ -9,8 +9,9 @@ resource "aws_cloudwatch_log_group" "pixel_enrichment_cloudwatch_log_group" {
   tags = merge(
     var.common_tags,
     {
-      Name  = "${var.project}-Pixel-Enrichment-CloudWatch-Log-Group"
-      Stack = "Backend"
+      Name      = "${var.project}-Pixel-Enrichment-CloudWatch-Log-Group"
+      Stack     = "Backend"
+      Namespace = "PixelAPI"
     }
   )
 }

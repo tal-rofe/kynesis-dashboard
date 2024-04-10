@@ -5,12 +5,12 @@ RUN npm i -g pnpm@8.15.6
 WORKDIR /dashboard
 
 COPY ./package.json ./pnpm-workspace.yaml ./.npmrc ./
-COPY ./packages/common-functions-types/package.json ./packages/common-functions-types/
+COPY ./packages/pixel-enrichment-sqs/package.json ./packages/pixel-enrichment-sqs/
 
 RUN pnpm i -w
-RUN pnpm --filter common-functions-types i
+RUN pnpm --filter pixel-enrichment-sqs i
 
 COPY ./tsconfig.base.json ./nx.json ./
-COPY ./packages/common-functions-types/ ./packages/common-functions-types/
+COPY ./packages/pixel-enrichment-sqs/ ./packages/pixel-enrichment-sqs/
 
-CMD ["pnpm", "exec", "nx", "start:dev", "@kynesis/common-functions-types"]
+CMD ["pnpm", "exec", "nx", "start:dev", "@kynesis/pixel-enrichment-sqs"]
