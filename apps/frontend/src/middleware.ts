@@ -1,19 +1,16 @@
 import { getToken } from 'next-auth/jwt';
+import type { JwtPayload } from 'jsonwebtoken';
 import { type NextRequest, NextResponse } from 'next/server';
 
 import { type RoutesPath, routes } from '@/lib/routes';
 import { validateJWT } from './lib/utils/validate-jwt';
 
 const middleware = async (request: NextRequest) => {
-	const { cookies } = request;
 	const { pathname } = request.nextUrl;
 
-	const userTokenCookie = cookies.get('token');
-	const userToken = userTokenCookie ? userTokenCookie.value : null;
+	const token = (await getToken({ req: request, secret: process.env.NEXTAUTH_SECRET })) as JwtPayload;
 
-	const session = await getToken({ req: request, secret: process.env.NEXTAUTH_SECRET });
-
-	const isAuthenticate = Boolean(session) && validateJWT(userToken);
+	const isAuthenticated = token?.exp ? validateJWT(token.exp) : false;
 
 	const authorizedRoutes = Object.values(routes)
 		.filter((route) => route.isRequiredAuth)
@@ -26,11 +23,11 @@ const middleware = async (request: NextRequest) => {
 	const absoluteAuthorizedRoutesURL = new URL(routes.visitors.path, request.nextUrl.origin);
 	const absoluteUnAuthorizedRoutesURL = new URL(routes.login.path, request.nextUrl.origin);
 
-	if (authorizedRoutes.includes(pathname as RoutesPath) && !isAuthenticate) {
+	if (authorizedRoutes.includes(pathname as RoutesPath) && !isAuthenticated) {
 		return NextResponse.redirect(absoluteUnAuthorizedRoutesURL.toString());
 	}
 
-	if (unauthorizedRoutes.includes(pathname as RoutesPath) && isAuthenticate) {
+	if (unauthorizedRoutes.includes(pathname as RoutesPath) && isAuthenticated) {
 		return NextResponse.redirect(absoluteAuthorizedRoutesURL.toString());
 	}
 
