@@ -1,6 +1,4 @@
-# Kynesis.io
-
-Kynesis Dashboard
+# Kynesis.io - Dashboard
 
 ## System Architectures
 

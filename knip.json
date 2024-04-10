@@ -15,7 +15,7 @@
 		"apps/slack-webhook-register-function": {
 			"entry": "./src/index.ts",
 			"project": "./src/**/*",
-			"ignoreDependencies": ["serverless", "serverless-offline", "@kynesis/lambda-logger"]
+			"ignoreDependencies": ["@kynesis/lambda-logger"]
 		},
 		"packages/pixel-enrichment-sqs": {
 			"entry": "./src/index.ts",

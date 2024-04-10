@@ -18,6 +18,8 @@ jobs:
             TF_VAR_vetric_api_key: ${{ var.VETRIC_API_KEY }}
             TF_VAR_slack_client_id: ${{ secrets.SLACK_CLIENT_ID }}
             TF_VAR_slack_client_secret: ${{ secrets.SLACK_CLIENT_SECRET }}
+            TF_VAR_production: true
+            TF_VAR_aws_region: ${{ var.AWS_REGION }}
 
         steps:
             - uses: actions/checkout@v4

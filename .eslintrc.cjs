@@ -89,6 +89,7 @@ const config = {
 				message: 'The year is not 2015 anymore',
 			},
 		],
+		'no-warning-comments': 'error',
 
 		'@typescript-eslint/consistent-type-definitions': ['error', 'type'],
 		'@typescript-eslint/no-unused-vars': ['error'],

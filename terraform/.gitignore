@@ -1,0 +1,4 @@
+.terraform.lock.hcl
+*.zip
+.terraform
+localstack_providers_override.tf

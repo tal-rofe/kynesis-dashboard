@@ -13,6 +13,7 @@
 		"./nx.json",
 		"./lint-staged.config.cjs",
 		"./inflint.config.ts",
+		"./docker/docker-compose.dev.yaml",
 		"./apps/frontend/src/stories/assets/**/*",
 		"./apps/frontend/src/stories/Configure.mdx",
 		"./apps/frontend/src/app/onboarding/components/Steps/Steps.tsx",
@@ -44,6 +45,7 @@
 		"zustand",
 		"Greenholtz",
 		"repost",
-		"signup"
+		"signup",
+		"tflocal"
 	]
 }

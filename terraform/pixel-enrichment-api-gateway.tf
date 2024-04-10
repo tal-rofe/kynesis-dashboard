@@ -11,7 +11,7 @@ module "pixel_api_api_gateway" {
   cors_configuration = {
     allow_headers = ["Content-Type"]
     allow_methods = ["GET"]
-    allow_origins = "*"
+    allow_origins = ["*"]
   }
 
   integrations = {
