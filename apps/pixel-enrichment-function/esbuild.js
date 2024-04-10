@@ -3,8 +3,7 @@ import esbuildPluginTsc from 'esbuild-plugin-tsc';
 
 await esbuild.build({
 	entryPoints: ['./src/index.ts'],
-	// * https://github.com/serverless/dashboard-plugin/issues/564
-	outfile: './build/index.cjs',
+	outfile: './build/index.js',
 	bundle: true,
 	minify: true,
 	platform: 'node',

@@ -2,6 +2,31 @@
 
 RED='\033[0;31m'
 
+read_env() {
+    local filePath="${1:-"$PWD/docker/envs/.env.development"}"
+
+    if [ ! -f "$filePath" ]; then
+        echo "Missing \"${filePath}\" file"
+
+        exit 1
+    fi
+
+    echo "Reading \"$filePath\""
+
+    while read -r LINE; do
+        # Remove leading and trailing whitespaces, and carriage return
+        CLEANED_LINE=$(echo "$LINE" | awk '{$1=$1};1' | tr -d '\r')
+
+        if [[ $CLEANED_LINE != '#'* ]] && [[ $CLEANED_LINE == *'='* ]]; then
+            export "$CLEANED_LINE"
+        fi
+    done <"$filePath"
+}
+
+read_env
+
+pnpm build:nested
+
 docker-compose -f ./docker/docker-compose.dev.yaml up -d
 
 if [ $? = 1 ]; then
@@ -16,4 +41,9 @@ if [ ! -d "./node_modules" ]; then
     exit 1
 fi
 
-node ./docker/scripts/open-dashboard.js
+cd ./terraform
+tflocal init
+tflocal apply -auto-approve
+
+cd ..
+pnpm -r start:dev

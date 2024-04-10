@@ -1,4 +1,3 @@
-production = false
 project                                     = "Kynesis-Dashboard"
 domain_name                                 = "kynesis.io"
 slack_webhook_register_lambda_function_name = "slack-webhook-register-lambda"
