@@ -14,8 +14,8 @@
 	"dependencies": {
 		"@aws-sdk/client-dynamodb": "3.540.0",
 		"@aws-sdk/client-sqs": "3.540.0",
-		"@kynesis/common-functions-types": "workspace:*",
 		"@kynesis/lambda-logger": "workspace:*",
+		"@kynesis/pixel-enrichment-sqs": "workspace:*",
 		"deepmerge": "4.3.1",
 		"free-email-domains": "1.2.13",
 		"got": "14.2.1"

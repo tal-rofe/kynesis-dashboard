@@ -1,5 +1,5 @@
 import freeEmailDomains from 'free-email-domains';
-import type { PixelApiRequestBodySchema } from '@kynesis/common-functions-types';
+import type { PixelCollectionData } from '@kynesis/pixel-enrichment-sqs';
 
 import type { LinkedinUrlResponse } from './interfaces/response';
 import { linkedinUrlHttpGet } from './utils/http';
@@ -10,8 +10,8 @@ type ApiResponse = { readonly url: string };
 class ProxycurlPersonLookupApi extends LinkedinUrl {
 	protected override apiUrl = 'https://nubela.co/proxycurl/api/linkedin/profile/resolve';
 
-	public override async getLinkedinUrl(data: PixelApiRequestBodySchema): Promise<LinkedinUrlResponse> {
-		// * Email will be valid as it is being validated on "pixel-api-function"
+	public override async getLinkedinUrl(data: PixelCollectionData): Promise<LinkedinUrlResponse> {
+		// * Email will be valid as it is being validated on pixel data collection Lambda functions
 		const emailDomain = data.email.split('@')[1]!;
 		const emailDomainSplitted = emailDomain.split('.');
 		const companyDomain = emailDomainSplitted.at(-2) + '.' + emailDomainSplitted.at(-1);

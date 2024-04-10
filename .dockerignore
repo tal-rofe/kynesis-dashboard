@@ -27,22 +27,14 @@ tsconfig.eslint.json
 tsconfig.json
 tsconfig.tsbuildinfo
 
-apps/pixel-api-function/tsconfig.tsbuildinfo
-apps/pixel-api-function/.gitignore
-apps/pixel-api-function/.eslintrc.cjs
-apps/pixel-api-function/.eslintignore
-apps/pixel-api-function/node_modules
-apps/pixel-api-function/build
-apps/pixel-api-function/tsconfig.eslint.json
-
-packages/common-functions-types/tsconfig.tsbuildinfo
-packages/common-functions-types/.gitignore
-packages/common-functions-types/.eslintrc.cjs
-packages/common-functions-types/.eslintignore
-packages/common-functions-types/node_modules
-packages/common-functions-types/dist
-packages/common-functions-types/tsconfig.json
-packages/common-functions-types/tsconfig.eslint.json
+packages/pixel-enrichment-sqs/tsconfig.tsbuildinfo
+packages/pixel-enrichment-sqs/.gitignore
+packages/pixel-enrichment-sqs/.eslintrc.cjs
+packages/pixel-enrichment-sqs/.eslintignore
+packages/pixel-enrichment-sqs/node_modules
+packages/pixel-enrichment-sqs/dist
+packages/pixel-enrichment-sqs/tsconfig.json
+packages/pixel-enrichment-sqs/tsconfig.eslint.json
 
 packages/lambda-logger/tsconfig.tsbuildinfo
 packages/lambda-logger/.gitignore

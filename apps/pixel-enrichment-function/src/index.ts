@@ -3,8 +3,8 @@ import { SQSClient, SendMessageCommand, DeleteMessageCommand, type SendMessageCo
 import { DynamoDBClient, GetItemCommand, type GetItemCommandOutput } from '@aws-sdk/client-dynamodb';
 import got from 'got';
 import LoggerService from '@kynesis/lambda-logger';
+import type { PixelCollectionData } from '@kynesis/pixel-enrichment-sqs';
 
-import type { SqsBody } from './interfaces/sqs-body';
 import { linkedinUrlApis } from './data/linkedin-url-apis';
 import { getEnrichedData } from './apis/vetric/vetric';
 import { DYNAMODB_MAX_ATTEMPTS } from './constants/dynamodb';
@@ -17,7 +17,7 @@ export const handler: SQSHandler = async (event, context) => {
 	// * As the ownership of the SQS is Kynesis, it will have valid message body
 	const sqsMessage = event.Records[0]!;
 	const messageBody = sqsMessage.body;
-	const parsedMessageBody = JSON.parse(messageBody) as SqsBody;
+	const parsedMessageBody = JSON.parse(messageBody) as PixelCollectionData;
 
 	logger.info('Start processing SQS message', { messageBody });
 

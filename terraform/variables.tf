@@ -8,11 +8,6 @@ variable "domain_name" {
   type        = string
 }
 
-variable "pixel_api_lambda_function_name" {
-  description = "Name of the lambda function dedicated for pixel API"
-  type        = string
-}
-
 variable "slack_webhook_register_lambda_function_name" {
   description = "Name of the lambda function dedicated for Slack webhook register"
   type        = string
@@ -21,11 +16,6 @@ variable "slack_webhook_register_lambda_function_name" {
 variable "pixel_enrichment_lambda_function_name" {
   description = "Name of the lambda function dedicated for pixel enrichment"
   type        = string
-}
-
-variable "customers_domains" {
-  description = "List of Kynesis' customers domains"
-  type        = list(string)
 }
 
 variable "proxycurl_api_key" {

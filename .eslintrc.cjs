@@ -110,6 +110,15 @@ const config = {
 				format: ['PascalCase'],
 			},
 		],
+		'@typescript-eslint/ban-types': [
+			'error',
+			{
+				types: {
+					'{}': "Don't use {} because everything in JavaScript is an object",
+				},
+				extendDefaults: true,
+			},
+		],
 
 		'unused-imports/no-unused-imports': 'error',
 
