@@ -13,8 +13,6 @@ const inflintConfig: Config = {
 		'apps/frontend/src/components/{layouts,wrappers}/*': [2, 'PascalCase.Point'],
 		'apps/frontend/src/components/ui/*': [2, '[UIComponent]'],
 
-		'./apps/slack-webhook-register-function/src/**/*': [2, 'kebab-case'],
-
 		'./apps/pixel-enrichment-function/src/**/*': [2, 'kebab-case.point'],
 
 		'./packages/pixel-enrichment-sqs/src/**/*': [2, 'kebab-case'],

@@ -98,7 +98,7 @@ resource "aws_lambda_function" "pixel_enrichment_lambda" {
 
   environment {
     variables = {
-      SQS_URL             = aws_sqs_queue.pixel_api_enrichment_sqs_fifo.url
+      SQS_URL             = aws_sqs_queue.pixel_enrichment_sqs_fifo.url
       PROXYCURL_API_KEY   = var.proxycurl_api_key
       RAMPEDUP_API_KEY    = var.rampedup_api_key
       VETRIC_API_KEY      = var.vetric_api_key

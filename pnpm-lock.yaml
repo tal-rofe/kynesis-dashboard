@@ -362,43 +362,6 @@ importers:
         specifier: 3.1.0
         version: 3.1.0
 
-  apps/slack-webhook-register-function:
-    dependencies:
-      '@aws-sdk/client-dynamodb':
-        specifier: 3.540.0
-        version: 3.540.0
-      got:
-        specifier: 14.2.1
-        version: 14.2.1
-      zod:
-        specifier: 3.22.4
-        version: 3.22.4
-      zod-validation-error:
-        specifier: 3.0.3
-        version: 3.0.3(zod@3.22.4)
-    devDependencies:
-      '@kynesis/lambda-logger':
-        specifier: workspace:*
-        version: link:../../packages/lambda-logger
-      '@total-typescript/ts-reset':
-        specifier: 0.5.1
-        version: 0.5.1
-      '@types/aws-lambda':
-        specifier: 8.10.136
-        version: 8.10.136
-      '@types/node':
-        specifier: 20.12.7
-        version: 20.12.7
-      esbuild:
-        specifier: 0.20.2
-        version: 0.20.2
-      esbuild-plugin-tsc:
-        specifier: 0.4.0
-        version: 0.4.0(typescript@5.4.3)
-      nodemon:
-        specifier: 3.1.0
-        version: 3.1.0
-
   packages/lambda-logger: {}
 
   packages/pixel-enrichment-sqs: {}
@@ -18144,9 +18107,11 @@ packages:
       zod: ^3.18.0
     dependencies:
       zod: 3.22.4
+    dev: true
 
   /zod@3.22.4:
     resolution: {integrity: sha512-iC+8Io04lddc+mVqQ9AZ7OQ2MrUKGN+oIQyq1vemgt46jwCwLfhq7/pwnBnNXXXZb8VTVLKwp9EDkx+ryxIWmg==}
+    dev: true
 
   /zustand@4.5.2(@types/react@18.2.74)(react@18.2.0):
     resolution: {integrity: sha512-2cN1tPkDVkwCy5ickKrI7vijSjPksFRfqS6237NzT0vqSsztTNnQdHw9mmN7uBdk3gceVXU0a+21jFzFzAc9+g==}
