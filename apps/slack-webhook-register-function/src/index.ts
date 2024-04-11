@@ -45,18 +45,19 @@ export const handler: APIGatewayProxyHandler = async (event, context) => {
 			};
 		}
 
-		const slackAuthRequestData = new FormData();
-
-		slackAuthRequestData.set('code', validatedRequestQueries.data.code);
-		slackAuthRequestData.set('client_id', process.env.SLACK_CLIENT_ID);
-		slackAuthRequestData.set('client_secret', process.env.SLACK_CLIENT_SECRET);
-
 		let slackCustomerWebhookUrl: string;
 		let slackCustomerChannelName: string;
 
 		try {
 			const slackAuthResponse = await got
-				.post('https://slack.com/api/oauth.v2.access', { body: slackAuthRequestData })
+				.post('https://slack.com/api/oauth.v2.access', {
+					body: new URLSearchParams({
+						code: validatedRequestQueries.data.code,
+						client_id: process.env.SLACK_CLIENT_ID,
+						client_secret: process.env.SLACK_CLIENT_SECRET,
+					}).toString(),
+					headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+				})
 				.json<SlackAuthResponse>();
 
 			if (!slackAuthResponse.ok) {
@@ -78,8 +79,6 @@ export const handler: APIGatewayProxyHandler = async (event, context) => {
 		}
 
 		logger.info('Successfully retrieved Slack customer Webhook URL', { slackCustomerWebhookUrl });
-
-		const dynamoDbClient = new DynamoDBClient({ region: process.env.AWS_REGION, maxAttempts: DYNAMODB_MAX_ATTEMPTS });
 
 		const domainFirstIndex = slackCustomerChannelName.indexOf('[');
 		const domainLastIndex = slackCustomerChannelName.indexOf(']');
@@ -104,6 +103,7 @@ export const handler: APIGatewayProxyHandler = async (event, context) => {
 			},
 		});
 
+		const dynamoDbClient = new DynamoDBClient({ region: process.env.AWS_REGION, maxAttempts: DYNAMODB_MAX_ATTEMPTS });
 		let dynamoDbPutItemCommandOutput: PutItemCommandOutput;
 
 		try {

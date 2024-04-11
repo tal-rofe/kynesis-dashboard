@@ -36,7 +36,7 @@ const EmailComposeView = (props: Props) => {
 					<div className=" text-gray-400 font-normal">
 						{!pressed ? (
 							props.emailSubjects?.map((object) => {
-								if (!object) return null;
+								if (!object) {return null;}
 
 								return Object.entries(object).map(([key, value]) => (
 									<UIBadge className="text-xs mr-4 mb-4 font-semibold" variant="outline" key={key + '-' + value}>

@@ -91,7 +91,9 @@ const visitorsStore = persist<VisitorsStore>(
 			});
 		},
 		setEmailSubjects: (key: EmailSubjects, value: string) => {
-			if (!key || !value) return;
+			if (!key || !value) {
+				return;
+			}
 
 			set((state) => {
 				// Initialize emailSubjects to ensure we are working with an array
