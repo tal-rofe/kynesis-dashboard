@@ -98,6 +98,6 @@
 		"@types/node": "20.11.26",
 		"@typescript-eslint/parser": "6.21.0",
 		"eslint": "8.57.0",
-		"prettier": "2.8.8"
+		"prettier": "3.2.5"
 	}
 }
