@@ -32,5 +32,5 @@
 	"commitMessageAction": "🤖 Update",
 	"stabilityDays": 7,
 	"reviewersFromCodeOwners": true,
-	"ignorePaths": ["./apps/frontend/package.json"]
+	"enabled": false
 }
