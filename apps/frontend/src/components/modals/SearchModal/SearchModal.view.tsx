@@ -42,7 +42,7 @@ const SearchModalView = (props: Props) => {
 						{props.visitors
 							.filter((visitor) => visitor.fullName.toLowerCase().includes(props.searchInputValue))
 							.map((visitor) => {
-								if (!visitor.id) return;
+								if (!visitor.id) {return;}
 
 								return (
 									<UIButton
@@ -71,7 +71,7 @@ const SearchModalView = (props: Props) => {
 						{props.pages
 							.filter((visitor) => visitor.label.toLowerCase().includes(props.searchInputValue))
 							.map((page) => {
-								if (!page.link) return;
+								if (!page.link) {return;}
 
 								return (
 									<UIButton
@@ -100,7 +100,7 @@ const SearchModalView = (props: Props) => {
 						<>
 							<span className="py-1.5 px-2 text-muted-foreground text-xs">Recent contacts</span>
 							{props.previousVisitors.map((visitor) => {
-								if (!visitor.id) return;
+								if (!visitor.id) {return;}
 
 								return (
 									<UIButton
@@ -128,7 +128,7 @@ const SearchModalView = (props: Props) => {
 					)}
 					<span className="py-1.5 px-2 text-muted-foreground text-xs">Pages</span>
 					{props.pages.map((page) => {
-						if (!page.link) return;
+						if (!page.link) {return;}
 
 						return (
 							<UIButton

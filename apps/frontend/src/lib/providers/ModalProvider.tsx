@@ -36,10 +36,10 @@ export const ModalProvider: React.FC<{ readonly children: ReactNode }> = ({ chil
 
 		const firstElement = focusableModalElements[0] as HTMLElement | undefined;
 
-		if (isModalOpen && firstElement) firstElement.focus();
+		if (isModalOpen && firstElement) {firstElement.focus();}
 
 		const handleKeyDown = (e: KeyboardEvent) => {
-			if (e.key === 'Escape') hideModal();
+			if (e.key === 'Escape') {hideModal();}
 
 			if (['Tab', 'ArrowDown', 'ArrowUp'].includes(e.key)) {
 				e.preventDefault();
