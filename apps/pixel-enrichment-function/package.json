@@ -14,7 +14,7 @@
 	},
 	"dependencies": {
 		"@aws-sdk/client-dynamodb": "3.540.0",
-		"@aws-sdk/client-sqs": "3.540.0",
+		"@aws-sdk/client-sqs": "3.547.0",
 		"@kynesis/lambda-logger": "workspace:*",
 		"@kynesis/pixel-enrichment-sqs": "workspace:*",
 		"deepmerge": "4.3.1",
