@@ -12,7 +12,9 @@ type Props = {
 };
 
 const HeaderView = (props: Props) => {
-	if (!props.currentPage?.link) return null;
+	if (!props.currentPage?.link) {
+		return null;
+	}
 
 	return (
 		<header className="flex items-center w-full border-b border-gray-400 dark:border-gray-700 py-6 px-8 max-h-20 min-h-20 h-full gap-2">
