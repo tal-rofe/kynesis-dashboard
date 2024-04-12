@@ -109,8 +109,8 @@ const icons = {
 	x: [
 		'16 16',
 		`
-			<path d="M12 4L4 12" stroke="black" stroke-linecap="round" stroke-linejoin="round"/>
-			<path d="M4 4L12 12" stroke="black" stroke-linecap="round" stroke-linejoin="round"/>
+			<path d="M12 4L4 12" stroke-linecap="round" stroke-linejoin="round"/>
+			<path d="M4 4L12 12" stroke-linecap="round" stroke-linejoin="round"/>
 		`,
 	],
 	mail: [

@@ -40,7 +40,7 @@ const EmailComposeView = (props: Props) => {
 
 								return Object.entries(object).map(([key, value]) => (
 									<UIBadge className="text-xs mr-4 mb-4 font-semibold" variant="outline" key={key + '-' + value}>
-										<UISvg name="x" className="mr-2 cursor-pointer " onClick={() => props.setEmailSubjects(key as EmailSubjects, value)} />
+										<UISvg name="x" className="mr-2 cursor-pointer stroke-[#4B5563] dark:stroke-white" onClick={() => props.setEmailSubjects(key as EmailSubjects, value)} />
 										{`${key}:`}
 										&nbsp;
 										<span className=" ">{addEllipsis(value, 16)}</span>

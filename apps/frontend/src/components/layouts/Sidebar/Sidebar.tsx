@@ -9,9 +9,9 @@ import SidebarView from './Sidebar.view';
 
 const Sidebar = () => {
 	const { isModalOpen, showModal, hideModal } = useModal();
-	const stickySidebarElements = navElements.filter((element) => element.sticky);
-	const sidebarElements = navElements.filter((element) => !element.sticky && !element.logout);
-	const logoutSidebarElements = navElements.filter((element) => element.logout);
+	const middleSidebarElements = navElements.filter((element) => !element.position);
+	const topSidebarElements = navElements.filter((element) => element.position === 'top');
+	const bottomSidebarElements = navElements.filter((element) => element.position === 'bottom');
 
 	const toggleModal = () => {
 		if (isModalOpen) {
@@ -35,7 +35,11 @@ const Sidebar = () => {
 	}, [isModalOpen]);
 
 	return (
-		<SidebarView sidebarElements={sidebarElements} stickySidebarElements={stickySidebarElements} logoutSidebarElements={logoutSidebarElements} />
+		<SidebarView
+			middleSidebarElements={middleSidebarElements}
+			topSidebarElements={topSidebarElements}
+			bottomSidebarElements={bottomSidebarElements}
+		/>
 	);
 };
 
