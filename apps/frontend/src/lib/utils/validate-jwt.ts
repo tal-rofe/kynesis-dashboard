@@ -7,8 +7,4 @@
  * @param {number} tokenExpiration - The token expiration time.
  * @returns {boolean} - Returns `true` if the JWT is valid, `false` otherwise.
  */
-export const validateJwt = (tokenExpiration: number) => {
-	if (Date.now() >= tokenExpiration * 1000) return false;
-
-	return true;
-};
+export const validateJwt = (tokenExpiration: number) => Date.now() < tokenExpiration * 1000;
