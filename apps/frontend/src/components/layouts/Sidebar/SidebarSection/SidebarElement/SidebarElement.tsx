@@ -6,6 +6,7 @@ import { usePathname } from 'next/navigation';
 import { useModal } from '@/lib/providers/ModalProvider';
 import SearchModal from '@/modals/SearchModal';
 import { type SidebarElement as SidebarElementType } from '@/lib/types/ui/nav-element';
+
 import SidebarElementView from './SidebarElement.view';
 
 type Props = {

@@ -2,6 +2,7 @@ import { getToken } from 'next-auth/jwt';
 import { type NextRequest, NextResponse } from 'next/server';
 
 import { type RoutesPath, routes } from '@/lib/routes';
+
 import { validateJWT } from './lib/utils/validate-jwt';
 
 const middleware = async (request: NextRequest) => {

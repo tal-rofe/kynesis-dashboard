@@ -1,5 +1,6 @@
 import React from 'react';
 import { TypeAnimation } from 'react-type-animation';
+
 import { UIButton } from '@/ui/UIButton';
 import { type EmailSubjects } from '@/lib/types/ui/email-subjects';
 import { type Visitor } from '@/lib/types/ui/visitor';

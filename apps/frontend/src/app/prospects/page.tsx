@@ -1,6 +1,7 @@
 'use client';
 
 import { useEffect } from 'react';
+
 import { useVisitorsStore } from '@/lib/store/useVisitorsStore';
 import UIVisitorsTable from '@/ui/UIVisitorsTable';
 import PageWrapper from '@/wrappers/PageWrapper';

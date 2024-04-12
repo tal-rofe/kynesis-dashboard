@@ -1,6 +1,8 @@
 import React from 'react';
+
 import { UIAvatar, UIAvatarFallback, UIAvatarImage } from '@/ui/UIAvatar';
 import { type SidebarElement } from '@/lib/types/ui/nav-element';
+
 import SidebarSection from './SidebarSection';
 
 type Props = {

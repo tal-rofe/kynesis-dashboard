@@ -1,4 +1,5 @@
 import { type SidebarElement } from '@/types/ui/nav-element';
+
 import { routes } from '../routes';
 
 export const navElements: SidebarElement[] = [

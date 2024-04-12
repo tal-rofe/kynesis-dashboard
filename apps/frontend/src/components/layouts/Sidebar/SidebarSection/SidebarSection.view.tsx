@@ -1,5 +1,7 @@
 import React from 'react';
+
 import { type SidebarElement as SidebarElementType } from '@/lib/types/ui/nav-element';
+
 import SidebarElement from './SidebarElement';
 
 type Props = {

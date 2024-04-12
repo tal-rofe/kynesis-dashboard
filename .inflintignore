@@ -9,6 +9,11 @@ apps/pixel-enrichment-function/build
 apps/pixel-enrichment-function/src/**/*.d.ts
 apps/pixel-enrichment-function/dist
 
+apps/atdata-pixel-collector-function/node_modules
+apps/atdata-pixel-collector-function/build
+apps/atdata-pixel-collector-function/src/**/*.d.ts
+apps/atdata-pixel-collector-function/dist
+
 packages/pixel-enrichment-sqs/node_modules
 
 packages/lambda-logger/node_modules

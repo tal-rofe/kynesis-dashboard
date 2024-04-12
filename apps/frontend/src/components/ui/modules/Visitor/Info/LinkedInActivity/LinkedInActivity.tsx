@@ -3,6 +3,7 @@
 import React, { useState } from 'react';
 
 import { type ActivityTypes } from '@/lib/types/ui/linkedin-activity';
+
 import LinkedInActivityView from './LinkedInActivity.view';
 
 const LinkedInActivity = () => {

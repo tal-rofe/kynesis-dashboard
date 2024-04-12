@@ -77,6 +77,7 @@ resource "aws_lambda_function" "pixel_enrichment_lambda" {
   role             = aws_iam_role.iam_for_lambda.arn
   handler          = "index.handler"
   runtime          = "nodejs20.x"
+  timeout          = var.lambda_timeout
   source_code_hash = data.archive_file.lambda_zip.output_base64sha256
   s3_bucket        = var.s3_bucket_id_lambda_storage
   s3_key           = aws_s3_object.lambda_s3_object.key

@@ -1,5 +1,7 @@
 import React from 'react';
+
 import { type OnboardingSteps } from '@/lib/types/api/onboarding';
+
 import Welcome from './Welcome';
 import TrackingScript from './TrackingScript';
 import HtmlScript from './HtmlScript';

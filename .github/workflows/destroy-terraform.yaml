@@ -17,6 +17,10 @@ jobs:
             TF_VAR_vetric_api_key: ${{ var.VETRIC_API_KEY }}
             TF_VAR_production: true
             TF_VAR_aws_region: ${{ var.AWS_REGION }}
+            TF_VAR_atdata_sftp_host: ${{ secrets.ATDATA_SFTP_HOST}}
+            TF_VAR_atdata_sftp_port: ${{ secrets.ATDATA_SFTP_PORT}}
+            TF_VAR_atdata_sftp_username: ${{ secrets.ATDATA_SFTP_USERNAME}}
+            TF_VAR_atdata_sftp_password: ${{ secrets.ATDATA_SFTP_PASSWORD}}
 
         steps:
             - uses: actions/checkout@v4

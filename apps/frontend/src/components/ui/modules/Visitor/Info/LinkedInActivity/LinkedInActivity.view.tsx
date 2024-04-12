@@ -1,6 +1,7 @@
 import React from 'react';
 import Image from 'next/image';
 import { TabsTrigger } from '@radix-ui/react-tabs';
+
 import { type ActivityTypes } from '@/lib/types/ui/linkedin-activity';
 import { UITabs, UITabsList, UITabsContent } from '@/ui/UITabs';
 import { UICard, UICardContent, UICardHeader, UICardTitle } from '@/ui/UICard';

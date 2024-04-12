@@ -1,4 +1,5 @@
 import React from 'react';
+
 import { type WelcomeFormInputs } from '@/lib/types/api/onboarding';
 import { UICard, UICardContent, UICardDescription, UICardFooter, UICardHeader, UICardTitle } from '@/ui/UICard';
 import { UIProgress } from '@/ui/UIProgress';

@@ -28,6 +28,11 @@ variable "s3_bucket_id_lambda_storage" {
   type        = string
 }
 
+variable "lambda_timeout" {
+  description = "Amount of time Lambda function has to run in seconds"
+  type        = number
+}
+
 variable "lambda_runtime_envs" {
   description = "The environment variables to inject to Lambda runtime environment variables"
   type        = object

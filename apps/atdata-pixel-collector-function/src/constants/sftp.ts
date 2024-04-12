@@ -1,0 +1,5 @@
+const SECOND = 1000;
+
+export const SFTP_HANDSHAKE_TIMEOUT = 5 * SECOND;
+
+export const SFTP_CONNECTION_RETRIES = 1;

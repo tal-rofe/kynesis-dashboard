@@ -15,6 +15,8 @@ const inflintConfig: Config = {
 
 		'./apps/pixel-enrichment-function/src/**/*': [2, 'kebab-case.point'],
 
+		'./apps/atdata-pixel-collector-function/src/**/*': [2, 'kebab-case.point'],
+
 		'./packages/pixel-enrichment-sqs/src/**/*': [2, 'kebab-case'],
 
 		'./packages/lambda-logger/src/**/*': [2, 'kebab-case'],

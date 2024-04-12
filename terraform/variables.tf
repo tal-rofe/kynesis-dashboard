@@ -34,6 +34,26 @@ variable "vetric_api_key" {
   type        = string
 }
 
+variable "atdata_sftp_host" {
+  description = "The SFTP host of AtData pixel server"
+  type        = string
+}
+
+variable "atdata_sftp_port" {
+  description = "The SFTP port of AtData pixel server"
+  type        = string
+}
+
+variable "atdata_sftp_username" {
+  description = "The SFTP username of AtData pixel server"
+  type        = string
+}
+
+variable "atdata_sftp_password" {
+  description = "The SFTP password of AtData pixel server"
+  type        = string
+}
+
 variable "common_tags" {
   description = "A map of common tags to add to all resources"
   type        = map(string)

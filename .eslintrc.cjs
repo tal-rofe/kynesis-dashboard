@@ -144,14 +144,21 @@ const config = {
 		'import/order': [
 			'error',
 			{
-				pathGroups: [
+				'groups': ['builtin', 'external', 'internal', 'parent', 'sibling', 'index', 'object'],
+				'pathGroups': [
+					{
+						pattern: '@kynesis/**',
+						group: 'external',
+						position: 'after',
+					},
 					{
 						pattern: '@/**',
 						group: 'external',
 						position: 'after',
 					},
 				],
-				groups: ['builtin', 'external', 'internal', 'parent', 'sibling', 'index', 'object'],
+				'distinctGroup': true,
+				'newlines-between': 'always',
 			},
 		],
 
