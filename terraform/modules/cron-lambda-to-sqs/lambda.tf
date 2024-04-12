@@ -72,7 +72,7 @@ resource "aws_s3_object" "lambda_s3_object" {
   )
 }
 
-resource "aws_lambda_function" "pixel_enrichment_lambda" {
+resource "aws_lambda_function" "lambda" {
   function_name    = "${var.name}-lambda"
   role             = aws_iam_role.iam_for_lambda.arn
   handler          = "index.handler"

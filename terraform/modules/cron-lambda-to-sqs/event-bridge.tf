@@ -13,7 +13,7 @@ resource "aws_cloudwatch_event_rule" "cron_schedule_rule" {
 
 resource "aws_cloudwatch_event_target" "trigger_lambda_on_schedule" {
   rule = aws_cloudwatch_event_rule.cron_schedule_rule.name
-  arn  = aws_lambda_function.demo_lambda_hello_world.arn
+  arn  = aws_lambda_function.lambda.arn
 }
 
 resource "aws_lambda_permission" "allow_cloudwatch_to_call_lambda" {
