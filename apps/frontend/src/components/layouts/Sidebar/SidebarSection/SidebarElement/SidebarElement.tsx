@@ -6,6 +6,7 @@ import { usePathname } from 'next/navigation';
 import { useModal } from '@/lib/providers/ModalProvider';
 import SearchModal from '@/modals/SearchModal';
 import { type SidebarElement as SidebarElementType } from '@/lib/types/ui/nav-element';
+
 import SidebarElementView from './SidebarElement.view';
 
 type Props = {
@@ -20,9 +21,7 @@ const SidebarElement = (props: Props) => {
 
 	const { sidebarElement } = props;
 
-	const onShowSearchModal = () => {
-		showModal(<SearchModal hideModal={hideModal} />);
-	};
+	const onShowSearchModal = () => showModal(<SearchModal hideModal={hideModal} />);
 
 	return <SidebarElementView isActive={isActive} sidebarElement={sidebarElement} onShowSearchModal={onShowSearchModal} />;
 };

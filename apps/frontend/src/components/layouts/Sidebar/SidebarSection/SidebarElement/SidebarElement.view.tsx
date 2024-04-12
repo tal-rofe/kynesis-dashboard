@@ -19,18 +19,16 @@ const SidebarElementView = (props: Props) => {
 
 	if (sidebarElement.logout) {
 		return (
-			<UIButton asChild variant="ghost" className="w-full justify-start">
-				<button type="button" onClick={() => signOut()}>
-					<UISvg name={sidebarElement.icon} className="mr-1" />
-					{sidebarElement.label}
-				</button>
+			<UIButton asChild variant="ghost" className="w-full justify-start" onClick={() => signOut()}>
+				<UISvg name={sidebarElement.icon} className="mr-1 stroke-[#4B5563] dark:stroke-white" />
+				{sidebarElement.label}
 			</UIButton>
 		);
 	}
 
 	if (!sidebarElement.link) {
 		return (
-			<UIButton variant="ghost" className=" w-full justify-start" onClick={props.onShowSearchModal}>
+			<UIButton variant="ghost" className="w-full justify-start" onClick={props.onShowSearchModal}>
 				<UISvg name={sidebarElement.icon} className="mr-1 stroke-[#4B5563] dark:stroke-white" />
 				{sidebarElement.label}
 				{sidebarElement.icon === 'search' && <UIMenubarShortcut>⌘K</UIMenubarShortcut>}
