@@ -35,7 +35,7 @@ variable "lambda_timeout" {
 
 variable "lambda_runtime_envs" {
   description = "The environment variables to inject to Lambda runtime environment variables"
-  type        = object
+  type        = map(string)
 }
 
 variable "sqs_arn" {
