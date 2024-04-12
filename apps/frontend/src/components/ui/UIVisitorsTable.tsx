@@ -20,13 +20,11 @@ import { DropdownMenuCheckboxItem } from '@radix-ui/react-dropdown-menu';
 
 import { useVisitorsStore } from '@/lib/store/useVisitorsStore';
 import { type Visitor } from '@/lib/types/ui/visitor';
-import { cn } from '@/lib/utils/component';
 import { routes } from '@/lib/routes';
 import { addEllipsis } from '@/lib/utils/text';
 
 import { UITable, UITableHeader, UITableRow, UITableHead, UITableBody, UITableCell } from './UITable';
 import { UIButton } from './UIButton';
-import { UICheckbox } from './UICheckbox';
 import {
 	UIDropdownMenu,
 	UIDropdownMenuTrigger,
@@ -37,103 +35,7 @@ import {
 } from './UIDropdownMenu';
 import UISvg from './UISvg';
 import { UIInput } from './UIInput';
-import { UITooltip, UITooltipContent, UITooltipProvider, UITooltipTrigger } from './UITooltip';
-
-const columns: ColumnDef<Visitor>[] = [
-	{
-		id: 'select',
-		header: ({ table }) => (
-			<UICheckbox
-				checked={table.getIsAllPageRowsSelected() || (table.getIsSomePageRowsSelected() && 'indeterminate')}
-				aria-label="Select all"
-				onCheckedChange={(value) => table.toggleAllPageRowsSelected(!!value)}
-			/>
-		),
-		cell: ({ row }) => <UICheckbox checked={row.getIsSelected()} aria-label="Select row" onCheckedChange={(value) => row.toggleSelected(!!value)} />,
-		enableSorting: false,
-		size: 30,
-		enableHiding: false,
-	},
-	{
-		accessorKey: 'fullName',
-		header: 'Full name',
-		size: 100,
-		cell: ({ row }) => <div className="capitalize min-w-16">{row.getValue('fullName')}</div>,
-	},
-	{
-		accessorKey: 'email',
-		size: 100,
-		header: ({ column }) => {
-			return (
-				<UIButton className="min-w-16" variant="ghost" onClick={() => column.toggleSorting(column.getIsSorted() === 'asc')}>
-					Email
-					<ArrowUpDown className="ml-2 h-4 w-4" />
-				</UIButton>
-			);
-		},
-		cell: ({ row }) => <div className="lowercase min-w-16">{addEllipsis(row.getValue('email'), 20)}</div>,
-	},
-	{
-		accessorKey: 'status',
-		header: 'Status',
-		size: 133.33,
-		cell: ({ row }) => <div className="capitalize min-w-16">{row.getValue('status')}</div>,
-	},
-
-	{
-		accessorKey: 'priority',
-		header: 'Priority',
-		size: 133.33,
-		cell: ({ row }) => <div className="capitalize min-w-16">{row.getValue('priority')}</div>,
-	},
-	{
-		accessorKey: 'country',
-		header: 'Country',
-		size: 133.33,
-		enablePinning: true,
-
-		cell: ({ row }) => <div className="capitalize min-w-16">{row.getValue('country')}</div>,
-	},
-	{
-		accessorKey: 'city',
-		header: 'City',
-		size: 133.33,
-		enablePinning: true,
-		cell: ({ row }) => <div className="capitalize min-w-16">{row.getValue('city')}</div>,
-	},
-	{
-		accessorKey: 'gender',
-		header: 'Gender',
-		size: 133.33,
-		enablePinning: true,
-		cell: ({ row }) => <div className="capitalize min-w-16">{row.getValue('gender')}</div>,
-	},
-	{
-		size: 30,
-		id: 'actions',
-		enableHiding: false,
-		cell: ({ row }) => {
-			const visitor = row.original;
-
-			return (
-				<UIDropdownMenu>
-					<UIDropdownMenuTrigger asChild>
-						<UIButton variant="ghost" className="h-8 w-8 p-0">
-							<span className="sr-only">Open menu</span>
-							<MoreHorizontal className="h-4 w-4" />
-						</UIButton>
-					</UIDropdownMenuTrigger>
-					<UIDropdownMenuContent align="end">
-						<UIDropdownMenuLabel>Actions</UIDropdownMenuLabel>
-						<UIDropdownMenuItem onClick={() => navigator.clipboard.writeText(visitor.email)}>Copy visitor email</UIDropdownMenuItem>
-						<UIDropdownMenuSeparator />
-						<UIDropdownMenuItem>View visitor details</UIDropdownMenuItem>
-					</UIDropdownMenuContent>
-				</UIDropdownMenu>
-			);
-		},
-	},
-];
+import { UITooltip, UITooltipContent, UITooltipProvider } from './UITooltip';
 
 type Props = {
 	readonly data: Visitor[];
@@ -150,6 +52,12 @@ const UIVisitorsTable = (props: Props) => {
 	const [currentVisitorState, setCurrentVisitorState] = useState<Visitor | undefined>(undefined);
 	const isLiveUpdates = pathname === routes.visitors.path;
 
+	const setCurrentVisitor = useVisitorsStore((state) => state.setCurrentVisitor);
+
+	const onSetCurrentVisitor = (visitor: Visitor) => {
+		setCurrentVisitor(visitor);
+	};
+
 	const csvHeaders = [
 		{ label: 'Full name', key: 'fullName' },
 		{ label: 'Email', key: 'email' },
@@ -161,14 +69,92 @@ const UIVisitorsTable = (props: Props) => {
 		{ label: 'Gender', key: 'gender' },
 	];
 
-	const setCurrentVisitor = useVisitorsStore((state) => state.setCurrentVisitor);
+	const columns: ColumnDef<Visitor>[] = [
+		{
+			accessorKey: 'fullName',
+			header: 'Full name',
+			size: 100,
+			cell: ({ row }) => <div className="capitalize min-w-16">{row.getValue('fullName')}</div>,
+		},
+		{
+			accessorKey: 'email',
+			size: 100,
+			header: ({ column }) => {
+				return (
+					<UIButton className="min-w-16" variant="ghost" onClick={() => column.toggleSorting(column.getIsSorted() === 'asc')}>
+						Email
+						<ArrowUpDown className="ml-2 h-4 w-4" />
+					</UIButton>
+				);
+			},
+			cell: ({ row }) => <div className="lowercase min-w-16">{addEllipsis(row.getValue('email'), 20)}</div>,
+		},
+		{
+			accessorKey: 'status',
+			header: 'Status',
+			size: 133.33,
+			cell: ({ row }) => <div className="capitalize min-w-16">{row.getValue('status')}</div>,
+		},
 
-	useEffect(() => {
-		const selectedRowIndex = Object.keys(rowSelection)[0] ?? '-1';
-		const selectedRow = props.data.find((_, index) => index.toString() === selectedRowIndex);
+		{
+			accessorKey: 'priority',
+			header: 'Priority',
+			size: 133.33,
+			cell: ({ row }) => <div className="capitalize min-w-16">{row.getValue('priority')}</div>,
+		},
+		{
+			accessorKey: 'country',
+			header: 'Country',
+			size: 133.33,
+			enablePinning: true,
 
-		setCurrentVisitorState(selectedRow);
-	}, [rowSelection]);
+			cell: ({ row }) => <div className="capitalize min-w-16">{row.getValue('country')}</div>,
+		},
+		{
+			accessorKey: 'city',
+			header: 'City',
+			size: 133.33,
+			enablePinning: true,
+			cell: ({ row }) => <div className="capitalize min-w-16">{row.getValue('city')}</div>,
+		},
+		{
+			accessorKey: 'gender',
+			header: 'Gender',
+			size: 133.33,
+			enablePinning: true,
+			cell: ({ row }) => <div className="capitalize min-w-16">{row.getValue('gender')}</div>,
+		},
+		{
+			size: 30,
+			id: 'actions',
+			enableHiding: false,
+			cell: ({ row }) => {
+				const visitor = row.original;
+
+				return (
+					<UIDropdownMenu>
+						<UIDropdownMenuTrigger asChild>
+							<UIButton variant="ghost" className="h-8 w-8 p-0">
+								<span className="sr-only">Open menu</span>
+								<MoreHorizontal className="h-4 w-4" />
+							</UIButton>
+						</UIDropdownMenuTrigger>
+						<UIDropdownMenuContent align="end">
+							<UIDropdownMenuLabel>Actions</UIDropdownMenuLabel>
+							<UIDropdownMenuItem onClick={() => onSetCurrentVisitor(visitor)}>
+								<Link href={`${pathname}/${visitor.id}`} passHref>
+									Message
+								</Link>
+							</UIDropdownMenuItem>
+							<UIDropdownMenuItem onClick={() => navigator.clipboard.writeText(visitor.email)}>Copy visitor email</UIDropdownMenuItem>
+							<UIDropdownMenuSeparator />
+							<UIDropdownMenuItem>View visitor details</UIDropdownMenuItem>
+						</UIDropdownMenuContent>
+					</UIDropdownMenu>
+				);
+			},
+		},
+	];
 
 	const table = useReactTable({
 		data: props.data,
@@ -194,30 +180,18 @@ const UIVisitorsTable = (props: Props) => {
 		},
 	});
 
-	const onSetCurrentVisitor = () => {
-		if (currentVisitorState) {
-			setCurrentVisitor(currentVisitorState);
-		}
-	};
+	useEffect(() => {
+		const selectedRowIndex = Object.keys(rowSelection)[0] ?? '-1';
+		const selectedRow = props.data.find((_, index) => index.toString() === selectedRowIndex);
+
+		setCurrentVisitorState(selectedRow);
+	}, [rowSelection]);
 
 	return (
 		<div className="w-full">
 			<div className="flex items-center py-4 gap-2">
 				<UITooltipProvider>
 					<UITooltip>
-						<UITooltipTrigger className={cn(!currentVisitorState && 'cursor-not-allowed')}>
-							<UIButton className="rounded-3xl" variant="outline" asChild onClick={onSetCurrentVisitor}>
-								<Link
-									href={`${pathname}/${currentVisitorState?.id}`}
-									className={cn(!currentVisitorState && 'pointer-events-none')}
-									aria-disabled={!currentVisitorState}
-									tabIndex={!currentVisitorState ? -1 : undefined}
-									passHref
-								>
-									Message
-								</Link>
-							</UIButton>
-						</UITooltipTrigger>
 						{!currentVisitorState && (
 							<UITooltipContent>
 								<span>You have to choose a visitor</span>

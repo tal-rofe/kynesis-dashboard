@@ -28,7 +28,7 @@ const Login = () => {
 				<span className="gap-1 mt-8">
 					<span>Not signed up yet?</span>
 					&nbsp;
-					<Link className="font-medium" href={routes.visitors.path}>
+					<Link className="font-medium" href={routes.signUp.path}>
 						Create your account
 					</Link>
 				</span>
