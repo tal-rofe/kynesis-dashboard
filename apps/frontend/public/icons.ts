@@ -81,10 +81,10 @@ const icons = {
 	logout: [
 		'16 16',
 		`
-			<path id="Vector" d="M6 14H3.33333C2.97971 14 2.64057 13.8595 2.39052 13.6095C2.14048 13.3594 2 13.0203 2 12.6667V3.33333C2 2.97971 2.14048 2.64057 2.39052 2.39052C2.64057 2.14048 2.97971 2 3.33333 2H6" stroke="#4B5563" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-			<path id="Vector_2" d="M10.6667 11.3333L14 7.99999L10.6667 4.66666" stroke="#4B5563" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-			<path id="Vector_3" d="M14 8H6" stroke="#4B5563" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-	`,
+			<path d="M6 14H3.33333C2.97971 14 2.64057 13.8595 2.39052 13.6095C2.14048 13.3594 2 13.0203 2 12.6667V3.33333C2 2.97971 2.14048 2.64057 2.39052 2.39052C2.64057 2.14048 2.97971 2 3.33333 2H6" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+			<path d="M10.6667 11.3333L14 7.99999L10.6667 4.66666" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+			<path d="M14 8H6" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+		`,
 	],
 	chevron: [
 		'16 16',
