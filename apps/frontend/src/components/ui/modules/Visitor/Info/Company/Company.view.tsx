@@ -1,5 +1,6 @@
 import React from 'react';
 import { TabsTrigger } from '@radix-ui/react-tabs';
+
 import { type CompanyPostTypes } from '@/lib/types/ui/company';
 import { UICard, UICardHeader, UICardTitle, UICardContent } from '@/ui/UICard';
 import { UITabs, UITabsList } from '@/ui/UITabs';

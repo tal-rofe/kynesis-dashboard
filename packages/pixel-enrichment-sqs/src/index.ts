@@ -1,1 +1,1 @@
-export * from './schemas/pixel-collection-data.js';
+export * from './interfaces/pixel-collection-data.js';

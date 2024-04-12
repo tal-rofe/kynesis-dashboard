@@ -1,6 +1,7 @@
 'use client';
 
 import React, { useState } from 'react';
+
 import { type CompanyPostTypes } from '@/lib/types/ui/company';
 
 import CompanyView from './Company.view';

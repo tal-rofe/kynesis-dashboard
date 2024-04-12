@@ -12,10 +12,10 @@
 			"project": "./src/**/*",
 			"ignoreDependencies": ["@kynesis/pixel-enrichment-sqs", "@kynesis/lambda-logger"]
 		},
-		"apps/slack-webhook-register-function": {
+		"apps/atdata-pixel-collector-function": {
 			"entry": "./src/index.ts",
 			"project": "./src/**/*",
-			"ignoreDependencies": ["@kynesis/lambda-logger"]
+			"ignoreDependencies": ["@kynesis/pixel-enrichment-sqs", "@kynesis/lambda-logger"]
 		},
 		"packages/pixel-enrichment-sqs": {
 			"entry": "./src/index.ts",

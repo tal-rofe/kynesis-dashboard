@@ -4,23 +4,8 @@ variable "aws_region" {
   default     = "us-east-1"
 }
 
-variable "production" {
-  description = "Do we run on production (true) or development (false)"
-  type        = bool
-}
-
 variable "project" {
   description = "Name to be used on all the resources as identifier. e.g. Project name, Application name"
-  type        = string
-}
-
-variable "domain_name" {
-  description = "Domain name of organization"
-  type        = string
-}
-
-variable "slack_webhook_register_lambda_function_name" {
-  description = "Name of the lambda function dedicated for Slack webhook register"
   type        = string
 }
 
@@ -44,13 +29,23 @@ variable "vetric_api_key" {
   type        = string
 }
 
-variable "slack_client_id" {
-  description = "The Slack client ID"
+variable "atdata_sftp_host" {
+  description = "The SFTP host of AtData pixel server"
   type        = string
 }
 
-variable "slack_client_secret" {
-  description = "The slack client secret"
+variable "atdata_sftp_port" {
+  description = "The SFTP port of AtData pixel server"
+  type        = string
+}
+
+variable "atdata_sftp_username" {
+  description = "The SFTP username of AtData pixel server"
+  type        = string
+}
+
+variable "atdata_sftp_password" {
+  description = "The SFTP password of AtData pixel server"
   type        = string
 }
 

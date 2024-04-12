@@ -1,7 +1,0 @@
-{
-	"$schema": "https://json.schemastore.org/nodemon.json",
-	"watch": ["./src", "../../packages/lambda-logger/src"],
-	"ext": "ts,json",
-	"exec": "node ./esbuild.js && cd ../../terraform && tflocal apply -target=\"aws_lambda_function.slack_webhook_register_lambda\" -auto-approve",
-	"runOnChangeOnly": true
-}

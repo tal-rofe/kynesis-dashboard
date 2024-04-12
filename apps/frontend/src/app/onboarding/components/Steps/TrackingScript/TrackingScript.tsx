@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 
 import { type ScriptDomainType } from '@/lib/types/api/onboarding';
 import { isValidWebsiteUrl } from '@/lib/utils/regex';
+
 import TrackingScriptView from './TrackingScript.view';
 
 type Props = {

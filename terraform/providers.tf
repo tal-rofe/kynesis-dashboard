@@ -14,7 +14,7 @@ terraform {
   }
 }
 
-# * Required environment variables: "AWS_ACCESS_KEY_ID", "AWS_SECRET_ACCESS_KEY", "AWS_REGION"
+# * Required environment variables: "AWS_ACCESS_KEY_ID", "AWS_SECRET_ACCESS_KEY"
 provider "aws" {
   region = var.aws_region
 }

@@ -17,10 +17,12 @@ import { ArrowUpDown, ChevronDown, MoreHorizontal } from 'lucide-react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { DropdownMenuCheckboxItem } from '@radix-ui/react-dropdown-menu';
+
 import { useVisitorsStore } from '@/lib/store/useVisitorsStore';
 import { type Visitor } from '@/lib/types/ui/visitor';
 import { routes } from '@/lib/routes';
 import { addEllipsis } from '@/lib/utils/text';
+
 import { UITable, UITableHeader, UITableRow, UITableHead, UITableBody, UITableCell } from './UITable';
 import { UIButton } from './UIButton';
 import {

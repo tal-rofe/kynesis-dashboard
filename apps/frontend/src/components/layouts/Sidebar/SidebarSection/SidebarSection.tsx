@@ -1,6 +1,7 @@
 import React from 'react';
 
 import { type SidebarElement } from '@/lib/types/ui/nav-element';
+
 import SidebarSectionView from './SidebarSection.view';
 
 type Props = {

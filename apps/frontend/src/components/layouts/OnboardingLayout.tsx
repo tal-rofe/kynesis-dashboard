@@ -1,5 +1,7 @@
 import React from 'react';
+
 import UIBrandLogo from '@/ui/UIBrandLogo';
+
 import PageWrapper from '../wrappers/PageWrapper';
 
 type PageProps = {

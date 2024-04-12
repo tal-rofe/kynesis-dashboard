@@ -1,6 +1,8 @@
 import React from 'react';
+
 import PageTransitionWrapper from '@/wrappers/PageTransitionWrapper';
 import { ModalProvider } from '@/lib/providers/ModalProvider';
+
 import Sidebar from './Sidebar';
 import Header from './Header';
 

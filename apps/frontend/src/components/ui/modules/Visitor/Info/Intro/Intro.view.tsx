@@ -1,6 +1,7 @@
 import React from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
+
 import { type Visitor } from '@/lib/types/ui/visitor';
 import { type EmailSubjects } from '@/lib/types/ui/email-subjects';
 import { UICard, UICardHeader, UICardTitle, UICardContent } from '@/ui/UICard';
