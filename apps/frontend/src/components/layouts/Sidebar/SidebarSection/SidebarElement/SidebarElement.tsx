@@ -18,13 +18,11 @@ const SidebarElement = (props: Props) => {
 
 	const isActive = pathname.includes(props.sidebarElement.link ?? '');
 
-	const { sidebarElement } = props;
-
 	const onShowSearchModal = () => {
 		showModal(<SearchModal hideModal={hideModal} />);
 	};
 
-	return <SidebarElementView isActive={isActive} sidebarElement={sidebarElement} onShowSearchModal={onShowSearchModal} />;
+	return <SidebarElementView isActive={isActive} sidebarElement={props.sidebarElement} onShowSearchModal={onShowSearchModal} />;
 };
 
 export default React.memo(SidebarElement);
