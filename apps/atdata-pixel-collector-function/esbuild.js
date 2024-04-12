@@ -18,4 +18,7 @@ await esbuild.build({
 	],
 	// * Remove from bundle, as "ssh2-sftp-client" package can run without it
 	external: ['cpu-features'],
+	loader: {
+		'.node': 'file',
+	},
 });
