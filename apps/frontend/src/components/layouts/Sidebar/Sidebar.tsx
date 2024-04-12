@@ -9,7 +9,7 @@ import SidebarView from './Sidebar.view';
 
 const Sidebar = () => {
 	const { isModalOpen, showModal, hideModal } = useModal();
-	const sidebarElements = navElements.filter((element) => !element.position);
+	const middleSidebarElements = navElements.filter((element) => !element.position);
 	const topSidebarElements = navElements.filter((element) => element.position === 'top');
 	const bottomSidebarElements = navElements.filter((element) => element.position === 'bottom');
 
@@ -34,7 +34,13 @@ const Sidebar = () => {
 		return () => window.removeEventListener('keydown', handleKeyDown);
 	}, [isModalOpen]);
 
-	return <SidebarView sidebarElements={sidebarElements} topSidebarElements={topSidebarElements} bottomSidebarElements={bottomSidebarElements} />;
+	return (
+		<SidebarView
+			middleSidebarElements={middleSidebarElements}
+			topSidebarElements={topSidebarElements}
+			bottomSidebarElements={bottomSidebarElements}
+		/>
+	);
 };
 
 export default React.memo(Sidebar);

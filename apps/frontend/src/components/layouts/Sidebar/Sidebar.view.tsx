@@ -4,7 +4,7 @@ import { type SidebarElement } from '@/lib/types/ui/nav-element';
 import SidebarSection from './SidebarSection';
 
 type Props = {
-	readonly sidebarElements: SidebarElement[];
+	readonly middleSidebarElements: SidebarElement[];
 	readonly topSidebarElements: SidebarElement[];
 	readonly bottomSidebarElements: SidebarElement[];
 };
@@ -25,7 +25,7 @@ const SidebarView = (props: Props) => {
 			<div className="flex flex-col justify-between h-full">
 				<div className="flex flex-col gap-4">
 					<SidebarSection elements={props.topSidebarElements} />
-					<SidebarSection label="Data tables" elements={props.sidebarElements} />
+					<SidebarSection label="Data tables" elements={props.middleSidebarElements} />
 				</div>
 				<div className="flex flex-col">
 					<SidebarSection elements={props.bottomSidebarElements} />
