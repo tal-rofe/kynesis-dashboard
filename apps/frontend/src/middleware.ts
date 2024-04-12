@@ -3,7 +3,7 @@ import type { JwtPayload } from 'jsonwebtoken';
 import { type NextRequest, NextResponse } from 'next/server';
 
 import { type RoutesPath, routes } from '@/lib/routes';
-import { validateJwt } from './lib/utils/validate-jwt';
+import { validateJwt } from '@/lib/utils/validate-jwt';
 
 const middleware = async (request: NextRequest) => {
 	const { pathname } = request.nextUrl;
