@@ -6,9 +6,9 @@ import LoggerService from '@kynesis/lambda-logger';
 import type { PixelCollectionData } from '@kynesis/pixel-enrichment-sqs';
 import { SQSClient, SendMessageCommand, type SendMessageCommandOutput } from '@aws-sdk/client-sqs';
 import { fromZodError } from 'zod-validation-error';
+import csvParser from 'csvtojson';
 
 import { SFTP_CONNECTION_RETRIES, SFTP_HANDSHAKE_TIMEOUT } from './constants/sftp';
-import { readByLine } from './utils/read-by-line';
 import { SQS_MAX_ATTEMPTS } from './constants/sqs';
 import { PixelUnitSchema } from './schemas/pixel-unit-schema';
 
@@ -55,34 +55,26 @@ export const handler: ScheduledHandler = async (_, context) => {
 
 	const sqsClient = new SQSClient({ region: process.env.AWS_REGION, maxAttempts: SQS_MAX_ATTEMPTS });
 
-	try {
-		// * Using "await" to keep the "try{}catch{}" scope
-		await readByLine(pixelDataFileDestination, async (line: string) => {
-			let parsedLine: unknown;
+	csvParser({ delimiter: 'auto' }, { objectMode: true })
+		.fromFile(pixelDataFileDestination)
+		.on('data', async (pixelDataUnit) => {
+			logger.info('Trying to process pixel data unit', { pixelDataUnit });
 
-			try {
-				parsedLine = JSON.parse(line);
-			} catch (error) {
-				logger.error(`Failed to process pixel data unit with an error: ${error}`, { line });
-
-				return;
-			}
-
-			const validatedLineObject = await PixelUnitSchema.safeParseAsync(parsedLine);
+			const validatedLineObject = await PixelUnitSchema.safeParseAsync(pixelDataUnit);
 
 			if (!validatedLineObject.success) {
 				const validationError = fromZodError(validatedLineObject.error).toString();
 
-				logger.error(`Failed to process pixel line with an error: ${validationError}`, { line });
+				logger.warn(`Failed to process pixel unit with an error: ${validationError}`, { pixelDataUnit });
 
 				return;
 			}
 
-			const messageBodyObject: PixelCollectionData = { ...validatedLineObject.data, apiIndex: 0 };
+			const sqsMessageBodyObject: PixelCollectionData = { ...validatedLineObject.data, apiIndex: 0 };
 
 			const sendMessageSqsCommand = new SendMessageCommand({
 				QueueUrl: process.env.SQS_URL,
-				MessageBody: JSON.stringify(messageBodyObject),
+				MessageBody: JSON.stringify(sqsMessageBodyObject),
 				MessageGroupId: `${validatedLineObject.data.email}#${validatedLineObject.data.originDomain}`,
 			});
 
@@ -91,31 +83,21 @@ export const handler: ScheduledHandler = async (_, context) => {
 			try {
 				sendMessageSqsOutput = await sqsClient.send(sendMessageSqsCommand);
 			} catch (error: unknown) {
-				logger.error(`Failed to send SQS message with an error: ${error}`, { line });
+				logger.warn(`Failed to send SQS message with an error: ${error}`, { pixelDataUnit });
 
 				return;
 			}
 
 			logger.info('Successfully sent message to SQS to be handled', {
-				line,
+				pixelDataUnit,
 				messageId: sendMessageSqsOutput.MessageId,
 				awsRequestId: sendMessageSqsOutput.$metadata.requestId,
 			});
+		})
+		.on('error', (error) => {
+			logger.error(`Failed to process pixel data with an error event: ${error}`);
+		})
+		.on('done', () => {
+			logger.info('Finished processing pixel data');
 		});
-	} catch (error) {
-		logger.error(`Failed to process pixel data with an error: ${error}`);
-
-		return;
-	}
-
-	logger.info('Successfully processed pixel data file');
-
-	try {
-		// * Delete the file so in the next Lambda execution we won't process the same data
-		await sftpClient.delete(process.env.DATA_FILE_PATH, true);
-	} catch (error: unknown) {
-		logger.error(`Failed to delete pixel data file with an error: ${error}`);
-
-		return;
-	}
 };
