@@ -23,7 +23,7 @@ const Login = () => {
 					onClick={() => signIn('google')}
 				>
 					<UISvg name="googleIcon" />
-					Sign up with Google
+					Login with Google
 				</button>
 				<span className="gap-1 mt-8">
 					<span>Not signed up yet?</span>
