@@ -19,7 +19,7 @@ const UIBrandLogoView = (props: Props) => {
 	};
 
 	const brandIcon = <UISvg name="brandLogoIcon" className="!h-[51px] !w-[51px] fill-transparent" />;
-	const brandText = <UISvg name="brandLogoText" className="!w-40 !h-full fill-[#222222]" />;
+	const brandText = <UISvg name="brandLogoText" className="!w-40 !h-full !fill-[#222222]" />;
 
 	if (props.onClick) {
 		return (
