@@ -1,4 +1,5 @@
 import React from 'react';
+
 import EmailCompose from './EmailCompose';
 import Info from './Info';
 

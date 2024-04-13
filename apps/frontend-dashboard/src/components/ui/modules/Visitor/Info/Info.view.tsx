@@ -1,4 +1,5 @@
 import React from 'react';
+
 import Intro from './Intro';
 import LinkedInActivity from './LinkedInActivity';
 import Company from './Company';

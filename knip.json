@@ -9,11 +9,13 @@
 		},
 		"apps/pixel-enrichment-function": {
 			"entry": "./src/index.ts",
-			"project": "./src/**/*"
+			"project": "./src/**/*",
+			"ignoreDependencies": ["@kynesis/lambda-logger", "@kynesis/pixel-enrichment-sqs"]
 		},
-		"apps/slack-webhook-register-function": {
+		"apps/atdata-pixel-collector-function": {
 			"entry": "./src/index.ts",
-			"project": "./src/**/*"
+			"project": "./src/**/*",
+			"ignoreDependencies": ["@kynesis/lambda-logger", "@kynesis/pixel-enrichment-sqs"]
 		},
 		"packages/pixel-enrichment-sqs": {
 			"entry": "./src/index.ts",

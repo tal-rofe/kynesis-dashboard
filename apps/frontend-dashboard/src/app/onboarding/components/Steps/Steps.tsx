@@ -3,9 +3,10 @@
 import React, { useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { setCookie } from 'cookies-next';
-import { routes } from '@/lib/routes';
 
+import { routes } from '@/lib/routes';
 import { type OnboardingSteps } from '@/lib/types/api/onboarding';
+
 import StepsView from './Steps.view';
 
 const Steps = () => {

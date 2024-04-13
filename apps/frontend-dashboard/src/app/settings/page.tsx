@@ -2,6 +2,7 @@
 
 import React from 'react';
 import { useTheme } from 'next-themes';
+
 import { UISwitch } from '@/ui/UISwitch';
 import { UILabel } from '@/ui/UILabel';
 import PageWrapper from '@/wrappers/PageWrapper';

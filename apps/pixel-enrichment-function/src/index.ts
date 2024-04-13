@@ -89,7 +89,7 @@ export const handler: SQSHandler = async (event, context) => {
 			return;
 		}
 
-		logger.info('Successfully pushed message to SQS to be handled', {
+		logger.info('Successfully sent message to SQS to be handled', {
 			messageBody,
 			messageId: sendMessageSqsOutput.MessageId,
 			awsRequestId: sendMessageSqsOutput.$metadata.requestId,

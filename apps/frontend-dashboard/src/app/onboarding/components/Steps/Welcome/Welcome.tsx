@@ -4,6 +4,7 @@ import React, { useEffect, useState } from 'react';
 
 import { type WelcomeFormInputs } from '@/lib/types/api/onboarding';
 import { isValidLinkedInURL } from '@/lib/utils/regex';
+
 import WelcomeView from './Welcome.view';
 
 type Props = {

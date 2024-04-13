@@ -7,13 +7,13 @@ apps/frontend-dashboard/src/components/ui/modules/
 apps/pixel-enrichment-function/node_modules
 apps/pixel-enrichment-function/build
 apps/pixel-enrichment-function/src/**/*.d.ts
+apps/pixel-enrichment-function/dist
 
-apps/slack-webhook-register-function/node_modules
-apps/slack-webhook-register-function/build
-apps/slack-webhook-register-function/src/**/*.d.ts
+apps/atdata-pixel-collector-function/node_modules
+apps/atdata-pixel-collector-function/build
+apps/atdata-pixel-collector-function/src/**/*.d.ts
+apps/atdata-pixel-collector-function/dist
 
 packages/pixel-enrichment-sqs/node_modules
 
 packages/lambda-logger/node_modules
-
-apps/pixel-enrichment-function/dist

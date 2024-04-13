@@ -1,4 +1,4 @@
 #!/bin/sh
 . "$(dirname "$0")/_/husky.sh"
 
-pnpm knip:nx && pnpm cspell:nx && pnpm type-check:all && pnpm exec lint-staged
+pnpm knip:nx && pnpm cspell:nx && pnpm type-check:all && pnpm build:nested && pnpm exec lint-staged
