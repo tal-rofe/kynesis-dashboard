@@ -8,10 +8,10 @@ const inflintConfig: Config = {
 		'**/*.yml': 2,
 		'./{assets,scripts,docker/scripts}/**/*': [2, 'kebab-case'],
 
-		'apps/frontend/src/lib/{data,types,utils}/**/*': [2, 'kebab-case'],
-		'apps/frontend/src/lib/hooks/*': [2, 'camelCase'],
-		'apps/frontend/src/components/{layouts,wrappers}/*': [2, 'PascalCase.Point'],
-		'apps/frontend/src/components/ui/*': [2, '[UIComponent]'],
+		'apps/frontend-dashboard/src/lib/{data,types,utils}/**/*': [2, 'kebab-case'],
+		'apps/frontend-dashboard/src/lib/hooks/*': [2, 'camelCase'],
+		'apps/frontend-dashboard/src/components/{layouts,wrappers}/*': [2, 'PascalCase.Point'],
+		'apps/frontend-dashboard/src/components/ui/*': [2, '[UIComponent]'],
 
 		'./apps/slack-webhook-register-function/src/**/*': [2, 'kebab-case'],
 

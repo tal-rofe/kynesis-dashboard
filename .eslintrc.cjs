@@ -14,7 +14,6 @@ const config = {
 	},
 	plugins: ['@typescript-eslint', 'unused-imports', 'import', 'deprecation', 'unicorn', 'n'],
 	rules: {
-		'curly': ['error', 'all'],
 		'no-console': 'error',
 		'max-lines': ['error', { max: 150, skipBlankLines: true, skipComments: true }],
 		'quotes': ['error', 'single', { avoidEscape: true }],
@@ -163,7 +162,6 @@ const config = {
 		'unicorn/no-new-buffer': 'error',
 		'unicorn/throw-new-error': 'error',
 		'unicorn/text-encoding-identifier-case': 'error',
-		'unicorn/switch-case-braces': 'error',
 		'unicorn/no-empty-file': 'error',
 
 		'n/no-sync': 'error',
