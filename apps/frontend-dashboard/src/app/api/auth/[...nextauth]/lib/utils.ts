@@ -109,10 +109,9 @@ export const authOptions: NextAuthOptions = {
 			const extendedToken = token as ExtendedJwt;
 			const extendedSession = session as ExtendedSession;
 
-			extendedSession.user = extendedToken.user!; // Using non-null assertion operator as example
+			extendedSession.user = extendedToken.user;
 			extendedSession.accessToken = extendedToken.accessToken;
 
-			// Assuming 'customHeaderValue' is always set and managed in JWT callback
 			if (extendedToken.customHeaderValue) {
 				extendedSession.customHeaderValue = extendedToken.customHeaderValue;
 			}
