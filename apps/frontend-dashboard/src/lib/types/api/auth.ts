@@ -6,10 +6,10 @@ export type ExtendedJwt = JWT & {
 	refreshToken?: string;
 	accessTokenExpires?: number;
 	user?: User;
-	customHeaderValue: string;
+	userIdEncryptionHeader: string;
 };
 
 export type ExtendedSession = Session & {
 	accessToken?: string;
-	customHeaderValue: string;
+	userIdEncryptionHeader: string;
 };

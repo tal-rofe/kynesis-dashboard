@@ -90,11 +90,11 @@ export const authOptions: NextAuthOptions = {
 					try {
 						const encryptedUserId = await encrypt(user.id.toString(), encryptionKey);
 
-						const headerValue = Buffer.from(`${encryptedUserId.iv}:${encryptedUserId.encryptedData}`).toString('base64');
+						const encryptedUserIdBase64 = Buffer.from(`${encryptedUserId.iv}:${encryptedUserId.encryptedData}`).toString('base64');
 
-						newToken.customHeaderValue = headerValue;
+						newToken.userIdEncryptionHeader = encryptedUserIdBase64;
 					} catch (error) {
-						newToken.customHeaderValue = 'EncryptionError';
+						newToken.userIdEncryptionHeader = 'EncryptionError';
 					}
 				}
 			}
@@ -112,8 +112,8 @@ export const authOptions: NextAuthOptions = {
 			extendedSession.user = extendedToken.user;
 			extendedSession.accessToken = extendedToken.accessToken;
 
-			if (extendedToken.customHeaderValue) {
-				extendedSession.customHeaderValue = extendedToken.customHeaderValue;
+			if (extendedToken.userIdEncryptionHeader) {
+				extendedSession.userIdEncryptionHeader = extendedToken.userIdEncryptionHeader;
 			}
 
 			return extendedSession;

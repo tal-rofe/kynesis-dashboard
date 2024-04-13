@@ -1,22 +1,18 @@
 import { useCallback } from 'react';
+import { useSession } from 'next-auth/react';
 
+import type { ExtendedSession } from '@/types/api/auth';
 import type { THttpMethod } from '@/types/api/http';
-import { encrypt } from '@/utils/encrypt';
 
 const useBackendService = () => {
+	const { data: sessionData } = useSession() as { data: ExtendedSession | null };
+
 	const baseFetcher = async <R = unknown, D = unknown>(path: string, method: THttpMethod, data?: D): Promise<R> => {
-		const text = 'some text';
-		const key = '123';
-
-		const encryptedUserId = await encrypt(text, key);
-
-		const headerValue = Buffer.from(`${encryptedUserId.iv}:${encryptedUserId.encryptedData}`).toString('base64');
-
 		const res = await fetch(`/api${path}`, {
 			method,
 			headers: {
 				'Content-Type': 'application/json',
-				'Encrypted-User-ID': headerValue,
+				'Encrypted-User-ID': sessionData?.userIdEncryptionHeader ?? '',
 			},
 			body: data ? JSON.stringify(data) : undefined,
 		});
