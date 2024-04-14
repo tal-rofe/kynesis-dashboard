@@ -20,8 +20,8 @@ import { DropdownMenuCheckboxItem } from '@radix-ui/react-dropdown-menu';
 
 import { useVisitorsStore } from '@/lib/store/useVisitorsStore';
 import { type Visitor } from '@/lib/types/ui/visitor';
-import { routes } from '@/lib/routes';
 import { addEllipsis } from '@/lib/utils/text';
+import { routes } from '@/lib/routes';
 
 import { UITable, UITableHeader, UITableRow, UITableHead, UITableBody, UITableCell } from './UITable';
 import { UIButton } from './UIButton';
@@ -36,9 +36,13 @@ import {
 import UISvg from './UISvg';
 import { UIInput } from './UIInput';
 import { UITooltip, UITooltipContent, UITooltipProvider } from './UITooltip';
+import { UICardDescription, UICardTitle } from './UICard';
 
 type Props = {
 	readonly data: Visitor[];
+	readonly className?: string;
+	readonly liveUpdates?: boolean;
+	readonly dataOnly?: boolean;
 	readonly onRowAction?: (visitor: Visitor) => void;
 };
 
@@ -50,7 +54,6 @@ const UIVisitorsTable = (props: Props) => {
 	const [columnVisibility, setColumnVisibility] = useState<VisibilityState>({});
 	const [rowSelection, setRowSelection] = useState({});
 	const [currentVisitorState, setCurrentVisitorState] = useState<Visitor | undefined>(undefined);
-	const isLiveUpdates = pathname === routes.visitors.path;
 
 	const setCurrentVisitor = useVisitorsStore((state) => state.setCurrentVisitor);
 
@@ -124,7 +127,10 @@ const UIVisitorsTable = (props: Props) => {
 			enablePinning: true,
 			cell: ({ row }) => <div className="capitalize min-w-16">{row.getValue('gender')}</div>,
 		},
-		{
+	];
+
+	!props.dataOnly &&
+		columns.push({
 			size: 30,
 			id: 'actions',
 			enableHiding: false,
@@ -142,7 +148,7 @@ const UIVisitorsTable = (props: Props) => {
 						<UIDropdownMenuContent align="end">
 							<UIDropdownMenuLabel>Actions</UIDropdownMenuLabel>
 							<UIDropdownMenuItem onClick={() => onSetCurrentVisitor(visitor)}>
-								<Link href={`${pathname}/${visitor.id}`} passHref>
+								<Link className="w-full" href={`${pathname}/${visitor.id}`} passHref>
 									Message
 								</Link>
 							</UIDropdownMenuItem>
@@ -153,8 +159,7 @@ const UIVisitorsTable = (props: Props) => {
 					</UIDropdownMenu>
 				);
 			},
-		},
-	];
+		});
 
 	const table = useReactTable({
 		data: props.data,
@@ -188,63 +193,78 @@ const UIVisitorsTable = (props: Props) => {
 	}, [rowSelection]);
 
 	return (
-		<div className="w-full">
-			<div className="flex items-center py-4 gap-2">
-				<UITooltipProvider>
-					<UITooltip>
-						{!currentVisitorState && (
-							<UITooltipContent>
-								<span>You have to choose a visitor</span>
-							</UITooltipContent>
-						)}
-					</UITooltip>
-				</UITooltipProvider>
-				<UIButton className="rounded-3xl" variant="secondary" asChild>
-					<CSVLink
-						data={props.data}
-						headers={csvHeaders}
-						filename={`visitors-${currentDate.getDate()}-${
-							currentDate.getMonth() + 1
-						}-${currentDate.getFullYear()}-${currentDate.getHours()}-${currentDate.getMinutes()}-${currentDate.getSeconds()}`}
-					>
-						Export to CSV
-					</CSVLink>
-				</UIButton>
+		<div className="w-full h-full overflow-hidden">
+			{props.dataOnly ? (
+				<div className="flex items-center justify-between mb-6">
+					<div className="gap-1.5">
+						<UICardTitle className=" text-xl">Recent visitors</UICardTitle>
+						<UICardDescription className=" text-sm">View and manage your visitors</UICardDescription>
+					</div>
+					<UIButton asChild className="bg-[#15803D]">
+						<Link href={routes.visitors.path} className="text-white">
+							<UISvg name="arrowUpRight" className="mr-2" />
+							View all
+						</Link>
+					</UIButton>
+				</div>
+			) : (
+				<div className="flex items-center py-4 gap-2">
+					<UITooltipProvider>
+						<UITooltip>
+							{!currentVisitorState && (
+								<UITooltipContent>
+									<span>You have to choose a visitor</span>
+								</UITooltipContent>
+							)}
+						</UITooltip>
+					</UITooltipProvider>
+					<UIButton className="rounded-3xl" variant="secondary" asChild>
+						<CSVLink
+							data={props.data}
+							headers={csvHeaders}
+							filename={`visitors-${currentDate.getDate()}-${
+								currentDate.getMonth() + 1
+							}-${currentDate.getFullYear()}-${currentDate.getHours()}-${currentDate.getMinutes()}-${currentDate.getSeconds()}`}
+						>
+							Export to CSV
+						</CSVLink>
+					</UIButton>
 
-				<UIInput
-					placeholder="Filter emails..."
-					value={(table.getColumn('email')?.getFilterValue() as string) ?? ''}
-					className="max-w-sm"
-					onChange={(event) => table.getColumn('email')?.setFilterValue(event.target.value)}
-				/>
-				<UIDropdownMenu>
-					<UIDropdownMenuTrigger asChild>
-						<UIButton variant="outline" className="ml-auto">
-							Columns
-							<ChevronDown className="ml-2 h-4 w-4" />
-						</UIButton>
-					</UIDropdownMenuTrigger>
-					<UIDropdownMenuContent align="end">
-						{table
-							.getAllColumns()
-							.filter((column) => column.getCanHide())
-							.map((column) => {
-								return (
-									<DropdownMenuCheckboxItem
-										key={column.id}
-										className="capitalize"
-										checked={column.getIsVisible()}
-										onCheckedChange={(value) => column.toggleVisibility(!!value)}
-									>
-										{column.id}
-									</DropdownMenuCheckboxItem>
-								);
-							})}
-					</UIDropdownMenuContent>
-				</UIDropdownMenu>
-			</div>
-			<div className="rounded-md border max-h-[65vh] overflow-y-auto">
-				<UITable>
+					<UIInput
+						placeholder="Filter emails..."
+						value={(table.getColumn('email')?.getFilterValue() as string) ?? ''}
+						className="max-w-sm"
+						onChange={(event) => table.getColumn('email')?.setFilterValue(event.target.value)}
+					/>
+					<UIDropdownMenu>
+						<UIDropdownMenuTrigger asChild>
+							<UIButton variant="outline" className="ml-auto">
+								Columns
+								<ChevronDown className="ml-2 h-4 w-4" />
+							</UIButton>
+						</UIDropdownMenuTrigger>
+						<UIDropdownMenuContent align="end">
+							{table
+								.getAllColumns()
+								.filter((column) => column.getCanHide())
+								.map((column) => {
+									return (
+										<DropdownMenuCheckboxItem
+											key={column.id}
+											className="capitalize"
+											checked={column.getIsVisible()}
+											onCheckedChange={(value) => column.toggleVisibility(!!value)}
+										>
+											{column.id}
+										</DropdownMenuCheckboxItem>
+									);
+								})}
+						</UIDropdownMenuContent>
+					</UIDropdownMenu>
+				</div>
+			)}
+			<div className=" overflow-scroll h-full pb-6">
+				<UITable className="mb-6">
 					<UITableHeader>
 						{table.getHeaderGroups().map((headerGroup) => (
 							<UITableRow key={headerGroup.id}>
@@ -277,31 +297,34 @@ const UIVisitorsTable = (props: Props) => {
 					</UITableBody>
 				</UITable>
 			</div>
-			<div className="flex items-center justify-between  py-4">
-				{isLiveUpdates ? (
-					<div className="flex items-center space-x-2">
-						<span className="h-2 w-2 rounded-full bg-primary animate-pulse-slow" />
-						<span className=" text-muted-foreground text-sm">Updating live from your website</span>
-					</div>
-				) : (
-					<UIButton variant="ghost" size="sm" onClick={() => table.previousPage()}>
-						<UISvg name="plus" className="mr-1 stroke-[#0F172A] dark:stroke-white" />
-						Add prospect
-					</UIButton>
-				)}
 
-				{/* <div className="text-sm text-muted-foreground">
+			{!props.dataOnly && (
+				<div className="flex items-center justify-between  py-4">
+					{props.liveUpdates ? (
+						<div className="flex items-center space-x-2">
+							<span className="h-2 w-2 rounded-full bg-primary animate-pulse-slow" />
+							<span className=" text-muted-foreground text-sm">Updating live from your website</span>
+						</div>
+					) : (
+						<UIButton variant="ghost" size="sm" onClick={() => table.previousPage()}>
+							<UISvg name="plus" className="mr-1 stroke-[#0F172A] dark:stroke-white" />
+							Add prospect
+						</UIButton>
+					)}
+
+					{/* <div className="text-sm text-muted-foreground">
 					{`${table.getFilteredSelectedRowModel().rows.length} of ${table.getFilteredRowModel().rows.length} row(s) selected.`}
 				</div> */}
-				<div className="space-x-2">
-					<UIButton variant="outline" size="sm" disabled={!table.getCanPreviousPage()} onClick={() => table.previousPage()}>
-						Previous
-					</UIButton>
-					<UIButton variant="outline" size="sm" disabled={!table.getCanNextPage()} onClick={() => table.nextPage()}>
-						Next
-					</UIButton>
+					<div className="space-x-2">
+						<UIButton variant="outline" size="sm" disabled={!table.getCanPreviousPage()} onClick={() => table.previousPage()}>
+							Previous
+						</UIButton>
+						<UIButton variant="outline" size="sm" disabled={!table.getCanNextPage()} onClick={() => table.nextPage()}>
+							Next
+						</UIButton>
+					</div>
 				</div>
-			</div>
+			)}
 		</div>
 	);
 };

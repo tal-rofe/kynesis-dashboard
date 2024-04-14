@@ -21,7 +21,7 @@ const middleware = async (request: NextRequest) => {
 		.filter((route) => route.isRequiredAuth === false)
 		.map((route) => route.path);
 
-	const absoluteAuthorizedRoutesURL = new URL(routes.visitors.path, request.nextUrl.origin);
+	const absoluteAuthorizedRoutesURL = new URL(routes.dashboard.path, request.nextUrl.origin);
 	const absoluteUnAuthorizedRoutesURL = new URL(routes.login.path, request.nextUrl.origin);
 
 	if (authorizedRoutes.includes(pathname as RoutesPath) && !isAuthenticated) {

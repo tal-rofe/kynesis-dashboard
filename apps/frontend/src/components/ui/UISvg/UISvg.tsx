@@ -1,6 +1,6 @@
 import React, { type CSSProperties } from 'react';
 
-import type icons from '@/public/icons';
+import type icons from '@/assets/icons';
 
 import UISvgView from './UISvg.view';
 
