@@ -13,6 +13,7 @@
 			"@/images/*": ["public/images/*"],
 			"@/modules/*": ["src/components/modules/*"],
 			"@/layouts/*": ["src/components/layouts/*"],
+			"@/assets/*": ["src/assets/*"],
 			"@/ui/*": ["src/components/ui/*"],
 			"@/wrappers/*": ["src/components/wrappers/*"],
 			"@/lib/*": ["src/lib/*"],

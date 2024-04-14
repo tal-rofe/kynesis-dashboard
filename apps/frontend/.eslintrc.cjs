@@ -94,7 +94,7 @@ module.exports = {
 			},
 		},
 		{
-			files: ['./public/icons.ts'],
+			files: ['./src/assets/icons.ts'],
 			rules: {
 				'max-lines': 'off',
 			},

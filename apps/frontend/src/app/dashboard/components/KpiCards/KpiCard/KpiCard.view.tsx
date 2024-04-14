@@ -1,6 +1,6 @@
 import React from 'react';
 
-import type icons from '@/public/icons';
+import type icons from '@/assets/icons';
 import { UICard, UICardDescription, UICardTitle } from '@/ui/UICard';
 import UISvg from '@/ui/UISvg';
 

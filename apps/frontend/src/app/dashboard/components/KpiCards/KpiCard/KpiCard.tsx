@@ -1,6 +1,6 @@
 import React from 'react';
 
-import type icons from '@/public/icons';
+import type icons from '@/assets/icons';
 
 import KpiCardView from './KpiCard.view';
 

@@ -1,6 +1,6 @@
 import React, { type CSSProperties } from 'react';
 
-import icons from '@/public/icons';
+import icons from '@/assets/icons';
 
 type Props = {
 	readonly name: keyof typeof icons;

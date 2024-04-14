@@ -6,6 +6,7 @@
 	"scripts": {
 		"postinstall": "playwright install --with-deps",
 		"build": "dotenv -e envs/.env.production -- next build",
+		"start": "dotenv -e envs/.env.production -- next start -p 8080",
 		"start:dev": "dotenv -e envs/.env.development -- next dev -p 8080",
 		"start:dev:docker": "next dev -p 8080",
 		"start:prod": "next start -p 8080",
