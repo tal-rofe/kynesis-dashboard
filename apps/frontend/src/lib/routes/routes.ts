@@ -1,6 +1,6 @@
 export const routes = {
 	dashboard: {
-		path: '/',
+		path: '/dashboard',
 		title: 'Dashboard',
 		isRequiredAuth: true,
 	},

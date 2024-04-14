@@ -24,7 +24,7 @@ const SidebarElementView = (props: Props) => {
 				className=" w-full justify-start"
 				onClick={() => (sidebarElement.icon === 'logout' ? signOut() : props.onShowSearchModal())}
 			>
-				<UISvg name={sidebarElement.icon} className="mr-1 stroke-[#4B5563] dark:stroke-white" />
+				<UISvg name={sidebarElement.icon} className="mr-1 iconStroke" />
 				{sidebarElement.label}
 				{sidebarElement.icon === 'search' && <UIMenubarShortcut>⌘K</UIMenubarShortcut>}
 			</UIButton>
@@ -34,7 +34,7 @@ const SidebarElementView = (props: Props) => {
 	return (
 		<UIButton asChild variant="ghost" className={cn(props.isActive && 'bg-accent text-accent-foreground', 'w-full justify-start')}>
 			<Link href={sidebarElement.link}>
-				<UISvg name={sidebarElement.icon} className="mr-1 stroke-[#4B5563] dark:stroke-white" />
+				<UISvg name={sidebarElement.icon} className="mr-1 iconStroke" />
 				{sidebarElement.label}
 			</Link>
 		</UIButton>

@@ -93,6 +93,12 @@ module.exports = {
 				'@typescript-eslint/consistent-type-definitions': 'off',
 			},
 		},
+		{
+			files: ['./public/icons.ts'],
+			rules: {
+				'max-lines': 'off',
+			},
+		},
 	],
 	settings: {
 		react: {

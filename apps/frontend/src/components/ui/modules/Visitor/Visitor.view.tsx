@@ -5,7 +5,7 @@ import Info from './Info';
 
 const VisitorView = () => {
 	return (
-		<div className="flex items-center flex-col-reverse lg:flex-row w-full h-svh overflow-hidden max-h-[calc(100%-5rem)]">
+		<div className="flex items-center flex-col-reverse lg:flex-row w-full h-svh overflow-hidden max-h-[calc(100%-0rem)]">
 			<Info />
 			<EmailCompose />
 		</div>
