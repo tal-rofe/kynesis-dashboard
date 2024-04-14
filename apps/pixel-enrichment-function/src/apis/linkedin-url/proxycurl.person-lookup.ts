@@ -25,11 +25,11 @@ class ProxycurlPersonLookupApi extends LinkedinUrl {
 		const requestSearchParams = new URLSearchParams();
 
 		requestSearchParams.append('company_domain', companyDomain);
-		requestSearchParams.append('first_name', data.firstName);
+		requestSearchParams.append('first_name', data.firstName!); // * Must have this field, otherwise this API is not being used
 		requestSearchParams.append('similarity_checks', 'skip');
 		requestSearchParams.append('enrich_profile', 'skip');
 		requestSearchParams.append('location', 'United States');
-		requestSearchParams.append('last_name', data.lastName);
+		data.lastName && requestSearchParams.append('last_name', data.lastName);
 
 		const apiResponse = await linkedinUrlHttpGet<ApiResponse>(this.apiUrl, requestSearchParams, process.env.PROXYCURL_API_KEY);
 

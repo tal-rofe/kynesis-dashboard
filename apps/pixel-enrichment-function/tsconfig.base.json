@@ -1,13 +1,9 @@
 {
-	"extends": "../../tsconfig.base.json",
+	"extends": ["../../tsconfig.base.json", "./tsconfig.paths.json"],
 	"compilerOptions": {
 		"target": "ESNext",
 		"module": "Preserve",
 		"baseUrl": "./",
-		"typeRoots": ["./node_modules/@types", "./@types"],
-		"paths": {
-			"@/constants/*": ["src/constants/*"],
-			"@/services/*": ["src/services/*"]
-		}
+		"typeRoots": ["./node_modules/@types", "./@types"]
 	}
 }
