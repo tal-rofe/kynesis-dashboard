@@ -46,6 +46,9 @@ jobs:
             - name: Build atdata-pixel-collector-function Lambda function
               run: pnpm exec nx build @kynesis/atdata-pixel-collector-function
 
+            - name: Build bigbdm-pixel-collector-function Lambda function
+              run: pnpm exec nx build @kynesis/bigbdm-pixel-collector-function
+
             - name: Terraform setup
               uses: hashicorp/setup-terraform@v3
               with:

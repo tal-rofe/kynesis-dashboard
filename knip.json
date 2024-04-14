@@ -17,6 +17,11 @@
 			"project": "./src/**/*",
 			"ignoreDependencies": ["@kynesis/pixel-enrichment-sqs", "@kynesis/lambda-logger"]
 		},
+		"apps/bigbdm-pixel-collector-function": {
+			"entry": "./src/index.ts",
+			"project": "./src/**/*",
+			"ignoreDependencies": ["@kynesis/pixel-enrichment-sqs", "@kynesis/lambda-logger"]
+		},
 		"packages/pixel-enrichment-sqs": {
 			"entry": "./src/index.ts",
 			"project": "./src/**/*"

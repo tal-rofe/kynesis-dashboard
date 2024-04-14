@@ -14,6 +14,11 @@ apps/atdata-pixel-collector-function/build
 apps/atdata-pixel-collector-function/src/**/*.d.ts
 apps/atdata-pixel-collector-function/dist
 
+apps/bigbdm-pixel-collector-function/node_modules
+apps/bigbdm-pixel-collector-function/build
+apps/bigbdm-pixel-collector-function/src/**/*.d.ts
+apps/bigbdm-pixel-collector-function/dist
+
 packages/pixel-enrichment-sqs/node_modules
 
 packages/lambda-logger/node_modules

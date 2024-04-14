@@ -45,7 +45,7 @@ export const handler: ScheduledHandler = async (_, context) => {
 
 	try {
 		await sftpClient.fastGet(process.env.DATA_FILE_PATH, pixelDataFileDestination);
-	} catch (error: unknown) {
+	} catch (error) {
 		logger.error(`Failed to download pixel data with an error: ${error}`);
 
 		return;
@@ -82,7 +82,7 @@ export const handler: ScheduledHandler = async (_, context) => {
 
 			try {
 				sendMessageSqsOutput = await sqsClient.send(sendMessageSqsCommand);
-			} catch (error: unknown) {
+			} catch (error) {
 				logger.warn(`Failed to send SQS message with an error: ${error}`, { pixelDataUnit });
 
 				return;

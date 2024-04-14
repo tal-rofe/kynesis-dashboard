@@ -148,6 +148,49 @@ importers:
         specifier: 3.1.0
         version: 3.1.0
 
+  apps/bigbdm-pixel-collector-function:
+    dependencies:
+      '@aws-sdk/client-sqs':
+        specifier: 3.547.0
+        version: 3.547.0
+      '@kynesis/lambda-logger':
+        specifier: workspace:*
+        version: link:../../packages/lambda-logger
+      '@kynesis/pixel-enrichment-sqs':
+        specifier: workspace:*
+        version: link:../../packages/pixel-enrichment-sqs
+      got:
+        specifier: 14.2.1
+        version: 14.2.1
+      zod:
+        specifier: 3.22.4
+        version: 3.22.4
+      zod-validation-error:
+        specifier: 3.1.0
+        version: 3.1.0(zod@3.22.4)
+    devDependencies:
+      '@total-typescript/ts-reset':
+        specifier: 0.5.1
+        version: 0.5.1
+      '@types/aws-lambda':
+        specifier: 8.10.136
+        version: 8.10.136
+      '@types/got':
+        specifier: 9.6.12
+        version: 9.6.12
+      '@types/node':
+        specifier: 20.12.7
+        version: 20.12.7
+      esbuild:
+        specifier: 0.20.2
+        version: 0.20.2
+      esbuild-plugin-tsc:
+        specifier: 0.4.0
+        version: 0.4.0(typescript@5.4.3)
+      nodemon:
+        specifier: 3.1.0
+        version: 3.1.0
+
   apps/frontend:
     dependencies:
       '@radix-ui/react-accordion':
