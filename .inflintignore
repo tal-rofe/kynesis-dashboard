@@ -1,8 +1,8 @@
 node_modules
 
-apps/frontend/node_modules
-apps/frontend/.next
-apps/frontend/src/components/ui/modules/
+apps/frontend-dashboard/node_modules
+apps/frontend-dashboard/.next
+apps/frontend-dashboard/src/components/ui/modules/
 
 apps/pixel-enrichment-function/node_modules
 apps/pixel-enrichment-function/build

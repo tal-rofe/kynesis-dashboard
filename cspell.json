@@ -14,11 +14,11 @@
 		"./lint-staged.config.cjs",
 		"./inflint.config.ts",
 		"./docker/docker-compose.dev.yaml",
-		"./apps/frontend/src/stories/assets/**/*",
-		"./apps/frontend/src/stories/Configure.mdx",
-		"./apps/frontend/src/app/onboarding/components/Steps/Steps.tsx",
-		"./apps/frontend/src/lib/data/mock/**/*",
-		"./apps/frontend/src/components/ui/modules/Visitor/EmailCompose/EmailCompose.view.tsx"
+		"./apps/frontend-dashboard/src/stories/assets/**/*",
+		"./apps/frontend-dashboard/src/stories/Configure.mdx",
+		"./apps/frontend-dashboard/src/app/onboarding/components/Steps/Steps.tsx",
+		"./apps/frontend-dashboard/src/lib/data/mock/**/*",
+		"./apps/frontend-dashboard/src/components/ui/modules/Visitor/EmailCompose/EmailCompose.view.tsx"
 	],
 	"words": [
 		"kynesis",
@@ -47,6 +47,7 @@
 		"repost",
 		"signup",
 		"tflocal",
+		"datasource",
 		"atdata",
 		"bigbdm"
 	]

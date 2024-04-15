@@ -1,21 +1,21 @@
 {
 	"ignore": ["inflint.config.ts", "czvinyl.config.ts", "scripts/onboarding.js", "release.config.cjs", "./docker/scripts/open-dashboard.js"],
-	"ignoreDependencies": ["commitizen", "open", "wait-on"],
+	"ignoreDependencies": ["commitizen", "open", "wait-on", "prisma"],
 	"ignoreBinaries": ["only-allow", "terraform", "concurrently", "magenta,blue", "playwright", "storybook:build", "storybook:test"],
 	"workspaces": {
-		"apps/frontend": {
+		"apps/frontend-dashboard": {
 			"ignore": ["_templates/**/*", "@types/next/index.d.ts", "@types/**/*", "public/**/*", "./src/components/ui/**/*"],
 			"ignoreDependencies": ["@storybook/blocks", "postcss-nesting", "@radix-ui/react-icons", "@radix-ui/react-accordion"]
 		},
 		"apps/pixel-enrichment-function": {
 			"entry": "./src/index.ts",
 			"project": "./src/**/*",
-			"ignoreDependencies": ["@kynesis/pixel-enrichment-sqs", "@kynesis/lambda-logger"]
+			"ignoreDependencies": ["@kynesis/lambda-logger", "@kynesis/pixel-enrichment-sqs"]
 		},
 		"apps/atdata-pixel-collector-function": {
 			"entry": "./src/index.ts",
 			"project": "./src/**/*",
-			"ignoreDependencies": ["@kynesis/pixel-enrichment-sqs", "@kynesis/lambda-logger"]
+			"ignoreDependencies": ["@kynesis/lambda-logger", "@kynesis/pixel-enrichment-sqs"]
 		},
 		"apps/bigbdm-pixel-collector-function": {
 			"entry": "./src/index.ts",
