@@ -88,6 +88,9 @@
 		},
 		"start:dev": {
 			"dependsOn": ["^start:dev"]
+		},
+		"start:dev:localstack": {
+			"dependsOn": ["^start:dev:localstack"]
 		}
 	}
 }

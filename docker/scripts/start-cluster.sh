@@ -52,4 +52,4 @@ if [ $? = 1 ]; then
 fi
 
 cd ..
-pnpm -r start:dev
+pnpm -r start:dev:localstack

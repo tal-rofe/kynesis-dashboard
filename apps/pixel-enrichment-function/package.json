@@ -8,7 +8,7 @@
 	"type": "module",
 	"scripts": {
 		"build": "node ./esbuild.js",
-		"start:dev": "nodemon",
+		"start:dev:localstack": "nodemon",
 		"type-check": "tsc --project ./tsconfig.json",
 		"lint": "eslint -c ./.eslintrc.cjs --ignore-path ./.eslintignore \"./**/*.{ts,js,cjs}\""
 	},
