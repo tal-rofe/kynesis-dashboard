@@ -1,9 +1,8 @@
 import type { CzVinylConfig } from 'cz-vinyl';
 
 const czvinylConfig: CzVinylConfig = {
-	headerFormat: '{type}: {emoji} {subject}',
+	headerFormat: '{type}: {emoji} [{ticket_id}] {subject}',
 	allowEmptyTicketIdForBranches: ['main'],
-	skipTicketId: true,
 };
 
 export default czvinylConfig;
