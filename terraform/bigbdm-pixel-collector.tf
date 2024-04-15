@@ -9,7 +9,9 @@ module "bigbdm_pixel_collector" {
   s3_bucket_id_lambda_storage     = module.s3_bucket_lambdas_code.s3_bucket_id
   lambda_timeout                  = 20
   lambda_runtime_envs = {
-    SQS_URL = aws_sqs_queue.pixel_enrichment_sqs_fifo.url
+    SQS_URL              = aws_sqs_queue.pixel_enrichment_sqs_fifo.url
+    BIGBDM_CLIENT_ID     = var.bigbdm_client_id
+    BIGBDM_CLIENT_SECRET = var.bigbdm_client_secret
   }
   sqs_arn = aws_sqs_queue.pixel_enrichment_sqs_fifo.arn
 
