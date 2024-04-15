@@ -89,8 +89,8 @@
 		"start:dev": {
 			"dependsOn": ["^start:dev"]
 		},
-		"start:dev:localstack": {
-			"dependsOn": ["^start:dev:localstack"]
+		"start:dev:docker": {
+			"dependsOn": ["^start:dev:docker"]
 		}
 	}
 }
