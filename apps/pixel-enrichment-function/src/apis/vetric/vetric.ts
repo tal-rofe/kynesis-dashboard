@@ -5,20 +5,11 @@ import { vetricHttpGet } from './utils/http';
 
 const apiUrls = [
 	'https://api.vetric.io/linkedin/v1/profile/:identifier/overview',
-	'https://api.vetric.io/linkedin/v1/profile/:identifier/about',
-	'https://api.vetric.io/linkedin/v1/profile/:identifier/experience',
-	'https://api.vetric.io/linkedin/v1/profile/:identifier/skills',
-	'https://api.vetric.io/linkedin/v1/profile/:identifier/education',
-	'https://api.vetric.io/linkedin/v1/profile/:identifier/contact-info',
 	'https://api.vetric.io/linkedin/v1/profile/:identifier/activity?type=posts',
 	'https://api.vetric.io/linkedin/v1/profile/:identifier/activity?type=comments',
 	'https://api.vetric.io/linkedin/v1/profile/:identifier/activity?type=reactions',
-	'https://api.vetric.io/linkedin/v1/profile/:identifier/interests?type=influencers',
-	'https://api.vetric.io/linkedin/v1/profile/:identifier/interests?type=companies',
-	'https://api.vetric.io/linkedin/v1/profile/:identifier/interests?type=groups',
-	'https://api.vetric.io/linkedin/v1/profile/:identifier/interests?type=newsletters',
-	'https://api.vetric.io/linkedin/v1/profile/:identifier/interests?type=schools',
-	'https://api.vetric.io/linkedin/v1/profile/:identifier/languages',
+	'https://api.vetric.io/linkedin/v1/profile/:identifier/experience',
+	'https://api.vetric.io/linkedin/v1/company/:identifier/details',
 ];
 
 export const getEnrichedData = async (requestId: string, linkedinUrl: string) => {
