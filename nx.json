@@ -88,6 +88,9 @@
 		},
 		"start:dev": {
 			"dependsOn": ["^start:dev"]
+		},
+		"start:dev:docker": {
+			"dependsOn": ["^start:dev:docker"]
 		}
 	}
 }

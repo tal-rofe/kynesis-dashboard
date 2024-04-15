@@ -2,6 +2,6 @@
 	"$schema": "https://json.schemastore.org/nodemon.json",
 	"watch": ["./src"],
 	"ext": "ts,json",
-	"exec": "node ./esbuild.js && cd ../../terraform && tflocal apply -target=\"module.bigbdm_pixel_collector.aws_lambda_function.lambda\" -auto-approve",
+	"exec": "pnpm build && cd ../../terraform && tflocal apply -target=\"module.bigbdm_pixel_collector.aws_lambda_function.lambda\" -auto-approve",
 	"runOnChangeOnly": true
 }

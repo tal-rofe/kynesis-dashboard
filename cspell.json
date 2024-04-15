@@ -49,6 +49,7 @@
 		"tflocal",
 		"datasource",
 		"atdata",
-		"bigbdm"
+		"bigbdm",
+		"localstack"
 	]
 }
