@@ -12,7 +12,7 @@ data "aws_iam_policy_document" "lambda_assume_role" {
 }
 
 resource "aws_iam_role" "iam_for_lambda" {
-  name               = "IAM-for-Lambda"
+  name               = "${var.name}-IAM-for-Lambda"
   assume_role_policy = data.aws_iam_policy_document.lambda_assume_role.json
 
   tags = merge(
@@ -91,7 +91,6 @@ resource "aws_lambda_function" "lambda" {
     var.common_tags,
     {
       Name = "${var.project}-${var.name}-Lambda-Function"
-
     }
   )
 }

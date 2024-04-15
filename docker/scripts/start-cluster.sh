@@ -45,5 +45,11 @@ cd ./terraform
 tflocal init
 tflocal apply -auto-approve
 
+if [ $? = 1 ]; then
+    echo -e "\n${RED}Failed to start TFLocal"
+
+    exit 1
+fi
+
 cd ..
 pnpm -r start:dev

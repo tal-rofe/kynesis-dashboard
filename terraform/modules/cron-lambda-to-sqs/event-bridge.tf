@@ -18,7 +18,7 @@ resource "aws_cloudwatch_event_target" "trigger_lambda_on_schedule" {
 
 resource "aws_lambda_permission" "allow_cloudwatch_to_call_lambda" {
   action        = "lambda:InvokeFunction"
-  function_name = "${var.name}-lambda"
+  function_name = aws_lambda_function.lambda.function_name
   principal     = "events.amazonaws.com"
   source_arn    = aws_cloudwatch_event_rule.cron_schedule_rule.arn
 }
