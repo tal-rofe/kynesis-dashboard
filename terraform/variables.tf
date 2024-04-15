@@ -49,6 +49,16 @@ variable "atdata_sftp_password" {
   type        = string
 }
 
+variable "bigbdm_client_id" {
+  description = "The client ID of our BigBDM user"
+  type        = string
+}
+
+variable "bigbdm_client_secret" {
+  description = "The client secret of our BigBDM user"
+  type        = string
+}
+
 variable "common_tags" {
   description = "A map of common tags to add to all resources"
   type        = map(string)

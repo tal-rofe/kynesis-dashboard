@@ -21,6 +21,8 @@ jobs:
             TF_VAR_atdata_sftp_port: ${{ secrets.ATDATA_SFTP_PORT}}
             TF_VAR_atdata_sftp_username: ${{ secrets.ATDATA_SFTP_USERNAME}}
             TF_VAR_atdata_sftp_password: ${{ secrets.ATDATA_SFTP_PASSWORD}}
+            TF_VAR_bigbdm_client_id: ${{ secrets.BIGBDM_CLIENT_ID }}
+            TF_VAR_bigbdm_client_secret: ${{ secrets.BIGBDM_CLIENT_SECRET }}
 
         steps:
             - uses: actions/checkout@v4

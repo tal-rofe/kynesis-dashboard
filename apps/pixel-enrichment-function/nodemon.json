@@ -1,6 +1,6 @@
 {
 	"$schema": "https://json.schemastore.org/nodemon.json",
-	"watch": ["./src", "../../packages/lambda-logger/src", "../../packages/pixel-enrichment-sqs/src"],
+	"watch": ["./src"],
 	"ext": "ts,json",
 	"exec": "node ./esbuild.js && cd ../../terraform && tflocal apply -target=\"aws_lambda_function.pixel_enrichment_lambda\" -auto-approve",
 	"runOnChangeOnly": true

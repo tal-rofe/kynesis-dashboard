@@ -104,4 +104,8 @@
 		direction: ltr;
 		font-size: 14px;
 	}
+
+	.iconStroke {
+		@apply stroke-[#4B5563] dark:stroke-white;
+	}
 }

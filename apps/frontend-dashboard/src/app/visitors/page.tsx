@@ -18,7 +18,7 @@ const Visitors = () => {
 
 	return (
 		<PageWrapper>
-			<UIVisitorsTable data={visitors} />
+			<UIVisitorsTable data={visitors} liveUpdates />
 		</PageWrapper>
 	);
 };

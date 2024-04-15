@@ -48,6 +48,7 @@
 		"signup",
 		"tflocal",
 		"datasource",
-		"atdata"
+		"atdata",
+		"bigbdm"
 	]
 }

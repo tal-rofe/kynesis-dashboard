@@ -4,6 +4,8 @@ module.exports = {
 		'pnpm --filter pixel-enrichment-function exec eslint -c ./.eslintrc.cjs --ignore-path ./.eslintignore --fix',
 	'apps/atdata-pixel-collector-function/**/*.{ts,js,cjs}':
 		'pnpm --filter atdata-pixel-collector-function exec eslint -c ./.eslintrc.cjs --ignore-path ./.eslintignore --fix',
+	'apps/bigbdm-pixel-collector-function/**/*.{ts,js,cjs}':
+		'pnpm --filter bigbdm-pixel-collector-function exec eslint -c ./.eslintrc.cjs --ignore-path ./.eslintignore --fix',
 	'packages/pixel-enrichment-sqs/**/*.ts': 'pnpm --filter pixel-enrichment-sqs exec eslint -c ./.eslintrc.cjs --ignore-path ./.eslintignore --fix',
 	'packages/lambda-logger/**/*.ts': 'pnpm --filter lambda-logger exec eslint -c ./.eslintrc.cjs --ignore-path ./.eslintignore --fix',
 	'!({apps,packages})**/*.{ts,js,cjs}': 'eslint -c ./.eslintrc.cjs --fix',

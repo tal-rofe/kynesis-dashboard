@@ -1,0 +1,32 @@
+{
+	"name": "@kynesis/bigbdm-pixel-collector-function",
+	"version": "1.0.0",
+	"private": true,
+	"description": "Lambda function to be triggered by CRON job and collect AtData pixel data",
+	"license": "UNLICENSED",
+	"author": "Kynesis <dev@kynesis.io> (https://kynesis.io)",
+	"type": "module",
+	"scripts": {
+		"build": "node ./esbuild.js",
+		"start:dev": "nodemon",
+		"type-check": "tsc --project ./tsconfig.json",
+		"lint": "eslint -c ./.eslintrc.cjs --ignore-path ./.eslintignore \"./**/*.{ts,js,cjs}\""
+	},
+	"dependencies": {
+		"@aws-sdk/client-sqs": "3.547.0",
+		"@kynesis/lambda-logger": "workspace:*",
+		"@kynesis/pixel-enrichment-sqs": "workspace:*",
+		"got": "14.2.1",
+		"zod": "3.22.4",
+		"zod-validation-error": "3.1.0"
+	},
+	"devDependencies": {
+		"@total-typescript/ts-reset": "0.5.1",
+		"@types/aws-lambda": "8.10.136",
+		"@types/got": "9.6.12",
+		"@types/node": "20.12.7",
+		"esbuild": "0.20.2",
+		"esbuild-plugin-tsc": "0.4.0",
+		"nodemon": "3.1.0"
+	}
+}

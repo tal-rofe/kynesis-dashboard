@@ -1,3 +1,4 @@
+/* eslint-disable max-lines */
 import React from 'react';
 import Link from 'next/link';
 
@@ -25,7 +26,7 @@ const SearchModalView = (props: Props) => {
 	return (
 		<UIModal>
 			<div className="flex items-center justify-start border-b pl-1">
-				<UISvg name="search" className="stroke-[#4B5563] dark:stroke-white" />
+				<UISvg name="search" className="iconStroke" />
 				<UIInput
 					className="w-full border-none rounded-none focus:border-none focus:outline-none focus:ring-0 focus:ring-offset-0 focus:ring-offset-transparent focus:ring-transparent focus-visible:ring-transparent focus-visible:ring-offset pl-2"
 					type="text"
@@ -43,7 +44,9 @@ const SearchModalView = (props: Props) => {
 						{props.visitors
 							.filter((visitor) => visitor.fullName.toLowerCase().includes(props.searchInputValue))
 							.map((visitor) => {
-								if (!visitor.id) {return;}
+								if (!visitor.id) {
+									return;
+								}
 
 								return (
 									<UIButton
@@ -72,7 +75,9 @@ const SearchModalView = (props: Props) => {
 						{props.pages
 							.filter((visitor) => visitor.label.toLowerCase().includes(props.searchInputValue))
 							.map((page) => {
-								if (!page.link) {return;}
+								if (!page.link) {
+									return;
+								}
 
 								return (
 									<UIButton
@@ -84,7 +89,7 @@ const SearchModalView = (props: Props) => {
 										onClick={props.hideModal}
 									>
 										<Link href={page.link} className="flex items-center gap-2 w-full">
-											<UISvg name={page.icon} className="stroke-[#4B5563] dark:stroke-white" />
+											<UISvg name={page.icon} className="iconStroke" />
 											<div className="w-full flex items-center justify-between">
 												<span>{page.label}</span>
 												<UIMenubarShortcut>{`⌘${page.label[0]}`}</UIMenubarShortcut>
@@ -101,7 +106,9 @@ const SearchModalView = (props: Props) => {
 						<>
 							<span className="py-1.5 px-2 text-muted-foreground text-xs">Recent contacts</span>
 							{props.previousVisitors.map((visitor) => {
-								if (!visitor.id) {return;}
+								if (!visitor.id) {
+									return;
+								}
 
 								return (
 									<UIButton
@@ -129,7 +136,9 @@ const SearchModalView = (props: Props) => {
 					)}
 					<span className="py-1.5 px-2 text-muted-foreground text-xs">Pages</span>
 					{props.pages.map((page) => {
-						if (!page.link) {return;}
+						if (!page.link) {
+							return;
+						}
 
 						return (
 							<UIButton
@@ -141,7 +150,7 @@ const SearchModalView = (props: Props) => {
 								onClick={props.hideModal}
 							>
 								<Link href={page.link} className="flex items-center gap-2 w-full">
-									<UISvg name={page.icon} className="stroke-[#4B5563] dark:stroke-white" />
+									<UISvg name={page.icon} className="iconStroke" />
 									<div className="w-full flex items-center justify-between">
 										<span>{page.label}</span>
 										<UIMenubarShortcut>{`⌘${page.label[0]}`}</UIMenubarShortcut>

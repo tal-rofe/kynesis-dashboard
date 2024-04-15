@@ -5,7 +5,7 @@ import got from 'got';
 import LoggerService from '@kynesis/lambda-logger';
 import type { PixelCollectionData } from '@kynesis/pixel-enrichment-sqs';
 
-import { linkedinUrlApis } from './data/linkedin-url-apis';
+import { filteredLinkedinUrlApis, linkedinUrlApis } from './data/linkedin-url-apis';
 import { getEnrichedData } from './apis/vetric/vetric';
 import { DYNAMODB_MAX_ATTEMPTS } from './constants/dynamodb';
 import { SQS_MAX_ATTEMPTS } from './constants/sqs';
@@ -40,28 +40,30 @@ export const handler: SQSHandler = async (event, context) => {
 			logger.warn(`Failed to delete SQS message with an error: ${error}`, { messageBody });
 		});
 
-	if (parsedMessageBody.apiIndex >= linkedinUrlApis.length) {
+	const linkedinUrlApisToUse = parsedMessageBody.firstName ? linkedinUrlApis : filteredLinkedinUrlApis;
+
+	if (parsedMessageBody.apiIndex >= linkedinUrlApisToUse.length) {
 		logger.error('Got invalid API handler index to process - abort process', {
 			linkedinApiHandlerIndex: parsedMessageBody.apiIndex,
-			maxLinkedinApiHandlerIndex: linkedinUrlApis.length - 1,
+			maxLinkedinApiHandlerIndex: linkedinUrlApisToUse.length - 1,
 		});
 
 		return;
 	}
 
-	const apiHandler = linkedinUrlApis[parsedMessageBody.apiIndex]!;
+	const apiHandler = linkedinUrlApisToUse[parsedMessageBody.apiIndex]!;
 	let linkedinUrl: string;
 
 	logger.info('Querying LinkedIn URL API handler', { messageBody });
 
 	try {
 		linkedinUrl = await apiHandler.getLinkedinUrl(parsedMessageBody);
-	} catch (error: unknown) {
+	} catch (error) {
 		logger.error(`Failed to match Linkedin profile URL with pixel data with an error: ${error}`, {
 			messageBody,
 		});
 
-		if (parsedMessageBody.apiIndex === linkedinUrlApis.length - 1) {
+		if (parsedMessageBody.apiIndex === linkedinUrlApisToUse.length - 1) {
 			logger.error('Failed to match Linkedin profile URL using all APIs providers', { messageBody });
 
 			return;
@@ -83,7 +85,7 @@ export const handler: SQSHandler = async (event, context) => {
 
 		try {
 			sendMessageSqsOutput = await sqsClient.send(sendMessageSqsCommand);
-		} catch (error: unknown) {
+		} catch (error) {
 			logger.error(`Failed to send SQS message with an error: ${error}`, { messageBody });
 
 			return;
@@ -141,7 +143,7 @@ export const handler: SQSHandler = async (event, context) => {
 		}
 
 		customerSlackWebhookUrl = dynamoDbGetItemCommandOutput.Item['CustomerSlackWebhookURL']!.S!;
-	} catch (error: unknown) {
+	} catch (error) {
 		logger.error(`Failed to get item from DynamoDB with an error: ${error}`, { messageBody });
 
 		return;
@@ -178,7 +180,7 @@ export const handler: SQSHandler = async (event, context) => {
 
 			return;
 		}
-	} catch (error: unknown) {
+	} catch (error) {
 		logger.error(`Failed to send message to customer's Slack channel with an error: ${error}`, { messageBody, customerSlackWebhookUrl });
 
 		return;

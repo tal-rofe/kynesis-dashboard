@@ -2,7 +2,7 @@
 	"name": "@kynesis/atdata-pixel-collector-function",
 	"version": "1.0.0",
 	"private": true,
-	"description": "Lambda function to be triggered by CRON job and collector AtData pixel data",
+	"description": "Lambda function to be triggered by CRON job and collect AtData pixel data",
 	"license": "UNLICENSED",
 	"author": "Kynesis <dev@kynesis.io> (https://kynesis.io)",
 	"type": "module",
