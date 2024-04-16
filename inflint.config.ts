@@ -13,6 +13,8 @@ const inflintConfig: Config = {
 		'apps/frontend-dashboard/src/components/{layouts,wrappers}/*': [2, 'PascalCase.Point'],
 		'apps/frontend-dashboard/src/components/ui/*': [2, '[UIComponent]'],
 
+		'apps/backend-dashboard/src/components/ui/*': [2, 'kebab-case.point'],
+
 		'./apps/pixel-enrichment-function/src/**/*': [2, 'kebab-case.point'],
 
 		'./apps/atdata-pixel-collector-function/src/**/*': [2, 'kebab-case.point'],
@@ -22,6 +24,8 @@ const inflintConfig: Config = {
 		'./packages/pixel-enrichment-sqs/src/**/*': [2, 'kebab-case'],
 
 		'./packages/lambda-logger/src/**/*': [2, 'kebab-case'],
+
+		'./terraform/**/*.tf': [2, 'kebab-case'],
 	},
 };
 

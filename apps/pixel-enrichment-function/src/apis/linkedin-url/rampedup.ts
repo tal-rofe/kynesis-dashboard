@@ -11,7 +11,7 @@ class RampedupApi extends LinkedinUrl {
 	protected override apiUrl = 'https://basic.rampedup.io/api/manualappend/contact';
 
 	public override async getLinkedinUrl(data: PixelCollectionData): Promise<LinkedinUrlResponse> {
-		// * Email will be valid as it is being validated on "pixel-api-function"
+		// * Email will be valid as it is being validated on other Lambda functions
 		const emailDomain = data.email.split('@')[1]!;
 		const emailDomainSplitted = emailDomain.split('.');
 		const companyDomain = emailDomainSplitted.at(-2) + '.' + emailDomainSplitted.at(-1);

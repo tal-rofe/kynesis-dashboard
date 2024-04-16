@@ -26,16 +26,16 @@ jobs:
                   run_install: true
 
             - name: Install Playwright
-              run: pnpm --filter frontend exec -- playwright install --with-deps
+              run: pnpm --filter frontend-dashboard exec -- playwright install --with-deps
 
             - name: Build Storybook
-              run: pnpm --filter frontend storybook:build
+              run: pnpm --filter frontend-dashboard storybook:build
 
             - name: Serve Storybook and run tests
               run: |
                   npx concurrently -k -s first -n "SB,TEST" -c "magenta,blue" \
                   "npx http-server ./apps/frontend-dashboard/storybook-static --port 6006 --silent" \
-                  "npx wait-on tcp:6006 && pnpm --filter frontend storybook:test"
+                  "npx wait-on tcp:6006 && pnpm --filter frontend-dashboard storybook:test"
 
     chromatic:
         name: Chromatic
