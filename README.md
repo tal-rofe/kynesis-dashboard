@@ -50,6 +50,8 @@ cd dashboard
 
 ```
 127.0.0.1 mongo_replica_1
+127.0.0.1 mongo_replica_2
+127.0.0.1 mongo_replica_3
 ```
 
 Run the project cluster:

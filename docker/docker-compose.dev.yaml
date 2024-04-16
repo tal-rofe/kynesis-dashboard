@@ -22,6 +22,30 @@ services:
             - ./.volumes/mongo/replica1/configdb:/data/configdb
         networks:
             - dashboard_network
+    mongo_replica_2:
+        container_name: mongo_replica_2
+        image: mongo:7.0.4
+        ports:
+            - 27018:27018
+        restart: always
+        entrypoint: ['/usr/bin/mongod', '--bind_ip_all', '--replSet', 'dbrs', '--dbpath', '/data/db', '--port', '27018']
+        volumes:
+            - ./.volumes/mongo/replica2:/data/db
+            - ./.volumes/mongo/replica2/configdb:/data/configdb
+        networks:
+            - dashboard_network
+    mongo_replica_3:
+        container_name: mongo_replica_3
+        image: mongo:7.0.4
+        ports:
+            - 27019:27019
+        restart: always
+        entrypoint: ['/usr/bin/mongod', '--bind_ip_all', '--replSet', 'dbrs', '--dbpath', '/data/db', '--port', '27019']
+        volumes:
+            - ./.volumes/mongo/replica3:/data/db
+            - ./.volumes/mongo/replica3/configdb:/data/configdb
+        networks:
+            - dashboard_network
 
     localstack:
         container_name: '${LOCALSTACK_DOCKER_NAME:-localstack-main}'
