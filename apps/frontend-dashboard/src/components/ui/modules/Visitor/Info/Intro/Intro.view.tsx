@@ -56,7 +56,7 @@ const IntroView = (props: Props) => {
 						{props.currentVisitor?.title}
 						&nbsp;
 						<Link className="text-blue-600" href="https://linkedin.com/company/zim">
-							{props.currentVisitor?.company}
+							{props.currentVisitor?.companyInfo.name}
 						</Link>
 					</span>
 				</div>

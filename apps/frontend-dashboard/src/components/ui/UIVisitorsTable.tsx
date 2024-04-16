@@ -1,30 +1,19 @@
 /* eslint-disable max-lines */
-import React, { useEffect, useState } from 'react';
-import {
-	type ColumnDef,
-	type ColumnFiltersState,
-	type SortingState,
-	type VisibilityState,
-	flexRender,
-	getCoreRowModel,
-	getFilteredRowModel,
-	getPaginationRowModel,
-	getSortedRowModel,
-	useReactTable,
-} from '@tanstack/react-table';
+
+import React, { useMemo } from 'react';
 import { CSVLink } from 'react-csv';
-import { ArrowUpDown, ChevronDown, MoreHorizontal } from 'lucide-react';
+import type { ColDef as ColData } from 'ag-grid-community';
+import { MoreHorizontal } from 'lucide-react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import { DropdownMenuCheckboxItem } from '@radix-ui/react-dropdown-menu';
+import { AgGridReact } from 'ag-grid-react';
 
 import { useVisitorsStore } from '@/lib/store/useVisitorsStore';
 import { type Visitor } from '@/lib/types/ui/visitor';
-import { addEllipsis } from '@/lib/utils/text';
 import { routes } from '@/lib/routes';
 import { formatDate } from '@/lib/utils/format';
+import { cn } from '@/lib/utils/component';
 
-import { UITable, UITableHeader, UITableRow, UITableHead, UITableBody, UITableCell } from './UITable';
 import { UIButton } from './UIButton';
 import {
 	UIDropdownMenu,
@@ -35,9 +24,8 @@ import {
 	UIDropdownMenuSeparator,
 } from './UIDropdownMenu';
 import UISvg from './UISvg';
-import { UIInput } from './UIInput';
-import { UITooltip, UITooltipContent, UITooltipProvider } from './UITooltip';
 import { UICardDescription, UICardTitle } from './UICard';
+import CustomHeader from './UICustomTableHeader';
 import { UIAvatar, UIAvatarImage, UIAvatarFallback } from './UIAvatar';
 
 type Props = {
@@ -51,11 +39,6 @@ type Props = {
 const UIVisitorsTable = (props: Props) => {
 	const pathname = usePathname();
 	const currentDate = new Date();
-	const [sorting, setSorting] = useState<SortingState>([]);
-	const [columnFilters, setColumnFilters] = useState<ColumnFiltersState>([]);
-	const [columnVisibility, setColumnVisibility] = useState<VisibilityState>({});
-	const [rowSelection, setRowSelection] = useState({});
-	const [currentVisitorState, setCurrentVisitorState] = useState<Visitor | undefined>(undefined);
 
 	const setCurrentVisitor = useVisitorsStore((state) => state.setCurrentVisitor);
 
@@ -71,146 +54,134 @@ const UIVisitorsTable = (props: Props) => {
 		{ label: 'Last visit', key: 'lastVisit' },
 	];
 
-	const columns: ColumnDef<Visitor>[] = [
-		{
-			accessorKey: 'fullName',
-			header: 'Full name',
-			size: 100,
-			cell: ({ row }) => (
-				<div className="flex items-center min-w-16 gap-2">
-					<span className="capitalize">{row.getValue('fullName')}</span>
-					<Link href={row.original.linkedinUrl} target="_blank">
-						<UISvg name="linkedinLogoWhite" />
-					</Link>
-				</div>
-			),
+	const gridOptions = {
+		defaultColDef: {
+			cellClass: 'flex items-center h-full min-w-4',
 		},
-		{
-			accessorKey: 'company',
-			header: ({ column }) => {
-				return (
-					<UIButton className="min-w-16" variant="ghost" onClick={() => column.toggleSorting(column.getIsSorted() === 'asc')}>
-						Company
-						<ArrowUpDown className="ml-2 h-4 w-4" />
-					</UIButton>
-				);
+		components: {
+			CustomHeader: CustomHeader,
+		},
+
+		ensureDomOrder: true,
+	};
+
+	const columnData = useMemo(() => {
+		const baseColumns: ColData<Visitor>[] = [
+			{
+				field: 'fullName',
+				headerName: 'Full name',
+				flex: 1,
+				filter: true,
+				resizable: true,
+				width: 200,
+				// headerComponent: 'CustomHeader',
+				cellRenderer: (params: { value: string; data: { visitorLinkedinUrl: string } }) => {
+					return (
+						<div className="flex items-center min-w-16 gap-2">
+							<span className="capitalize">{params.value}</span>
+							<Link href={params.data.visitorLinkedinUrl} target="_blank">
+								<UISvg name="linkedinLogoWhite" />
+							</Link>
+						</div>
+					);
+				},
 			},
-			size: 133.33,
-			cell: ({ row }) => (
-				<div className="flex items-center gap-2 min-w-16">
-					<UIAvatar className="w-7 h-7 border">
-						<UIAvatarImage src={row.original.companyProfileImage ?? 'https://github.com/shadcn.png'} />
-						<UIAvatarFallback>CN</UIAvatarFallback>
-					</UIAvatar>
-					<span className="capitalize">{row.getValue('company')}</span>
-				</div>
-			),
-		},
-		{
-			accessorKey: 'title',
-			header: ({ column }) => {
-				return (
-					<UIButton className="min-w-16" variant="ghost" onClick={() => column.toggleSorting(column.getIsSorted() === 'asc')}>
-						Title
-						<ArrowUpDown className="ml-2 h-4 w-4" />
-					</UIButton>
-				);
+			{
+				field: 'companyInfo.name',
+				headerName: 'Company',
+				flex: 1,
+				filter: true,
+				resizable: true,
+				width: 200,
+				headerComponent: 'CustomHeader',
+				cellRenderer: (params: {
+					data: {
+						companyInfo: {
+							logoUrl: string | undefined;
+							name: string;
+						};
+					};
+				}) => {
+					return (
+						<div className="flex items-center gap-2 min-w-16">
+							<UIAvatar className="w-7 h-7 border">
+								<UIAvatarImage src={params.data.companyInfo.logoUrl} />
+								<UIAvatarFallback>CN</UIAvatarFallback>
+							</UIAvatar>
+							<span className="capitalize">{params.data.companyInfo.name}</span>
+						</div>
+					);
+				},
 			},
-			size: 133.33,
-			cell: ({ row }) => <div className="capitalize min-w-16">{row.getValue('title')}</div>,
-		},
-		{
-			accessorKey: 'email',
-			size: 100,
-			header: ({ column }) => {
-				return (
-					<UIButton className="min-w-16" variant="ghost" onClick={() => column.toggleSorting(column.getIsSorted() === 'asc')}>
-						Email
-						<ArrowUpDown className="ml-2 h-4 w-4" />
-					</UIButton>
-				);
+			{
+				field: 'title',
+				headerName: 'Title',
+				flex: 1,
+				filter: true,
+				resizable: true,
+				width: 200,
+				headerComponent: 'CustomHeader',
+				cellRenderer: (params: { value: string }) => <span className="capitalize min-w-16">{params.value}</span>,
 			},
-			cell: ({ row }) => <div className="lowercase min-w-16">{addEllipsis(row.getValue('email'), 20)}</div>,
-		},
-
-		{
-			accessorKey: 'lastVisit',
-			header: ({ column }) => {
-				return (
-					<UIButton className="min-w-16" variant="ghost" onClick={() => column.toggleSorting(column.getIsSorted() === 'asc')}>
-						Last visit
-						<ArrowUpDown className="ml-2 h-4 w-4" />
-					</UIButton>
-				);
+			{
+				field: 'email',
+				headerName: 'Email',
+				flex: 1,
+				filter: true,
+				resizable: true,
+				width: 200,
+				headerComponent: 'CustomHeader',
+				cellRenderer: (params: { value: string }) => <span className="lowercase min-w-16">{params.value}</span>,
 			},
-			size: 133.33,
-			enablePinning: true,
-			cell: ({ row }) => <div className="capitalize min-w-16">{formatDate(row.getValue('lastVisit'))}</div>,
-		},
-	];
-
-	!props.dataOnly &&
-		columns.push({
-			size: 30,
-			id: 'actions',
-			enableHiding: false,
-			cell: ({ row }) => {
-				const visitor = row.original;
-
-				return (
-					<UIDropdownMenu>
-						<UIDropdownMenuTrigger asChild>
-							<UIButton variant="ghost" className="h-8 w-8 p-0">
-								<span className="sr-only">Open menu</span>
-								<MoreHorizontal className="h-4 w-4" />
-							</UIButton>
-						</UIDropdownMenuTrigger>
-						<UIDropdownMenuContent align="end">
-							<UIDropdownMenuLabel>Actions</UIDropdownMenuLabel>
-							<UIDropdownMenuItem onClick={() => onSetCurrentVisitor(visitor)}>
-								<Link className="w-full" href={`${pathname}/${visitor.id}`} passHref>
-									Message
-								</Link>
-							</UIDropdownMenuItem>
-							<UIDropdownMenuItem onClick={() => navigator.clipboard.writeText(visitor.email)}>Copy visitor email</UIDropdownMenuItem>
-							<UIDropdownMenuSeparator />
-							<UIDropdownMenuItem>View visitor details</UIDropdownMenuItem>
-						</UIDropdownMenuContent>
-					</UIDropdownMenu>
-				);
+			{
+				field: 'lastVisit',
+				headerName: 'Last Visit',
+				flex: 1,
+				filter: true,
+				resizable: true,
+				width: 200,
+				cellRenderer: (params: { value: Date }) => <span className="uppercase min-w-16">{formatDate(params.value)}</span>,
 			},
-		});
+		];
 
-	const table = useReactTable({
-		data: props.data,
-		columns,
-		onSortingChange: setSorting,
-		onColumnFiltersChange: setColumnFilters,
-		getCoreRowModel: getCoreRowModel(),
-		getPaginationRowModel: getPaginationRowModel(),
-		getSortedRowModel: getSortedRowModel(),
-		getFilteredRowModel: getFilteredRowModel(),
-		onColumnVisibilityChange: setColumnVisibility,
-		onRowSelectionChange: setRowSelection,
-		enableRowPinning: true,
-		keepPinnedRows: true,
-		debugTable: true,
-		debugHeaders: true,
-		debugColumns: true,
-		state: {
-			sorting,
-			columnFilters,
-			columnVisibility,
-			rowSelection,
-		},
-	});
+		if (!props.dataOnly) {
+			baseColumns.push({
+				filter: false,
+				resizable: false,
+				pinned: 'right',
+				width: 50,
+				cellRenderer: (params: { data: Visitor }) => {
+					const visitor = params.data;
 
-	useEffect(() => {
-		const selectedRowIndex = Object.keys(rowSelection)[0] ?? '-1';
-		const selectedRow = props.data.find((_, index) => index.toString() === selectedRowIndex);
+					return (
+						<UIDropdownMenu>
+							<UIDropdownMenuTrigger asChild>
+								<UIButton variant="ghost" className="h-8 w-8 p-0">
+									<span className="sr-only">Open menu</span>
+									<MoreHorizontal className="h-4 w-4" />
+								</UIButton>
+							</UIDropdownMenuTrigger>
+							<UIDropdownMenuContent align="end">
+								<UIDropdownMenuLabel>Actions</UIDropdownMenuLabel>
+								<UIDropdownMenuItem onClick={() => onSetCurrentVisitor(visitor)}>
+									<Link className="w-full" href={`${pathname}/${visitor.id}`} passHref>
+										Message
+									</Link>
+								</UIDropdownMenuItem>
+								<UIDropdownMenuItem onClick={() => navigator.clipboard.writeText(visitor.email)}>
+									Copy visitor email
+								</UIDropdownMenuItem>
+								<UIDropdownMenuSeparator />
+								<UIDropdownMenuItem>View visitor details</UIDropdownMenuItem>
+							</UIDropdownMenuContent>
+						</UIDropdownMenu>
+					);
+				},
+			});
+		}
 
-		setCurrentVisitorState(selectedRow);
-	}, [rowSelection]);
+		return baseColumns;
+	}, [props.dataOnly]);
 
 	return (
 		<div className="w-full h-full overflow-hidden">
@@ -229,15 +200,6 @@ const UIVisitorsTable = (props: Props) => {
 				</div>
 			) : (
 				<div className="flex items-center py-4 gap-2">
-					<UITooltipProvider>
-						<UITooltip>
-							{!currentVisitorState && (
-								<UITooltipContent>
-									<span>You have to choose a visitor</span>
-								</UITooltipContent>
-							)}
-						</UITooltip>
-					</UITooltipProvider>
 					<UIButton className="rounded-3xl" variant="secondary" asChild>
 						<CSVLink
 							data={props.data}
@@ -249,100 +211,32 @@ const UIVisitorsTable = (props: Props) => {
 							Export to CSV
 						</CSVLink>
 					</UIButton>
-
-					<UIInput
-						placeholder="Filter emails..."
-						value={(table.getColumn('email')?.getFilterValue() as string) ?? ''}
-						className="max-w-sm"
-						onChange={(event) => table.getColumn('email')?.setFilterValue(event.target.value)}
-					/>
-					<UIDropdownMenu>
-						<UIDropdownMenuTrigger asChild>
-							<UIButton variant="outline" className="ml-auto">
-								Columns
-								<ChevronDown className="ml-2 h-4 w-4" />
-							</UIButton>
-						</UIDropdownMenuTrigger>
-						<UIDropdownMenuContent align="end">
-							{table
-								.getAllColumns()
-								.filter((column) => column.getCanHide())
-								.map((column) => {
-									return (
-										<DropdownMenuCheckboxItem
-											key={column.id}
-											className="capitalize"
-											checked={column.getIsVisible()}
-											onCheckedChange={(value) => column.toggleVisibility(!!value)}
-										>
-											{column.id}
-										</DropdownMenuCheckboxItem>
-									);
-								})}
-						</UIDropdownMenuContent>
-					</UIDropdownMenu>
 				</div>
 			)}
-			<div className=" overflow-scroll h-full pb-6">
-				<UITable className="mb-6">
-					<UITableHeader>
-						{table.getHeaderGroups().map((headerGroup) => (
-							<UITableRow key={headerGroup.id}>
-								{headerGroup.headers.map((header) => {
-									return (
-										<UITableHead key={header.id}>
-											{header.isPlaceholder ? null : flexRender(header.column.columnDef.header, header.getContext())}
-										</UITableHead>
-									);
-								})}
-							</UITableRow>
-						))}
-					</UITableHeader>
-					<UITableBody>
-						{table.getRowModel().rows?.length ? (
-							table.getRowModel().rows.map((row) => (
-								<UITableRow key={row.id} data-state={row.getIsSelected() && 'selected'}>
-									{row.getVisibleCells().map((cell) => (
-										<UITableCell key={cell.id}>{flexRender(cell.column.columnDef.cell, cell.getContext())}</UITableCell>
-									))}
-								</UITableRow>
-							))
-						) : (
-							<UITableRow>
-								<UITableCell colSpan={columns.length} className="h-24 text-center">
-									No results.
-								</UITableCell>
-							</UITableRow>
-						)}
-					</UITableBody>
-				</UITable>
+			<div className={cn(props.dataOnly ? 'h-[calc(100vh-415px)]' : 'h-[calc(100vh-254px)]', 'ag-theme-alpine flex flex-col  overflow-auto')}>
+				<AgGridReact
+					rowData={props.data}
+					columnDefs={columnData}
+					rowDragManaged
+					gridOptions={gridOptions}
+					domLayout="autoHeight"
+					enableAdvancedFilter
+				/>
 			</div>
 
 			{!props.dataOnly && (
-				<div className="flex items-center justify-between  py-4">
+				<div className="flex items-center justify-between mt-auto py-4 flex-1 ">
 					{props.liveUpdates ? (
 						<div className="flex items-center space-x-2">
 							<span className="h-2 w-2 rounded-full bg-primary animate-pulse-slow" />
 							<span className=" text-muted-foreground text-sm">Updating live from your website</span>
 						</div>
 					) : (
-						<UIButton variant="ghost" size="sm" onClick={() => table.previousPage()}>
-							<UISvg name="plus" className="mr-1 stroke-[#0F172A] dark:stroke-white" />
+						<UIButton variant="ghost" size="sm">
+							<UISvg name="plus" className="mr-1 iconStroke" />
 							Add prospect
 						</UIButton>
 					)}
-
-					{/* <div className="text-sm text-muted-foreground">
-					{`${table.getFilteredSelectedRowModel().rows.length} of ${table.getFilteredRowModel().rows.length} row(s) selected.`}
-				</div> */}
-					<div className="space-x-2">
-						<UIButton variant="outline" size="sm" disabled={!table.getCanPreviousPage()} onClick={() => table.previousPage()}>
-							Previous
-						</UIButton>
-						<UIButton variant="outline" size="sm" disabled={!table.getCanNextPage()} onClick={() => table.nextPage()}>
-							Next
-						</UIButton>
-					</div>
 				</div>
 			)}
 		</div>
