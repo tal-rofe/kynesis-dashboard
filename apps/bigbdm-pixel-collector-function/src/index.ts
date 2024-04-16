@@ -59,6 +59,7 @@ export const handler: ScheduledHandler = async (_, context) => {
 				json: {
 					WebsiteId: 'yazif',
 					StartDate: new Date(Date.now() - API_CALL_DATA_INTERVAL_TIME),
+					PageNumber: 1,
 					NumberOfItemsOnPage: 100,
 				},
 				headers: { 'Authorization': `Bearer ${validatedResponse.data.access_token}`, 'Content-Type': 'application/json' },
@@ -90,7 +91,7 @@ export const handler: ScheduledHandler = async (_, context) => {
 
 	const sqsMessagesPromises = validatedPixelData.data.map(async (pixelItem) => {
 		const alignedPixelItem = pixelItem as z.infer<typeof PixelDataItemSchema>;
-		const sqsMessageBodyObject: PixelCollectionData = { ...alignedPixelItem.pageData[0], apiIndex: 0, originDomain: 'yazif.com' };
+		const sqsMessageBodyObject: PixelCollectionData = { ...alignedPixelItem.pageData[0]!, apiIndex: 0, originDomain: 'yazif.com' };
 
 		const sendMessageSqsCommand = new SendMessageCommand({
 			QueueUrl: process.env.SQS_URL,
