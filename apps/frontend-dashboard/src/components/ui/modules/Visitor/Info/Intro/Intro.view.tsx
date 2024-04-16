@@ -53,16 +53,17 @@ const IntroView = (props: Props) => {
 						<UISvg name="linkedinLogo" />
 					</div>
 					<span className="text-sm">
-						Treasury Analyst at&nbsp;
+						{props.currentVisitor?.title}
+						&nbsp;
 						<Link className="text-blue-600" href="https://linkedin.com/company/zim">
-							Yazif.io
+							{props.currentVisitor?.company}
 						</Link>
 					</span>
 				</div>
-				<div className="flex flex-col justify-end gap-1.5">
-					<div className="text-secondary-foreground text-sm text-end">{`${props.currentVisitor?.city}, ${props.currentVisitor?.country}`}</div>
+				{/* <div className="flex flex-col justify-end gap-1.5">
+					<div className="text-secondary-foreground text-sm text-end">{`${props.currentVisitor?.}, ${props.currentVisitor?.country}`}</div>
 					<div className="text-secondary-foreground  text-sm text-end">Mar 22, 2024 04:13 PM</div>
-				</div>
+				</div> */}
 			</UICardHeader>
 			<div className="flex">
 				<div className="flex flex-col w-1/2">

@@ -13,11 +13,11 @@ const middleware = async (request: NextRequest) => {
 
 	const isAuthenticated = token?.exp ? validateJwt(token.exp) : false;
 
-	const authorizedRoutes = Object.values(routes)
+	const authorizedRoutes: Partial<RoutesPath>[] = Object.values(routes)
 		.filter((route) => route.isRequiredAuth)
 		.map((route) => route.path);
 
-	const unauthorizedRoutes = Object.values(routes)
+	const unauthorizedRoutes: Partial<RoutesPath>[] = Object.values(routes)
 		.filter((route) => route.isRequiredAuth === false)
 		.map((route) => route.path);
 
