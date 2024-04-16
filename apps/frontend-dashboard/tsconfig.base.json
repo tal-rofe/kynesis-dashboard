@@ -1,6 +1,6 @@
 {
 	"extends": "../../tsconfig.base.json",
-	"display": "@kynesis/frontend",
+	"display": "@kynesis/frontend-dashboard",
 	"compilerOptions": {
 		"target": "es5",
 		"module": "esnext",

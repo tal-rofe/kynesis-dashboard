@@ -22,6 +22,7 @@ import { useVisitorsStore } from '@/lib/store/useVisitorsStore';
 import { type Visitor } from '@/lib/types/ui/visitor';
 import { addEllipsis } from '@/lib/utils/text';
 import { routes } from '@/lib/routes';
+import { formatDate } from '@/lib/utils/format';
 
 import { UITable, UITableHeader, UITableRow, UITableHead, UITableBody, UITableCell } from './UITable';
 import { UIButton } from './UIButton';
@@ -37,6 +38,7 @@ import UISvg from './UISvg';
 import { UIInput } from './UIInput';
 import { UITooltip, UITooltipContent, UITooltipProvider } from './UITooltip';
 import { UICardDescription, UICardTitle } from './UICard';
+import { UIAvatar, UIAvatarImage, UIAvatarFallback } from './UIAvatar';
 
 type Props = {
 	readonly data: Visitor[];
@@ -63,13 +65,10 @@ const UIVisitorsTable = (props: Props) => {
 
 	const csvHeaders = [
 		{ label: 'Full name', key: 'fullName' },
+		{ label: 'Company', key: 'company' },
+		{ label: 'Title', key: 'title' },
 		{ label: 'Email', key: 'email' },
-		{ label: 'Phone Number', key: 'phoneNumber' },
-		{ label: 'Status', key: 'status' },
-		{ label: 'Priority', key: 'priority' },
-		{ label: 'Country', key: 'country' },
-		{ label: 'City', key: 'city' },
-		{ label: 'Gender', key: 'gender' },
+		{ label: 'Last visit', key: 'lastVisit' },
 	];
 
 	const columns: ColumnDef<Visitor>[] = [
@@ -77,7 +76,48 @@ const UIVisitorsTable = (props: Props) => {
 			accessorKey: 'fullName',
 			header: 'Full name',
 			size: 100,
-			cell: ({ row }) => <div className="capitalize min-w-16">{row.getValue('fullName')}</div>,
+			cell: ({ row }) => (
+				<div className="flex items-center min-w-16 gap-2">
+					<span className="capitalize">{row.getValue('fullName')}</span>
+					<Link href={row.original.linkedinUrl} target="_blank">
+						<UISvg name="linkedinLogoWhite" />
+					</Link>
+				</div>
+			),
+		},
+		{
+			accessorKey: 'company',
+			header: ({ column }) => {
+				return (
+					<UIButton className="min-w-16" variant="ghost" onClick={() => column.toggleSorting(column.getIsSorted() === 'asc')}>
+						Company
+						<ArrowUpDown className="ml-2 h-4 w-4" />
+					</UIButton>
+				);
+			},
+			size: 133.33,
+			cell: ({ row }) => (
+				<div className="flex items-center gap-2 min-w-16">
+					<UIAvatar className="w-7 h-7 border">
+						<UIAvatarImage src={row.original.companyProfileImage ?? 'https://github.com/shadcn.png'} />
+						<UIAvatarFallback>CN</UIAvatarFallback>
+					</UIAvatar>
+					<span className="capitalize">{row.getValue('company')}</span>
+				</div>
+			),
+		},
+		{
+			accessorKey: 'title',
+			header: ({ column }) => {
+				return (
+					<UIButton className="min-w-16" variant="ghost" onClick={() => column.toggleSorting(column.getIsSorted() === 'asc')}>
+						Title
+						<ArrowUpDown className="ml-2 h-4 w-4" />
+					</UIButton>
+				);
+			},
+			size: 133.33,
+			cell: ({ row }) => <div className="capitalize min-w-16">{row.getValue('title')}</div>,
 		},
 		{
 			accessorKey: 'email',
@@ -92,40 +132,20 @@ const UIVisitorsTable = (props: Props) => {
 			},
 			cell: ({ row }) => <div className="lowercase min-w-16">{addEllipsis(row.getValue('email'), 20)}</div>,
 		},
-		{
-			accessorKey: 'status',
-			header: 'Status',
-			size: 133.33,
-			cell: ({ row }) => <div className="capitalize min-w-16">{row.getValue('status')}</div>,
-		},
 
 		{
-			accessorKey: 'priority',
-			header: 'Priority',
-			size: 133.33,
-			cell: ({ row }) => <div className="capitalize min-w-16">{row.getValue('priority')}</div>,
-		},
-		{
-			accessorKey: 'country',
-			header: 'Country',
-			size: 133.33,
-			enablePinning: true,
-
-			cell: ({ row }) => <div className="capitalize min-w-16">{row.getValue('country')}</div>,
-		},
-		{
-			accessorKey: 'city',
-			header: 'City',
+			accessorKey: 'lastVisit',
+			header: ({ column }) => {
+				return (
+					<UIButton className="min-w-16" variant="ghost" onClick={() => column.toggleSorting(column.getIsSorted() === 'asc')}>
+						Last visit
+						<ArrowUpDown className="ml-2 h-4 w-4" />
+					</UIButton>
+				);
+			},
 			size: 133.33,
 			enablePinning: true,
-			cell: ({ row }) => <div className="capitalize min-w-16">{row.getValue('city')}</div>,
-		},
-		{
-			accessorKey: 'gender',
-			header: 'Gender',
-			size: 133.33,
-			enablePinning: true,
-			cell: ({ row }) => <div className="capitalize min-w-16">{row.getValue('gender')}</div>,
+			cell: ({ row }) => <div className="capitalize min-w-16">{formatDate(row.getValue('lastVisit'))}</div>,
 		},
 	];
 

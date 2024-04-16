@@ -1,11 +1,10 @@
 export type Visitor = {
 	readonly id: string;
 	readonly fullName: string;
+	readonly company: string;
+	readonly title: string;
 	readonly email: string;
-	readonly phoneNumber: string;
-	readonly status: 'pending' | 'processing' | 'success' | 'failed';
-	readonly priority: 'low' | 'medium' | 'high';
-	readonly country: string;
-	readonly city: string;
-	readonly gender: 'male' | 'female';
+	readonly lastVisit: Date;
+	readonly linkedinUrl: string;
+	readonly companyProfileImage?: string;
 };
