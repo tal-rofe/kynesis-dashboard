@@ -33,11 +33,13 @@
 		"prettier": "prettier --check **/*.{ts,js,cjs,json,yaml}",
 		"prettier:nx": "nx prettier",
 		"cspell": "cspell lint -c ./cspell.json --gitignore --no-progress --no-summary **",
-		"cspell:nx": "nx cspell"
+		"cspell:nx": "nx cspell",
+		"prisma:format": "prisma format --schema ./prisma/schema.prisma"
 	},
 	"devDependencies": {
 		"@commitlint/cli": "19.2.1",
 		"@exlint.io/inflint": "2.1.1",
+		"@prisma/client": "5.12.1",
 		"@types/node": "20.12.7",
 		"@typescript-eslint/eslint-plugin": "7.5.0",
 		"@typescript-eslint/parser": "7.5.0",

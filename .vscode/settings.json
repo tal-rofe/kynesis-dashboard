@@ -7,6 +7,11 @@
 				"match": "\\.tf$",
 				"isAsync": true,
 				"cmd": "terraform fmt ${file}"
+			},
+			{
+				"match": "\\.prisma$",
+				"isAsync": true,
+				"cmd": "./node_modules/.bin/prisma format --schema ${file}"
 			}
 		]
 	},

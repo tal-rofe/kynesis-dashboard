@@ -9,18 +9,14 @@ datasource db {
 
 enum AuthProviderType {
   GOOGLE
-  GITHUB
 }
 
 model User {
   id String @id @default(auto()) @map("_id") @db.ObjectId
 
-  email     String   @unique
-  name      String?
-
-  authType      AuthProviderType
+  email    String           @unique
+  authType AuthProviderType
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 }
-
