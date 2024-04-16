@@ -1,10 +1,12 @@
+import { type CompanyInfo } from './company';
+
 export type Visitor = {
 	readonly id: string;
 	readonly fullName: string;
-	readonly company: string;
 	readonly title: string;
 	readonly email: string;
 	readonly lastVisit: Date;
-	readonly linkedinUrl: string;
-	readonly companyProfileImage?: string;
+	readonly visitorLinkedinUrl: string;
+	readonly allTimeVisitsCount?: number;
+	readonly companyInfo: CompanyInfo;
 };
