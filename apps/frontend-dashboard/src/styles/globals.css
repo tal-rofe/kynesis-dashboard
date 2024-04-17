@@ -108,4 +108,28 @@
 	.iconStroke {
 		@apply stroke-[#4B5563] dark:stroke-white;
 	}
+
+	.ag-theme-alpine {
+		--ag-background-color: hsl(var(--background));
+		--ag-odd-row-background-color: hsl(var(--background));
+		--ag-header-background-color: hsl(var(--background));
+		--ag-border-color: hsl(var(--border));
+		--ag-header-border-color: hsl(var(--border));
+		--ag-header-foreground-color: hsl(var(--muted-foreground));
+		--ag-foreground-color: hsl(var(--foreground));
+		--ag-header-cell-hover-background-color: hsl(var(--card));
+		--ag-header-cell-moving-background-color: hsl(var(--card));
+		--ag-header-cell-resize-background-color: hsl(var(--card));
+		--ag-row-hover-background-color: hsl(var(--card));
+		--ag-row-selected-background-color: hsl(var(--card));
+		--ag-row-selected-foreground-color: hsl(var(--primary));
+		--ag-font-family: 'Inter', sans-serif;
+		--ag-font-size: 14px;
+		--ag-borders: hsl(var(--border));
+		--ag-header-column-separator-display: none;
+		--ag-header-column-resize-handle-color: hsl(var(--border));
+		--ag-row-height: 3.5rem;
+		--ag-row-border-width: 0;
+		--ag-control-panel-background-color: hsl(var(--background));
+	}
 }

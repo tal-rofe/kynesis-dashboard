@@ -4,6 +4,8 @@ import AppWrapper from '@/wrappers/AppWrapper';
 import ThemeProvider from '@/providers/ThemeProvider';
 import AuthSessionProvider from '@/lib/providers/AuthSessionProvider';
 
+import 'ag-grid-community/styles/ag-grid.css';
+import 'ag-grid-community/styles/ag-theme-alpine.css';
 import '../styles/globals.css';
 
 type Props = {
