@@ -2,11 +2,12 @@ import path from 'node:path';
 
 import type { ScheduledHandler } from 'aws-lambda';
 import SftpClient from 'ssh2-sftp-client';
-import LoggerService from '@kynesis/lambda-logger';
-import type { PixelCollectionData } from '@kynesis/pixel-enrichment-sqs';
 import { SQSClient, SendMessageCommand, type SendMessageCommandOutput } from '@aws-sdk/client-sqs';
 import { fromZodError } from 'zod-validation-error';
 import csvParser from 'csvtojson';
+
+import LoggerService from '@kynesis/lambda-logger';
+import type { PixelCollectionData } from '@kynesis/pixel-enrichment-sqs';
 
 import { SFTP_CONNECTION_RETRIES, SFTP_HANDSHAKE_TIMEOUT } from './constants/sftp';
 import { SQS_MAX_ATTEMPTS } from './constants/sqs';
