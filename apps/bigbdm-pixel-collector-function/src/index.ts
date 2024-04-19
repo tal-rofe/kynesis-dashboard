@@ -93,7 +93,7 @@ export const handler: ScheduledHandler = async (_, context) => {
 	for (const [index, customersWebsitesResponse] of customersWebsitesResponses.entries()) {
 		if (customersWebsitesResponse.status === 'rejected') {
 			logger.warn(`Failed to collect pixel data for website with a reason: ${customersWebsitesResponse.reason}`, {
-				websiteId: customersWebsitesIds[index],
+				websiteId: customersWebsitesIds[index]!.websiteId,
 			});
 		} else {
 			for (const responseItem of customersWebsitesResponse.value) {
