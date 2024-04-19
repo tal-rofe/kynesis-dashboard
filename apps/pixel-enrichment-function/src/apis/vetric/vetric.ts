@@ -1,4 +1,5 @@
 import deepmerge from 'deepmerge';
+
 import LoggerService from '@kynesis/lambda-logger';
 
 import { vetricHttpGet } from './utils/http';
