@@ -73,13 +73,14 @@ const UIVisitorsTable = (props: Props) => {
 				flex: 1,
 				filter: true,
 				resizable: true,
-				width: 200,
+				width: 220,
+				minWidth: 170,
 				// headerComponent: 'CustomHeader',
-				cellRenderer: (params: { value: string; data: { visitorLinkedinUrl: string } }) => {
+				cellRenderer: (params: { value: string; data: Visitor }) => {
 					return (
 						<div className="flex items-center min-w-16 gap-2">
 							<span className="capitalize">{params.value}</span>
-							<Link href={params.data.visitorLinkedinUrl} target="_blank">
+							<Link href={params.data.linkedinUrl} target="_blank">
 								<UISvg name="linkedinLogoWhite" />
 							</Link>
 						</div>
@@ -93,15 +94,9 @@ const UIVisitorsTable = (props: Props) => {
 				filter: true,
 				resizable: true,
 				width: 200,
+				minWidth: 130,
 				headerComponent: 'CustomHeader',
-				cellRenderer: (params: {
-					data: {
-						companyInfo: {
-							logoUrl: string | undefined;
-							name: string;
-						};
-					};
-				}) => {
+				cellRenderer: (params: { data: Visitor }) => {
 					return (
 						<div className="flex items-center gap-2 min-w-16">
 							<UIAvatar className="w-7 h-7 border">
@@ -120,6 +115,7 @@ const UIVisitorsTable = (props: Props) => {
 				filter: true,
 				resizable: true,
 				width: 200,
+				minWidth: 200,
 				headerComponent: 'CustomHeader',
 				cellRenderer: (params: { value: string }) => <span className="capitalize min-w-16">{params.value}</span>,
 			},
@@ -130,26 +126,122 @@ const UIVisitorsTable = (props: Props) => {
 				filter: true,
 				resizable: true,
 				width: 200,
-				headerComponent: 'CustomHeader',
+				minWidth: 150,
 				cellRenderer: (params: { value: string }) => <span className="lowercase min-w-16">{params.value}</span>,
 			},
 			{
-				field: 'lastVisit',
+				field: 'analytics.lastVisitDate',
 				headerName: 'Last Visit',
 				flex: 1,
 				filter: true,
 				resizable: true,
 				width: 200,
+				minWidth: 190,
 				cellRenderer: (params: { value: Date }) => <span className="uppercase min-w-16">{formatDate(params.value)}</span>,
 			},
-		];
-
-		if (!props.dataOnly) {
-			baseColumns.push({
+			{
+				field: 'analytics.allTimeVisitsCount',
+				headerName: 'All-time visits',
+				flex: 1,
+				filter: true,
+				resizable: true,
+				width: 200,
+				minWidth: 80,
+				hide: props.dataOnly,
+				cellRenderer: (params: { value: number }) => <span className="uppercase min-w-16">{params.value}</span>,
+			},
+			{
+				field: 'companyInfo.websiteUrl',
+				headerName: 'Website',
+				flex: 1,
+				filter: true,
+				resizable: true,
+				width: 200,
+				minWidth: 150,
+				headerComponent: 'CustomHeader',
+				hide: props.dataOnly,
+				cellRenderer: (params: { value: string }) => <span className="capitalize min-w-16">{params.value}</span>,
+			},
+			{
+				field: 'companyInfo.industry',
+				headerName: 'Industry',
+				flex: 1,
+				filter: true,
+				resizable: true,
+				width: 150,
+				minWidth: 100,
+				headerComponent: 'CustomHeader',
+				hide: props.dataOnly,
+				cellRenderer: (params: { value: string }) => <span className="capitalize min-w-16">{params.value}</span>,
+			},
+			{
+				field: 'companyInfo.numberOfEmployees',
+				headerName: 'Employees',
+				flex: 1,
+				filter: true,
+				resizable: true,
+				width: 105,
+				minWidth: 105,
+				headerComponent: 'CustomHeader',
+				hide: props.dataOnly,
+				cellRenderer: (params: { value: string }) => <span className="capitalize min-w-16">{params.value}</span>,
+			},
+			{
+				field: 'city',
+				headerName: 'City',
+				flex: 1,
+				filter: true,
+				resizable: true,
+				width: 150,
+				minWidth: 100,
+				headerComponent: 'CustomHeader',
+				hide: props.dataOnly,
+				cellRenderer: (params: { value: string }) => <span className="capitalize min-w-16">{params.value}</span>,
+			},
+			{
+				field: 'state',
+				headerName: 'State',
+				flex: 1,
+				filter: true,
+				resizable: true,
+				width: 150,
+				minWidth: 100,
+				headerComponent: 'CustomHeader',
+				suppressMenu: true,
+				hide: props.dataOnly,
+				cellRenderer: (params: { value: string }) => <span className="capitalize min-w-16">{params.value}</span>,
+			},
+			{
+				field: 'analytics.visitedPages',
+				headerName: 'Last visited URL',
+				flex: 1,
+				filter: true,
+				resizable: true,
+				width: 200,
+				minWidth: 150,
+				hide: props.dataOnly,
+				cellRenderer: (params: { value: string[] }) => <div className="flex flex-col gap-1">{params.value[params.value.length - 1]}</div>,
+			},
+			{
+				field: 'analytics.firstVisitDate',
+				headerName: 'First Visit',
+				flex: 1,
+				filter: true,
+				resizable: true,
+				width: 200,
+				minWidth: 190,
+				hide: props.dataOnly,
+				cellRenderer: (params: { value: Date }) => <span className="uppercase min-w-16">{formatDate(params.value)}</span>,
+			},
+			{
 				filter: false,
 				resizable: false,
+				sortable: false,
 				pinned: 'right',
+				lockPinned: true,
 				width: 50,
+				minWidth: 50,
+				hide: props.dataOnly,
 				cellRenderer: (params: { data: Visitor }) => {
 					const visitor = params.data;
 
@@ -177,8 +269,8 @@ const UIVisitorsTable = (props: Props) => {
 						</UIDropdownMenu>
 					);
 				},
-			});
-		}
+			},
+		];
 
 		return baseColumns;
 	}, [props.dataOnly]);
@@ -213,8 +305,9 @@ const UIVisitorsTable = (props: Props) => {
 					</UIButton>
 				</div>
 			)}
-			<div className={cn(props.dataOnly ? 'h-[calc(100vh-415px)]' : 'h-[calc(100vh-254px)]', 'ag-theme-alpine flex flex-col  overflow-auto')}>
+			<div className={cn('ag-theme-alpine flex flex-col overflow-auto', props.dataOnly ? 'h-[calc(100vh-415px)]' : 'h-[calc(100vh-254px)]')}>
 				<AgGridReact
+					className="w-full h-full"
 					rowData={props.data}
 					columnDefs={columnData}
 					rowDragManaged
