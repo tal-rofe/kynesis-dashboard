@@ -144,6 +144,7 @@ const config = {
 			'error',
 			{
 				'groups': ['builtin', 'external', 'internal', 'parent', 'sibling', 'index', 'object'],
+				'pathGroupsExcludedImportTypes': ['builtin', 'object'],
 				'pathGroups': [
 					{
 						pattern: '@kynesis/**',
@@ -152,8 +153,8 @@ const config = {
 					},
 					{
 						pattern: '@/**',
-						group: 'external',
-						position: 'after',
+						group: 'internal',
+						position: 'before',
 					},
 				],
 				'distinctGroup': true,

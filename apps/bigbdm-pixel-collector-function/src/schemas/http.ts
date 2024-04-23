@@ -5,7 +5,7 @@ export const AccessTokenApiResponseSchema = z.object({
 });
 
 export const PixelDataItemSchema = z.object({
-	pageData: z.tuple([z.object({ email: z.string().email() })]),
+	pageData: z.array(z.object({ email: z.string().email() })).min(1),
 });
 
 export const PixelDataResponseSchema = z

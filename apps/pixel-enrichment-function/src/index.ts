@@ -2,6 +2,7 @@ import type { SQSHandler } from 'aws-lambda';
 import { SQSClient, SendMessageCommand, DeleteMessageCommand, type SendMessageCommandOutput } from '@aws-sdk/client-sqs';
 import { DynamoDBClient, GetItemCommand, type GetItemCommandOutput } from '@aws-sdk/client-dynamodb';
 import got from 'got';
+
 import LoggerService from '@kynesis/lambda-logger';
 import type { PixelCollectionData } from '@kynesis/pixel-enrichment-sqs';
 

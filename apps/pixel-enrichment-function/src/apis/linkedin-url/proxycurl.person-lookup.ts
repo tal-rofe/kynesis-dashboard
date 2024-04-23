@@ -1,4 +1,5 @@
 import freeEmailDomains from 'free-email-domains';
+
 import type { PixelCollectionData } from '@kynesis/pixel-enrichment-sqs';
 
 import type { LinkedinUrlResponse } from './interfaces/response';

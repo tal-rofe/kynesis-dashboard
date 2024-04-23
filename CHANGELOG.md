@@ -1,3 +1,11 @@
+# [1.2.0](https://github.com/kynesis-io/dashboard/compare/v1.1.0...v1.2.0) (2024-04-15)
+
+
+### Features
+
+* 🔥 add AtData pixel collector Lambda Function ([cdc4271](https://github.com/kynesis-io/dashboard/commit/cdc4271097fddaa0e7b2e589ed428064c9824ebd))
+* 🔥 support BigBDM pixel data collector ([4b69d29](https://github.com/kynesis-io/dashboard/commit/4b69d29327ee9e3401def84edca1fda0e24a44b0))
+
 # [1.1.0](https://github.com/kynesis-io/dashboard/compare/v1.0.0...v1.1.0) (2024-04-03)
 
 

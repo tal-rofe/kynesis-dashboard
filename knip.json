@@ -1,11 +1,18 @@
 {
+	"$schema": "./node_modules/knip/schema.json",
 	"ignore": ["inflint.config.ts", "czvinyl.config.ts", "scripts/onboarding.js", "release.config.cjs", "./docker/scripts/open-dashboard.js"],
-	"ignoreDependencies": ["commitizen", "open", "wait-on", "prisma"],
+	"ignoreDependencies": ["commitizen", "open", "wait-on", "@prisma/client"],
 	"ignoreBinaries": ["only-allow", "terraform", "concurrently", "magenta,blue", "playwright", "storybook:build", "storybook:test"],
 	"workspaces": {
 		"apps/frontend-dashboard": {
 			"ignore": ["_templates/**/*", "@types/next/index.d.ts", "@types/**/*", "public/**/*", "./src/components/ui/**/*"],
 			"ignoreDependencies": ["@storybook/blocks", "postcss-nesting", "@radix-ui/react-icons", "@radix-ui/react-accordion"]
+		},
+		"apps/backend-dashboard": {
+			"entry": "./src/main.ts",
+			"project": "./src/**/*",
+			"webpack": false,
+			"ignoreDependencies": ["webpack", "webpack-node-externals", "@types/webpack-node-externals", "ts-loader"]
 		},
 		"apps/pixel-enrichment-function": {
 			"entry": "./src/index.ts",
