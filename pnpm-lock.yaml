@@ -196,6 +196,12 @@ importers:
 
   apps/frontend-dashboard:
     dependencies:
+      '@ag-grid-community/core':
+        specifier: 31.2.1
+        version: 31.2.1
+      '@ag-grid-community/csv-export':
+        specifier: 31.2.1
+        version: 31.2.1
       '@radix-ui/react-accordion':
         specifier: 1.1.2
         version: 1.1.2(@types/react-dom@18.2.24)(@types/react@18.2.74)(react-dom@18.2.0)(react@18.2.0)
@@ -274,9 +280,6 @@ importers:
       react:
         specifier: 18.2.0
         version: 18.2.0
-      react-csv:
-        specifier: 2.2.2
-        version: 2.2.2
       react-type-animation:
         specifier: 3.2.0
         version: 3.2.0(prop-types@15.8.1)(react-dom@18.2.0)(react@18.2.0)
@@ -332,9 +335,6 @@ importers:
       '@types/react':
         specifier: 18.2.74
         version: 18.2.74
-      '@types/react-csv':
-        specifier: 1.1.10
-        version: 1.1.10
       '@types/react-dom':
         specifier: 18.2.24
         version: 18.2.24
@@ -474,6 +474,19 @@ packages:
   /@adobe/css-tools@4.3.3:
     resolution: {integrity: sha512-rE0Pygv0sEZ4vBWHlAgJLGDU7Pm8xoO6p3wsEceb7GYAjScrOHpEo8KK/eVkAcnSM+slAEtXjA2JpdjLp4fJQQ==}
     dev: true
+
+  /@ag-grid-community/core@31.2.1:
+    resolution: {integrity: sha512-tTDt8c6KykR+Y0cNwwbpokkhMmD1L1WVILPwZ0Z3lsSxSkmzGbTKSD2jOSvlw9vpPuAJpU0R5tMe1dfsEXO1YA==}
+    dependencies:
+      tslib: 2.6.2
+    dev: false
+
+  /@ag-grid-community/csv-export@31.2.1:
+    resolution: {integrity: sha512-3h9kd9LDgpHdO2aPcKI2qZT0dGEJMWE/oTRrpBIMQD66KMTRKVJouKulvCTgDVp9X0nGHWq00/2TpNpTcK5jDg==}
+    dependencies:
+      '@ag-grid-community/core': 31.2.1
+      tslib: 2.6.2
+    dev: false
 
   /@alloc/quick-lru@5.2.0:
     resolution: {integrity: sha512-UrcABB+4bUrFABwbluTIBErXwvbsU/V7TZWfmbgJfbkwiBuziS9gxdODUyuiecfdGQ85jglMW6juS3+z5TsKLw==}
@@ -6676,12 +6689,6 @@ packages:
 
   /@types/range-parser@1.2.7:
     resolution: {integrity: sha512-hKormJbkJqzQGhziax5PItDUTMAM9uE2XXQmM37dyd4hVM+5aVl7oVxMVUiVQn2oCQFN/LKCZdvSM0pFRqbSmQ==}
-    dev: true
-
-  /@types/react-csv@1.1.10:
-    resolution: {integrity: sha512-PESAyASL7Nfi/IyBR3ufd8qZkyoS+7jOylKmJxRZUZLFASLo4NZaRsJ8rNP8pCcbIziADyWBbLPD1nPddhsL4g==}
-    dependencies:
-      '@types/react': 18.2.74
     dev: true
 
   /@types/react-dom@18.2.24:
@@ -15765,10 +15772,6 @@ packages:
       react: 18.2.0
       tween-functions: 1.2.0
     dev: true
-
-  /react-csv@2.2.2:
-    resolution: {integrity: sha512-RG5hOcZKZFigIGE8LxIEV/OgS1vigFQT4EkaHeKgyuCbUAu9Nbd/1RYq++bJcJJ9VOqO/n9TZRADsXNDR4VEpw==}
-    dev: false
 
   /react-docgen-typescript@2.2.2(typescript@5.4.2):
     resolution: {integrity: sha512-tvg2ZtOpOi6QDwsb3GZhOjDkkX0h8Z2gipvTg6OVMUyoYoURhEiRNePT8NZItTVCDh39JJHnLdfCOkzoLbFnTg==}

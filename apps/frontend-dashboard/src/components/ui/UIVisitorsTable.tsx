@@ -1,9 +1,10 @@
 /* eslint-disable no-console */
 /* eslint-disable max-lines */
 
-import React, { useMemo } from 'react';
-// import { CSVLink } from 'react-csv';
+import React, { useCallback, useMemo, useRef } from 'react';
 import type { ColDef as ColData, GridReadyEvent, SortChangedEvent } from 'ag-grid-community';
+import { CsvExportModule } from '@ag-grid-community/csv-export';
+import { ModuleRegistry } from '@ag-grid-community/core';
 import { MoreHorizontal } from 'lucide-react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
@@ -29,6 +30,8 @@ import { UICardDescription, UICardTitle } from './UICard';
 import CustomHeader from './UICustomTableHeader';
 import { UIAvatar, UIAvatarImage, UIAvatarFallback } from './UIAvatar';
 
+ModuleRegistry.registerModules([CsvExportModule]);
+
 type Props = {
 	readonly tableId: 'dashboard' | 'visitors';
 	readonly data: Visitor[];
@@ -39,34 +42,29 @@ type Props = {
 };
 
 const UIVisitorsTable = (props: Props) => {
+	const gridRef = useRef<AgGridReact | null>(null);
 	const pathname = usePathname();
-	// const currentDate = new Date();
 	const { tablesCustomizeParameters, setColumnResized, setColumnDraggedStopped, setColumnPinned } = useTableStore();
 	const { setCurrentVisitor } = useVisitorsStore();
 
 	const onSetCurrentVisitor = (visitor: Visitor) => setCurrentVisitor(visitor);
 
-	// const csvHeaders = [
-	// 	{ label: 'Full name', key: 'fullName' },
-	// 	{ label: 'Company', key: 'company' },
-	// 	{ label: 'Title', key: 'title' },
-	// 	{ label: 'Email', key: 'email' },
-	// 	{ label: 'Last visit', key: 'lastVisit' },
-	// ];
-
 	const gridOptions = {
 		defaultColDef: {
 			cellClass: 'flex items-center h-full min-w-4',
+			resizable: true,
+			filter: true,
 		},
 		components: {
 			CustomHeader: CustomHeader,
 		},
-
 		ensureDomOrder: true,
-		// autoSizeStrategy: {
-		// 	type: 'fitCellContents',
-		// 	skipHeader: true,
-		// } as SizeColumnsToContentStrategy,
+		params: {
+			skipHeader: false,
+			skipFooters: true,
+			skipGroups: true,
+			fileName: 'yazif.csv',
+		},
 	};
 
 	const columnData = useMemo(() => {
@@ -75,8 +73,6 @@ const UIVisitorsTable = (props: Props) => {
 				colId: 'fullName',
 				field: 'fullName',
 				headerName: 'Full name',
-				filter: true,
-				resizable: true,
 				minWidth: 100,
 				cellRenderer: (params: { value: string; data: Visitor }) => {
 					return (
@@ -94,8 +90,6 @@ const UIVisitorsTable = (props: Props) => {
 				field: 'companyInfo.name',
 				headerName: 'Company',
 				headerComponent: 'CustomHeader',
-				filter: true,
-				resizable: true,
 				minWidth: 130,
 				cellRenderer: (params: { data: Visitor }) => {
 					return (
@@ -114,8 +108,6 @@ const UIVisitorsTable = (props: Props) => {
 				field: 'title',
 				headerName: 'Title',
 				headerComponent: 'CustomHeader',
-				filter: true,
-				resizable: true,
 				minWidth: 200,
 				cellRenderer: (params: { value: string }) => <span className="capitalize min-w-16">{params.value}</span>,
 			},
@@ -123,8 +115,6 @@ const UIVisitorsTable = (props: Props) => {
 				colId: 'email',
 				field: 'email',
 				headerName: 'Email',
-				filter: true,
-				resizable: true,
 				minWidth: 150,
 				cellRenderer: (params: { value: string }) => <span className="lowercase min-w-16">{params.value}</span>,
 			},
@@ -132,8 +122,6 @@ const UIVisitorsTable = (props: Props) => {
 				colId: 'analytics.lastVisitDate',
 				field: 'analytics.lastVisitDate',
 				headerName: 'Last Visit',
-				filter: true,
-				resizable: true,
 				minWidth: 190,
 				cellRenderer: (params: { value: Date }) => <span className="uppercase min-w-16">{formatDate(params.value)}</span>,
 			},
@@ -141,8 +129,6 @@ const UIVisitorsTable = (props: Props) => {
 				colId: 'analytics.allTimeVisitsCount',
 				field: 'analytics.allTimeVisitsCount',
 				headerName: 'All-time visits',
-				filter: true,
-				resizable: true,
 				hide: props.dataOnly,
 				minWidth: 80,
 				cellRenderer: (params: { value: number }) => <span className="uppercase min-w-16">{params.value}</span>,
@@ -151,8 +137,6 @@ const UIVisitorsTable = (props: Props) => {
 				colId: 'companyInfo.websiteUrl',
 				field: 'companyInfo.websiteUrl',
 				headerName: 'Website',
-				filter: true,
-				resizable: true,
 				headerComponent: 'CustomHeader',
 				hide: props.dataOnly,
 				minWidth: 150,
@@ -163,8 +147,6 @@ const UIVisitorsTable = (props: Props) => {
 				field: 'companyInfo.industry',
 				headerName: 'Industry',
 				headerComponent: 'CustomHeader',
-				filter: true,
-				resizable: true,
 				hide: props.dataOnly,
 				minWidth: 100,
 				cellRenderer: (params: { value: string }) => <span className="capitalize min-w-16">{params.value}</span>,
@@ -174,8 +156,6 @@ const UIVisitorsTable = (props: Props) => {
 				field: 'companyInfo.numberOfEmployees',
 				headerName: 'Employees',
 				headerComponent: 'CustomHeader',
-				filter: true,
-				resizable: true,
 				hide: props.dataOnly,
 				minWidth: 105,
 				cellRenderer: (params: { value: string }) => <span className="capitalize min-w-16">{params.value}</span>,
@@ -185,8 +165,6 @@ const UIVisitorsTable = (props: Props) => {
 				field: 'city',
 				headerName: 'City',
 				headerComponent: 'CustomHeader',
-				filter: true,
-				resizable: true,
 				hide: props.dataOnly,
 				minWidth: 100,
 				cellRenderer: (params: { value: string }) => <span className="capitalize min-w-16">{params.value}</span>,
@@ -196,8 +174,6 @@ const UIVisitorsTable = (props: Props) => {
 				field: 'state',
 				headerName: 'State',
 				headerComponent: 'CustomHeader',
-				filter: true,
-				resizable: true,
 				hide: props.dataOnly,
 				minWidth: 100,
 				cellRenderer: (params: { value: string }) => <span className="capitalize min-w-16">{params.value}</span>,
@@ -206,8 +182,6 @@ const UIVisitorsTable = (props: Props) => {
 				colId: 'analytics.visitedPages',
 				field: 'analytics.visitedPages',
 				headerName: 'Last visited URL',
-				filter: true,
-				resizable: true,
 				hide: props.dataOnly,
 				minWidth: 150,
 				cellRenderer: (params: { value: string[] }) => <div className="flex flex-col gap-1">{params.value[params.value.length - 1]}</div>,
@@ -216,8 +190,6 @@ const UIVisitorsTable = (props: Props) => {
 				colId: 'analytics.firstVisitDate',
 				field: 'analytics.firstVisitDate',
 				headerName: 'First Visit',
-				filter: true,
-				resizable: true,
 				hide: props.dataOnly,
 				minWidth: 190,
 				cellRenderer: (params: { value: Date }) => <span className="uppercase min-w-16">{formatDate(params.value)}</span>,
@@ -263,6 +235,14 @@ const UIVisitorsTable = (props: Props) => {
 
 		return baseColumns;
 	}, [tablesCustomizeParameters]);
+
+	const onExportToCsv = useCallback(() => {
+		if (!gridRef.current) {
+			return;
+		}
+
+		gridRef.current.api.exportDataAsCsv(gridOptions.params);
+	}, []);
 
 	const onSaveGridColumnState = (state: SortChangedEvent) => {
 		console.log('onSaveGridColumnState', state);
@@ -310,23 +290,15 @@ const UIVisitorsTable = (props: Props) => {
 				</div>
 			) : (
 				<div className="flex items-center py-4 gap-2">
-					<UIButton className="rounded-3xl" variant="secondary" asChild>
+					<UIButton className="rounded-3xl" variant="secondary" onClick={onExportToCsv}>
 						Export to CSV
-						{/* <CSVLink
-							data={props.data}
-							headers={csvHeaders}
-							filename={`visitors-${currentDate.getDate()}-${
-								currentDate.getMonth() + 1
-							}-${currentDate.getFullYear()}-${currentDate.getHours()}-${currentDate.getMinutes()}-${currentDate.getSeconds()}`}
-						>
-							Export to CSV
-						</CSVLink> */}
 					</UIButton>
 				</div>
 			)}
 			<div className={`${props.dataOnly ? 'h-[calc(100vh-415px)]' : 'h-[calc(100vh-254px)]'}`}>
 				<div className="ag-theme-alpine flex flex-col h-full">
 					<AgGridReact
+						ref={gridRef}
 						rowData={props.data}
 						columnDefs={columnData}
 						rowDragManaged
