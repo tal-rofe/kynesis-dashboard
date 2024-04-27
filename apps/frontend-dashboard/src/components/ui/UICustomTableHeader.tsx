@@ -7,7 +7,16 @@ const CustomHeader: React.FC<IHeaderParams> = (params) => {
 	const [pinned, setPinned] = useState<boolean>(params.column.isPinned());
 
 	const togglePinning = () => {
-		params.api.setColumnsPinned([params.column.getColId()], 'left');
+		if (pinned) {
+			params.api.setColumnsPinned([params.column.getColId()], null);
+
+			params.column.setPinned(null);
+		} else {
+			params.api.setColumnsPinned([params.column.getColId()], 'left');
+
+			params.column.setPinned('left');
+		}
+
 		setPinned((prev) => !prev);
 	};
 

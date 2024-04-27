@@ -24,7 +24,7 @@ const Visitors = () => {
 			<KpiCards />
 			<div className="flex flex-1 overflow-hidden gap-8">
 				<div className="flex flex-col w-full h-full p-6 bg-background rounded-lg border">
-					<UIVisitorsTable data={visitors} dataOnly />
+					<UIVisitorsTable tableId="dashboard" data={visitors} dataOnly />
 				</div>
 				<BriefTables />
 			</div>

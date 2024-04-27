@@ -19,7 +19,7 @@ const Prospects = () => {
 
 	return (
 		<PageWrapper>
-			<UIVisitorsTable data={visitors} />
+			<UIVisitorsTable tableId="visitors" data={visitors} />
 		</PageWrapper>
 	);
 };
