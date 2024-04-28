@@ -1,9 +1,10 @@
 'use client';
 
-import React, { useEffect, useState } from 'react';
+import React, { useMemo, useState } from 'react';
 
 import { type WelcomeFormInputs } from '@/lib/types/api/onboarding';
 import { isValidLinkedInURL } from '@/lib/utils/regex';
+import useBackendService from '@/hooks/useBackendService';
 
 import WelcomeView from './Welcome.view';
 
@@ -12,27 +13,25 @@ type Props = {
 };
 
 const Welcome = (props: Props) => {
+	const backendService = useBackendService();
+
+	const [isLoading, setIsLoading] = useState(false);
+
 	const [formInputs, setFormInputs] = useState<WelcomeFormInputs>({
-		firstName: '',
-		lastName: '',
-		companyLinkedInURL: '',
+		firstName: 'Amir',
+		lastName: 'Ben',
+		companyLinkedInURL: 'https://www.linkedin.com/company/microsoft/',
 	});
 
-	const [animationClass, setAnimationClass] = useState('animate-fadeIn');
+	const [animationClass, setAnimationClass] = useState('animate-fade-in');
 
-	const [isFormValid, setIsFormValid] = useState(false);
-
-	const onFormValidation = () => {
-		if (formInputs.firstName && formInputs.lastName && formInputs.companyLinkedInURL) {
-			if (isValidLinkedInURL(formInputs.companyLinkedInURL)) {
-				setIsFormValid(true);
-			} else {
-				setIsFormValid(false);
-			}
-		} else {
-			setIsFormValid(false);
+	const isFormValid = useMemo(() => {
+		if (!formInputs.firstName || !formInputs.lastName || !formInputs.companyLinkedInURL) {
+			return false;
 		}
-	};
+
+		return isValidLinkedInURL(formInputs.companyLinkedInURL);
+	}, [formInputs]);
 
 	const onInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
 		const { name, value } = e.target;
@@ -62,23 +61,29 @@ const Welcome = (props: Props) => {
 		setFormInputs(newUserData);
 	};
 
-	const onNextStep = () => {
-		setAnimationClass('animate-fadeOut');
+	const onNextStep = async () => {
+		setIsLoading(true);
+		const { ok } = await backendService.post('/onboarding/welcome', {
+			body: JSON.stringify(formInputs),
+		});
 
-		setTimeout(() => {
-			props.onNextStep();
-		}, 500);
+		if (!ok) {
+			setIsLoading(false);
+
+			return;
+		}
+
+		setIsLoading(false);
+		setAnimationClass('animate-fade-out');
+		props.onNextStep();
 	};
-
-	useEffect(() => {
-		onFormValidation();
-	}, [formInputs]);
 
 	return (
 		<WelcomeView
 			formInputs={formInputs}
 			isFormValid={isFormValid}
 			animationClass={animationClass}
+			isLoading={isLoading}
 			onNextStep={onNextStep}
 			onInputChange={onInputChange}
 			onInputPaste={onInputPaste}

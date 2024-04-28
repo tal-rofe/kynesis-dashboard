@@ -3,6 +3,7 @@ node_modules
 apps/frontend-dashboard/node_modules
 apps/frontend-dashboard/.next
 apps/frontend-dashboard/src/components/ui/modules/
+apps/frontend-dashboard/src/components/ui/modals/
 
 apps/backend-dashboard/node_modules
 apps/backend-dashboard/dist

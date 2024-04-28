@@ -10,9 +10,14 @@ import UISvg from '@/ui/UISvg';
 import { UIBadge } from '@/ui/UIBadge';
 
 type Props = {
+	readonly trackingScript: string;
 	readonly animationClass: string;
+	readonly isCopied: boolean;
+	readonly isTrackingScriptVerified: boolean;
 	readonly onNextStep: VoidFunction;
 	readonly onPrevStep: VoidFunction;
+	readonly onCopyTrackingScriptToClipboard: VoidFunction;
+	readonly onVerifyTrackingScript: VoidFunction;
 };
 
 const HtmlScriptView = (props: Props) => {
@@ -22,24 +27,16 @@ const HtmlScriptView = (props: Props) => {
 				<UICardTitle>Installing script with HTML code</UICardTitle>
 				<UICardDescription>Installing in https://domainfromearlier.com</UICardDescription>
 			</UICardHeader>
-			<UICardContent>
+			<UICardContent className=" max-h-[55vh] overflow-y-auto">
 				<UIProgress value={50} />
 				<div className="grid w-full items-center gap-1.5 my-4">
 					<UILabel htmlFor="copy">1. Copy the tracking script</UILabel>
-					<UITextarea className=" bg-slate-950 max-h-64 min-h-64 h-64 text-slate-400 text-sm font-normal font-['Menlo'] leading-tight">
-						{`B2BRetention.prototype.send_to_gateway = function (event_obj, url, endpoint) {
-    						if (this.has_valid_id && this.valid_geo && !this.disable_events) {
-        					let u = "https://" + url + ".execute-api.us-west-2.amazonaws.com/" + endpoint;
-
-       			 			let d = btoa(_reb2b.clean_string(JSON.stringify(event_obj)));
-
-        					fetch(u, {method: 'POST', headers: {'Content-Type': 'application/json'}, body: d})
-    					}
-						}`}
+					<UITextarea className=" bg-slate-950 max-h-56 min-h-56 h-56 text-slate-400 text-sm font-normal font-['Menlo'] leading-tight">
+						{props.trackingScript}
 					</UITextarea>
-					<UIButton variant="outline" className="w-full">
+					<UIButton variant="outline" className="w-full" disabled={props.isCopied} onClick={props.onCopyTrackingScriptToClipboard}>
 						<div className="flex items-center gap-2">
-							<UISvg name="copy" />
+							<UISvg name={props.isCopied ? 'check' : 'copy'} />
 							<span>Copy script</span>
 						</div>
 					</UIButton>
@@ -56,15 +53,15 @@ const HtmlScriptView = (props: Props) => {
 					</span>
 				</div>
 				<div className="flex items-center justify-between mt-4">
-					<UIButton variant="default" className="w-1/2 gap-1">
+					<UIButton variant="default" className="w-1/2 gap-1" onClick={props.onVerifyTrackingScript}>
 						<UISvg name="code" className="fill-transparent" />
 						Test script on website
 					</UIButton>
 					<div className="flex items-center justify-end gap-2">
 						<span className="text-muted-foreground text-sm">Script installation status:</span>
-						<UIBadge className="gap-1">
-							<UISvg name="verified" className=" fill-transparent" />
-							Script verified
+						<UIBadge variant={props.isTrackingScriptVerified ? 'default' : 'destructive'} className="gap-1">
+							<UISvg name="verified" className="fill-transparent" />
+							{`Script ${props.isTrackingScriptVerified ? 'verified' : 'not verified'}`}
 						</UIBadge>
 					</div>
 				</div>

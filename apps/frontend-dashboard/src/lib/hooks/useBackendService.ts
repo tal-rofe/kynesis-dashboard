@@ -2,57 +2,73 @@ import { useCallback } from 'react';
 import { useSession } from 'next-auth/react';
 
 import type { ExtendedSession } from '@/types/api/auth';
-import type { THttpMethod } from '@/types/api/http';
-
-// Extend FetchOptions to include 'data' alongside all standard fetch init options.
-type FetchOptions<D> = RequestInit & {
-	data?: D;
-};
+import type { THttpMethod, ResponseData, FetchOptions } from '@/types/api/http';
 
 const useBackendService = () => {
 	const { data: sessionData } = useSession() as { data: ExtendedSession | null };
 
-	const baseFetcher = async <R = unknown, D = unknown>(path: string, method: THttpMethod, options?: FetchOptions<D>): Promise<R> => {
-		const { data, ...fetchOptions } = options ?? {};
+	const fetcher = useCallback(
+		async <R = unknown, D = unknown>(path: string, method: THttpMethod, options?: FetchOptions<D>): Promise<ResponseData<R>> => {
+			const { data, ...fetchOptions } = options ?? {};
 
-		const res = await fetch(`${path}`, {
-			method,
-			headers: {
+			const headers = {
 				'Content-Type': 'application/json',
-				'Encrypted-User-ID': sessionData?.userIdEncryptionHeader ?? '',
+				'Encrypted-User-ID': sessionData?.userIdEncryptionHeader ?? '-1',
 				...fetchOptions.headers,
-			},
-			body: data ? JSON.stringify(data) : undefined,
-			...fetchOptions,
-		});
+			};
 
-		if (!res.ok) {
-			const error = new Error(`HTTP error! status: ${res.status}`);
+			const response = await fetch(`api${path}`, {
+				method,
+				headers,
+				body: data ? JSON.stringify(data) : undefined,
+				...fetchOptions,
+			});
 
-			throw error;
-		}
+			if (!response.ok) {
+				const errorResponse = await response.json().catch(() => ({
+					message: `Failed to fetch: ${response.status} ${response.statusText}`,
+					status: response.status,
+				}));
 
-		return res.json().catch(() => {
-			throw new Error('Failed to parse JSON response');
-		});
-	};
+				return errorResponse as ResponseData<R>;
+			}
+
+			return response.json().catch(() => ({
+				ok: false,
+				status: response.status,
+			}));
+		},
+		[sessionData],
+	);
 
 	const BackendService = {
-		get: useCallback(<R = unknown>(path: string, options?: FetchOptions<null>): Promise<R> => {
-			return baseFetcher<R, null>(path, 'GET', options);
-		}, []),
+		get: useCallback(
+			<R = unknown>(path: string, options?: FetchOptions<null>): Promise<ResponseData<R>> => {
+				return fetcher<R, null>(path, 'GET', options);
+			},
+			[sessionData],
+		),
 
-		post: useCallback(<R = unknown, D = unknown>(path: string, options?: FetchOptions<D>): Promise<R> => {
-			return baseFetcher<R, D>(path, 'POST', options);
-		}, []),
+		post: useCallback(
+			<R = unknown, D = unknown>(path: string, options?: FetchOptions<D>): Promise<ResponseData<R>> => {
+				return fetcher<R, D>(path, 'POST', options);
+			},
+			[sessionData],
+		),
 
-		patch: useCallback(<R = unknown, D = unknown>(path: string, options?: FetchOptions<D>): Promise<R> => {
-			return baseFetcher<R, D>(path, 'PATCH', options);
-		}, []),
+		patch: useCallback(
+			<R = unknown, D = unknown>(path: string, options?: FetchOptions<D>): Promise<ResponseData<R>> => {
+				return fetcher<R, D>(path, 'PATCH', options);
+			},
+			[sessionData],
+		),
 
-		delete: useCallback(<R = unknown>(path: string, options?: FetchOptions<null>): Promise<R> => {
-			return baseFetcher<R, null>(path, 'DELETE', options);
-		}, []),
+		delete: useCallback(
+			<R = unknown>(path: string, options?: FetchOptions<null>): Promise<ResponseData<R>> => {
+				return fetcher<R, null>(path, 'DELETE', options);
+			},
+			[sessionData],
+		),
 	};
 
 	return BackendService;

@@ -1,8 +1,9 @@
 import { create } from 'zustand';
-import { persist } from 'zustand/middleware';
+import { createJSONStorage, persist } from 'zustand/middleware';
 import type { ColumnPinnedEvent, ColumnResizedEvent, DragStoppedEvent } from 'ag-grid-community';
 
 import type { TableCustomizeParameters, TableIds } from '../types/ui/table';
+import { INITIAL_TABLE_CUSTOMIZE_PARAMETERS } from '../data/consts/tables';
 
 type State = {
 	readonly tablesCustomizeParameters: TableCustomizeParameters;
@@ -16,14 +17,9 @@ type Action = {
 
 type TableStore = State & Action;
 
-const initialCustomizeParameters: TableCustomizeParameters = {
-	dashboard: { columnsProperties: [], columnsOrder: [] },
-	visitors: { columnsProperties: [], columnsOrder: [] },
-};
-
 const tableStore = persist<TableStore>(
 	(set, get) => ({
-		tablesCustomizeParameters: initialCustomizeParameters,
+		tablesCustomizeParameters: INITIAL_TABLE_CUSTOMIZE_PARAMETERS,
 
 		setColumnResized: (tableId, event) => {
 			if (event.finished && event.column) {
@@ -117,7 +113,7 @@ const tableStore = persist<TableStore>(
 	}),
 	{
 		name: 'tableStore',
-		getStorage: () => sessionStorage,
+		storage: createJSONStorage(() => sessionStorage),
 	},
 );
 

@@ -52,6 +52,15 @@ module.exports = {
 				md: 'calc(var(--radius) - 2px)',
 				sm: 'calc(var(--radius) - 4px)',
 			},
+			animation: {
+				'accordion-down': 'accordion-down 0.2s ease-out',
+				'accordion-up': 'accordion-up 0.2s ease-out',
+				'fade-in': 'fade-in 0.5s ease-out forwards',
+				'fade-out': 'fade-out 0.5s ease-in forwards',
+				'slide-in': 'slide-in 0.3s ease-in-out forwards',
+				'slide-out': 'slide-out 0.4s ease-out forwards',
+				'expand': 'expand 3s linear forwards',
+			},
 			keyframes: {
 				'accordion-down': {
 					from: { height: '0' },
@@ -61,35 +70,27 @@ module.exports = {
 					from: { height: 'var(--radix-accordion-content-height)' },
 					to: { height: '0' },
 				},
-				'slideIn': {
-					'0%': { transform: 'translateX(-100%)' },
-					'100%': { transform: 'translateX(0)' },
+				'slide-in': {
+					'0%': { transform: 'translateX(100%)', opacity: 0 },
+					'100%': { transform: 'translateX(0)', opacity: 1 },
 				},
-				'slideOut': {
-					'0%': { transform: 'translateX(0)' },
-					'100%': { transform: 'translateX(100%)' },
+				'slide-out': {
+					'0%': { transform: 'translateX(0)', opacity: 1 },
+					'30%': { transform: 'translateX(-20%)', opacity: 1 },
+					'100%': { transform: 'translateX(100%)', opacity: 0 },
 				},
-				'fadeIn': {
+				'expand': {
+					'0%': { width: '0%' },
+					'100%': { width: '100%' },
+				},
+				'fade-in': {
 					'0%': { opacity: 0 },
 					'100%': { opacity: 1 },
 				},
-				'fadeOut': {
+				'fade-out': {
 					'0%': { opacity: 1 },
 					'100%': { opacity: 0 },
 				},
-				'pulse': {
-					'0%, 100%': { transform: 'scale(1)' },
-					'50%': { transform: 'scale(1.5)' },
-				},
-			},
-			animation: {
-				'accordion-down': 'accordion-down 0.2s ease-out',
-				'accordion-up': 'accordion-up 0.2s ease-out',
-				'slideIn': 'slideIn 0.5s ease-out forwards',
-				'slideOut': 'slideOut 0.5s ease-in forwards',
-				'fadeIn': 'fadeIn 0.5s ease-out forwards',
-				'fadeOut': 'fadeOut 0.5s ease-in forwards',
-				'pulse-slow': 'pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite',
 			},
 			backgroundImage: {
 				onboarding: 'url("/images/onboarding-background.png")',

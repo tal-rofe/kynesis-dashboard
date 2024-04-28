@@ -36,10 +36,14 @@ export const ModalProvider: React.FC<{ readonly children: ReactNode }> = ({ chil
 
 		const firstElement = focusableModalElements[0] as HTMLElement | undefined;
 
-		if (isModalOpen && firstElement) {firstElement.focus();}
+		if (isModalOpen && firstElement) {
+			firstElement.focus();
+		}
 
 		const handleKeyDown = (e: KeyboardEvent) => {
-			if (e.key === 'Escape') {hideModal();}
+			if (e.key === 'Escape') {
+				hideModal();
+			}
 
 			if (['Tab', 'ArrowDown', 'ArrowUp'].includes(e.key)) {
 				e.preventDefault();
@@ -91,7 +95,7 @@ export const ModalProvider: React.FC<{ readonly children: ReactNode }> = ({ chil
 				<div
 					ref={modalRef}
 					className={`fixed pt-32 inset-0 z-40 flex items-start justify-center ${
-						isModalOpen ? 'animate-fadeIn' : 'animate-fadeOut'
+						isModalOpen ? 'animate-fade-in' : 'animate-fade-out'
 					} transition-opacity duration-200 bg-[#3636361A]`}
 					onClick={hideModal}
 				>
