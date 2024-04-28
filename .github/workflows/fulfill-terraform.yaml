@@ -14,6 +14,7 @@ jobs:
             AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
             TF_VAR_proxycurl_api_key: ${{ secrets.PROXYCURL_API_KEY }}
             TF_VAR_rampedup_api_key: ${{ var.RAMPEDUP_API_KEY }}
+            TF_VAR_coresignal_api_key: ${{ var.CORESIGNAL_API_KEY }}
             TF_VAR_vetric_api_key: ${{ var.VETRIC_API_KEY }}
             TF_VAR_production: true
             TF_VAR_aws_region: ${{ var.AWS_REGION }}

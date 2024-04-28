@@ -2,16 +2,14 @@ import freeEmailDomains from 'free-email-domains';
 
 import type { PixelCollectionData } from '@kynesis/pixel-enrichment-sqs';
 
-import type { LinkedinUrlResponse } from './interfaces/response';
 import { linkedinUrlHttpGet } from './utils/http';
 import LinkedinUrl from './linkedin-url.abstract';
-
-type ApiResponse = { readonly url: string };
+import { PersonLookupApiResponseSchema } from './schemas/proxycurl';
 
 class ProxycurlPersonLookupApi extends LinkedinUrl {
 	protected override apiUrl = 'https://nubela.co/proxycurl/api/linkedin/profile/resolve';
 
-	public override async getLinkedinUrl(data: PixelCollectionData): Promise<LinkedinUrlResponse> {
+	public override async getLinkedinUrl(data: PixelCollectionData) {
 		// * Email will be valid as it is being validated on pixel data collection Lambda functions
 		const emailDomain = data.email.split('@')[1]!;
 		const emailDomainSplitted = emailDomain.split('.');
@@ -32,9 +30,15 @@ class ProxycurlPersonLookupApi extends LinkedinUrl {
 		requestSearchParams.append('location', 'United States');
 		data.lastName && requestSearchParams.append('last_name', data.lastName);
 
-		const apiResponse = await linkedinUrlHttpGet<ApiResponse>(this.apiUrl, requestSearchParams, process.env.PROXYCURL_API_KEY);
+		const apiResponse = await linkedinUrlHttpGet(this.apiUrl, requestSearchParams, process.env.PROXYCURL_API_KEY);
 
-		return apiResponse.url;
+		const validatedApiResponse = await PersonLookupApiResponseSchema.safeParseAsync(apiResponse);
+
+		if (!validatedApiResponse.success) {
+			throw new Error(`validation error: ${validatedApiResponse.error.message}. Person lookup response: ${apiResponse}`);
+		}
+
+		return validatedApiResponse.data.url;
 	}
 }
 

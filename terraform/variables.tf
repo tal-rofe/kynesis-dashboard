@@ -24,6 +24,11 @@ variable "rampedup_api_key" {
   type        = string
 }
 
+variable "coresignal_api_key" {
+  description = "The API key for Coresignal"
+  type        = string
+}
+
 variable "vetric_api_key" {
   description = "The API key for Vetric"
   type        = string

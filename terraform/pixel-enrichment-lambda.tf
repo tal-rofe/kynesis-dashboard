@@ -102,6 +102,7 @@ resource "aws_lambda_function" "pixel_enrichment_lambda" {
       SQS_URL             = aws_sqs_queue.pixel_enrichment_sqs_fifo.url
       PROXYCURL_API_KEY   = var.proxycurl_api_key
       RAMPEDUP_API_KEY    = var.rampedup_api_key
+      CORESIGNAL_API_KEY  = var.coresignal_api_key
       VETRIC_API_KEY      = var.vetric_api_key
       DYNAMODB_TABLE_NAME = aws_dynamodb_table.dynamodb_customers_slack_table.name
     }

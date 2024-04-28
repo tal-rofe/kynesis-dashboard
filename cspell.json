@@ -50,6 +50,7 @@
 		"datasource",
 		"atdata",
 		"bigbdm",
-		"localstack"
+		"localstack",
+		"coresignal"
 	]
 }
