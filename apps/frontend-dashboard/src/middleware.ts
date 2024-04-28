@@ -9,6 +9,8 @@ import { validateJwt } from './lib/utils/validate-jwt';
 const middleware = async (request: NextRequest) => {
 	const { pathname } = request.nextUrl;
 
+	console.log('pathname', pathname);
+
 	const token = (await getToken({ req: request, secret: process.env.NEXTAUTH_SECRET })) as JwtPayload;
 
 	const isAuthenticated = token?.exp ? validateJwt(token.exp) : false;
