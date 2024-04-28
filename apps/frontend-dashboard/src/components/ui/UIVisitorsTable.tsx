@@ -316,8 +316,8 @@ const UIVisitorsTable = (props: Props) => {
 			{!props.dataOnly && (
 				<div className="flex items-center justify-between mt-auto py-4 flex-1 ">
 					{props.liveUpdates ? (
-						<div className="flex items-center space-x-2">
-							<span className="h-2 w-2 rounded-full bg-primary animate-pulse-slow" />
+						<div className="flex items-center space-x-2 ml-1">
+							<span className="h-2 w-2 rounded-full bg-primary animate-pulse" />
 							<span className=" text-muted-foreground text-sm">Updating live from your website</span>
 						</div>
 					) : (

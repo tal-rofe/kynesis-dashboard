@@ -3,7 +3,7 @@
 import React, { useEffect } from 'react';
 
 import { useModal } from '@/lib/providers/ModalProvider';
-import SearchModal from '@/modals/SearchModal';
+import SearchModal from '@/ui/modals/SearchModal';
 import { navElements } from '@/lib/data/nav-elements';
 
 import SidebarView from './Sidebar.view';

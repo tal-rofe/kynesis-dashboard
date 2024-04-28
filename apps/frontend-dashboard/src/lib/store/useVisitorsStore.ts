@@ -29,9 +29,7 @@ const visitorsStore = persist<VisitorsStore>(
 		emailSubjects: [],
 
 		setVisitors: (visitors) => {
-			if (visitors.length === 0) {
-				return;
-			}
+			if (visitors.length === 0) return;
 
 			set({
 				visitors,
@@ -97,26 +95,20 @@ const visitorsStore = persist<VisitorsStore>(
 			}
 
 			set((state) => {
-				// Initialize emailSubjects to ensure we are working with an array
 				const emailSubjectsArray = state.emailSubjects ?? [];
 
-				// Find if an entry with the same key and value already exists
 				const existingIndex = emailSubjectsArray.findIndex((subject) => subject[key] === value);
 
 				let updatedEmailSubjects: Record<EmailSubjects, string>[];
 
 				if (existingIndex >= 0) {
-					// If found, remove the existing entry by creating a new array excluding it
 					updatedEmailSubjects = [...emailSubjectsArray.slice(0, existingIndex), ...emailSubjectsArray.slice(existingIndex + 1)];
 				} else {
-					// If not found, add the new key-value pair
-					// Directly asserting the new object to the expected Record type
 					const newEmailSubject: Record<EmailSubjects, string> = { [key]: value } as Record<EmailSubjects, string>;
 
 					updatedEmailSubjects = [...emailSubjectsArray, newEmailSubject];
 				}
 
-				// Return the updated state
 				return {
 					...state,
 					emailSubjects: updatedEmailSubjects,

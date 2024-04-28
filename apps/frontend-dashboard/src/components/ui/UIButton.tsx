@@ -4,6 +4,8 @@ import { cva, type VariantProps } from 'class-variance-authority';
 
 import { cn } from '@/lib/utils/component';
 
+import { UISpinner } from './UISpinner';
+
 const buttonVariants = cva(
 	'inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50',
 	{
@@ -33,13 +35,25 @@ const buttonVariants = cva(
 type ButtonProps = React.ComponentPropsWithoutRef<'button'> &
 	VariantProps<typeof buttonVariants> & {
 		readonly asChild?: boolean;
+		readonly isLoading?: boolean; // Add isLoading prop
 	};
 
-const UIButton = React.forwardRef<HTMLButtonElement, ButtonProps>(({ className, variant, size, asChild = false, ...props }, ref) => {
-	const Comp = asChild ? Slot : 'button';
+const UIButton = React.forwardRef<HTMLButtonElement, ButtonProps>(
+	({ className, variant, size, asChild = false, isLoading = false, ...props }, ref) => {
+		const Comp = asChild ? Slot : 'button';
 
-	return <Comp className={cn(buttonVariants({ variant, size, className }))} ref={ref} {...props} />;
-});
+		return (
+			<Comp
+				className={cn(buttonVariants({ variant, size, className }), isLoading && 'opacity-75 cursor-not-allowed flex items-center')}
+				ref={ref}
+				disabled={isLoading || props.disabled}
+				{...props}
+			>
+				{isLoading ? <UISpinner /> : props.children}
+			</Comp>
+		);
+	},
+);
 
 UIButton.displayName = 'UIButton';
 

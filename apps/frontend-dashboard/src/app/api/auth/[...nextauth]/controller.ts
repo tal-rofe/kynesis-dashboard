@@ -4,8 +4,7 @@ import type { JWT } from 'next-auth/jwt';
 
 import type { ExtendedJwt, ExtendedSession } from '@/lib/types/api/auth';
 import { encrypt } from '@/lib/utils/encrypt';
-
-import { OAUTH_GOOGLE_URL } from './consts';
+import { OAUTH_GOOGLE_URL } from '@/lib/data/consts/auth';
 
 /**
  * Refreshes the Google OAuth access token using a provided refresh token.
@@ -21,7 +20,7 @@ import { OAUTH_GOOGLE_URL } from './consts';
  * @returns {Promise<ExtendedJwt>} A promise that resolves to an object containing the new access token details,
  * or an error if the refresh attempt fails or if a refresh token is not provided.
  */
-async function refreshGoogleAuthAccessToken(currentToken: ExtendedJwt) {
+async function refreshGoogleAuthAccessToken(currentToken: ExtendedJwt): Promise<ExtendedJwt> {
 	try {
 		if (!currentToken.refreshToken) {
 			return {

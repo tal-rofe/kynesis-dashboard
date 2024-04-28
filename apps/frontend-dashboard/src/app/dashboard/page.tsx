@@ -10,9 +10,7 @@ import KpiCards from './components/KpiCards';
 import BriefTables from './components/BriefTables';
 
 const Visitors = () => {
-	const visitors = useVisitorsStore((state) => state.visitors);
-	const setVisitors = useVisitorsStore((state) => state.setVisitors);
-	const setCurrentVisitor = useVisitorsStore((state) => state.setCurrentVisitor);
+	const { visitors, setVisitors, setCurrentVisitor } = useVisitorsStore();
 
 	useEffect(() => {
 		setVisitors(VisitorsMock);
