@@ -14,7 +14,7 @@ import { OAUTH_GOOGLE_URL } from '@/lib/data/consts/auth';
  * token details, including the refresh token, to make the request. If the
  * refresh is successful, it returns an object containing the new access token,
  * its expiration timestamp, and the refresh token (either a new one or the
- * original, if a new one isn't provided by Google)
+ * original, if a new one isn't provided by Google).
  *
  * @param {ExtendedJwt} currentTokenDetails - The current token details object, which must include a refresh token.
  * @returns {Promise<ExtendedJwt>} A promise that resolves to an object containing the new access token details,
