@@ -6,7 +6,7 @@ import got from 'got';
 import LoggerService from '@kynesis/lambda-logger';
 import type { PixelCollectionData } from '@kynesis/pixel-enrichment-sqs';
 
-import { filteredLinkedinUrlApis, linkedinUrlApis } from './data/linkedin-url-apis';
+import { looseFirstNameLinkedinUrlApis, linkedinUrlApis } from './data/linkedin-url-apis';
 import { getEnrichedData } from './apis/vetric/vetric';
 import { DYNAMODB_MAX_ATTEMPTS } from './constants/dynamodb';
 import { SQS_MAX_ATTEMPTS } from './constants/sqs';
@@ -41,7 +41,7 @@ export const handler: SQSHandler = async (event, context) => {
 			logger.warn(`Failed to delete SQS message with an error: ${error}`, { messageBody });
 		});
 
-	const linkedinUrlApisToUse = parsedMessageBody.firstName ? linkedinUrlApis : filteredLinkedinUrlApis;
+	const linkedinUrlApisToUse = parsedMessageBody.firstName ? linkedinUrlApis : looseFirstNameLinkedinUrlApis;
 
 	if (parsedMessageBody.apiIndex >= linkedinUrlApisToUse.length) {
 		logger.error('Got invalid API handler index to process - abort process', {

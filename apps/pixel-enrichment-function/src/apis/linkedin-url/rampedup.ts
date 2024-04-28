@@ -2,16 +2,14 @@ import freeEmailDomains from 'free-email-domains';
 
 import type { PixelCollectionData } from '@kynesis/pixel-enrichment-sqs';
 
-import type { LinkedinUrlResponse } from './interfaces/response';
 import { linkedinUrlHttpPost } from './utils/http';
 import LinkedinUrl from './linkedin-url.abstract';
-
-type ApiResponse = { readonly contactLinkedinUrl: string };
+import { ApiResponseSchema } from './schemas/rampedup';
 
 class RampedupApi extends LinkedinUrl {
 	protected override apiUrl = 'https://basic.rampedup.io/api/manualappend/contact';
 
-	public override async getLinkedinUrl(data: PixelCollectionData): Promise<LinkedinUrlResponse> {
+	public override async getLinkedinUrl(data: PixelCollectionData) {
 		// * Email will be valid as it is being validated on other Lambda functions
 		const emailDomain = data.email.split('@')[1]!;
 		const emailDomainSplitted = emailDomain.split('.');
@@ -23,7 +21,7 @@ class RampedupApi extends LinkedinUrl {
 			extraData['company'] = emailDomainSplitted.at(-2)!;
 		}
 
-		const apiResponse = await linkedinUrlHttpPost<ApiResponse>(
+		const apiResponse = await linkedinUrlHttpPost(
 			this.apiUrl,
 			{
 				emailAddress: data.email,
@@ -35,7 +33,13 @@ class RampedupApi extends LinkedinUrl {
 			process.env.RAMPEDUP_API_KEY,
 		);
 
-		return apiResponse.contactLinkedinUrl;
+		const validatedApiResponse = await ApiResponseSchema.safeParseAsync(apiResponse);
+
+		if (!validatedApiResponse.success) {
+			throw new Error(`validation error: ${validatedApiResponse.error.message}. RampedUp response: ${apiResponse}`);
+		}
+
+		return validatedApiResponse.data.contactLinkedinUrl;
 	}
 }
 

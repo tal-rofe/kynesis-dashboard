@@ -2,10 +2,10 @@ import got from 'got';
 
 import { API_CALL_RETRIES, API_CALL_TIMEOUT } from '@/constants/http-api';
 
-export const linkedinUrlHttpGet = <TResponse extends Record<string, unknown>>(url: string, params: URLSearchParams, apiKey: string) =>
+export const linkedinUrlHttpGet = (url: string, params: URLSearchParams | null, apiKey: string) =>
 	got
 		.get(url, {
-			searchParams: params,
+			searchParams: params ?? undefined,
 			headers: {
 				Authorization: `Bearer ${apiKey}`,
 			},
@@ -16,9 +16,9 @@ export const linkedinUrlHttpGet = <TResponse extends Record<string, unknown>>(ur
 				// * Keep others (backoff limit, ...) as default
 			},
 		})
-		.json<TResponse>();
+		.json();
 
-export const linkedinUrlHttpPost = <TResponse extends Record<string, unknown>>(url: string, data: Record<string, unknown>, apiKey: string) =>
+export const linkedinUrlHttpPost = (url: string, data: Record<string, unknown>, apiKey: string) =>
 	got
 		.post(url, {
 			json: data,
@@ -33,4 +33,4 @@ export const linkedinUrlHttpPost = <TResponse extends Record<string, unknown>>(u
 				// * Keep others (backoff limit, ...) as default
 			},
 		})
-		.json<TResponse>();
+		.json();

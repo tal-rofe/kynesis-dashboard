@@ -19,7 +19,8 @@
 		"@kynesis/pixel-enrichment-sqs": "workspace:*",
 		"deepmerge": "4.3.1",
 		"free-email-domains": "1.2.13",
-		"got": "14.2.1"
+		"got": "14.2.1",
+		"zod": "3.22.4"
 	},
 	"devDependencies": {
 		"@total-typescript/ts-reset": "0.5.1",
