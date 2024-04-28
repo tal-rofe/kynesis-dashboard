@@ -12,6 +12,7 @@ type Props = {
 	readonly formInputs: WelcomeFormInputs;
 	readonly isFormValid: boolean;
 	readonly animationClass: string;
+	readonly isLoading: boolean;
 	readonly onInputChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
 	readonly onInputPaste: (key: keyof WelcomeFormInputs, e: React.ClipboardEvent<HTMLInputElement>) => void;
 	readonly onNextStep: VoidFunction;
@@ -66,7 +67,7 @@ const WelcomeView = (props: Props) => {
 				</div>
 			</UICardContent>
 			<UICardFooter className="flex justify-end">
-				<UIButton disabled={!props.isFormValid} onClick={props.onNextStep}>
+				<UIButton className="min-w-16" isLoading={props.isLoading} disabled={!props.isFormValid} onClick={props.onNextStep}>
 					Next
 				</UIButton>
 			</UICardFooter>
