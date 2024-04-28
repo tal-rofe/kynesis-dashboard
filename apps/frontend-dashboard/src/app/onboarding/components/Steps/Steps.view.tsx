@@ -1,25 +1,37 @@
 import React from 'react';
 
-import { type OnboardingSteps } from '@/lib/types/api/onboarding';
+import type { CurrentOnboardingStepResponse } from '@/lib/types/api/onboarding';
 
 import Welcome from './Welcome';
 import TrackingScript from './TrackingScript';
 import HtmlScript from './HtmlScript';
-import Company from './Company';
+import CompanyDescription from './CompanyDescription';
+import SlackIntegration from './SlackIntegration';
 
 type Props = {
-	readonly currentStep: OnboardingSteps;
+	readonly getCurrentStepResponse: CurrentOnboardingStepResponse;
+	readonly trackingScript: string;
 	readonly onNextStep: VoidFunction;
 	readonly onPrevStep: VoidFunction;
+	readonly onSetTrackingScript: (trackingScript: string) => void;
 };
 
 const StepsView = (props: Props) => {
 	return (
 		<>
-			{props.currentStep === 'welcome' && <Welcome onNextStep={props.onNextStep} />}
-			{props.currentStep === 'trackingScript' && <TrackingScript onNextStep={props.onNextStep} onPrevStep={props.onPrevStep} />}
-			{props.currentStep === 'htmlScript' && <HtmlScript onNextStep={props.onNextStep} onPrevStep={props.onPrevStep} />}
-			{props.currentStep === 'company' && <Company onNextStep={props.onNextStep} onPrevStep={props.onPrevStep} />}
+			{props.getCurrentStepResponse.currentStep === 'welcome' && <Welcome onNextStep={props.onNextStep} />}
+			{props.getCurrentStepResponse.currentStep === 'trackingScript' && (
+				<TrackingScript onNextStep={props.onNextStep} onPrevStep={props.onPrevStep} onSetTrackingScript={props.onSetTrackingScript} />
+			)}
+			{props.getCurrentStepResponse.currentStep === 'htmlScript' && (
+				<HtmlScript trackingScript={props.trackingScript} onNextStep={props.onNextStep} onPrevStep={props.onPrevStep} />
+			)}
+			{props.getCurrentStepResponse.currentStep === 'companyDescription' && (
+				<CompanyDescription onNextStep={props.onNextStep} onPrevStep={props.onPrevStep} />
+			)}
+			{props.getCurrentStepResponse.currentStep === 'slackIntegration' && (
+				<SlackIntegration onNextStep={props.onNextStep} onPrevStep={props.onPrevStep} />
+			)}
 		</>
 	);
 };
