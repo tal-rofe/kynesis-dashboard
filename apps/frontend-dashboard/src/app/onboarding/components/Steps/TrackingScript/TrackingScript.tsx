@@ -1,52 +1,60 @@
-import React, { useEffect, useState } from 'react';
+import React, { useMemo, useState } from 'react';
 
-import { type ScriptDomainType } from '@/lib/types/api/onboarding';
+import type { TrackingScriptResponse, ScriptDomainType } from '@/lib/types/api/onboarding';
 import { isValidWebsiteUrl } from '@/lib/utils/regex';
+import useBackendService from '@/lib/hooks/useBackendService';
+import { generatePixelTrackingScript } from '@/lib/utils/generate-pixel-script';
 
 import TrackingScriptView from './TrackingScript.view';
 
 type Props = {
 	readonly onNextStep: VoidFunction;
 	readonly onPrevStep: VoidFunction;
+	readonly onSetTrackingScript: (trackingScript: string) => void;
 };
 
 const TrackingScript = (props: Props) => {
-	const [animationClass, setAnimationClass] = useState('animate-fadeIn');
+	const backendService = useBackendService();
+
+	const [animationClass, setAnimationClass] = useState('animate-fade-in');
 	const [selectedScriptDomainType, setSelectedScriptDomainType] = useState<ScriptDomainType | undefined>(undefined);
 	const [websiteUrl, setWebsiteUrl] = useState('');
-	const [isFormValid, setIsFormValid] = useState(false);
 
-	const onNextStep = () => {
-		setAnimationClass('animate-fadeOut');
+	const isFormValid = useMemo(() => {
+		if (!websiteUrl || !selectedScriptDomainType) {
+			return false;
+		}
 
-		setTimeout(() => {
-			props.onNextStep();
-		}, 500);
+		return isValidWebsiteUrl(websiteUrl);
+	}, [websiteUrl, selectedScriptDomainType]);
+
+	const onNextStep = async () => {
+		const { ok } = await backendService.post<TrackingScriptResponse>('/onboarding/tracking-script', {
+			data: {
+				websiteUrl,
+				scriptDomainType: selectedScriptDomainType,
+			},
+		});
+
+		if (!ok) return;
+
+		const trackingScript = generatePixelTrackingScript(websiteUrl, selectedScriptDomainType!);
+
+		props.onSetTrackingScript(trackingScript);
+
+		setAnimationClass('animate-fade-out');
+		props.onNextStep();
 	};
 
 	const onPrevStep = () => {
-		setAnimationClass('animate-fadeOut');
+		setAnimationClass('animate-fade-out');
 
 		setTimeout(() => {
 			props.onPrevStep();
 		}, 500);
 	};
 
-	const onFormValidation = () => {
-		if (websiteUrl && selectedScriptDomainType) {
-			if (isValidWebsiteUrl(websiteUrl)) {
-				setIsFormValid(true);
-			} else {
-				setIsFormValid(false);
-			}
-		} else {
-			setIsFormValid(false);
-		}
-	};
-
-	const onSelectScriptDomainType = (scriptDomainType: ScriptDomainType) => {
-		setSelectedScriptDomainType(scriptDomainType);
-	};
+	const onSelectScriptDomainType = (scriptDomainType: ScriptDomainType) => setSelectedScriptDomainType(scriptDomainType);
 
 	const onChangeWebsiteUrl = (e: React.ChangeEvent<HTMLInputElement>) => {
 		setWebsiteUrl(e.target.value);
@@ -59,10 +67,6 @@ const TrackingScript = (props: Props) => {
 
 		setWebsiteUrl(clipboardData);
 	};
-
-	useEffect(() => {
-		onFormValidation();
-	}, [websiteUrl, selectedScriptDomainType]);
 
 	return (
 		<TrackingScriptView

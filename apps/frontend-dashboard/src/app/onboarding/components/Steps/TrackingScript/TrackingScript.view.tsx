@@ -65,7 +65,9 @@ const TrackingScriptView = (props: Props) => {
 					>
 						<div className="flex flex-col max-w-72 text-left gap-1">
 							<div className="text-slate-950 text-sm font-semibold font-['Inter'] leading-tight">Load on a specific subdomain</div>
-							<span className="text-slate-950 text-sm font-normal">Script will load on only on the subdomain provided in ‘Your website’.</span>
+							<span className="text-slate-950 text-sm font-normal">
+								Script will load on only on the subdomain provided in ‘Your website’.
+							</span>
 						</div>
 					</UIButton>
 				</div>
