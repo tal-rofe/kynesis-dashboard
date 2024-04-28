@@ -17,7 +17,7 @@ export const GET = async (): Promise<NextResponse> => {
 		}
 
 		const data: CurrentOnboardingStepResponse = {
-			currentStep: 'slackIntegration',
+			currentStep: 'welcome',
 		};
 
 		return NextResponse.json({ ok: res.ok, data }, { status: 200 });
