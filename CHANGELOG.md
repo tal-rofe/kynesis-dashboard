@@ -1,3 +1,15 @@
+# [1.3.0](https://github.com/kynesis-io/dashboard/compare/v1.2.0...v1.3.0) (2024-04-28)
+
+
+### Features
+
+* 🔥 [KYN-48] Add notifications support ([57f31a4](https://github.com/kynesis-io/dashboard/commit/57f31a4abfe81a3a44cb6bf39b7ed2808ce44a65))
+
+
+### Performance Improvements
+
+* ⚡ [KYN-999] add ui compoenents, refactore some files & functions ([7144386](https://github.com/kynesis-io/dashboard/commit/714438696b1e7baf6b3b9b212c8a47eb171f8b35))
+
 # [1.2.0](https://github.com/kynesis-io/dashboard/compare/v1.1.0...v1.2.0) (2024-04-15)
 
 
