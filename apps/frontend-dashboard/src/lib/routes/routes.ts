@@ -32,6 +32,6 @@ export const routes = {
 	onboarding: {
 		path: '/onboarding',
 		title: 'Onboarding',
-		isRequiredAuth: false,
+		isRequiredAuth: true,
 	},
 } as const;

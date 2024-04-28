@@ -4,6 +4,20 @@ export type WelcomeFormInputs = {
 	readonly companyLinkedInURL: string;
 };
 
-export type OnboardingSteps = 'welcome' | 'trackingScript' | 'htmlScript' | 'company';
+export type CompanyDescriptionRequestResponse = {
+	readonly company: string;
+	readonly companyDescription: string;
+	readonly productOrService: string;
+};
+
+export type TrackingScriptResponse = {
+	readonly trackingScript: string;
+};
+
+export type CurrentOnboardingStepResponse = {
+	readonly currentStep: OnboardingSteps;
+};
+
+export type OnboardingSteps = 'welcome' | 'trackingScript' | 'htmlScript' | 'companyDescription' | 'slackIntegration' | 'done';
 
 export type ScriptDomainType = 'everySubDomain' | 'specificSubDomain';
