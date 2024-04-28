@@ -1,3 +1,10 @@
+# [1.4.0](https://github.com/kynesis-io/dashboard/compare/v1.3.0...v1.4.0) (2024-04-28)
+
+
+### Features
+
+* 🔥 [KYN-33] inegrate CoreSignal API in the enrichment Lambda function ([60f12b9](https://github.com/kynesis-io/dashboard/commit/60f12b95c54ccbda349f3ebf42cdd3431123c3a0))
+
 # [1.3.0](https://github.com/kynesis-io/dashboard/compare/v1.2.0...v1.3.0) (2024-04-28)
 
 
