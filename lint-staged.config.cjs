@@ -10,6 +10,7 @@ module.exports = {
 		'pnpm --filter bigbdm-pixel-collector-function exec eslint -c ./.eslintrc.cjs --ignore-path ./.eslintignore --fix',
 	'packages/pixel-enrichment-sqs/**/*.ts': 'pnpm --filter pixel-enrichment-sqs exec eslint -c ./.eslintrc.cjs --ignore-path ./.eslintignore --fix',
 	'packages/lambda-logger/**/*.ts': 'pnpm --filter lambda-logger exec eslint -c ./.eslintrc.cjs --ignore-path ./.eslintignore --fix',
+	'packages/error-codes/**/*.ts': 'pnpm --filter error-codes exec eslint -c ./.eslintrc.cjs --ignore-path ./.eslintignore --fix',
 	'!({apps,packages})**/*.{ts,js,cjs}': 'eslint -c ./.eslintrc.cjs --fix',
 	'**/*.{ts,js,cjs,json,yaml}': 'prettier --write',
 	'**/*': 'inflint -c ./inflint.config.ts',

@@ -24,4 +24,6 @@ packages/pixel-enrichment-sqs/node_modules
 
 packages/lambda-logger/node_modules
 
+packages/error-codes/node_modules
+
 terraform/.terraform

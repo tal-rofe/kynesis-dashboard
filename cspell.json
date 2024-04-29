@@ -51,6 +51,7 @@
 		"atdata",
 		"bigbdm",
 		"localstack",
-		"coresignal"
+		"coresignal",
+		"Errorful"
 	]
 }

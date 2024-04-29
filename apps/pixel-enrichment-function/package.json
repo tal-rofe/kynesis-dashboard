@@ -17,6 +17,7 @@
 		"@aws-sdk/client-sqs": "3.547.0",
 		"@kynesis/lambda-logger": "workspace:*",
 		"@kynesis/pixel-enrichment-sqs": "workspace:*",
+		"@kynesis/error-codes": "workspace:*",
 		"deepmerge": "4.3.1",
 		"free-email-domains": "1.2.13",
 		"got": "14.2.1",

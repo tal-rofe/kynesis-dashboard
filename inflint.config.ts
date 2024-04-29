@@ -25,6 +25,8 @@ const inflintConfig: Config = {
 
 		'./packages/lambda-logger/src/**/*': [2, 'kebab-case'],
 
+		'./packages/error-codes/src/**/*': [2, 'kebab-case'],
+
 		'./terraform/**/*.tf': [2, 'kebab-case'],
 	},
 };

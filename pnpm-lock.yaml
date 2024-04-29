@@ -110,6 +110,9 @@ importers:
       '@aws-sdk/client-sqs':
         specifier: 3.547.0
         version: 3.547.0
+      '@kynesis/error-codes':
+        specifier: workspace:*
+        version: link:../../packages/error-codes
       '@kynesis/lambda-logger':
         specifier: workspace:*
         version: link:../../packages/lambda-logger
@@ -253,6 +256,9 @@ importers:
       '@aws-sdk/client-sqs':
         specifier: 3.547.0
         version: 3.547.0
+      '@kynesis/error-codes':
+        specifier: workspace:*
+        version: link:../../packages/error-codes
       '@kynesis/lambda-logger':
         specifier: workspace:*
         version: link:../../packages/lambda-logger
@@ -522,6 +528,9 @@ importers:
       '@aws-sdk/client-sqs':
         specifier: 3.547.0
         version: 3.547.0
+      '@kynesis/error-codes':
+        specifier: workspace:*
+        version: link:../../packages/error-codes
       '@kynesis/lambda-logger':
         specifier: workspace:*
         version: link:../../packages/lambda-logger
@@ -563,8 +572,13 @@ importers:
         specifier: 3.1.0
         version: 3.1.0
 
+  packages/error-codes: {}
+
   packages/lambda-logger:
     dependencies:
+      '@kynesis/error-codes':
+        specifier: workspace:*
+        version: link:../error-codes
       winston:
         specifier: 3.13.0
         version: 3.13.0

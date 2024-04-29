@@ -16,6 +16,7 @@
 		"@aws-sdk/client-sqs": "3.547.0",
 		"@kynesis/lambda-logger": "workspace:*",
 		"@kynesis/pixel-enrichment-sqs": "workspace:*",
+		"@kynesis/error-codes": "workspace:*",
 		"got": "14.2.1",
 		"zod": "3.22.4",
 		"zod-validation-error": "3.1.0"

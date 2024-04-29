@@ -7,7 +7,6 @@ declare global {
 			readonly ATDATA_SFTP_PORT: string;
 			readonly ATDATA_SFTP_USERNAME: string;
 			readonly ATDATA_SFTP_PASSWORD: string;
-			readonly DATA_FILE_PATH: string;
 		}
 	}
 }

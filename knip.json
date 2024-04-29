@@ -17,23 +17,27 @@
 		"apps/pixel-enrichment-function": {
 			"entry": "./src/index.ts",
 			"project": "./src/**/*",
-			"ignoreDependencies": ["@kynesis/lambda-logger", "@kynesis/pixel-enrichment-sqs"]
+			"ignoreDependencies": ["@kynesis/lambda-logger", "@kynesis/pixel-enrichment-sqs", "@kynesis/error-codes"]
 		},
 		"apps/atdata-pixel-collector-function": {
 			"entry": "./src/index.ts",
 			"project": "./src/**/*",
-			"ignoreDependencies": ["@kynesis/lambda-logger", "@kynesis/pixel-enrichment-sqs"]
+			"ignoreDependencies": ["@kynesis/lambda-logger", "@kynesis/pixel-enrichment-sqs", "@kynesis/error-codes"]
 		},
 		"apps/bigbdm-pixel-collector-function": {
 			"entry": "./src/index.ts",
 			"project": "./src/**/*",
-			"ignoreDependencies": ["@kynesis/pixel-enrichment-sqs", "@kynesis/lambda-logger"]
+			"ignoreDependencies": ["@kynesis/pixel-enrichment-sqs", "@kynesis/lambda-logger", "@kynesis/error-codes"]
 		},
 		"packages/pixel-enrichment-sqs": {
 			"entry": "./src/index.ts",
 			"project": "./src/**/*"
 		},
 		"packages/lambda-logger": {
+			"entry": "./src/index.ts",
+			"project": "./src/**/*"
+		},
+		"packages/error-codes": {
 			"entry": "./src/index.ts",
 			"project": "./src/**/*"
 		}
