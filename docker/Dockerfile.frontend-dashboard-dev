@@ -1,0 +1,16 @@
+FROM node:20.12.2
+
+RUN npm i -g pnpm@8.14.1
+
+WORKDIR /app
+
+COPY ./package.json ./pnpm-workspace.yaml ./.npmrc ./
+COPY ./apps/frontend-dashboard/package.json ./apps/frontend-dashboard/
+COPY ./prisma/schema.prisma ./prisma/
+
+RUN pnpm --filter frontend-dashboard i
+
+COPY ./tsconfig.base.json ./nx.json ./
+COPY ./apps/frontend-dashboard/ ./apps/frontend-dashboard/
+
+CMD ["pnpm", "exec", "nx", "start:dev:docker", "@kynesis/frontend-dashboard"]

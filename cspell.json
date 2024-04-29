@@ -18,7 +18,8 @@
 		"./apps/frontend-dashboard/src/stories/Configure.mdx",
 		"./apps/frontend-dashboard/src/app/onboarding/components/Steps/Steps.tsx",
 		"./apps/frontend-dashboard/src/lib/data/mock/**/*",
-		"./apps/frontend-dashboard/src/components/ui/modules/Visitor/EmailCompose/EmailCompose.view.tsx"
+		"./apps/frontend-dashboard/src/components/ui/modules/Visitor/EmailCompose/EmailCompose.view.tsx",
+		"./docker/scripts/mongo-setup.sh"
 	],
 	"words": [
 		"kynesis",
