@@ -7,7 +7,6 @@
 	"license": "UNLICENSED",
 	"type": "module",
 	"scripts": {
-		"postinstall": "prisma generate --schema ../../prisma/schema.prisma",
 		"build": "nest build",
 		"start:dev": "dotenv -e ./envs/.env.development -e ../../prisma/.env.development -- nest start --watch",
 		"compodoc": "compodoc && open-cli ./documentation/index.html",
