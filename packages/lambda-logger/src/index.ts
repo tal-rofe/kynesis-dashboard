@@ -1,20 +1,32 @@
+import winston from 'winston';
+
 class LoggerService {
-	private requestId: string;
+	private logger: winston.Logger;
 
 	constructor(requestId: string) {
-		this.requestId = requestId;
+		this.logger = winston.createLogger({
+			level: 'info',
+			defaultMeta: { requestId },
+			format: winston.format.combine(
+				winston.format.timestamp({
+					format: () => Date.now().toString(),
+				}),
+				winston.format.json(),
+			),
+			transports: [new winston.transports.Console()],
+		});
 	}
 
 	public info(message: string, metadata: Record<string, unknown> = {}) {
-		console.log(`[Request ID: ${this.requestId}] [INFO] ${message} [Metadata: ${JSON.stringify(metadata)}]`);
+		this.logger.info(message, metadata);
 	}
 
 	public warn(message: string, metadata: Record<string, unknown> = {}) {
-		console.log(`[Request ID: ${this.requestId}] [WARN] ${message} [Metadata: ${JSON.stringify(metadata)}]`);
+		this.logger.warn(message, metadata);
 	}
 
 	public error(message: string, metadata: Record<string, unknown> = {}) {
-		console.log(`[Request ID: ${this.requestId}] [ERROR] ${message} [Metadata: ${JSON.stringify(metadata)}]`);
+		this.logger.error(message, metadata);
 	}
 }
 

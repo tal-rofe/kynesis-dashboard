@@ -9,9 +9,9 @@ module.exports = {
 	},
 	overrides: [
 		{
-			files: ['./src/index.ts'],
+			files: ['./**/*.d.ts'],
 			rules: {
-				'no-console': 'off',
+				'@typescript-eslint/consistent-type-definitions': 'off',
 			},
 		},
 	],
