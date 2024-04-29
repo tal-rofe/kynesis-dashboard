@@ -21,5 +21,8 @@
 		"start:dev": "tsc --project ./tsconfig.build.json --watch",
 		"lint": "eslint -c ./.eslintrc.cjs --ignore-path ./.eslintignore \"./**/*.ts\"",
 		"type-check": "tsc --project ./tsconfig.json"
+	},
+	"dependencies": {
+		"winston": "3.13.0"
 	}
 }
