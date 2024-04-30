@@ -5,6 +5,7 @@ import got from 'got';
 
 import LoggerService from '@kynesis/lambda-logger';
 import type { PixelCollectionData } from '@kynesis/pixel-enrichment-sqs';
+import ErrorCode from '@kynesis/error-codes';
 
 import { looseFirstNameLinkedinUrlApis, linkedinUrlApis } from './data/linkedin-url-apis';
 import { getEnrichedData } from './apis/vetric/vetric';
@@ -20,7 +21,7 @@ export const handler: SQSHandler = async (event, context) => {
 	const messageBody = sqsMessage.body;
 	const parsedMessageBody = JSON.parse(messageBody) as PixelCollectionData;
 
-	logger.info('Start processing SQS message', { messageBody });
+	logger.info('Start processing SQS message', { messageBody }, true);
 
 	const sqsClient = new SQSClient({ region: process.env.AWS_REGION, maxAttempts: SQS_MAX_ATTEMPTS });
 	const deleteMessageSqsCommand = new DeleteMessageCommand({ QueueUrl: process.env.SQS_URL, ReceiptHandle: sqsMessage.receiptHandle });
@@ -34,11 +35,10 @@ export const handler: SQSHandler = async (event, context) => {
 		.then((deleteMessageSqsOutput) => {
 			logger.info('Successfully deleted SQS message', {
 				awsRequestId: deleteMessageSqsOutput.$metadata.requestId,
-				messageBody,
 			});
 		})
 		.catch((error) => {
-			logger.warn(`Failed to delete SQS message with an error: ${error}`, { messageBody });
+			logger.warn(`Failed to delete SQS message with an error: ${error}`, { errorCode: ErrorCode.DELETE_SQS_MESSAGE });
 		});
 
 	const linkedinUrlApisToUse = parsedMessageBody.firstName ? linkedinUrlApis : looseFirstNameLinkedinUrlApis;
@@ -47,6 +47,7 @@ export const handler: SQSHandler = async (event, context) => {
 		logger.error('Got invalid API handler index to process - abort process', {
 			linkedinApiHandlerIndex: parsedMessageBody.apiIndex,
 			maxLinkedinApiHandlerIndex: linkedinUrlApisToUse.length - 1,
+			errorCode: ErrorCode.INVALID_LINKEDIN_URL_API_INDEX,
 		});
 
 		return;
@@ -55,25 +56,22 @@ export const handler: SQSHandler = async (event, context) => {
 	const apiHandler = linkedinUrlApisToUse[parsedMessageBody.apiIndex]!;
 	let linkedinUrl: string;
 
-	logger.info('Querying LinkedIn URL API handler', { messageBody });
+	logger.info('Querying LinkedIn URL API handler', { linkedinApiHandlerIndex: parsedMessageBody.apiIndex }, true);
 
 	try {
 		linkedinUrl = await apiHandler.getLinkedinUrl(parsedMessageBody);
 	} catch (error) {
-		logger.error(`Failed to match Linkedin profile URL with pixel data with an error: ${error}`, {
-			messageBody,
+		logger.warn(`Failed to match LinkedIn profile URL with pixel data with an error: ${error}`, {
+			errorCode: ErrorCode.LINKEDIN_URL_API_ONE,
 		});
 
 		if (parsedMessageBody.apiIndex === linkedinUrlApisToUse.length - 1) {
-			logger.error('Failed to match Linkedin profile URL using all APIs providers', { messageBody });
+			logger.error('Failed to match Linkedin profile URL using all APIs providers', { errorCode: ErrorCode.LINKEDIN_URL_API_ALL });
 
 			return;
 		}
 
-		logger.info('Sending SQS message to increment API handler index', {
-			nextLinkedinApiHandlerIndex: parsedMessageBody.apiIndex + 1,
-			messageBody,
-		});
+		logger.info('Sending SQS message to increment API handler index');
 
 		// * Increment "apiIndex" to handle next API handler
 		const sendMessageSqsCommand = new SendMessageCommand({
@@ -87,7 +85,7 @@ export const handler: SQSHandler = async (event, context) => {
 		try {
 			sendMessageSqsOutput = await sqsClient.send(sendMessageSqsCommand);
 		} catch (error) {
-			logger.error(`Failed to send SQS message with an error: ${error}`, { messageBody });
+			logger.error(`Failed to send SQS message with an error: ${error}`, { errorCode: ErrorCode.SEND_SQS_MESSAGE });
 
 			return;
 		}
@@ -102,21 +100,20 @@ export const handler: SQSHandler = async (event, context) => {
 	}
 
 	logger.info('Successfully retrieved LinkedIn URL', {
-		messageBody,
 		linkedinUrl,
 	});
 
 	let enrichedData: Record<string, unknown>;
 
 	try {
-		enrichedData = await getEnrichedData(context.awsRequestId, linkedinUrl);
+		enrichedData = await getEnrichedData(logger, linkedinUrl);
 	} catch (error) {
-		logger.error(`Failed to enrich data with an error: ${error}`, { messageBody });
+		logger.error(`Failed to enrich data with an error: ${error}`, { errorCode: ErrorCode.VETRIC_ENRICHMENT_API_ALL });
 
 		return;
 	}
 
-	logger.info('Successfully enriched data for Linkedin Profile', { messageBody });
+	logger.info('Successfully enriched data for Linkedin Profile');
 
 	const dynamoDbClient = new DynamoDBClient({ region: process.env.AWS_REGION, maxAttempts: DYNAMODB_MAX_ATTEMPTS });
 
@@ -135,9 +132,9 @@ export const handler: SQSHandler = async (event, context) => {
 
 		if (!dynamoDbGetItemCommandOutput.Item) {
 			logger.error("Failed to retrieve customer's Slack Webhook URL from DynamoDB, got empty item", {
-				messageBody,
 				awsRequestId: dynamoDbGetItemCommandOutput.$metadata.requestId,
 				originDomain: parsedMessageBody.originDomain,
+				errorCode: ErrorCode.DYNAMODB_INVALID_ITEM,
 			});
 
 			return;
@@ -145,13 +142,12 @@ export const handler: SQSHandler = async (event, context) => {
 
 		customerSlackWebhookUrl = dynamoDbGetItemCommandOutput.Item['CustomerSlackWebhookURL']!.S!;
 	} catch (error) {
-		logger.error(`Failed to get item from DynamoDB with an error: ${error}`, { messageBody });
+		logger.error(`Failed to get item from DynamoDB with an error: ${error}`, { errorCode: ErrorCode.DYNAMODB_ACCESS });
 
 		return;
 	}
 
 	logger.info("Successfully retrieved customer's Slack Webhook URL", {
-		messageBody,
 		customerSlackWebhookUrl,
 		awsRequestId: dynamoDbGetItemCommandOutput.$metadata.requestId,
 	});
@@ -174,18 +170,21 @@ export const handler: SQSHandler = async (event, context) => {
 
 		if (response !== 'ok') {
 			logger.error(`Failed to send message to customer's Slack channel with response: ${response}`, {
-				messageBody,
 				customerSlackWebhookUrl,
 				response,
+				errorCode: ErrorCode.SLACK_SEND_MESSAGE,
 			});
 
 			return;
 		}
 	} catch (error) {
-		logger.error(`Failed to send message to customer's Slack channel with an error: ${error}`, { messageBody, customerSlackWebhookUrl });
+		logger.error(`Failed to send message to customer's Slack channel with an error: ${error}`, {
+			customerSlackWebhookUrl,
+			errorCode: ErrorCode.SLACK_SEND_MESSAGE,
+		});
 
 		return;
 	}
 
-	logger.info("Successfully sent data to customer's Slack channel", { messageBody, customerSlackWebhookUrl });
+	logger.info("Successfully sent data to customer's Slack channel", { customerSlackWebhookUrl });
 };

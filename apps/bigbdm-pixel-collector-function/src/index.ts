@@ -6,6 +6,7 @@ import type { z } from 'zod';
 
 import LoggerService from '@kynesis/lambda-logger';
 import type { PixelCollectionData } from '@kynesis/pixel-enrichment-sqs';
+import ErrorCode from '@kynesis/error-codes';
 
 import { SQS_MAX_ATTEMPTS } from './constants/sqs';
 import { API_CALL_DATA_INTERVAL_TIME, API_CALL_RETRIES, API_CALL_TIMEOUT } from './constants/http';
@@ -38,7 +39,7 @@ export const handler: ScheduledHandler = async (_, context) => {
 			})
 			.json();
 	} catch (error) {
-		logger.error(`Failed to retrieve access token with an error: ${error}`, { error });
+		logger.error(`Failed to retrieve access token with an error: ${error}`, { errorCode: ErrorCode.BIGBDM_ACCESS_TOKEN_API });
 
 		return;
 	}
@@ -50,7 +51,7 @@ export const handler: ScheduledHandler = async (_, context) => {
 
 		logger.error(`Invalid response data for access token API, with an error: ${validationError}`, {
 			accessTokenResponseData,
-			error: validationError,
+			errorCode: ErrorCode.BIGBDM_ACCESS_TOKEN_INVALID,
 		});
 
 		return;
@@ -94,6 +95,7 @@ export const handler: ScheduledHandler = async (_, context) => {
 		if (customersWebsitesResponse.status === 'rejected') {
 			logger.warn(`Failed to collect pixel data for website with a reason: ${customersWebsitesResponse.reason}`, {
 				websiteId: customersWebsitesIds[index]!.websiteId,
+				errorCode: ErrorCode.BIGBDM_WEBSITE_ID_COLLECTION,
 			});
 		} else {
 			for (const responseItem of customersWebsitesResponse.value) {
@@ -114,7 +116,10 @@ export const handler: ScheduledHandler = async (_, context) => {
 				try {
 					sendMessageSqsOutput = await sqsClient.send(sendMessageSqsCommand);
 				} catch (error) {
-					logger.warn(`Failed to send SQS message with an error: ${error}`, { sqsMessageBodyObject, error });
+					logger.warn(`Failed to send SQS message with an error: ${error}`, {
+						sqsMessageBodyObject,
+						errorCode: ErrorCode.SEND_SQS_MESSAGE,
+					});
 
 					continue;
 				}

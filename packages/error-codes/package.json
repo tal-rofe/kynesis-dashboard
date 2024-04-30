@@ -1,8 +1,8 @@
 {
-	"name": "@kynesis/lambda-logger",
+	"name": "@kynesis/error-codes",
 	"version": "1.0.0",
 	"private": true,
-	"description": "Lambda logger",
+	"description": "Error codes",
 	"author": "Kynesis <dev@kynesis.io> (https://kynesis.io)",
 	"license": "UNLICENSED",
 	"exports": {
@@ -21,9 +21,5 @@
 		"start:dev": "tsc --project ./tsconfig.build.json --watch",
 		"lint": "eslint -c ./.eslintrc.cjs --ignore-path ./.eslintignore \"./**/*.ts\"",
 		"type-check": "tsc --project ./tsconfig.json"
-	},
-	"dependencies": {
-		"winston": "3.13.0",
-		"@kynesis/error-codes": "workspace:*"
 	}
 }

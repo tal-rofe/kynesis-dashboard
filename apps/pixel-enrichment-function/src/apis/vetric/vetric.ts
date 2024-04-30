@@ -1,6 +1,7 @@
 import deepmerge from 'deepmerge';
 
-import LoggerService from '@kynesis/lambda-logger';
+import type LoggerService from '@kynesis/lambda-logger';
+import ErrorCode from '@kynesis/error-codes';
 
 import { vetricHttpGet } from './utils/http';
 
@@ -13,9 +14,7 @@ const apiUrls = [
 	'https://api.vetric.io/linkedin/v1/company/:identifier/details',
 ];
 
-export const getEnrichedData = async (requestId: string, linkedinUrl: string) => {
-	const logger = new LoggerService(requestId);
-
+export const getEnrichedData = async (logger: LoggerService, linkedinUrl: string) => {
 	logger.info('Trying to enrich data for Linkedin URL', { linkedinUrl });
 
 	const allResponses = await Promise.allSettled(apiUrls.map((apiUrl) => vetricHttpGet(apiUrl, linkedinUrl, process.env.VETRIC_API_KEY)));
@@ -27,7 +26,10 @@ export const getEnrichedData = async (requestId: string, linkedinUrl: string) =>
 
 			logger.info('Successfully enriched data from single API', { apiUrl: apiUrls[index] });
 		} else {
-			logger.warn(`Failed to get response from single API with an error: ${response.reason}`, { apiUrl: apiUrls[index] });
+			logger.warn(`Failed to get response from single API with an error: ${response.reason}`, {
+				apiUrl: apiUrls[index],
+				errorCode: ErrorCode.VETRIC_ENRICHMENT_API_ONE,
+			});
 		}
 	}
 

@@ -8,6 +8,7 @@ import csvParser from 'csvtojson';
 
 import LoggerService from '@kynesis/lambda-logger';
 import type { PixelCollectionData } from '@kynesis/pixel-enrichment-sqs';
+import ErrorCode from '@kynesis/error-codes';
 
 import { SFTP_CONNECTION_RETRIES, SFTP_HANDSHAKE_TIMEOUT } from './constants/sftp';
 import { SQS_MAX_ATTEMPTS } from './constants/sqs';
@@ -35,19 +36,19 @@ export const handler: ScheduledHandler = async (_, context) => {
 		 * ! - we need to modify this expression programmatically and use some back-off mechanism
 		 */
 
-		logger.error(`Failed to connect to SFTP server with an error: ${error}`);
+		logger.error(`Failed to connect to SFTP server with an error: ${error}`, { errorCode: ErrorCode.SFTP_CONNECTION });
 
 		return;
 	}
 
 	logger.info('Successfully connected to SFTP server');
 
-	const pixelDataFileDestination = path.join('/tmp', 'atdata-data.txt');
+	const pixelDataFileDestination = path.join('/tmp', 'atdata-data.csv');
 
 	try {
-		await sftpClient.fastGet(process.env.DATA_FILE_PATH, pixelDataFileDestination);
+		await sftpClient.fastGet('WHERE_IS_IT?', pixelDataFileDestination);
 	} catch (error) {
-		logger.error(`Failed to download pixel data with an error: ${error}`);
+		logger.error(`Failed to download pixel data with an error: ${error}`, { errorCode: ErrorCode.SFTP_DOWNLOAD_FILE });
 
 		return;
 	}
@@ -58,15 +59,15 @@ export const handler: ScheduledHandler = async (_, context) => {
 
 	csvParser({ delimiter: 'auto' }, { objectMode: true })
 		.fromFile(pixelDataFileDestination)
-		.on('data', async (pixelDataUnit) => {
-			logger.info('Trying to process pixel data unit', { pixelDataUnit });
+		.on('data', async (pixelDataUnit: unknown) => {
+			logger.info('Trying to process pixel data unit', { pixelDataUnit }, true);
 
 			const validatedLineObject = await PixelUnitSchema.safeParseAsync(pixelDataUnit);
 
 			if (!validatedLineObject.success) {
 				const validationError = fromZodError(validatedLineObject.error).toString();
 
-				logger.warn(`Failed to process pixel unit with an error: ${validationError}`, { pixelDataUnit });
+				logger.warn(`Failed to process pixel unit with an error: ${validationError}`, { errorCode: ErrorCode.ATDATA_INVALID_PIXEL_DATA });
 
 				return;
 			}
@@ -84,19 +85,18 @@ export const handler: ScheduledHandler = async (_, context) => {
 			try {
 				sendMessageSqsOutput = await sqsClient.send(sendMessageSqsCommand);
 			} catch (error) {
-				logger.warn(`Failed to send SQS message with an error: ${error}`, { pixelDataUnit });
+				logger.warn(`Failed to send SQS message with an error: ${error}`, { errorCode: ErrorCode.SEND_SQS_MESSAGE });
 
 				return;
 			}
 
 			logger.info('Successfully sent message to SQS to be handled', {
-				pixelDataUnit,
 				messageId: sendMessageSqsOutput.MessageId,
 				awsRequestId: sendMessageSqsOutput.$metadata.requestId,
 			});
 		})
 		.on('error', (error) => {
-			logger.error(`Failed to process pixel data with an error event: ${error}`);
+			logger.error(`Failed to process pixel data with an error event: ${error}`, { errorCode: ErrorCode.ATDATA_PARSE_CSV_FILE });
 		})
 		.on('done', () => {
 			logger.info('Finished processing pixel data');
