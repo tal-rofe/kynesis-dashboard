@@ -1,6 +1,6 @@
 module.exports = {
 	root: true,
-	extends: ['../../.eslintrc.cjs', 'plugin:storybook/recommended'],
+	extends: ['../../.eslintrc.cjs'],
 	parserOptions: {
 		ecmaFeatures: {
 			jsx: true,

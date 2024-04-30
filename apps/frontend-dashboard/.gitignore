@@ -4,5 +4,3 @@
 .DS_Store
 *.tsbuildinfo
 next-env.d.ts
-storybook-static/
-build-storybook.log
