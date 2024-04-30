@@ -1,3 +1,3 @@
 {
-	"installCommand": "pnpm -F frontend-dashboard —config.dedupe-peer-dependents=false install"
+	"installCommand": "pnpm install --filter=frontend-dashboard..."
 }
