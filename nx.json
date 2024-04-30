@@ -8,19 +8,7 @@
 		"default": {
 			"runner": "nx/tasks-runners/default",
 			"options": {
-				"cacheableOperations": [
-					"build",
-					"lint",
-					"type-check",
-					"prettier",
-					"cspell",
-					"type-check:root",
-					"lint:root",
-					"knip",
-					"inflint",
-					"storybook:build",
-					"storybook:test"
-				]
+				"cacheableOperations": ["build", "lint", "type-check", "prettier", "cspell", "type-check:root", "lint:root", "knip", "inflint"]
 			}
 		}
 	},
@@ -76,14 +64,6 @@
 				"{workspaceRoot}/.eslintrc.cjs",
 				"{workspaceRoot}/.eslintignore"
 			],
-			"outputs": []
-		},
-		"storybook:build": {
-			"inputs": ["{projectRoot}/.storybook", "{projectRoot}/src/components/ui/**/*", "{projectRoot}/src/stories/**/*"],
-			"outputs": ["{projectRoot}/storybook-static"]
-		},
-		"storybook:test": {
-			"inputs": ["{projectRoot}/.storybook", "{projectRoot}/src/components/ui/**/*", "{projectRoot}/src/stories/**/*"],
 			"outputs": []
 		},
 		"start:dev": {
