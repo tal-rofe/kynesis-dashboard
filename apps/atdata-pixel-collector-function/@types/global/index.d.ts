@@ -1,6 +1,7 @@
 declare global {
 	namespace NodeJS {
 		interface ProcessEnv {
+			readonly ATDATA_PIXEL_ID: string;
 			readonly AWS_REGION: string;
 			readonly SQS_URL: string;
 			readonly ATDATA_SFTP_HOST: string;

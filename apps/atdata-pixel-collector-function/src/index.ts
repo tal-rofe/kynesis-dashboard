@@ -45,8 +45,20 @@ export const handler: ScheduledHandler = async (_, context) => {
 
 	const pixelDataFileDestination = path.join('/tmp', 'atdata-data.csv');
 
+	const currentUtcDate = new Date().getTime();
+
+	const dateFormat = new Intl.DateTimeFormat('sv-SE', {
+		timeZone: 'UTC',
+		year: 'numeric',
+		month: 'numeric',
+		day: 'numeric',
+		hour: '2-digit',
+	});
+
+	const dateString = dateFormat.format(currentUtcDate).replaceAll(' ', '');
+
 	try {
-		await sftpClient.fastGet('WHERE_IS_IT?', pixelDataFileDestination);
+		await sftpClient.fastGet(`/${process.env.ATDATA_PIXEL_ID}-${dateString}`, pixelDataFileDestination);
 	} catch (error) {
 		logger.error(`Failed to download pixel data with an error: ${error}`, { errorCode: ErrorCode.SFTP_DOWNLOAD_FILE });
 
