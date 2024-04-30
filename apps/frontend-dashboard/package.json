@@ -4,7 +4,6 @@
 	"private": true,
 	"type": "module",
 	"scripts": {
-		"postinstall": "playwright install --with-deps",
 		"build": "dotenv -e envs/.env.production -- next build",
 		"start": "dotenv -e envs/.env.production -- next start -p 8080",
 		"start:dev": "dotenv -e envs/.env.development -- next dev -p 8080",
@@ -62,7 +61,6 @@
 		"@typescript-eslint/eslint-plugin": "6.21.0",
 		"@typescript-eslint/parser": "6.21.0",
 		"autoprefixer": "10.4.19",
-		"axe-playwright": "2.0.1",
 		"chromatic": "11.0.8",
 		"dotenv-cli": "7.4.1",
 		"eslint": "8.57.0",
@@ -77,7 +75,6 @@
 		"eslint-plugin-unicorn": "52.0.0",
 		"eslint-plugin-unused-imports": "3.1.0",
 		"hygen": "6.2.11",
-		"playwright": "1.42.1",
 		"postcss": "8.4.38",
 		"postcss-import": "16.0.1",
 		"postcss-nesting": "12.1.1",
