@@ -10,6 +10,7 @@ module "atdata_pixel_collector" {
   lambda_timeout                  = 20
   lambda_runtime_envs = {
     SQS_URL              = aws_sqs_queue.pixel_enrichment_sqs_fifo.url
+    ATDATA_PIXEL_ID      = var.atdata_pixel_id
     ATDATA_SFTP_HOST     = var.atdata_sftp_host
     ATDATA_SFTP_PORT     = var.atdata_sftp_port
     ATDATA_SFTP_USERNAME = var.atdata_sftp_username

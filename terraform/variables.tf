@@ -34,6 +34,11 @@ variable "vetric_api_key" {
   type        = string
 }
 
+variable "atdata_pixel_id" {
+  description = "The Pixel ID given of AtData"
+  type        = string
+}
+
 variable "atdata_sftp_host" {
   description = "The SFTP host of AtData pixel server"
   type        = string
