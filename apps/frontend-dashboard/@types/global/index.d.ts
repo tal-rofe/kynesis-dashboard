@@ -7,6 +7,8 @@ declare global {
 			readonly GOOGLE_CLIENT_SECRET: string;
 			readonly NEXTAUTH_SECRET: string;
 			readonly ENCRYPTION_KEY: 'yazif';
+			readonly GOOGLE_SERVICE_CLIENT_EMAIL: string;
+			readonly GOOGLE_SERVICE_PRIVATE_KEY: string;
 		}
 	}
 }
