@@ -58,7 +58,7 @@ export const handler: ScheduledHandler = async (_, context) => {
 	const dateString = dateFormat.format(currentUtcDate).replaceAll(' ', '');
 
 	try {
-		await sftpClient.fastGet(`/${process.env.ATDATA_PIXEL_ID}-${dateString}`, pixelDataFileDestination);
+		await sftpClient.fastGet(`/wvi_output/${process.env.ATDATA_PIXEL_ID}-${dateString}`, pixelDataFileDestination);
 	} catch (error) {
 		logger.error(`Failed to download pixel data with an error: ${error}`, { errorCode: ErrorCode.SFTP_DOWNLOAD_FILE });
 
