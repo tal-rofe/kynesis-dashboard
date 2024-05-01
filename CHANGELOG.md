@@ -1,3 +1,10 @@
+# [1.5.0](https://github.com/kynesis-io/dashboard/compare/v1.4.0...v1.5.0) (2024-05-01)
+
+
+### Features
+
+* 🔥 [KYN-49] support new data format from AtData ([1983a07](https://github.com/kynesis-io/dashboard/commit/1983a0709fa1b86aa52f61db01fa1e69b24328c7))
+
 # [1.4.0](https://github.com/kynesis-io/dashboard/compare/v1.3.0...v1.4.0) (2024-04-28)
 
 
