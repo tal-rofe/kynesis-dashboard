@@ -7,8 +7,10 @@
 	"author": "Kynesis <dev@kynesis.io> (https://kynesis.io)",
 	"type": "module",
 	"scripts": {
+		"postinstall": "pnpm prisma-gen",
 		"build": "node ./esbuild.js",
 		"start:dev:docker": "nodemon",
+		"prisma-gen": "prisma generate --schema ../../prisma/schema.prisma",
 		"type-check": "tsc --project ./tsconfig.json",
 		"lint": "eslint -c ./.eslintrc.cjs --ignore-path ./.eslintignore \"./**/*.{ts,js,cjs}\""
 	},
@@ -17,6 +19,7 @@
 		"@kynesis/error-codes": "workspace:*",
 		"@kynesis/lambda-logger": "workspace:*",
 		"@kynesis/pixel-enrichment-sqs": "workspace:*",
+		"@prisma/client": "5.12.1",
 		"csvtojson": "2.0.10",
 		"ssh2-sftp-client": "10.0.3",
 		"zod": "3.22.4",
@@ -30,6 +33,7 @@
 		"@types/ssh2-sftp-client": "9.0.3",
 		"esbuild": "0.20.2",
 		"esbuild-plugin-tsc": "0.4.0",
-		"nodemon": "3.1.0"
+		"nodemon": "3.1.0",
+		"prisma": "5.12.1"
 	}
 }

@@ -7,16 +7,19 @@
 	"author": "Kynesis <dev@kynesis.io> (https://kynesis.io)",
 	"type": "module",
 	"scripts": {
+		"postinstall": "pnpm prisma-gen",
 		"build": "node ./esbuild.js",
 		"start:dev:docker": "nodemon",
+		"prisma-gen": "prisma generate --schema ../../prisma/schema.prisma",
 		"type-check": "tsc --project ./tsconfig.json",
 		"lint": "eslint -c ./.eslintrc.cjs --ignore-path ./.eslintignore \"./**/*.{ts,js,cjs}\""
 	},
 	"dependencies": {
 		"@aws-sdk/client-sqs": "3.547.0",
+		"@kynesis/error-codes": "workspace:*",
 		"@kynesis/lambda-logger": "workspace:*",
 		"@kynesis/pixel-enrichment-sqs": "workspace:*",
-		"@kynesis/error-codes": "workspace:*",
+		"@prisma/client": "5.12.1",
 		"got": "14.2.1",
 		"zod": "3.22.4",
 		"zod-validation-error": "3.1.0"
@@ -28,6 +31,7 @@
 		"@types/node": "20.12.7",
 		"esbuild": "0.20.2",
 		"esbuild-plugin-tsc": "0.4.0",
-		"nodemon": "3.1.0"
+		"nodemon": "3.1.0",
+		"prisma": "5.12.1"
 	}
 }

@@ -7,6 +7,7 @@ export const PixelUnitSchema = z
 		md5: z.string(),
 		first_name: z.string().optional(),
 		last_name: z.string().optional(),
+		url: z.string().optional(),
 	})
 	.transform((origin) => ({
 		originDomain: origin.label,
@@ -14,4 +15,5 @@ export const PixelUnitSchema = z
 		md5Email: origin.md5,
 		firstName: origin.first_name,
 		lastName: origin.last_name,
+		url: origin.url,
 	}));
