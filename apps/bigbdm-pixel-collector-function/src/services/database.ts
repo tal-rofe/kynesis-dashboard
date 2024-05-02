@@ -9,6 +9,7 @@ export const upsertVisitor = async (email: string, domain: string) => {
 		},
 		update: { email },
 		create: { email },
+		select: { id: true },
 	});
 
 	await prismaClient.visitorDomain.upsert({
