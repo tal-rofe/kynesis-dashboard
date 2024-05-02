@@ -13,6 +13,7 @@ import ErrorCode from '@kynesis/error-codes';
 import { SFTP_CONNECTION_RETRIES, SFTP_HANDSHAKE_TIMEOUT } from './constants/sftp';
 import { SQS_MAX_ATTEMPTS } from './constants/sqs';
 import { PixelUnitSchema } from './schemas/pixel-unit-schema';
+import { upsertVisitor } from './services/database';
 
 export const handler: ScheduledHandler = async (_, context) => {
 	const logger = new LoggerService(context.awsRequestId);
@@ -83,6 +84,20 @@ export const handler: ScheduledHandler = async (_, context) => {
 
 				return;
 			}
+
+			upsertVisitor(
+				validatedLineObject.data.email,
+				{
+					firstName: validatedLineObject.data.firstName,
+					lastName: validatedLineObject.data.lastName,
+				},
+				validatedLineObject.data.originDomain,
+			)
+				.then(() => logger.info('Successfully upserted visitor in DB'))
+				.catch((error) => logger.warn(`Failed to upsert visitor in DB with an error: ${error}`, { errorCode: ErrorCode.UPSERT_DB }));
+
+			// * Irrelevant data for the SQS message
+			delete validatedLineObject.data.url;
 
 			const sqsMessageBodyObject: PixelCollectionData = { ...validatedLineObject.data, apiIndex: 0 };
 

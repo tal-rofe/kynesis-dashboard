@@ -52,6 +52,10 @@
 		"bigbdm",
 		"localstack",
 		"coresignal",
-		"Errorful"
+		"Errorful",
+		"dbrs",
+		"mongosh",
+		"printjson",
+		"upserted"
 	]
 }

@@ -12,6 +12,7 @@ import { getEnrichedData } from './apis/vetric/vetric';
 import { DYNAMODB_MAX_ATTEMPTS } from './constants/dynamodb';
 import { SQS_MAX_ATTEMPTS } from './constants/sqs';
 import { SLACK_API_CALL_RETRIES, SLACK_API_CALL_TIMEOUT } from './constants/slack-api';
+import { upsertVisitorWithEnrichedData, upsertVisitorWithLinkedinUrl } from './services/database';
 
 export const handler: SQSHandler = async (event, context) => {
 	const logger = new LoggerService(context.awsRequestId);
@@ -54,9 +55,10 @@ export const handler: SQSHandler = async (event, context) => {
 	}
 
 	const apiHandler = linkedinUrlApisToUse[parsedMessageBody.apiIndex]!;
-	let linkedinUrl: string;
 
 	logger.info('Querying LinkedIn URL API handler', { linkedinApiHandlerIndex: parsedMessageBody.apiIndex }, true);
+
+	let linkedinUrl: Awaited<ReturnType<typeof apiHandler.getLinkedinUrl>>;
 
 	try {
 		linkedinUrl = await apiHandler.getLinkedinUrl(parsedMessageBody);
@@ -103,17 +105,29 @@ export const handler: SQSHandler = async (event, context) => {
 		linkedinUrl,
 	});
 
-	let enrichedData: Record<string, unknown>;
+	let enrichedData: Awaited<ReturnType<typeof getEnrichedData>>;
 
 	try {
 		enrichedData = await getEnrichedData(logger, linkedinUrl);
 	} catch (error) {
-		logger.error(`Failed to enrich data with an error: ${error}`, { errorCode: ErrorCode.VETRIC_ENRICHMENT_API_ALL });
+		logger.error(`Failed to enrich data with an error: ${error}`, { errorCode: ErrorCode.VETRIC_ENRICHMENT });
+
+		upsertVisitorWithLinkedinUrl(parsedMessageBody.email, linkedinUrl, parsedMessageBody.originDomain)
+			.then(() => logger.info('Successfully upserted visitor in DB, with LinkedIn URL'))
+			.catch((error) =>
+				logger.warn(`Failed to upsert visitor with LinkedIn URL in DB with an error: ${error}`, { errorCode: ErrorCode.UPSERT_DB }),
+			);
 
 		return;
 	}
 
-	logger.info('Successfully enriched data for Linkedin Profile');
+	logger.info('Successfully enriched data for Linkedin Profile', { enrichedData });
+
+	upsertVisitorWithEnrichedData(parsedMessageBody.email, { ...enrichedData }, parsedMessageBody.originDomain)
+		.then(() => logger.info('Successfully upserted visitor in DB, with enriched data'))
+		.catch((error) =>
+			logger.warn(`Failed to upsert visitor with enriched data in DB with an error: ${error}`, { errorCode: ErrorCode.UPSERT_DB }),
+		);
 
 	const dynamoDbClient = new DynamoDBClient({ region: process.env.AWS_REGION, maxAttempts: DYNAMODB_MAX_ATTEMPTS });
 

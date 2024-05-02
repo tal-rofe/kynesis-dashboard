@@ -119,6 +119,9 @@ importers:
       '@kynesis/pixel-enrichment-sqs':
         specifier: workspace:*
         version: link:../../packages/pixel-enrichment-sqs
+      '@prisma/client':
+        specifier: 5.12.1
+        version: 5.12.1(prisma@5.12.1)
       csvtojson:
         specifier: 2.0.10
         version: 2.0.10
@@ -156,6 +159,9 @@ importers:
       nodemon:
         specifier: 3.1.0
         version: 3.1.0
+      prisma:
+        specifier: 5.12.1
+        version: 5.12.1
 
   apps/backend-dashboard:
     dependencies:
@@ -265,6 +271,9 @@ importers:
       '@kynesis/pixel-enrichment-sqs':
         specifier: workspace:*
         version: link:../../packages/pixel-enrichment-sqs
+      '@prisma/client':
+        specifier: 5.12.1
+        version: 5.12.1(prisma@5.12.1)
       got:
         specifier: 14.2.1
         version: 14.2.1
@@ -296,6 +305,9 @@ importers:
       nodemon:
         specifier: 3.1.0
         version: 3.1.0
+      prisma:
+        specifier: 5.12.1
+        version: 5.12.1
 
   apps/frontend-dashboard:
     dependencies:
@@ -492,9 +504,9 @@ importers:
       '@kynesis/pixel-enrichment-sqs':
         specifier: workspace:*
         version: link:../../packages/pixel-enrichment-sqs
-      deepmerge:
-        specifier: 4.3.1
-        version: 4.3.1
+      '@prisma/client':
+        specifier: 5.12.1
+        version: 5.12.1(prisma@5.12.1)
       free-email-domains:
         specifier: 1.2.13
         version: 1.2.13
@@ -526,6 +538,9 @@ importers:
       nodemon:
         specifier: 3.1.0
         version: 3.1.0
+      prisma:
+        specifier: 5.12.1
+        version: 5.12.1
 
   packages/error-codes: {}
 
@@ -4072,15 +4087,12 @@ packages:
         optional: true
     dependencies:
       prisma: 5.12.1
-    dev: true
 
   /@prisma/debug@5.12.1:
     resolution: {integrity: sha512-kd/wNsR0klrv79o1ITsbWxYyh4QWuBidvxsXSParPsYSu0ircUmNk3q4ojsgNc3/81b0ozg76iastOG43tbf8A==}
-    dev: true
 
   /@prisma/engines-version@5.12.0-21.473ed3124229e22d881cb7addf559799debae1ab:
     resolution: {integrity: sha512-6yvO8s80Tym61aB4QNtYZfWVmE3pwqe807jEtzm8C5VDe7nw8O1FGX3TXUaXmWV0fQTIAfRbeL2Gwrndabp/0g==}
-    dev: true
 
   /@prisma/engines@5.12.1:
     resolution: {integrity: sha512-HQDdglLw2bZR/TXD2Y+YfDMvi5Q8H+acbswqOsWyq9pPjBLYJ6gzM+ptlTU/AV6tl0XSZLU1/7F4qaWa8bqpJA==}
@@ -4090,7 +4102,6 @@ packages:
       '@prisma/engines-version': 5.12.0-21.473ed3124229e22d881cb7addf559799debae1ab
       '@prisma/fetch-engine': 5.12.1
       '@prisma/get-platform': 5.12.1
-    dev: true
 
   /@prisma/fetch-engine@5.12.1:
     resolution: {integrity: sha512-qSs3KcX1HKcea1A+hlJVK/ljj0PNIUHDxAayGMvgJBqmaN32P9tCidlKz1EGv6WoRFICYnk3Dd/YFLBwnFIozA==}
@@ -4098,13 +4109,11 @@ packages:
       '@prisma/debug': 5.12.1
       '@prisma/engines-version': 5.12.0-21.473ed3124229e22d881cb7addf559799debae1ab
       '@prisma/get-platform': 5.12.1
-    dev: true
 
   /@prisma/get-platform@5.12.1:
     resolution: {integrity: sha512-pgIR+pSvhYHiUcqXVEZS31NrFOTENC9yFUdEAcx7cdQBoZPmHVjtjN4Ss6NzVDMYPrKJJ51U14EhEoeuBlMioQ==}
     dependencies:
       '@prisma/debug': 5.12.1
-    dev: true
 
   /@radix-ui/primitive@1.0.1:
     resolution: {integrity: sha512-yQ8oGX2GVsEYMWGxcovu1uGWPCxV5BFfeeYxqPmuAzUyLT9qmaMXSAhXpb0WrspIeqYzdJpkh2vHModJPgRIaw==}
@@ -7787,6 +7796,7 @@ packages:
   /deepmerge@4.3.1:
     resolution: {integrity: sha512-3sUqbMEc77XqpdNO7FRyRog+eW3ph+GYCbj+rK+uYyRMuwsVy0rMiVtPn+QJlKFvWP/1PYpapqYn0Me2knFn+A==}
     engines: {node: '>=0.10.0'}
+    dev: true
 
   /default-browser-id@5.0.0:
     resolution: {integrity: sha512-A6p/pu/6fyBcA1TRz/GqWYPViplrftcW2gZC9q79ngNCKAeR/X3gcEdXQHl4KNXV+3wgIJ1CPkJQ3IHM6lcsyA==}
@@ -12473,7 +12483,6 @@ packages:
     requiresBuild: true
     dependencies:
       '@prisma/engines': 5.12.1
-    dev: true
 
   /prismjs@1.29.0:
     resolution: {integrity: sha512-Kx/1w86q/epKcmte75LNrEoT+lX8pBpavuAbvJWRXar7Hz8jrtF+e3vY751p0R8H9HdArwaCTNDDzHg/ScJK1Q==}

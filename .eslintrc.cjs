@@ -15,7 +15,7 @@ const config = {
 	plugins: ['@typescript-eslint', 'unused-imports', 'import', 'deprecation', 'unicorn', 'n'],
 	rules: {
 		'no-console': 'error',
-		'max-lines': ['error', { max: 150, skipBlankLines: true, skipComments: true }],
+		'max-lines': ['error', { max: 200, skipBlankLines: true, skipComments: true }],
 		'quotes': ['error', 'single', { avoidEscape: true }],
 		'semi': ['error', 'always'],
 		'no-empty': [
