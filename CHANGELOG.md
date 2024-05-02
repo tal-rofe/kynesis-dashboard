@@ -1,3 +1,10 @@
+# [1.6.0](https://github.com/kynesis-io/dashboard/compare/v1.5.0...v1.6.0) (2024-05-02)
+
+
+### Features
+
+* 🔥 [KYN-51] support database of visitors ([15bf244](https://github.com/kynesis-io/dashboard/commit/15bf24488272db812325272ce22d797d75fc126e))
+
 # [1.5.0](https://github.com/kynesis-io/dashboard/compare/v1.4.0...v1.5.0) (2024-05-01)
 
 
