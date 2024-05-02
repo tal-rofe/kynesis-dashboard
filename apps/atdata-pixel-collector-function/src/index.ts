@@ -85,14 +85,12 @@ export const handler: ScheduledHandler = async (_, context) => {
 				return;
 			}
 
-			upsertVisitor(
-				validatedLineObject.data.email,
-				{
-					firstName: validatedLineObject.data.firstName,
-					lastName: validatedLineObject.data.lastName,
-				},
-				validatedLineObject.data.originDomain,
-			)
+			upsertVisitor(validatedLineObject.data.email, {
+				firstName: validatedLineObject.data.firstName,
+				lastName: validatedLineObject.data.lastName,
+				url: validatedLineObject.data.url,
+				originDomain: validatedLineObject.data.originDomain,
+			})
 				.then(() => logger.info('Successfully upserted visitor in DB'))
 				.catch((error) => logger.warn(`Failed to upsert visitor in DB with an error: ${error}`, { errorCode: ErrorCode.UPSERT_DB }));
 

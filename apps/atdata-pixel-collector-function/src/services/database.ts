@@ -1,8 +1,14 @@
-import { PrismaClient, type Visitor } from '@prisma/client';
+import { PrismaClient } from '@prisma/client';
+import type { z } from 'zod';
+
+import type { PixelUnitSchema } from '../schemas/pixel-unit-schema';
 
 const prismaClient = new PrismaClient();
 
-export const upsertVisitor = async (email: string, data: Partial<Pick<Visitor, 'firstName' | 'lastName'>> & { url?: string }, domain: string) => {
+export const upsertVisitor = async (
+	email: string,
+	data: Pick<z.infer<typeof PixelUnitSchema>, 'firstName' | 'lastName' | 'url' | 'originDomain'>,
+) => {
 	const upsertResult = await prismaClient.visitor.upsert({
 		where: {
 			email,
@@ -24,14 +30,14 @@ export const upsertVisitor = async (email: string, data: Partial<Pick<Visitor, '
 	await prismaClient.visitorDomain.upsert({
 		where: {
 			unique_domain_visitorId: {
-				domain,
+				domain: data.originDomain,
 				visitorId: upsertResult.id,
 			},
 		},
 		update: {},
 		create: {
 			visitorId: upsertResult.id,
-			domain,
+			domain: data.originDomain,
 		},
 	});
 };
