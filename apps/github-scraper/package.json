@@ -1,0 +1,37 @@
+{
+	"name": "@kynesis/github-scraper",
+	"version": "1.0.0",
+	"private": true,
+	"description": "GitHub scraper",
+	"license": "UNLICENSED",
+	"author": "Kynesis <dev@kynesis.io> (https://kynesis.io)",
+	"type": "module",
+	"scripts": {
+		"postinstall": "pnpm prisma-gen",
+		"build": "node ./esbuild.js",
+		"start:dev": "dotenv -e ./.env.development nodemon",
+		"prisma-gen": "prisma generate --schema ../../prisma/schema.prisma",
+		"type-check": "tsc --project ./tsconfig.json",
+		"lint": "eslint -c ./.eslintrc.cjs --ignore-path ./.eslintignore \"./**/*.{ts,js,cjs}\""
+	},
+	"dependencies": {
+		"@kynesis/error-codes": "workspace:*",
+		"@prisma/client": "5.12.1",
+		"docker-compose": "0.24.8",
+		"got": "14.2.1",
+		"https-proxy-agent": "7.0.4",
+		"tor-ctrl": "0.1.0",
+		"winston": "3.13.0",
+		"zod": "3.22.4"
+	},
+	"devDependencies": {
+		"@total-typescript/ts-reset": "0.5.1",
+		"@types/got": "9.6.12",
+		"@types/node": "20.12.7",
+		"dotenv-cli": "7.4.1",
+		"esbuild": "0.20.2",
+		"esbuild-plugin-tsc": "0.4.0",
+		"nodemon": "3.1.0",
+		"prisma": "5.12.1"
+	}
+}

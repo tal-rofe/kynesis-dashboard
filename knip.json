@@ -24,6 +24,11 @@
 			"project": "./src/**/*",
 			"ignoreDependencies": ["@kynesis/lambda-logger", "@kynesis/pixel-enrichment-sqs", "@kynesis/error-codes"]
 		},
+		"apps/github-scraper": {
+			"entry": "./src/index.ts",
+			"project": "./src/**/*",
+			"ignoreDependencies": ["@kynesis/error-codes", "https-proxy-agent"]
+		},
 		"apps/bigbdm-pixel-collector-function": {
 			"entry": "./src/index.ts",
 			"project": "./src/**/*",
