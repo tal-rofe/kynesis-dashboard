@@ -1,0 +1,83 @@
+version: '3.8'
+
+services:
+    proxy1:
+        container_name: proxy1
+        image: dperson/torproxy
+        ports:
+            - 8118:8118
+            - 9051:9051
+        environment:
+            - PASSWORD=password
+    proxy2:
+        container_name: proxy2
+        image: dperson/torproxy
+        ports:
+            - 8119:8118
+            - 9052:9051
+        environment:
+            - PASSWORD=password
+    proxy3:
+        container_name: proxy3
+        image: dperson/torproxy
+        ports:
+            - 8120:8118
+            - 9053:9051
+        environment:
+            - PASSWORD=password
+    proxy4:
+        container_name: proxy4
+        image: dperson/torproxy
+        ports:
+            - 8121:8118
+            - 9054:9051
+        environment:
+            - PASSWORD=password
+    proxy5:
+        container_name: proxy5
+        image: dperson/torproxy
+        ports:
+            - 8122:8118
+            - 9055:9051
+        environment:
+            - PASSWORD=password
+    proxy6:
+        container_name: proxy6
+        image: dperson/torproxy
+        ports:
+            - 8123:8118
+            - 9056:9051
+        environment:
+            - PASSWORD=password
+    proxy7:
+        container_name: proxy7
+        image: dperson/torproxy
+        ports:
+            - 8124:8118
+            - 9057:9051
+        environment:
+            - PASSWORD=password
+    proxy8:
+        container_name: proxy8
+        image: dperson/torproxy
+        ports:
+            - 8125:8118
+            - 9058:9051
+        environment:
+            - PASSWORD=password
+    proxy9:
+        container_name: proxy9
+        image: dperson/torproxy
+        ports:
+            - 8126:8118
+            - 9059:9051
+        environment:
+            - PASSWORD=password
+    proxy10:
+        container_name: proxy10
+        image: dperson/torproxy
+        ports:
+            - 8127:8118
+            - 9060:9051
+        environment:
+            - PASSWORD=password

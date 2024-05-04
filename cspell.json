@@ -13,7 +13,8 @@
 		"./nx.json",
 		"./lint-staged.config.cjs",
 		"./inflint.config.ts",
-		"./docker/docker-compose.dev.yaml",
+		"**/docker-compose.dev.yaml",
+		"**/docker-compose.yaml",
 		"./apps/frontend-dashboard/src/stories/assets/**/*",
 		"./apps/frontend-dashboard/src/stories/Configure.mdx",
 		"./apps/frontend-dashboard/src/app/onboarding/components/Steps/Steps.tsx",
@@ -56,6 +57,7 @@
 		"dbrs",
 		"mongosh",
 		"printjson",
-		"upserted"
+		"upserted",
+		"datetime"
 	]
 }

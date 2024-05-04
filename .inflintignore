@@ -16,6 +16,10 @@ apps/atdata-pixel-collector-function/node_modules
 apps/atdata-pixel-collector-function/build
 apps/atdata-pixel-collector-function/src/**/*.d.ts
 
+apps/github-scraper/node_modules
+apps/github-scraper/build
+apps/github-scraper/src/**/*.d.ts
+
 apps/bigbdm-pixel-collector-function/node_modules
 apps/bigbdm-pixel-collector-function/build
 apps/bigbdm-pixel-collector-function/src/**/*.d.ts

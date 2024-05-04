@@ -44,8 +44,6 @@ model Visitor {
   companyLocation    String?
   githubUsername     String?           @unique
 
-  domains String[]
-
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 

@@ -31,6 +31,5 @@
 	],
 	"commitMessageAction": "🤖 Update",
 	"stabilityDays": 7,
-	"reviewersFromCodeOwners": true,
-	"enabled": false
+	"reviewersFromCodeOwners": true
 }
