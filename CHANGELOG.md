@@ -1,3 +1,10 @@
+# [1.7.0](https://github.com/kynesis-io/dashboard/compare/v1.6.0...v1.7.0) (2024-05-04)
+
+
+### Features
+
+* 🔥 [KYN-56] scrape github repository stargazers ([023f286](https://github.com/kynesis-io/dashboard/commit/023f286c7150bbf84ffb7a1e5e7863e0cfc58703))
+
 # [1.6.0](https://github.com/kynesis-io/dashboard/compare/v1.5.0...v1.6.0) (2024-05-02)
 
 
