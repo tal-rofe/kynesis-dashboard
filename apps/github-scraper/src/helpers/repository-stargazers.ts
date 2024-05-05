@@ -8,6 +8,7 @@ import { proxyAgents } from '../data/proxy-agents';
 import { RepositoryStargazersResponseSchema } from '../schemas/repository-stargazers';
 import LoggerService from '../services/logger';
 import { getBaseHttp } from '../utils/http';
+import { PROXY_RENEW_CIRCUIT_CONNECTION_PORT } from '../constants/proxy';
 
 const getPageStargazers = async (proxyIndex: number, page: number) => {
 	const searchParams = new URLSearchParams({ per_page: STARGAZERS_IN_PAGE.toString(), page: page.toString() });
@@ -27,7 +28,7 @@ const getPageStargazers = async (proxyIndex: number, page: number) => {
 
 		const torControl = new TorControl({
 			host: 'localhost',
-			port: 9051 + proxyIndex,
+			port: PROXY_RENEW_CIRCUIT_CONNECTION_PORT + proxyIndex,
 			password: 'password',
 		});
 
