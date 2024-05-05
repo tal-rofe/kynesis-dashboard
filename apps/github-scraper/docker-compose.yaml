@@ -81,3 +81,51 @@ services:
             - 9060:9051
         environment:
             - PASSWORD=password
+    proxy11:
+        container_name: proxy11
+        image: dperson/torproxy
+        ports:
+            - 8128:8118
+            - 9061:9051
+        environment:
+            - PASSWORD=password
+    proxy12:
+        container_name: proxy12
+        image: dperson/torproxy
+        ports:
+            - 8129:8118
+            - 9062:9051
+        environment:
+            - PASSWORD=password
+    proxy13:
+        container_name: proxy13
+        image: dperson/torproxy
+        ports:
+            - 8130:8118
+            - 9063:9051
+        environment:
+            - PASSWORD=password
+    proxy14:
+        container_name: proxy14
+        image: dperson/torproxy
+        ports:
+            - 8131:8118
+            - 9064:9051
+        environment:
+            - PASSWORD=password
+    proxy15:
+        container_name: proxy15
+        image: dperson/torproxy
+        ports:
+            - 8132:8118
+            - 9065:9051
+        environment:
+            - PASSWORD=password
+    proxy16:
+        container_name: proxy10
+        image: dperson/torproxy
+        ports:
+            - 8133:8118
+            - 9066:9051
+        environment:
+            - PASSWORD=password

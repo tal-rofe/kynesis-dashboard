@@ -7,8 +7,14 @@ const TIMEOUT = 10 * SECOND;
 
 const RETRIES = 3;
 
-export const getBaseHttp = (proxyIndex: number, headers?: Headers) =>
-	got.extend({
+export const getBaseHttp = (proxyIndex: number, headers?: Headers, authorized?: boolean) => {
+	const newHeaders = { ...headers };
+
+	if (authorized) {
+		newHeaders['Authorization'] = `Bearer ${proxyAgents[proxyIndex]!.token}`;
+	}
+
+	return got.extend({
 		timeout: { request: TIMEOUT },
 		retry: {
 			limit: RETRIES,
@@ -17,6 +23,7 @@ export const getBaseHttp = (proxyIndex: number, headers?: Headers) =>
 			// * Keep others (backoff limit, ...) as default
 		},
 		throwHttpErrors: false,
-		agent: { https: proxyAgents[proxyIndex]! },
-		headers,
+		agent: { https: proxyAgents[proxyIndex]!.agent },
+		headers: newHeaders,
 	});
+};

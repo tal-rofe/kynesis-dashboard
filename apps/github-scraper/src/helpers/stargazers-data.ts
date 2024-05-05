@@ -8,11 +8,16 @@ import { proxyAgents } from '../data/proxy-agents';
 import LoggerService from '../services/logger';
 import { StargazerDataResponseSchema } from '../schemas/stargazer-data';
 import { getBaseHttp } from '../utils/http';
+import { PROXY_RENEW_CIRCUIT_CONNECTION_PORT } from '../constants/proxy';
 
 const getStargazerData = async (stargazerApi: string, proxyIndex: number) => {
-	const baseHttp = getBaseHttp(proxyIndex, {
-		Accept: 'application/vnd.github+json',
-	});
+	const baseHttp = getBaseHttp(
+		proxyIndex,
+		{
+			Accept: 'application/vnd.github+json',
+		},
+		true,
+	);
 
 	let stargazerDataResponse = await baseHttp.get(stargazerApi);
 
@@ -25,7 +30,7 @@ const getStargazerData = async (stargazerApi: string, proxyIndex: number) => {
 
 		const torControl = new TorControl({
 			host: 'localhost',
-			port: 9051 + proxyIndex,
+			port: PROXY_RENEW_CIRCUIT_CONNECTION_PORT + proxyIndex,
 			password: 'password',
 		});
 
