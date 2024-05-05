@@ -27,7 +27,7 @@
 	},
 	"devDependencies": {
 		"@total-typescript/ts-reset": "0.5.1",
-		"@types/aws-lambda": "8.10.136",
+		"@types/aws-lambda": "8.10.137",
 		"@types/csvtojson": "2.0.0",
 		"@types/node": "20.12.7",
 		"@types/ssh2-sftp-client": "9.0.3",
