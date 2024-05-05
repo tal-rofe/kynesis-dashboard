@@ -139,8 +139,8 @@ importers:
         specifier: 0.5.1
         version: 0.5.1
       '@types/aws-lambda':
-        specifier: 8.10.136
-        version: 8.10.136
+        specifier: 8.10.137
+        version: 8.10.137
       '@types/csvtojson':
         specifier: 2.0.0
         version: 2.0.0
@@ -288,8 +288,8 @@ importers:
         specifier: 0.5.1
         version: 0.5.1
       '@types/aws-lambda':
-        specifier: 8.10.136
-        version: 8.10.136
+        specifier: 8.10.137
+        version: 8.10.137
       '@types/got':
         specifier: 9.6.12
         version: 9.6.12
@@ -573,8 +573,8 @@ importers:
         specifier: 0.5.1
         version: 0.5.1
       '@types/aws-lambda':
-        specifier: 8.10.136
-        version: 8.10.136
+        specifier: 8.10.137
+        version: 8.10.137
       '@types/got':
         specifier: 9.6.12
         version: 9.6.12
@@ -5410,8 +5410,8 @@ packages:
       path-browserify: 1.0.1
     dev: true
 
-  /@types/aws-lambda@8.10.136:
-    resolution: {integrity: sha512-cmmgqxdVGhxYK9lZMYYXYRJk6twBo53ivtXjIUEFZxfxe4TkZTZBK3RRWrY2HjJcUIix0mdifn15yjOAat5lTA==}
+  /@types/aws-lambda@8.10.137:
+    resolution: {integrity: sha512-YNFwzVarXAOXkjuFxONyDw1vgRNzyH8AuyN19s0bM+ChSu/bzxb5XPxYFLXoqoM+tvgzwR3k7fXcEOW125yJxg==}
     dev: true
 
   /@types/conventional-commits-parser@5.0.0:
