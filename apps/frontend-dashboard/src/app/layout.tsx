@@ -1,5 +1,4 @@
 import type { Metadata } from 'next';
-import { SpeedInsights } from '@vercel/speed-insights/next';
 
 import AppWrapper from '@/wrappers/AppWrapper';
 import ThemeProvider from '@/providers/ThemeProvider';
@@ -26,7 +25,6 @@ const RootLayout = (props: Props) => {
 				<ThemeProvider attribute="class" defaultTheme="system" enableSystem>
 					{props.children}
 					<UINotifications />
-					<SpeedInsights />
 				</ThemeProvider>
 			</AppWrapper>
 		</AuthSessionProvider>

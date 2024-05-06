@@ -296,7 +296,7 @@ const UIVisitorsTable = (props: Props) => {
 				</div>
 			)}
 			<div className={`${props.dataOnly ? 'h-[calc(100vh-415px)]' : 'h-[calc(100vh-254px)]'}`}>
-				<div className="ag-theme-alpine flex flex-col h-full">
+				<div className="h-full ag-theme-alpine">
 					<AgGridReact
 						ref={gridRef}
 						rowData={props.data}

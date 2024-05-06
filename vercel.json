@@ -1,3 +1,0 @@
-{
-	"installCommand": "pnpm install -w && pnpm -F frontend-dashboard --strict-peer-dependencies=false i"
-}
