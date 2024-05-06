@@ -1,6 +1,6 @@
 module "s3_bucket_lambdas_code" {
   source  = "terraform-aws-modules/s3-bucket/aws"
-  version = "4.1.1"
+  version = "4.1.2"
 
   acl                      = "private"
   force_destroy            = true
