@@ -22,7 +22,7 @@
 		"@prisma/client": "5.12.1",
 		"got": "14.2.1",
 		"zod": "3.22.4",
-		"zod-validation-error": "3.1.0"
+		"zod-validation-error": "3.2.0"
 	},
 	"devDependencies": {
 		"@total-typescript/ts-reset": "0.5.1",
