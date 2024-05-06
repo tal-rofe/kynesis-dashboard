@@ -3,6 +3,7 @@
 	"ignore": ["inflint.config.ts", "czvinyl.config.ts", "scripts/onboarding.js", "release.config.cjs", "./docker/scripts/open-dashboard.js"],
 	"ignoreDependencies": ["commitizen", "open", "wait-on", "@prisma/client"],
 	"ignoreBinaries": ["only-allow", "terraform"],
+	"ignoreWorkspaces": ["apps/github-app-webhook"],
 	"workspaces": {
 		"apps/frontend-dashboard": {
 			"ignore": ["_templates/**/*", "@types/next/index.d.ts", "@types/**/*", "public/**/*", "./src/components/ui/**/*"],

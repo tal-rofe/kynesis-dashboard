@@ -1,0 +1,36 @@
+{
+	"name": "github-app-webhook",
+	"version": "1.0.0",
+	"description": "github app webhook to track repository stars events",
+	"keywords": [],
+	"private": true,
+	"author": "Kynesis <amir@kynesis.io> (https://kynesis.io)",
+	"license": "UNLICENSED",
+	"main": "dist/index.js",
+	"scripts": {
+		"dev": "nodemon",
+		"start": "node dist/index.js",
+		"build": "npx tsc --outDir ./dist"
+	},
+	"dependencies": {
+		"body-parser": "1.20.2",
+		"dotenv": "16.4.5",
+		"express": "4.19.2",
+		"nodemon": "3.1.0"
+	},
+	"devDependencies": {
+		"@types/express": "4.17.21",
+		"@types/node": "20.12.7",
+		"@typescript-eslint/eslint-plugin": "5.62.0",
+		"@typescript-eslint/parser": "5.62.0",
+		"eslint": "8.57.0",
+		"eslint-config-prettier": "9.1.0",
+		"eslint-plugin-deprecation": "2.0.0",
+		"eslint-plugin-import": "2.29.1",
+		"eslint-plugin-node": "11.1.0",
+		"eslint-plugin-unicorn": "47.0.0",
+		"eslint-plugin-unused-imports": "3.1.0",
+		"ts-node": "10.9.2",
+		"typescript": "5.4.5"
+	}
+}
