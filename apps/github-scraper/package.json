@@ -23,7 +23,7 @@
 		"lodash.pickby": "4.6.0",
 		"tor-ctrl": "0.1.0",
 		"winston": "3.13.0",
-		"zod": "3.22.4"
+		"zod": "3.23.5"
 	},
 	"devDependencies": {
 		"@total-typescript/ts-reset": "0.5.1",
