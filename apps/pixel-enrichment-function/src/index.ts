@@ -123,7 +123,7 @@ export const handler: SQSHandler = async (event, context) => {
 
 	logger.info('Successfully enriched data for Linkedin Profile', { enrichedData });
 
-	upsertVisitorWithEnrichedData(parsedMessageBody.email, { ...enrichedData }, parsedMessageBody.originDomain)
+	upsertVisitorWithEnrichedData(parsedMessageBody.email, enrichedData, parsedMessageBody.originDomain)
 		.then(() => logger.info('Successfully upserted visitor in DB, with enriched data'))
 		.catch((error) =>
 			logger.warn(`Failed to upsert visitor with enriched data in DB with an error: ${error}`, { errorCode: ErrorCode.UPSERT_DB }),

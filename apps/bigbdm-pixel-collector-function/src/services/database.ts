@@ -2,13 +2,13 @@ import { PrismaClient } from '@prisma/client';
 
 const prismaClient = new PrismaClient();
 
-export const upsertVisitor = async (email: string, domain: string) => {
+export const upsertVisitor = async (email: string, domain: string, path?: string) => {
 	const upsertResult = await prismaClient.visitor.upsert({
 		where: {
 			email,
 		},
-		update: { email },
-		create: { email },
+		update: { email, activity: { push: path ? { timestamp: new Date().toISOString(), source: path } : undefined } },
+		create: { email, activity: path ? [{ timestamp: new Date().toISOString(), source: path }] : [] },
 		select: { id: true },
 	});
 

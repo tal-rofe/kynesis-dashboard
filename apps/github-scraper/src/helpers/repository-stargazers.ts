@@ -81,11 +81,9 @@ export const getRepositoryStargazers = async (count: number) => {
 
 		const results = await Promise.allSettled(promises);
 
-		const onlyValidResults = results.filter(
-			(result): result is PromiseFulfilledResult<z.infer<typeof RepositoryStargazersResponseSchema>> => result.status === 'fulfilled',
-		);
-
-		const validStargazers = onlyValidResults.map((result) => result.value);
+		const validStargazers = results
+			.filter((result): result is PromiseFulfilledResult<z.infer<typeof RepositoryStargazersResponseSchema>> => result.status === 'fulfilled')
+			.map((result) => result.value);
 
 		repositoryStargazers.push(...validStargazers);
 	}

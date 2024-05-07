@@ -1,13 +1,15 @@
 import { z } from 'zod';
 
-export const RepositoryStargazersResponseSchema = z.array(
-	z
-		.object({
-			starred_at: z.string().datetime().optional(),
-			user: z.object({ url: z.string().url() }),
-		})
-		.transform((original) => ({
-			starredAt: original.starred_at ? new Date(original.starred_at).getTime() : undefined,
-			userDetailsUrl: original.user.url,
+const RepositoryStargazerItemSchema = z.object({
+	starred_at: z.string().datetime().optional(),
+	user: z.object({ url: z.string().url() }),
+});
+
+export const RepositoryStargazersResponseSchema = z.array(z.unknown()).transform((items) =>
+	items
+		.filter((item): item is z.infer<typeof RepositoryStargazerItemSchema> => RepositoryStargazerItemSchema.safeParse(item).success)
+		.map((item) => ({
+			starredAt: item.starred_at ? new Date(item.starred_at).getTime() : undefined,
+			userDetailsUrl: item.user.url,
 		})),
 );

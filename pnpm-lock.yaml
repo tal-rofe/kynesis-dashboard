@@ -125,6 +125,9 @@ importers:
       csvtojson:
         specifier: 2.0.10
         version: 2.0.10
+      lodash.pickby:
+        specifier: 4.6.0
+        version: 4.6.0
       ssh2-sftp-client:
         specifier: 10.0.3
         version: 10.0.3
@@ -144,6 +147,9 @@ importers:
       '@types/csvtojson':
         specifier: 2.0.0
         version: 2.0.0
+      '@types/lodash.pickby':
+        specifier: 4.6.9
+        version: 4.6.9
       '@types/node':
         specifier: 20.12.7
         version: 20.12.7
@@ -504,6 +510,9 @@ importers:
       https-proxy-agent:
         specifier: 7.0.4
         version: 7.0.4
+      lodash.pickby:
+        specifier: 4.6.0
+        version: 4.6.0
       tor-ctrl:
         specifier: 0.1.0
         version: 0.1.0
@@ -520,6 +529,9 @@ importers:
       '@types/got':
         specifier: 9.6.12
         version: 9.6.12
+      '@types/lodash.pickby':
+        specifier: 4.6.9
+        version: 4.6.9
       '@types/node':
         specifier: 20.12.7
         version: 20.12.7
@@ -565,6 +577,9 @@ importers:
       got:
         specifier: 14.2.1
         version: 14.2.1
+      lodash.pickby:
+        specifier: 4.6.0
+        version: 4.6.0
       zod:
         specifier: 3.22.4
         version: 3.22.4
@@ -578,6 +593,9 @@ importers:
       '@types/got':
         specifier: 9.6.12
         version: 9.6.12
+      '@types/lodash.pickby':
+        specifier: 4.6.9
+        version: 4.6.9
       '@types/node':
         specifier: 20.12.7
         version: 20.12.7
@@ -5475,6 +5493,16 @@ packages:
     resolution: {integrity: sha512-/5hndP5dCjloafCXns6SZyESp3Ldq7YjH3zwzwczYnjxIT0Fqzk5ROSYVGfFyczIue7IUEj8hkvLbPoLQ18vQw==}
     dependencies:
       '@types/node': 20.12.7
+    dev: true
+
+  /@types/lodash.pickby@4.6.9:
+    resolution: {integrity: sha512-SPI248FYnyd3jOxDeJq2vX2UKQnDzqacuqdeOVqwE1MPSk8gN8TA3FcHSMQWLlpBnuHgXvgKInvywbOFbidpJA==}
+    dependencies:
+      '@types/lodash': 4.17.1
+    dev: true
+
+  /@types/lodash@4.17.1:
+    resolution: {integrity: sha512-X+2qazGS3jxLAIz5JDXDzglAF3KpijdhFxlf/V1+hEsOUc+HnWi81L/uv/EvGuV90WY+7mPGFCUDGfQC3Gj95Q==}
     dev: true
 
   /@types/node-fetch@2.6.11:
@@ -10909,6 +10937,10 @@ packages:
   /lodash.partialright@4.2.1:
     resolution: {integrity: sha512-yebmPMQZH7i4El6SdJTW9rn8irWl8VTcsmiWqm/I4sY8/ZjbSo0Z512HL6soeAu3mh5rhx5uIIo6kYJOQXbCxw==}
     dev: true
+
+  /lodash.pickby@4.6.0:
+    resolution: {integrity: sha512-AZV+GsS/6ckvPOVQPXSiFFacKvKB4kOQu6ynt9wz0F3LO4R9Ij4K1ddYsIytDpSgLz88JHd9P+oaLeej5/Sl7Q==}
+    dev: false
 
   /lodash.snakecase@4.1.1:
     resolution: {integrity: sha512-QZ1d4xoBHYUeuouhEq3lk3Uq7ldgyFXGBhg04+oRLnIz8o9T65Eh+8YdroUwn846zchkA9yDsDl5CVVaV2nqYw==}

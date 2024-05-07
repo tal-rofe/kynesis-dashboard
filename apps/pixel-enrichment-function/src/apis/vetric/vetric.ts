@@ -1,4 +1,5 @@
 import got from 'got';
+import type { z } from 'zod';
 
 import type LoggerService from '@kynesis/lambda-logger';
 import ErrorCode from '@kynesis/error-codes';
@@ -43,7 +44,10 @@ const getProfileOverviewData = async (logger: LoggerService, linkedinUrl: string
 	return validatedProfileOverviewResponse.data;
 };
 
-export const getEnrichedData = async (logger: LoggerService, linkedinUrl: string) => {
+export const getEnrichedData = async (
+	logger: LoggerService,
+	linkedinUrl: string,
+): Promise<Omit<z.infer<typeof ProfileOverviewResponseSchema>, 'companyUniversalName'> & Partial<z.infer<typeof CompanyDetailsResponseSchema>>> => {
 	const profileOverviewData = await getProfileOverviewData(logger, linkedinUrl);
 
 	// * If missing company universal name field, cannot proceed to the second API as this field is required
