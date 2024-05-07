@@ -19,7 +19,7 @@
 		"@kynesis/error-codes": "workspace:*",
 		"@kynesis/lambda-logger": "workspace:*",
 		"@kynesis/pixel-enrichment-sqs": "workspace:*",
-		"@prisma/client": "5.12.1",
+		"@prisma/client": "5.13.0",
 		"got": "14.2.1",
 		"zod": "3.22.4",
 		"zod-validation-error": "3.2.0"
@@ -32,6 +32,6 @@
 		"esbuild": "0.20.2",
 		"esbuild-plugin-tsc": "0.4.0",
 		"nodemon": "3.1.0",
-		"prisma": "5.12.1"
+		"prisma": "5.13.0"
 	}
 }
