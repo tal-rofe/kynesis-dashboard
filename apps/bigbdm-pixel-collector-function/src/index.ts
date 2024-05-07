@@ -2,7 +2,6 @@ import got from 'got';
 import type { ScheduledHandler } from 'aws-lambda';
 import { SQSClient, SendMessageCommand, type SendMessageCommandOutput } from '@aws-sdk/client-sqs';
 import { fromZodError } from 'zod-validation-error';
-import type { z } from 'zod';
 
 import LoggerService from '@kynesis/lambda-logger';
 import type { PixelCollectionData } from '@kynesis/pixel-enrichment-sqs';
@@ -10,7 +9,7 @@ import ErrorCode from '@kynesis/error-codes';
 
 import { SQS_MAX_ATTEMPTS } from './constants/sqs';
 import { API_CALL_DATA_INTERVAL_TIME, API_CALL_RETRIES, API_CALL_TIMEOUT } from './constants/http';
-import { AccessTokenApiResponseSchema, type PixelDataItemSchema, PixelDataResponseSchema } from './schemas/http';
+import { AccessTokenApiResponseSchema, PixelDataResponseSchema } from './schemas/http';
 import { customersWebsitesIds } from './data/customers-websites-ids';
 import { upsertVisitor } from './services/database';
 
@@ -85,7 +84,7 @@ export const handler: ScheduledHandler = async (_, context) => {
 			throw new Error(validationError);
 		}
 
-		return validatedPixelData.data as z.infer<typeof PixelDataItemSchema>[];
+		return validatedPixelData.data;
 	});
 
 	const customersWebsitesResponses = await Promise.allSettled(customersWebsitesResponsesPromises);
@@ -102,7 +101,7 @@ export const handler: ScheduledHandler = async (_, context) => {
 			for (const responseItem of customersWebsitesResponse.value) {
 				const originDomain = customersWebsitesIds[index]!.domain;
 
-				upsertVisitor(responseItem.pageData[0]!.email, originDomain)
+				upsertVisitor(responseItem.pageData[0]!.email, originDomain, responseItem.path)
 					.then(() => logger.info('Successfully upserted visitor in DB'))
 					.catch((error) => logger.warn(`Failed to upsert visitor in DB with an error: ${error}`, { errorCode: ErrorCode.UPSERT_DB }));
 

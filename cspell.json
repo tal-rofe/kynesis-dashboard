@@ -58,6 +58,7 @@
 		"mongosh",
 		"printjson",
 		"upserted",
-		"datetime"
+		"datetime",
+		"pickby"
 	]
 }

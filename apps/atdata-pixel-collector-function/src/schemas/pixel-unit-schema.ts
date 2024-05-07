@@ -4,7 +4,7 @@ export const PixelUnitSchema = z
 	.object({
 		label: z.string(),
 		target_email: z.string().email(),
-		md5: z.string(),
+		md5: z.string().optional(),
 		first_name: z.string().optional(),
 		last_name: z.string().optional(),
 		url: z.string().optional(),

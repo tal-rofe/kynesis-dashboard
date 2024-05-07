@@ -20,6 +20,7 @@
 		"docker-compose": "0.24.8",
 		"got": "14.2.1",
 		"https-proxy-agent": "7.0.4",
+		"lodash.pickby": "4.6.0",
 		"tor-ctrl": "0.1.0",
 		"winston": "3.13.0",
 		"zod": "3.22.4"
@@ -27,6 +28,7 @@
 	"devDependencies": {
 		"@total-typescript/ts-reset": "0.5.1",
 		"@types/got": "9.6.12",
+		"@types/lodash.pickby": "4.6.9",
 		"@types/node": "20.12.7",
 		"dotenv-cli": "7.4.1",
 		"esbuild": "0.20.2",

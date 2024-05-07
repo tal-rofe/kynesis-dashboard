@@ -1,4 +1,7 @@
-import { PrismaClient, type Visitor } from '@prisma/client';
+import { PrismaClient } from '@prisma/client';
+import pickBy from 'lodash.pickby';
+
+import type { getEnrichedData } from '../apis/vetric/vetric';
 
 const prismaClient = new PrismaClient();
 
@@ -27,31 +30,15 @@ export const upsertVisitorWithLinkedinUrl = async (email: string, linkedinUrl: s
 	});
 };
 
-export const upsertVisitorWithEnrichedData = async (
-	email: string,
-	enrichedData: Partial<
-		Pick<
-			Visitor,
-			| 'firstName'
-			| 'lastName'
-			| 'title'
-			| 'location'
-			| 'companyName'
-			| 'companySize'
-			| 'companyIndustry'
-			| 'companyWebsite'
-			| 'companyDescription'
-			| 'companyLocation'
-		>
-	>,
-	domain: string,
-) => {
+export const upsertVisitorWithEnrichedData = async (email: string, enrichedData: Awaited<ReturnType<typeof getEnrichedData>>, domain: string) => {
+	const cleanedObject = pickBy(enrichedData, (value) => value !== undefined);
+
 	const upsertResult = await prismaClient.visitor.upsert({
 		where: {
 			email,
 		},
-		update: { ...enrichedData },
-		create: { email, ...enrichedData },
+		update: { ...cleanedObject },
+		create: { email, ...cleanedObject },
 		select: { id: true },
 	});
 
