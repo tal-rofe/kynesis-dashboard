@@ -1,3 +1,10 @@
+# [1.8.0](https://github.com/kynesis-io/dashboard/compare/v1.7.0...v1.8.0) (2024-05-07)
+
+
+### Features
+
+* 🔥 [KYN-62] store GitHub crawler result in DB and more improvements ([29aeb52](https://github.com/kynesis-io/dashboard/commit/29aeb52acd3a56272dd6f3afcc3ac293c0aa43e9))
+
 # [1.7.0](https://github.com/kynesis-io/dashboard/compare/v1.6.0...v1.7.0) (2024-05-04)
 
 
