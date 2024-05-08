@@ -4,11 +4,9 @@ const prismaClient = new PrismaClient();
 
 export const upsertVisitor = async (email: string, domain: string, path?: string) => {
 	const upsertResult = await prismaClient.visitor.upsert({
-		where: {
-			email,
-		},
-		update: { email, activity: { push: path ? { timestamp: new Date().toISOString(), source: path } : undefined } },
-		create: { email, activity: path ? [{ timestamp: new Date().toISOString(), source: path }] : [] },
+		where: { email },
+		update: {},
+		create: { email },
 		select: { id: true },
 	});
 
@@ -19,10 +17,13 @@ export const upsertVisitor = async (email: string, domain: string, path?: string
 				visitorId: upsertResult.id,
 			},
 		},
-		update: {},
+		update: {
+			activity: { push: path ? { timestamp: new Date().toISOString(), websiteUrl: path } : undefined },
+		},
 		create: {
 			visitorId: upsertResult.id,
 			domain,
+			activity: path ? [{ timestamp: new Date().toISOString(), websiteUrl: path }] : [],
 		},
 	});
 };

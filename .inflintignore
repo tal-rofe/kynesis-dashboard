@@ -16,6 +16,10 @@ apps/atdata-pixel-collector-function/node_modules
 apps/atdata-pixel-collector-function/build
 apps/atdata-pixel-collector-function/src/**/*.d.ts
 
+apps/github-webhook-listener/node_modules
+apps/github-webhook-listener/build
+apps/github-webhook-listener/src/**/*.d.ts
+
 apps/github-scraper/node_modules
 apps/github-scraper/build
 apps/github-scraper/src/**/*.d.ts

@@ -52,6 +52,9 @@ jobs:
             - name: Build bigbdm-pixel-collector-function Lambda function
               run: pnpm exec nx build @kynesis/bigbdm-pixel-collector-function
 
+            - name: Build github-webhook-listener Lambda function
+              run: pnpm exec nx build @kynesis/github-webhook-listener
+
             - name: Terraform setup
               uses: hashicorp/setup-terraform@v3
               with:
