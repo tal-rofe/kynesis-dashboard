@@ -318,11 +318,11 @@ importers:
   apps/frontend-dashboard:
     dependencies:
       '@ag-grid-community/core':
-        specifier: 31.2.1
-        version: 31.2.1
+        specifier: 31.3.1
+        version: 31.3.1
       '@ag-grid-community/csv-export':
-        specifier: 31.2.1
-        version: 31.2.1
+        specifier: 31.3.1
+        version: 31.3.1
       '@radix-ui/react-accordion':
         specifier: 1.1.2
         version: 1.1.2(@types/react-dom@18.3.0)(@types/react@18.3.1)(react-dom@18.2.0)(react@18.3.1)
@@ -363,11 +363,11 @@ importers:
         specifier: 1.0.10
         version: 1.0.10(next@14.2.3)(react@18.3.1)
       ag-grid-community:
-        specifier: 31.2.1
-        version: 31.2.1
+        specifier: 31.3.1
+        version: 31.3.1
       ag-grid-react:
-        specifier: 31.2.1
-        version: 31.2.1(react-dom@18.2.0)(react@18.3.1)
+        specifier: 31.3.1
+        version: 31.3.1(react-dom@18.2.0)(react@18.3.1)
       class-variance-authority:
         specifier: 0.7.0
         version: 0.7.0
@@ -636,16 +636,16 @@ packages:
     resolution: {integrity: sha512-KI2nVf9JdwWCXqK6RVf+9/096G7VWN4Z84mnynlyZKao2xQENW8WNEjLmvdlxS5X8PNWXFC1zqwm7tveOXw/4A==}
     dev: true
 
-  /@ag-grid-community/core@31.2.1:
-    resolution: {integrity: sha512-tTDt8c6KykR+Y0cNwwbpokkhMmD1L1WVILPwZ0Z3lsSxSkmzGbTKSD2jOSvlw9vpPuAJpU0R5tMe1dfsEXO1YA==}
+  /@ag-grid-community/core@31.3.1:
+    resolution: {integrity: sha512-B7mzUWfU7ksojKjQyOuT4R6vlp3J2jbMjBlQ5xqLAxanM46b8tv0tVo29mES41dBhQwOEf7ElQpvvXqRsND6+g==}
     dependencies:
       tslib: 2.6.2
     dev: false
 
-  /@ag-grid-community/csv-export@31.2.1:
-    resolution: {integrity: sha512-3h9kd9LDgpHdO2aPcKI2qZT0dGEJMWE/oTRrpBIMQD66KMTRKVJouKulvCTgDVp9X0nGHWq00/2TpNpTcK5jDg==}
+  /@ag-grid-community/csv-export@31.3.1:
+    resolution: {integrity: sha512-ltILdmjxtzh+MiuggiwLNxGfa+9jcD8I1DN9E276e67W/3bd2NjvjcI7IL2kbeSStTjrVQuIn1570b9tMKQ4TA==}
     dependencies:
-      '@ag-grid-community/core': 31.2.1
+      '@ag-grid-community/core': 31.3.1
       tslib: 2.6.2
     dev: false
 
@@ -6478,17 +6478,17 @@ packages:
     hasBin: true
     dev: true
 
-  /ag-grid-community@31.2.1:
-    resolution: {integrity: sha512-D+gnUQ4dHZ/EQJmupQnDqcEKiCEeuK5ZxlsIpdPKgHg/23dmW+aEdivtB9nLpSc2IEK0RUpchcSxeUT37Boo5A==}
+  /ag-grid-community@31.3.1:
+    resolution: {integrity: sha512-kKnNxY8UaVoF0aUSdtzK7oGr48Wj+VrdDY5l2p9+HdF0cAo/jBEasuUYR85QbkumNyilI6UbFpO6IyCrjNQ6Iw==}
     dev: false
 
-  /ag-grid-react@31.2.1(react-dom@18.2.0)(react@18.3.1):
-    resolution: {integrity: sha512-9UH3xxXRwZfW97oz58KboyCJl4t+zdetopieeHVcttsXX1DvGFDUIEz7A1sQaG8e1DAXLMf3IxoIPrfWheH4XA==}
+  /ag-grid-react@31.3.1(react-dom@18.2.0)(react@18.3.1):
+    resolution: {integrity: sha512-MP5PhFeRhe1gWNx866Sr1C+IrJcrJ0yj8pM/ls+Be/GNmSyIcmGb0Gwbl19bOSdfL5btTkNmGY/RbwnIO4GoMQ==}
     peerDependencies:
       react: ^16.3.0 || ^17.0.0 || ^18.0.0
       react-dom: ^16.3.0 || ^17.0.0 || ^18.0.0
     dependencies:
-      ag-grid-community: 31.2.1
+      ag-grid-community: 31.3.1
       prop-types: 15.8.1
       react: 18.3.1
       react-dom: 18.2.0(react@18.3.1)
