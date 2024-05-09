@@ -1,3 +1,10 @@
+# [1.9.0](https://github.com/kynesis-io/dashboard/compare/v1.8.0...v1.9.0) (2024-05-09)
+
+
+### Features
+
+* 🔥 [KYN-61] support GitHub webhook listener Lambda Function ([8209754](https://github.com/kynesis-io/dashboard/commit/8209754ba8110bffeaf88658c9f55e321efc8b55))
+
 # [1.8.0](https://github.com/kynesis-io/dashboard/compare/v1.7.0...v1.8.0) (2024-05-07)
 
 
