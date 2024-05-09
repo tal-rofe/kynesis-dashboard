@@ -17,6 +17,7 @@ export const upsertStarringStargazer = async (
 				email,
 				...data,
 			},
+			select: { id: true },
 		});
 	}
 
@@ -34,10 +35,10 @@ export const upsertStarringStargazer = async (
 	});
 };
 
-export const upsertVisitorDomain = (domain: string, visitorId: string, repositoryFullName: string, starredAt: string | null) => {
+export const upsertVisitorDomain = async (domain: string, visitorId: string, repositoryFullName: string, starredAt: string | null) => {
 	const action = starredAt ? 'star' : 'unstar';
 
-	return prismaClient.visitorDomain.upsert({
+	await prismaClient.visitorDomain.upsert({
 		where: { unique_domain_visitorId: { domain, visitorId } },
 		update: {
 			activity: {

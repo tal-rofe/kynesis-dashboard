@@ -65,7 +65,7 @@ export const getInstalledRepositoryWebsiteDomain = async (githubAppInstallationI
 		return null;
 	}
 
-	if (!organizationUrl.includes('https://') || !organizationUrl.includes('http://')) {
+	if (!organizationUrl.startsWith('https://') || !organizationUrl.startsWith('http://')) {
 		organizationUrl = `https://${organizationUrl}`;
 	}
 
