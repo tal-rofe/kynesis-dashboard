@@ -16,6 +16,7 @@ enum ErrorCode {
 	DYNAMODB_INVALID_ITEM,
 	DYNAMODB_ACCESS,
 	SLACK_SEND_MESSAGE,
+	UPDATE_SPREADSHEET,
 }
 
 export default ErrorCode;

@@ -1,10 +1,10 @@
 {
-	"name": "@kynesis/atdata-pixel-collector-function",
+	"name": "@kynesis/google-sheets-function",
 	"version": "1.0.0",
 	"private": true,
-	"description": "Lambda function to be triggered by CRON job and collect AtData pixel data",
+	"description": "Lambda function to be triggered by CRON job and update Google Sheets with data from DB",
 	"license": "UNLICENSED",
-	"author": "Kynesis <dev@kynesis.io> (https://kynesis.io)",
+	"author": "Kynesis <amir@kynesis.io> (https://kynesis.io)",
 	"type": "module",
 	"scripts": {
 		"build": "node ./esbuild.js",
@@ -15,17 +15,14 @@
 	"dependencies": {
 		"@kynesis/error-codes": "workspace:*",
 		"@kynesis/lambda-logger": "workspace:*",
-		"csvtojson": "2.0.10",
-		"ssh2-sftp-client": "10.0.3",
-		"zod": "3.22.4",
-		"zod-validation-error": "3.1.0"
+		"@kynesis/pixel-enrichment-sqs": "workspace:*",
+		"google-auth-library": "9.9.0",
+		"googleapis": "135.0.0"
 	},
 	"devDependencies": {
 		"@total-typescript/ts-reset": "0.5.1",
 		"@types/aws-lambda": "8.10.136",
-		"@types/csvtojson": "2.0.0",
 		"@types/node": "20.12.7",
-		"@types/ssh2-sftp-client": "9.0.3",
 		"esbuild": "0.20.2",
 		"esbuild-plugin-tsc": "0.4.0",
 		"nodemon": "3.1.0"
