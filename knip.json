@@ -42,7 +42,6 @@
 		"apps/google-sheets-function": {
 			"entry": "./src/index.ts",
 			"project": "./src/**/*",
-			"ignoreBinaries": ["prisma-gen"],
 			"ignoreDependencies": ["@kynesis/lambda-logger", "@kynesis/error-codes"]
 		},
 		"packages/pixel-enrichment-sqs": {
