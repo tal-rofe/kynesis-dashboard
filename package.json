@@ -63,14 +63,14 @@
 		"npm-run-all2": "6.1.2",
 		"nx": "18.3.4",
 		"open": "10.1.0",
-		"pnpm": "8.15.8",
+		"pnpm": "9.0.6",
 		"prettier": "3.2.5",
 		"prettier-plugin-sh": "0.14.0",
 		"prisma": "5.13.0",
 		"typescript": "5.4.5",
 		"wait-on": "7.2.0"
 	},
-	"packageManager": "pnpm@8.15.8",
+	"packageManager": "pnpm@9.0.6",
 	"engines": {
 		"pnpm": ">=8",
 		"node": "20.12.2"
