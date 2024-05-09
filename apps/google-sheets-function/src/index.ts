@@ -4,17 +4,25 @@ import type { ScheduledHandler } from 'aws-lambda';
 import LoggerService from '@kynesis/lambda-logger';
 import ErrorCode from '@kynesis/error-codes';
 
-import { getGoogleAuth } from './utils/google-auth';
-import { fetchVisitorsFromDB } from './services/database';
+import { getGoogleAuth } from './helpers/google-auth';
+import { fetchVisitorsFromDatabase } from './services/database';
 
 const googleSheetsClient = google.sheets({ version: 'v4', auth: getGoogleAuth() });
 
 export const handler: ScheduledHandler = async (_, context) => {
 	const logger = new LoggerService(context.awsRequestId);
 
-	logger.info('Start processing update spreadsheet event');
+	logger.info('Start processing EventBridge event');
 
-	const visitors = await fetchVisitorsFromDB();
+	let visitors: Awaited<ReturnType<typeof fetchVisitorsFromDatabase>>;
+
+	try {
+		visitors = await fetchVisitorsFromDatabase();
+	} catch (error) {
+		logger.error('Failed to fetch visitors from database', { errorCode: ErrorCode.FIND_MANY_DB, error });
+
+		return;
+	}
 
 	for (const visitor of visitors) {
 		try {

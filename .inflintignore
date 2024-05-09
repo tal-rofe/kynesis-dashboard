@@ -20,6 +20,10 @@ apps/github-webhook-listener/node_modules
 apps/github-webhook-listener/build
 apps/github-webhook-listener/src/**/*.d.ts
 
+apps/google-sheets-function/node_modules
+apps/google-sheets-function/build
+apps/google-sheets-function/src/**/*.d.ts
+
 apps/github-scraper/node_modules
 apps/github-scraper/build
 apps/github-scraper/src/**/*.d.ts
