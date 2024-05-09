@@ -37,13 +37,13 @@ resource "aws_iam_role_policy_attachment" "github_webhook_listener_cloudwatch_po
 
 data "archive_file" "github_webhook_listener_lambda_zip" {
   type        = "zip"
-  source_dir  = "${path.module}/../apps/github-webhook-listener-function/build"
-  output_path = "${path.module}/github-webhook-listener-function.zip"
+  source_dir  = "${path.module}/../apps/github-webhook-listener/build"
+  output_path = "${path.module}/github-webhook-listener.zip"
 }
 
 resource "aws_s3_object" "github_webhook_listener_lambda_s3_object" {
   bucket = module.s3_bucket_lambdas_code.s3_bucket_id
-  key    = "github-webhook-listener-function.zip"
+  key    = "github-webhook-listener.zip"
   source = data.archive_file.github_webhook_listener_lambda_zip.output_path
   etag   = filemd5(data.archive_file.github_webhook_listener_lambda_zip.output_path)
 
