@@ -1,0 +1,34 @@
+{
+	"name": "@kynesis/github-webhook-listener",
+	"version": "1.0.0",
+	"private": true,
+	"description": "Lambda function to be triggered by GitHub webhooks (from our GitHub app)",
+	"license": "UNLICENSED",
+	"author": "Kynesis <dev@kynesis.io> (https://kynesis.io)",
+	"type": "module",
+	"scripts": {
+		"postinstall": "pnpm prisma-gen",
+		"build": "node ./esbuild.js",
+		"start:dev:docker": "nodemon",
+		"prisma-gen": "prisma generate --schema ../../prisma/schema.prisma",
+		"type-check": "tsc --project ./tsconfig.json",
+		"lint": "eslint -c ./.eslintrc.cjs --ignore-path ./.eslintignore \"./**/*.{ts,js,cjs}\""
+	},
+	"dependencies": {
+		"@kynesis/error-codes": "workspace:*",
+		"@kynesis/lambda-logger": "workspace:*",
+		"@octokit/auth-app": "7.0.0",
+		"@octokit/rest": "20.1.1",
+		"@prisma/client": "5.13.0",
+		"zod": "3.23.5"
+	},
+	"devDependencies": {
+		"@total-typescript/ts-reset": "0.5.1",
+		"@types/aws-lambda": "8.10.137",
+		"@types/node": "20.12.7",
+		"esbuild": "0.20.2",
+		"esbuild-plugin-tsc": "0.4.0",
+		"nodemon": "3.1.0",
+		"prisma": "5.13.0"
+	}
+}

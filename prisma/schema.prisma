@@ -22,19 +22,19 @@ model User {
 }
 
 type VisitorActivity {
-  timestamp DateTime
-  source    String
+  timestamp              DateTime
+  websiteUrl             String?
+  githubRepositoryAction String?
 }
 
 model Visitor {
   id String @id @default(auto()) @map("_id") @db.ObjectId
 
-  email              String            @unique
-  linkedinUrl        String?           @unique
+  email              String  @unique
+  linkedinUrl        String? @unique
   firstName          String?
   lastName           String?
   title              String?
-  activity           VisitorActivity[]
   location           String?
   companyName        String?
   companySize        Int?
@@ -42,7 +42,7 @@ model Visitor {
   companyWebsite     String?
   companyDescription String?
   companyLocation    String?
-  githubUsername     String?           @unique
+  githubUsername     String? @unique
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
@@ -54,7 +54,8 @@ model VisitorDomain {
   id String @id @default(auto()) @map("_id") @db.ObjectId
 
   domain    String
-  visitorId String @db.ObjectId
+  visitorId String            @db.ObjectId
+  activity  VisitorActivity[]
 
   visitor Visitor @relation(fields: [visitorId], references: [id], onDelete: Cascade)
 

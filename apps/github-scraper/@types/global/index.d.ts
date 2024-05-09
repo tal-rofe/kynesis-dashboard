@@ -11,6 +11,7 @@ declare global {
 			readonly GITHUB_ACCESS_TOKEN_6: string;
 			readonly GITHUB_ACCESS_TOKEN_7: string;
 			readonly GITHUB_ACCESS_TOKEN_8: string;
+			readonly WEBSITE_DOMAIN: string;
 		}
 	}
 }

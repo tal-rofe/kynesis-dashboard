@@ -19,6 +19,8 @@ const inflintConfig: Config = {
 
 		'./apps/atdata-pixel-collector-function/src/**/*': [2, 'kebab-case.point'],
 
+		'./apps/github-webhook-listener/src/**/*': [2, 'kebab-case'],
+
 		'./apps/github-scraper/src/**/*': [2, 'kebab-case'],
 
 		'./apps/bigbdm-pixel-collector-function/src/**/*': [2, 'kebab-case.point'],

@@ -11,7 +11,7 @@ import { getBaseHttp } from '../utils/http';
 import { PROXY_RENEW_CIRCUIT_CONNECTION_PORT } from '../constants/proxy';
 import { upsertStargazer } from '../services/database';
 
-const getStargazerData = async (stargazerApi: string, proxyIndex: number) => {
+const getStargazerData = async (stargazerData: z.infer<typeof RepositoryStargazersResponseSchema>[number], proxyIndex: number) => {
 	const baseHttp = getBaseHttp(
 		proxyIndex,
 		{
@@ -20,11 +20,11 @@ const getStargazerData = async (stargazerApi: string, proxyIndex: number) => {
 		true,
 	);
 
-	let stargazerDataResponse = await baseHttp.get(stargazerApi);
+	let stargazerDataResponse = await baseHttp.get(stargazerData.userDetailsUrl);
 
 	while (stargazerDataResponse.statusCode === 403) {
 		LoggerService.warn('Failed to get stargazer data because of rate limit', {
-			stargazerApi,
+			...stargazerData,
 			errorCode: ErrorCode.GITHUB_API_RATE_LIMIT,
 			proxyIndex,
 		});
@@ -39,14 +39,14 @@ const getStargazerData = async (stargazerApi: string, proxyIndex: number) => {
 		await torControl.signalNewNym();
 		await torControl.disconnect();
 
-		stargazerDataResponse = await baseHttp.get(stargazerApi);
+		stargazerDataResponse = await baseHttp.get(stargazerData.userDetailsUrl);
 	}
 
 	if (!stargazerDataResponse.ok) {
 		LoggerService.warn('Failed to get stargazer data because of an error', {
+			...stargazerData,
 			error: stargazerDataResponse.body,
 			errorCode: ErrorCode.GITHUB_API_STARGAZER_DATA,
-			stargazerApi,
 			proxyIndex,
 		});
 
@@ -60,7 +60,7 @@ const getStargazerData = async (stargazerApi: string, proxyIndex: number) => {
 			errorCode: ErrorCode.GITHUB_API_STARGAZER_DATA_INVALID,
 			invalidError: validatedStargazerDataResponse.error.message,
 			proxyIndex,
-			stargazerApi,
+			...stargazerData,
 		});
 
 		throw validatedStargazerDataResponse.error;
@@ -70,7 +70,7 @@ const getStargazerData = async (stargazerApi: string, proxyIndex: number) => {
 		throw new Error('Missing email');
 	}
 
-	upsertStargazer(validatedStargazerDataResponse.data.email, validatedStargazerDataResponse.data).catch((error) => {
+	upsertStargazer(validatedStargazerDataResponse.data.email, stargazerData.starredAt, validatedStargazerDataResponse.data).catch((error) => {
 		LoggerService.warn('Failed to upsert stargazer in database', { errorCode: ErrorCode.UPSERT_DB, error });
 	});
 
@@ -84,7 +84,7 @@ export const getStargazersData = async (repositoryStargazers: z.infer<typeof Rep
 		const promises: ReturnType<typeof getStargazerData>[] = [];
 
 		for (let j = 0; j < 10 * proxyAgents.length && i < repositoryStargazers.length; i++, j++) {
-			promises.push(getStargazerData(repositoryStargazers[i]!.userDetailsUrl, j % proxyAgents.length));
+			promises.push(getStargazerData(repositoryStargazers[i]!, j % proxyAgents.length));
 		}
 
 		const results = await Promise.allSettled(promises);

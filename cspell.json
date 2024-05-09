@@ -59,6 +59,7 @@
 		"printjson",
 		"upserted",
 		"datetime",
-		"pickby"
+		"pickby",
+		"unstar"
 	]
 }

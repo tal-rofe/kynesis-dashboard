@@ -16,17 +16,11 @@ export const upsertVisitor = async (
 	delete cleanedObject['originDomain'];
 
 	const upsertResult = await prismaClient.visitor.upsert({
-		where: {
-			email,
-		},
-		update: {
-			...cleanedObject,
-			activity: { push: data.url ? { timestamp: new Date().toISOString(), source: data.url } : undefined },
-		},
+		where: { email },
+		update: cleanedObject,
 		create: {
 			email,
 			...cleanedObject,
-			activity: data.url ? [{ timestamp: new Date().toISOString(), source: data.url }] : [],
 		},
 		select: { id: true },
 	});
@@ -38,10 +32,13 @@ export const upsertVisitor = async (
 				visitorId: upsertResult.id,
 			},
 		},
-		update: {},
+		update: {
+			activity: { push: data.url ? { timestamp: new Date().toISOString(), websiteUrl: data.url } : undefined },
+		},
 		create: {
 			visitorId: upsertResult.id,
 			domain: data.originDomain,
+			activity: data.url ? [{ timestamp: new Date().toISOString(), websiteUrl: data.url }] : [],
 		},
 	});
 };

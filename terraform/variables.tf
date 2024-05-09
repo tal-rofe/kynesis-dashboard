@@ -1,3 +1,8 @@
+variable "production" {
+  description = "Do we run on production (true) or development (false)"
+  type        = bool
+}
+
 variable "aws_region" {
   description = "The region to deploy resources in"
   type        = string
@@ -9,8 +14,33 @@ variable "project" {
   type        = string
 }
 
+variable "domain_name" {
+  description = "Domain name of organization"
+  type        = string
+}
+
 variable "pixel_enrichment_lambda_function_name" {
   description = "Name of the lambda function dedicated for pixel enrichment"
+  type        = string
+}
+
+variable "github_webhook_listener_lambda_function_name" {
+  description = "Name of the lambda function dedicated for GitHub webhook listener"
+  type        = string
+}
+
+variable "github_app_id" {
+  description = "The GitHub app ID"
+  type        = string
+}
+
+variable "github_app_private_key" {
+  description = "The GitHub app private key"
+  type        = string
+}
+
+variable "github_app_webhook_token" {
+  description = "The GitHub app webhook token"
   type        = string
 }
 
