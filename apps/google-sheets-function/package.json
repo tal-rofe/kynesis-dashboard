@@ -4,7 +4,7 @@
 	"private": true,
 	"description": "Lambda function to be triggered by CRON job and update Google Sheets with data from DB",
 	"license": "UNLICENSED",
-	"author": "Kynesis <amir@kynesis.io> (https://kynesis.io)",
+	"author": "Kynesis <dev@kynesis.io> (https://kynesis.io)",
 	"type": "module",
 	"scripts": {
 		"build": "node ./esbuild.js",
@@ -13,10 +13,9 @@
 		"lint": "eslint -c ./.eslintrc.cjs --ignore-path ./.eslintignore \"./**/*.{ts,js,cjs}\""
 	},
 	"dependencies": {
-		"@aws-sdk/client-dynamodb": "3.567.0",
 		"@kynesis/error-codes": "workspace:*",
 		"@kynesis/lambda-logger": "workspace:*",
-		"@kynesis/pixel-enrichment-sqs": "workspace:*",
+		"@prisma/client": "5.13.0",
 		"google-auth-library": "9.9.0",
 		"googleapis": "135.0.0"
 	},

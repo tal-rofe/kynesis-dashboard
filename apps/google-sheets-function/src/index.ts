@@ -5,7 +5,7 @@ import LoggerService from '@kynesis/lambda-logger';
 import ErrorCode from '@kynesis/error-codes';
 
 import { getGoogleAuth } from './utils/google-auth';
-import { fetchVisitorsFromDB } from './utils/dynamodb';
+import { fetchVisitorsFromDB } from './services/database';
 
 const googleSheetsClient = google.sheets({ version: 'v4', auth: getGoogleAuth() });
 

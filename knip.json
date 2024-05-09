@@ -3,7 +3,6 @@
 	"ignore": ["inflint.config.ts", "czvinyl.config.ts", "scripts/onboarding.js", "release.config.cjs", "./docker/scripts/open-dashboard.js"],
 	"ignoreDependencies": ["commitizen", "open", "wait-on", "@prisma/client"],
 	"ignoreBinaries": ["only-allow", "terraform"],
-	"ignoreWorkspaces": ["apps/google-sheets-function"],
 	"workspaces": {
 		"apps/frontend-dashboard": {
 			"ignore": ["_templates/**/*", "@types/next/index.d.ts", "@types/**/*", "public/**/*", "./src/components/ui/**/*"],
@@ -39,6 +38,11 @@
 			"entry": "./src/index.ts",
 			"project": "./src/**/*",
 			"ignoreDependencies": ["@kynesis/pixel-enrichment-sqs", "@kynesis/lambda-logger", "@kynesis/error-codes"]
+		},
+		"apps/google-sheets-function": {
+			"entry": "./src/index.ts",
+			"project": "./src/**/*",
+			"ignoreDependencies": ["@kynesis/lambda-logger", "@kynesis/error-codes"]
 		},
 		"packages/pixel-enrichment-sqs": {
 			"entry": "./src/index.ts",
