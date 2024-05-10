@@ -19,7 +19,7 @@
 		"@kynesis/lambda-logger": "workspace:*",
 		"@prisma/client": "5.13.0",
 		"google-auth-library": "9.9.0",
-		"googleapis": "135.1.0"
+		"googleapis": "136.0.0"
 	},
 	"devDependencies": {
 		"@total-typescript/ts-reset": "0.5.1",
