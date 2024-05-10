@@ -37,7 +37,7 @@ importers:
         version: 8.7.0
       cz-vinyl:
         specifier: 2.5.1
-        version: 2.5.1(@types/node@20.12.8)(inquirer@8.0.0)(typescript@5.4.5)
+        version: 2.5.1(@types/node@20.12.8)(inquirer@8.2.6)(typescript@5.4.5)
       eslint:
         specifier: 8.57.0
         version: 8.57.0
@@ -66,8 +66,8 @@ importers:
         specifier: 9.0.11
         version: 9.0.11
       inquirer:
-        specifier: 8.0.0
-        version: 8.0.0
+        specifier: 8.2.6
+        version: 8.2.6
       is-ci:
         specifier: 3.0.1
         version: 3.0.1
@@ -5347,10 +5347,6 @@ packages:
     resolution: {integrity: sha512-E9BmnJbAKLPGonz0HeWHtbKf+EeSP93paWO3ZYoUpq/aowXvYGjjCSuashhXPpzbArIjBbji39THkxTz9ZeEUQ==}
     engines: {node: '>=6.0.0'}
 
-  inquirer@8.0.0:
-    resolution: {integrity: sha512-ON8pEJPPCdyjxj+cxsYRe6XfCJepTxANdNnTebsTuQgXpRyZRRT9t4dJwjRubgmvn20CLSEnozRUayXyM9VTXA==}
-    engines: {node: '>=8.0.0'}
-
   inquirer@8.2.5:
     resolution: {integrity: sha512-QAgPDQMEgrDssk1XiwwHoOGYF9BAbUcc1+j+FhEvaOt8/cKRqyLn0U5qA6F74fGhTMGxf92pOvPBeh29jQJDTQ==}
     engines: {node: '>=12.0.0'}
@@ -7059,10 +7055,6 @@ packages:
 
   rxjs@5.5.12:
     resolution: {integrity: sha512-xx2itnL5sBbqeeiVgNPVuQQ1nC8Jp2WfNJhXWHmElW9YmrpS9UVnNzhP3EH3HFqexO5Tlp8GhYY+WEcqcVMvGw==}
-    engines: {npm: '>=2.0.0'}
-
-  rxjs@6.6.7:
-    resolution: {integrity: sha512-hTdwr+7yYNIT5n4AMYp85KA6yw2Va0FLa3Rguvbpa4W3I5xynaBZo41cM3XM+4Q6fRMj3sBYIR1VAmZMXYJvRQ==}
     engines: {npm: '>=2.0.0'}
 
   rxjs@7.8.1:
@@ -12572,12 +12564,12 @@ snapshots:
       - '@types/node'
       - typescript
 
-  cz-vinyl@2.5.1(@types/node@20.12.8)(inquirer@8.0.0)(typescript@5.4.5):
+  cz-vinyl@2.5.1(@types/node@20.12.8)(inquirer@8.2.6)(typescript@5.4.5):
     dependencies:
       cosmiconfig: 9.0.0(typescript@5.4.5)
       cosmiconfig-typescript-loader: 5.0.0(@types/node@20.12.8)(cosmiconfig@9.0.0(typescript@5.4.5))(typescript@5.4.5)
       fuse.js: 7.0.0
-      inquirer-autocomplete-prompt: 2.0.1(inquirer@8.0.0)
+      inquirer-autocomplete-prompt: 2.0.1(inquirer@8.2.6)
       inquirer-maxlength-input-prompt: 1.0.2
       openai: 4.20.0
       string-template: 1.0.0
@@ -14016,11 +14008,11 @@ snapshots:
 
   ini@4.1.1: {}
 
-  inquirer-autocomplete-prompt@2.0.1(inquirer@8.0.0):
+  inquirer-autocomplete-prompt@2.0.1(inquirer@8.2.6):
     dependencies:
       ansi-escapes: 4.3.2
       figures: 3.2.0
-      inquirer: 8.0.0
+      inquirer: 8.2.6
       picocolors: 1.0.0
       run-async: 2.4.1
       rxjs: 7.8.1
@@ -14047,22 +14039,6 @@ snapshots:
       rxjs: 5.5.12
       string-width: 2.1.1
       strip-ansi: 4.0.0
-      through: 2.3.8
-
-  inquirer@8.0.0:
-    dependencies:
-      ansi-escapes: 4.3.2
-      chalk: 4.1.2
-      cli-cursor: 3.1.0
-      cli-width: 3.0.0
-      external-editor: 3.1.0
-      figures: 3.2.0
-      lodash: 4.17.21
-      mute-stream: 0.0.8
-      run-async: 2.4.1
-      rxjs: 6.6.7
-      string-width: 4.2.3
-      strip-ansi: 6.0.1
       through: 2.3.8
 
   inquirer@8.2.5:
@@ -15799,10 +15775,6 @@ snapshots:
   rxjs@5.5.12:
     dependencies:
       symbol-observable: 1.0.1
-
-  rxjs@6.6.7:
-    dependencies:
-      tslib: 1.14.1
 
   rxjs@7.8.1:
     dependencies:
