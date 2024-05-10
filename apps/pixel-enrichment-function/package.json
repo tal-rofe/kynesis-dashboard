@@ -14,7 +14,7 @@
 	},
 	"dependencies": {
 		"@aws-sdk/client-dynamodb": "3.569.0",
-		"@aws-sdk/client-sqs": "3.568.0",
+		"@aws-sdk/client-sqs": "3.569.0",
 		"@kynesis/error-codes": "workspace:*",
 		"@kynesis/lambda-logger": "workspace:*",
 		"@kynesis/pixel-enrichment-sqs": "workspace:*",
