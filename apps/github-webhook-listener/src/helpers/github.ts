@@ -5,8 +5,8 @@ export const getStargazerData = async (githubAppInstallationId: number, username
 	const octokit = new Octokit({
 		authStrategy: createAppAuth,
 		auth: {
-			appId: process.env.GITHUB_APP_ID,
-			privateKey: process.env.GITHUB_APP_PRIVATE_KEY,
+			appId: process.env.GH_APP_ID,
+			privateKey: process.env.GH_APP_PRIVATE_KEY,
 			installationId: githubAppInstallationId,
 		},
 	});
@@ -49,8 +49,8 @@ export const getInstalledRepositoryWebsiteDomain = async (githubAppInstallationI
 	const octokit = new Octokit({
 		authStrategy: createAppAuth,
 		auth: {
-			appId: process.env.GITHUB_APP_ID,
-			privateKey: process.env.GITHUB_APP_PRIVATE_KEY,
+			appId: process.env.GH_APP_ID,
+			privateKey: process.env.GH_APP_PRIVATE_KEY,
 			installationId: githubAppInstallationId,
 		},
 	});

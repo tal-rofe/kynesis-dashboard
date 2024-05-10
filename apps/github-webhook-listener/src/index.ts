@@ -45,7 +45,7 @@ export const handler: APIGatewayProxyHandler = async (event, context) => {
 			};
 		}
 
-		const signature = crypto.createHmac('sha256', process.env.GITHUB_APP_WEBHOOK_TOKEN).update(requestBody).digest('hex');
+		const signature = crypto.createHmac('sha256', process.env.GH_APP_WEBHOOK_SECRET).update(requestBody).digest('hex');
 		const trusted = Buffer.from(`sha256=${signature}`, 'ascii');
 		const untrusted = Buffer.from(githubSignatureHeader, 'ascii');
 		const isFiredByGithub = crypto.timingSafeEqual(trusted, untrusted);

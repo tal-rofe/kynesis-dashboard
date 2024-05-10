@@ -54,17 +54,17 @@ variable "google_sheets_customer_domain" {
   type        = string
 }
 
-variable "github_app_id" {
+variable "gh_app_id" {
   description = "The GitHub app ID"
   type        = string
 }
 
-variable "github_app_private_key" {
+variable "gh_app_private_key" {
   description = "The GitHub app private key"
   type        = string
 }
 
-variable "github_app_webhook_token" {
+variable "gh_app_webhook_secret" {
   description = "The GitHub app webhook token"
   type        = string
 }

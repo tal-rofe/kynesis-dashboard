@@ -69,9 +69,9 @@ resource "aws_lambda_function" "github_webhook_listener_lambda" {
 
   environment {
     variables = {
-      GITHUB_APP_ID            = var.github_app_id
-      GITHUB_APP_PRIVATE_KEY   = var.github_app_private_key
-      GITHUB_APP_WEBHOOK_TOKEN = var.github_app_webhook_token
+      GH_APP_ID             = var.gh_app_id
+      GH_APP_PRIVATE_KEY    = var.gh_app_private_key
+      GH_APP_WEBHOOK_SECRET = var.gh_app_webhook_secret
     }
   }
 
