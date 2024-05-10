@@ -90,8 +90,8 @@ importers:
         specifier: 10.1.0
         version: 10.1.0
       pnpm:
-        specifier: 9.0.6
-        version: 9.0.6
+        specifier: 9.1.0
+        version: 9.1.0
       prettier:
         specifier: 3.2.5
         version: 3.2.5
@@ -6647,8 +6647,8 @@ packages:
   png-js@1.0.0:
     resolution: {integrity: sha512-k+YsbhpA9e+EFfKjTCH3VW6aoKlyNYI6NYdTfDL4CIvFnvsuO84ttonmZE7rc+v23SLTH8XX+5w/Ak9v0xGY4g==}
 
-  pnpm@9.0.6:
-    resolution: {integrity: sha512-9thjEwlzIHy3ozbWtDmiQqJqyAaAd99TDWqGBpQZhT3B/+ZAKexZSpxQWjpBDRlkPIcKumd2Mw9c/dzxCpwWFw==}
+  pnpm@9.1.0:
+    resolution: {integrity: sha512-Z/WHmRapKT5c8FnCOFPVcb6vT3U8cH9AyyK+1fsVeMaq07bEEHzLO6CzW+AD62IaFkcayDbIe+tT+dVLtGEnJA==}
     engines: {node: '>=18.12'}
     hasBin: true
 
@@ -15405,7 +15405,7 @@ snapshots:
 
   png-js@1.0.0: {}
 
-  pnpm@9.0.6: {}
+  pnpm@9.1.0: {}
 
   possible-typed-array-names@1.0.0: {}
 

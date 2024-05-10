@@ -40,21 +40,7 @@ export const handler: ScheduledHandler = async (_, context) => {
 	while (visitors.length > 0) {
 		const visitorsBatch = visitors.splice(0, SPREADSHEET_MAX_BATCH_SIZE);
 
-		const values = visitorsBatch.map((visitor) => [
-			visitor.email,
-			visitor.linkedinUrl,
-			visitor.firstName,
-			visitor.lastName,
-			visitor.title,
-			visitor.location,
-			visitor.companyName,
-			visitor.companySize,
-			visitor.companyIndustry,
-			visitor.companyWebsite,
-			visitor.companyDescription,
-			visitor.companyLocation,
-			visitor.githubUsername,
-		]);
+		const values = visitorsBatch.map((visitor) => Object.values(visitor));
 
 		try {
 			await googleSheetsClient.spreadsheets.values.append({
@@ -67,9 +53,9 @@ export const handler: ScheduledHandler = async (_, context) => {
 
 			logger.info(`Appended ${values.length} rows successfully.`);
 		} catch (error) {
-			logger.error('Failed to append rows', { errorCode: ErrorCode.APPEND_SPREADSHEET, error });
+			logger.warn('Failed to append rows', { errorCode: ErrorCode.APPEND_SPREADSHEET, error });
 
-			return;
+			continue;
 		}
 	}
 };
