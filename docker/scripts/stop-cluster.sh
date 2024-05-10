@@ -27,4 +27,4 @@ cd ./terraform
 tflocal destroy -auto-approve
 
 cd ..
-docker-compose -f ./docker/docker-compose.dev.yaml down
+docker compose -f ./docker-compose.dev.yaml down

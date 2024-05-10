@@ -27,7 +27,7 @@ read_env
 
 pnpm build:nested
 
-docker-compose -f ./docker/docker-compose.dev.yaml up -d
+docker compose -f ./docker-compose.dev.yaml up -d
 
 if [ $? = 1 ]; then
     echo -e "\n${RED}Failed to start Docker services"
