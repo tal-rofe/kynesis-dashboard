@@ -29,6 +29,31 @@ variable "github_webhook_listener_lambda_function_name" {
   type        = string
 }
 
+variable "google_sheets_lambda_function_name" {
+  description = "Name of the lambda function dedicated for Google Sheets function"
+  type        = string
+}
+
+variable "google_service_client_email" {
+  description = "The Google service client email"
+  type        = string
+}
+
+variable "google_service_private_key" {
+  description = "The Google service private key"
+  type        = string
+}
+
+variable "google_sheets_spreadsheet_id" {
+  description = "The Google Sheets spreadsheet ID"
+  type        = string
+}
+
+variable "google_sheets_customer_domain" {
+  description = "The Google Sheets customer domain"
+  type        = string
+}
+
 variable "github_app_id" {
   description = "The GitHub app ID"
   type        = string
