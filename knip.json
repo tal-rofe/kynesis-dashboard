@@ -39,6 +39,11 @@
 			"project": "./src/**/*",
 			"ignoreDependencies": ["@kynesis/pixel-enrichment-sqs", "@kynesis/lambda-logger", "@kynesis/error-codes"]
 		},
+		"apps/google-sheets-function": {
+			"entry": "./src/index.ts",
+			"project": "./src/**/*",
+			"ignoreDependencies": ["@kynesis/lambda-logger", "@kynesis/error-codes"]
+		},
 		"packages/pixel-enrichment-sqs": {
 			"entry": "./src/index.ts",
 			"project": "./src/**/*"

@@ -1,0 +1,1 @@
+export const SPREADSHEET_MAX_BATCH_SIZE = 1000;

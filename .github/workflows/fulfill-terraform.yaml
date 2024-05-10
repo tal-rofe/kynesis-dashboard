@@ -59,6 +59,9 @@ jobs:
             - name: Build github-webhook-listener Lambda function
               run: pnpm exec nx build @kynesis/github-webhook-listener
 
+            - name: Build google-sheets-function Lambda function
+              run: pnpm exec nx build @kynesis/google-sheets-function
+
             - name: Terraform setup
               uses: hashicorp/setup-terraform@v3
               with:

@@ -7,26 +7,6 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-enum AuthProviderType {
-  GOOGLE
-}
-
-model User {
-  id String @id @default(auto()) @map("_id") @db.ObjectId
-
-  email    String           @unique
-  authType AuthProviderType
-
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
-}
-
-type VisitorActivity {
-  timestamp              DateTime
-  websiteUrl             String?
-  githubRepositoryAction String?
-}
-
 model Visitor {
   id String @id @default(auto()) @map("_id") @db.ObjectId
 
@@ -48,6 +28,12 @@ model Visitor {
   updatedAt DateTime @updatedAt
 
   VisitorDomain VisitorDomain[]
+}
+
+type VisitorActivity {
+  timestamp              DateTime
+  websiteUrl             String?
+  githubRepositoryAction String?
 }
 
 model VisitorDomain {

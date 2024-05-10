@@ -8,6 +8,8 @@ module.exports = {
 		'pnpm --filter atdata-pixel-collector-function exec eslint -c ./.eslintrc.cjs --ignore-path ./.eslintignore --fix',
 	'apps/github-webhook-listener/**/*.{ts,js,cjs}':
 		'pnpm --filter github-webhook-listener exec eslint -c ./.eslintrc.cjs --ignore-path ./.eslintignore --fix',
+	'apps/google-sheets-function/**/*.{ts,js,cjs}':
+		'pnpm --filter google-sheets-function exec eslint -c ./.eslintrc.cjs --ignore-path ./.eslintignore --fix',
 	'apps/github-scraper/**/*.{ts,js,cjs}': 'pnpm --filter github-scraper exec eslint -c ./.eslintrc.cjs --ignore-path ./.eslintignore --fix',
 	'apps/bigbdm-pixel-collector-function/**/*.{ts,js,cjs}':
 		'pnpm --filter bigbdm-pixel-collector-function exec eslint -c ./.eslintrc.cjs --ignore-path ./.eslintignore --fix',
