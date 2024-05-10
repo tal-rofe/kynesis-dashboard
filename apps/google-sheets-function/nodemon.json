@@ -2,6 +2,6 @@
 	"$schema": "https://json.schemastore.org/nodemon.json",
 	"watch": ["./src"],
 	"ext": "ts,json",
-	"exec": "pnpm build && cd ../../terraform && tflocal apply -target=\"module.atdata_pixel_collector.aws_lambda_function.lambda\" -auto-approve",
+	"exec": "pnpm build && cd ../../terraform && tflocal apply -target=\"aws_lambda_function.google_sheets_lambda\" -auto-approve",
 	"runOnChangeOnly": true
 }

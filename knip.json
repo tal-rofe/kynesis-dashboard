@@ -1,7 +1,7 @@
 {
 	"$schema": "./node_modules/knip/schema.json",
 	"ignore": ["inflint.config.ts", "czvinyl.config.ts", "scripts/onboarding.js", "release.config.cjs", "./docker/scripts/open-dashboard.js"],
-	"ignoreDependencies": ["commitizen", "open", "wait-on", "@prisma/client"],
+	"ignoreDependencies": ["commitizen", "open", "wait-on", "@prisma/client", "inquirer"],
 	"ignoreBinaries": ["only-allow", "terraform"],
 	"workspaces": {
 		"apps/frontend-dashboard": {

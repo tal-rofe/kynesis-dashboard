@@ -27,7 +27,7 @@ export const handler: ScheduledHandler = async (_, context) => {
 
 	try {
 		await googleSheetsClient.spreadsheets.values.clear({
-			spreadsheetId: process.env.SPREADSHEET_ID,
+			spreadsheetId: process.env.GOOGLE_SHEETS_SPREADSHEET_ID,
 			range: 'Sheet1',
 		});
 		logger.info('Sheet cleared successfully.');
@@ -44,7 +44,7 @@ export const handler: ScheduledHandler = async (_, context) => {
 
 		try {
 			await googleSheetsClient.spreadsheets.values.append({
-				spreadsheetId: process.env.SPREADSHEET_ID,
+				spreadsheetId: process.env.GOOGLE_SHEETS_SPREADSHEET_ID,
 				range: 'Sheet1',
 				valueInputOption: 'USER_ENTERED',
 				insertDataOption: 'INSERT_ROWS', // * Ensures that rows are inserted, not overwritten
