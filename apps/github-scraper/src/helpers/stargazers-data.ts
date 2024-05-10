@@ -27,6 +27,7 @@ const getStargazerData = async (stargazerData: z.infer<typeof RepositoryStargaze
 			...stargazerData,
 			errorCode: ErrorCode.GITHUB_API_RATE_LIMIT,
 			proxyIndex,
+			error: stargazerDataResponse.body,
 		});
 
 		const torControl = new TorControl({

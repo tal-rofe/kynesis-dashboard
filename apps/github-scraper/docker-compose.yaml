@@ -122,7 +122,7 @@ services:
         environment:
             - PASSWORD=password
     proxy16:
-        container_name: proxy10
+        container_name: proxy16
         image: dperson/torproxy
         ports:
             - 8133:8118
