@@ -619,8 +619,8 @@ importers:
         specifier: 0.5.1
         version: 0.5.1
       '@types/aws-lambda':
-        specifier: 8.10.136
-        version: 8.10.136
+        specifier: 8.10.137
+        version: 8.10.137
       '@types/node':
         specifier: 20.12.7
         version: 20.12.7
@@ -3082,9 +3082,6 @@ packages:
 
   '@ts-morph/common@0.23.0':
     resolution: {integrity: sha512-m7Lllj9n/S6sOkCkRftpM7L24uvmfXQFedlW/4hENcuJH1HHm9u5EgxZb9uVjQSCGrbBWBkOGgcTxNg36r6ywA==}
-
-  '@types/aws-lambda@8.10.136':
-    resolution: {integrity: sha512-cmmgqxdVGhxYK9lZMYYXYRJk6twBo53ivtXjIUEFZxfxe4TkZTZBK3RRWrY2HjJcUIix0mdifn15yjOAat5lTA==}
 
   '@types/aws-lambda@8.10.137':
     resolution: {integrity: sha512-YNFwzVarXAOXkjuFxONyDw1vgRNzyH8AuyN19s0bM+ChSu/bzxb5XPxYFLXoqoM+tvgzwR3k7fXcEOW125yJxg==}
@@ -11186,8 +11183,6 @@ snapshots:
       minimatch: 9.0.4
       mkdirp: 3.0.1
       path-browserify: 1.0.1
-
-  '@types/aws-lambda@8.10.136': {}
 
   '@types/aws-lambda@8.10.137': {}
 
