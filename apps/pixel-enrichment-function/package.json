@@ -19,7 +19,7 @@
 		"@kynesis/lambda-logger": "workspace:*",
 		"@kynesis/pixel-enrichment-sqs": "workspace:*",
 		"@prisma/client": "5.13.0",
-		"free-email-domains": "1.2.13",
+		"free-email-domains": "1.2.14",
 		"got": "14.2.1",
 		"lodash.pickby": "4.6.0",
 		"zod": "3.23.6"
