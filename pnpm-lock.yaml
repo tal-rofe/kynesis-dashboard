@@ -655,8 +655,8 @@ importers:
         specifier: 5.13.0
         version: 5.13.0(prisma@5.13.0)
       free-email-domains:
-        specifier: 1.2.13
-        version: 1.2.13
+        specifier: 1.2.14
+        version: 1.2.14
       got:
         specifier: 14.2.1
         version: 14.2.1
@@ -4926,8 +4926,8 @@ packages:
       react-dom:
         optional: true
 
-  free-email-domains@1.2.13:
-    resolution: {integrity: sha512-0DmPNV3hiBflRU6qADzzQIsGDA/SQkQevvLq8EZHOmadAoEkRajRYW60ksITv0ZCvaFsMdga74PLzdYfxHt6Bg==}
+  free-email-domains@1.2.14:
+    resolution: {integrity: sha512-Hom2ok7myA/eUro+rVgMengkJbUn/tDsr/AxQbHrZc4WHe9sknIgbV7wdB1c7wqBBvaZfZ6gLhe/v8+ZO6Z50w==}
     engines: {node: '>= 14'}
 
   fresh@0.5.2:
@@ -13443,7 +13443,7 @@ snapshots:
       react: 18.3.1
       react-dom: 18.2.0(react@18.3.1)
 
-  free-email-domains@1.2.13:
+  free-email-domains@1.2.14:
     dependencies:
       simple-get: 4.0.1
 
