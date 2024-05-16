@@ -29,7 +29,7 @@
 		"@types/aws-lambda": "8.10.137",
 		"@types/got": "9.6.12",
 		"@types/lodash.pickby": "4.6.9",
-		"@types/node": "20.12.10",
+		"@types/node": "20.12.11",
 		"esbuild": "0.21.1",
 		"esbuild-plugin-tsc": "0.4.0",
 		"nodemon": "3.1.0",
