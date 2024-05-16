@@ -15,7 +15,7 @@
 		"lint": "eslint -c ./.eslintrc.cjs --ignore-path ./.eslintignore \"./**/*.{ts,js,cjs}\""
 	},
 	"dependencies": {
-		"@aws-sdk/client-sqs": "3.568.0",
+		"@aws-sdk/client-sqs": "3.569.0",
 		"@kynesis/error-codes": "workspace:*",
 		"@kynesis/lambda-logger": "workspace:*",
 		"@kynesis/pixel-enrichment-sqs": "workspace:*",
@@ -23,7 +23,7 @@
 		"csvtojson": "2.0.10",
 		"lodash.pickby": "4.6.0",
 		"ssh2-sftp-client": "10.0.3",
-		"zod": "3.23.6",
+		"zod": "3.23.8",
 		"zod-validation-error": "3.2.0"
 	},
 	"devDependencies": {
@@ -31,9 +31,9 @@
 		"@types/aws-lambda": "8.10.137",
 		"@types/csvtojson": "2.0.0",
 		"@types/lodash.pickby": "4.6.9",
-		"@types/node": "20.12.8",
+		"@types/node": "20.12.10",
 		"@types/ssh2-sftp-client": "9.0.3",
-		"esbuild": "0.20.2",
+		"esbuild": "0.21.1",
 		"esbuild-plugin-tsc": "0.4.0",
 		"nodemon": "3.1.0",
 		"prisma": "5.13.0"

@@ -15,21 +15,21 @@
 		"lint": "eslint -c ./.eslintrc.cjs --ignore-path ./.eslintignore \"./**/*.{ts,js,cjs}\""
 	},
 	"dependencies": {
-		"@aws-sdk/client-sqs": "3.568.0",
+		"@aws-sdk/client-sqs": "3.569.0",
 		"@kynesis/error-codes": "workspace:*",
 		"@kynesis/lambda-logger": "workspace:*",
 		"@kynesis/pixel-enrichment-sqs": "workspace:*",
 		"@prisma/client": "5.13.0",
 		"got": "14.2.1",
-		"zod": "3.23.6",
+		"zod": "3.23.8",
 		"zod-validation-error": "3.2.0"
 	},
 	"devDependencies": {
 		"@total-typescript/ts-reset": "0.5.1",
 		"@types/aws-lambda": "8.10.137",
 		"@types/got": "9.6.12",
-		"@types/node": "20.12.8",
-		"esbuild": "0.20.2",
+		"@types/node": "20.12.10",
+		"esbuild": "0.21.1",
 		"esbuild-plugin-tsc": "0.4.0",
 		"nodemon": "3.1.0",
 		"prisma": "5.13.0"
