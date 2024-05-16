@@ -20,7 +20,7 @@
 		"@octokit/auth-app": "7.0.0",
 		"@octokit/rest": "20.1.1",
 		"@prisma/client": "5.13.0",
-		"zod": "3.23.6"
+		"zod": "3.23.8"
 	},
 	"devDependencies": {
 		"@total-typescript/ts-reset": "0.5.1",
