@@ -24,7 +24,7 @@
 		"lodash.pickby": "4.6.0",
 		"ssh2-sftp-client": "10.0.3",
 		"zod": "3.23.8",
-		"zod-validation-error": "3.2.0"
+		"zod-validation-error": "3.3.0"
 	},
 	"devDependencies": {
 		"@total-typescript/ts-reset": "0.5.1",
