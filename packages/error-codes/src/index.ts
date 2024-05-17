@@ -37,6 +37,7 @@ enum ErrorCode {
 	APPEND_SPREADSHEET,
 	CLEAR_SPREADSHEET,
 	FIND_MANY_DB,
+	GITHUB_SCRAPE_USER_PAGE,
 }
 
 export default ErrorCode;

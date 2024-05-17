@@ -1,5 +1,6 @@
 import type { z } from 'zod';
 import { TorControl } from 'tor-ctrl';
+import { JSDOM } from 'jsdom';
 
 import ErrorCode from '@kynesis/error-codes';
 
@@ -12,7 +13,7 @@ import { PROXY_RENEW_CIRCUIT_CONNECTION_PORT } from '../constants/proxy';
 import { upsertStargazer } from '../services/database';
 
 const getStargazerData = async (stargazerData: z.infer<typeof RepositoryStargazersResponseSchema>[number], proxyIndex: number) => {
-	const baseHttp = getBaseHttp(
+	const baseAuthorizedHttp = getBaseHttp(
 		proxyIndex,
 		{
 			Accept: 'application/vnd.github+json',
@@ -20,7 +21,7 @@ const getStargazerData = async (stargazerData: z.infer<typeof RepositoryStargaze
 		true,
 	);
 
-	let stargazerDataResponse = await baseHttp.get(stargazerData.userDetailsUrl);
+	let stargazerDataResponse = await baseAuthorizedHttp.get(stargazerData.userDetailsUrl);
 
 	while (stargazerDataResponse.statusCode === 403) {
 		LoggerService.warn('Failed to get stargazer data because of rate limit', {
@@ -40,7 +41,7 @@ const getStargazerData = async (stargazerData: z.infer<typeof RepositoryStargaze
 		await torControl.signalNewNym();
 		await torControl.disconnect();
 
-		stargazerDataResponse = await baseHttp.get(stargazerData.userDetailsUrl);
+		stargazerDataResponse = await baseAuthorizedHttp.get(stargazerData.userDetailsUrl);
 	}
 
 	if (!stargazerDataResponse.ok) {
@@ -71,9 +72,54 @@ const getStargazerData = async (stargazerData: z.infer<typeof RepositoryStargaze
 		throw new Error('Missing email');
 	}
 
-	upsertStargazer(validatedStargazerDataResponse.data.email, stargazerData.starredAt, validatedStargazerDataResponse.data).catch((error) => {
-		LoggerService.warn('Failed to upsert stargazer in database', { errorCode: ErrorCode.UPSERT_DB, error });
-	});
+	const baseNonAuthorizedHttp = getBaseHttp(proxyIndex);
+
+	let userPageHtmlResponse = await baseNonAuthorizedHttp.get(`https://github.com/${validatedStargazerDataResponse.data.githubUsername}`);
+
+	while (userPageHtmlResponse.statusCode === 403 || userPageHtmlResponse.statusCode === 429) {
+		LoggerService.warn('Failed to get stargazer HTML page because of rate limit', {
+			githubUsername: validatedStargazerDataResponse.data.githubUsername,
+			errorCode: ErrorCode.GITHUB_API_RATE_LIMIT,
+			proxyIndex,
+			error: userPageHtmlResponse.body,
+		});
+
+		const torControl = new TorControl({
+			host: 'localhost',
+			port: PROXY_RENEW_CIRCUIT_CONNECTION_PORT + proxyIndex,
+			password: 'password',
+		});
+
+		await torControl.connect();
+		await torControl.signalNewNym();
+		await torControl.disconnect();
+
+		userPageHtmlResponse = await baseNonAuthorizedHttp.get(`https://github.com/${validatedStargazerDataResponse.data.githubUsername}`);
+	}
+
+	let linkedinUrl: string | null;
+
+	if (!userPageHtmlResponse.ok) {
+		LoggerService.warn('Failed to get stargazer HTML page because of an error', {
+			githubUsername: validatedStargazerDataResponse.data.githubUsername,
+			error: userPageHtmlResponse.body,
+			errorCode: ErrorCode.GITHUB_SCRAPE_USER_PAGE,
+			proxyIndex,
+		});
+
+		linkedinUrl = null;
+	} else {
+		const dom = new JSDOM(userPageHtmlResponse.body);
+		const linkedinUrlElement = dom.window.document.querySelector('a[href*="https://www.linkedin.com/in/"]');
+
+		linkedinUrl = linkedinUrlElement?.getAttribute('href') ?? null;
+	}
+
+	upsertStargazer(validatedStargazerDataResponse.data.email, stargazerData.starredAt, validatedStargazerDataResponse.data, linkedinUrl).catch(
+		(error) => {
+			LoggerService.warn('Failed to upsert stargazer in database', { errorCode: ErrorCode.UPSERT_DB, error });
+		},
+	);
 
 	return validatedStargazerDataResponse.data;
 };

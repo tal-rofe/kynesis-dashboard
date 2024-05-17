@@ -5,10 +5,11 @@ const prismaClient = new PrismaClient();
 export const upsertStarringStargazer = async (
 	email: string,
 	data: Pick<Visitor, 'firstName' | 'lastName' | 'companyName' | 'location' | 'githubUsername'>,
+	linkedinUrl: string | null,
 ) => {
 	const visitorDocument = await prismaClient.visitor.findUnique({
 		where: { email },
-		select: { id: true, firstName: true, lastName: true, companyName: true, location: true },
+		select: { id: true, firstName: true, lastName: true, companyName: true, location: true, linkedinUrl: true },
 	});
 
 	if (visitorDocument === null) {
@@ -16,6 +17,7 @@ export const upsertStarringStargazer = async (
 			data: {
 				email,
 				...data,
+				linkedinUrl,
 			},
 			select: { id: true },
 		});
@@ -30,6 +32,7 @@ export const upsertStarringStargazer = async (
 			companyName: visitorDocument.companyName ?? data.companyName,
 			location: visitorDocument.location ?? data.location,
 			githubUsername: data.githubUsername,
+			linkedinUrl: visitorDocument.linkedinUrl ?? linkedinUrl,
 		},
 		select: { id: true },
 	});
