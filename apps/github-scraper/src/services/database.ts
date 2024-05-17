@@ -10,19 +10,20 @@ export const upsertStargazer = async (
 	email: string,
 	starredAt: number | undefined,
 	data: Omit<z.infer<typeof StargazerDataResponseSchema>, 'email'>,
+	linkedinUrl: string | null,
 ) => {
 	const cleanedObject = pickBy(data, (value) => value !== undefined);
 
 	const visitorDocument = await prismaClient.visitor.findUnique({
 		where: { email },
-		select: { id: true, firstName: true, lastName: true, companyName: true, location: true },
+		select: { id: true, firstName: true, lastName: true, companyName: true, location: true, linkedinUrl: true },
 	});
 
 	let visitorDocumentId: string;
 
 	if (visitorDocument === null) {
 		const creationResult = await prismaClient.visitor.create({
-			data: { email, ...cleanedObject },
+			data: { email, ...cleanedObject, linkedinUrl },
 			select: { id: true },
 		});
 
@@ -39,6 +40,7 @@ export const upsertStargazer = async (
 				companyName: visitorDocument.companyName ?? data.companyName,
 				location: visitorDocument.location ?? data.location,
 				githubUsername: data.githubUsername,
+				linkedinUrl: visitorDocument.linkedinUrl ?? linkedinUrl,
 			},
 		});
 	}
