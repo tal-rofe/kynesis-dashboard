@@ -563,8 +563,8 @@ importers:
         specifier: workspace:*
         version: link:../../packages/lambda-logger
       '@octokit/auth-app':
-        specifier: 7.0.0
-        version: 7.0.0
+        specifier: 7.1.0
+        version: 7.1.0
       '@octokit/rest':
         specifier: 20.1.1
         version: 20.1.1
@@ -2288,8 +2288,8 @@ packages:
     cpu: [x64]
     os: [win32]
 
-  '@octokit/auth-app@7.0.0':
-    resolution: {integrity: sha512-2MKylF29sWO72KNI1aUMDJ/ZMOwWjePGz1VnS1B9xdY+SOGvGRUAnufH6SDWGZuwQ7WyvwkCYc0eG2IekglWwQ==}
+  '@octokit/auth-app@7.1.0':
+    resolution: {integrity: sha512-cazGaJPSgeZ8NkVYeM/C5l/6IQ5vZnsI8p1aMucadCkt/bndI+q+VqwrlnWbASRmenjOkf1t1RpCKrif53U8gw==}
     engines: {node: '>= 18'}
 
   '@octokit/auth-oauth-app@8.1.1':
@@ -10203,7 +10203,7 @@ snapshots:
   '@nx/nx-win32-x64-msvc@19.0.2':
     optional: true
 
-  '@octokit/auth-app@7.0.0':
+  '@octokit/auth-app@7.1.0':
     dependencies:
       '@octokit/auth-oauth-app': 8.1.1
       '@octokit/auth-oauth-user': 5.1.1
