@@ -97,6 +97,8 @@ const getStargazerData = async (stargazerData: z.infer<typeof RepositoryStargaze
 		userPageHtmlResponse = await baseNonAuthorizedHttp.get(`https://github.com/${validatedStargazerDataResponse.data.githubUsername}`);
 	}
 
+	let linkedinUrl: string | null;
+
 	if (!userPageHtmlResponse.ok) {
 		LoggerService.warn('Failed to get stargazer HTML page because of an error', {
 			githubUsername: validatedStargazerDataResponse.data.githubUsername,
@@ -105,12 +107,13 @@ const getStargazerData = async (stargazerData: z.infer<typeof RepositoryStargaze
 			proxyIndex,
 		});
 
-		throw userPageHtmlResponse.errored;
-	}
+		linkedinUrl = null;
+	} else {
+		const dom = new JSDOM(userPageHtmlResponse.body);
+		const linkedinUrlElement = dom.window.document.querySelector('a[href*="https://www.linkedin.com/in/"]');
 
-	const dom = new JSDOM(userPageHtmlResponse.body);
-	const linkedinUrlElement = dom.window.document.querySelector('a[href*="https://www.linkedin.com/in/"]');
-	const linkedinUrl = linkedinUrlElement?.getAttribute('href') ?? null;
+		linkedinUrl = linkedinUrlElement?.getAttribute('href') ?? null;
+	}
 
 	upsertStargazer(validatedStargazerDataResponse.data.email, stargazerData.starredAt, validatedStargazerDataResponse.data, linkedinUrl).catch(
 		(error) => {

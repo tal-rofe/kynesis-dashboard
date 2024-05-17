@@ -1,6 +1,7 @@
 import crypto from 'node:crypto';
 
 import type { APIGatewayProxyHandler } from 'aws-lambda';
+import { JSDOM } from 'jsdom';
 
 import LoggerService from '@kynesis/lambda-logger';
 import ErrorCode from '@kynesis/error-codes';
@@ -111,10 +112,29 @@ export const handler: APIGatewayProxyHandler = async (event, context) => {
 			};
 		}
 
+		let linkedinUrl: string | null;
+
+		try {
+			const userPageHtmlResponse = await fetch(`https://github.com/${stargazerData.githubUsername}`);
+			const userPageHtmlString = await userPageHtmlResponse.text();
+			const dom = new JSDOM(userPageHtmlString);
+			const linkedinUrlElement = dom.window.document.querySelector('a[href*="https://www.linkedin.com/in/"]');
+
+			linkedinUrl = linkedinUrlElement?.getAttribute('href') ?? null;
+		} catch (error) {
+			logger.warn('Failed to get stargazer HTML page because of an error', {
+				githubUsername: stargazerData.githubUsername,
+				error,
+				errorCode: ErrorCode.GITHUB_SCRAPE_USER_PAGE,
+			});
+
+			linkedinUrl = null;
+		}
+
 		let visitorId: string;
 
 		try {
-			const upsertResult = await upsertStarringStargazer(stargazerData.email, stargazerData);
+			const upsertResult = await upsertStarringStargazer(stargazerData.email, stargazerData, linkedinUrl);
 
 			visitorId = upsertResult.id;
 		} catch (error) {

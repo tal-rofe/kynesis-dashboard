@@ -577,6 +577,9 @@ importers:
       '@prisma/client':
         specifier: 5.13.0
         version: 5.13.0(prisma@5.13.0)
+      jsdom:
+        specifier: 24.0.0
+        version: 24.0.0
       zod:
         specifier: 3.23.8
         version: 3.23.8
@@ -587,6 +590,9 @@ importers:
       '@types/aws-lambda':
         specifier: 8.10.137
         version: 8.10.137
+      '@types/jsdom':
+        specifier: 21.1.6
+        version: 21.1.6
       '@types/node':
         specifier: 20.12.11
         version: 20.12.11
