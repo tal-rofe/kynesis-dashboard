@@ -1,6 +1,6 @@
 import type { z } from 'zod';
 import { TorControl } from 'tor-ctrl';
-import { JSDOM } from 'jsdom';
+import { parse } from 'node-html-parser';
 
 import ErrorCode from '@kynesis/error-codes';
 
@@ -109,8 +109,8 @@ const getStargazerData = async (stargazerData: z.infer<typeof RepositoryStargaze
 
 		linkedinUrl = null;
 	} else {
-		const dom = new JSDOM(userPageHtmlResponse.body);
-		const linkedinUrlElement = dom.window.document.querySelector('a[href*="https://www.linkedin.com/in/"]');
+		const dom = parse(userPageHtmlResponse.body);
+		const linkedinUrlElement = dom.querySelector('a[href*="https://www.linkedin.com/in/"]');
 
 		linkedinUrl = linkedinUrlElement?.getAttribute('href') ?? null;
 	}

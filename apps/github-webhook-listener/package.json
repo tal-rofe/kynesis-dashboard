@@ -20,13 +20,12 @@
 		"@octokit/auth-app": "7.1.0",
 		"@octokit/rest": "20.1.1",
 		"@prisma/client": "5.13.0",
-		"jsdom": "24.0.0",
+		"node-html-parser": "6.1.13",
 		"zod": "3.23.8"
 	},
 	"devDependencies": {
 		"@total-typescript/ts-reset": "0.5.1",
 		"@types/aws-lambda": "8.10.137",
-		"@types/jsdom": "21.1.6",
 		"@types/node": "20.12.11",
 		"esbuild": "0.21.1",
 		"esbuild-plugin-tsc": "0.4.0",

@@ -2,7 +2,7 @@ import { z } from 'zod';
 
 export const StargazerDataResponseSchema = z
 	.object({
-		email: z.string().email().nullable(),
+		email: z.string().nullable(),
 		login: z.string(),
 		name: z.string().optional().nullable(),
 		company: z.string().optional().nullable(),

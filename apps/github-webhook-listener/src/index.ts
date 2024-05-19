@@ -1,7 +1,7 @@
 import crypto from 'node:crypto';
 
 import type { APIGatewayProxyHandler } from 'aws-lambda';
-import { JSDOM } from 'jsdom';
+import { parse } from 'node-html-parser';
 
 import LoggerService from '@kynesis/lambda-logger';
 import ErrorCode from '@kynesis/error-codes';
@@ -117,8 +117,8 @@ export const handler: APIGatewayProxyHandler = async (event, context) => {
 		try {
 			const userPageHtmlResponse = await fetch(`https://github.com/${stargazerData.githubUsername}`);
 			const userPageHtmlString = await userPageHtmlResponse.text();
-			const dom = new JSDOM(userPageHtmlString);
-			const linkedinUrlElement = dom.window.document.querySelector('a[href*="https://www.linkedin.com/in/"]');
+			const dom = parse(userPageHtmlString);
+			const linkedinUrlElement = dom.querySelector('a[href*="https://www.linkedin.com/in/"]');
 
 			linkedinUrl = linkedinUrlElement?.getAttribute('href') ?? null;
 		} catch (error) {

@@ -20,8 +20,8 @@
 		"docker-compose": "0.24.8",
 		"got": "14.2.1",
 		"https-proxy-agent": "7.0.4",
-		"jsdom": "24.0.0",
 		"lodash.pickby": "4.6.0",
+		"node-html-parser": "6.1.13",
 		"tor-ctrl": "0.1.0",
 		"winston": "3.13.0",
 		"zod": "3.23.8"
@@ -29,7 +29,6 @@
 	"devDependencies": {
 		"@total-typescript/ts-reset": "0.5.1",
 		"@types/got": "9.6.12",
-		"@types/jsdom": "21.1.6",
 		"@types/lodash.pickby": "4.6.9",
 		"@types/node": "20.12.11",
 		"dotenv-cli": "7.4.2",
