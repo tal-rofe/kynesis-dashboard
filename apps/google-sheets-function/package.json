@@ -25,7 +25,7 @@
 		"@total-typescript/ts-reset": "0.5.1",
 		"@types/aws-lambda": "8.10.137",
 		"@types/node": "20.12.12",
-		"esbuild": "0.21.2",
+		"esbuild": "0.21.3",
 		"esbuild-plugin-tsc": "0.4.0",
 		"nodemon": "3.1.0"
 	}
