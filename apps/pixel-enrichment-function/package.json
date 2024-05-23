@@ -18,7 +18,7 @@
 		"@kynesis/error-codes": "workspace:*",
 		"@kynesis/lambda-logger": "workspace:*",
 		"@kynesis/pixel-enrichment-sqs": "workspace:*",
-		"@prisma/client": "5.13.0",
+		"@prisma/client": "5.14.0",
 		"free-email-domains": "1.2.14",
 		"got": "14.2.1",
 		"lodash.pickby": "4.6.0",
@@ -33,6 +33,6 @@
 		"esbuild": "0.21.3",
 		"esbuild-plugin-tsc": "0.4.0",
 		"nodemon": "3.1.0",
-		"prisma": "5.13.0"
+		"prisma": "5.14.0"
 	}
 }
