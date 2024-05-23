@@ -145,8 +145,8 @@ importers:
         specifier: 0.5.1
         version: 0.5.1
       '@types/aws-lambda':
-        specifier: 8.10.137
-        version: 8.10.137
+        specifier: 8.10.138
+        version: 8.10.138
       '@types/csvtojson':
         specifier: 2.0.0
         version: 2.0.0
@@ -297,8 +297,8 @@ importers:
         specifier: 0.5.1
         version: 0.5.1
       '@types/aws-lambda':
-        specifier: 8.10.137
-        version: 8.10.137
+        specifier: 8.10.138
+        version: 8.10.138
       '@types/got':
         specifier: 9.6.12
         version: 9.6.12
@@ -585,8 +585,8 @@ importers:
         specifier: 0.5.1
         version: 0.5.1
       '@types/aws-lambda':
-        specifier: 8.10.137
-        version: 8.10.137
+        specifier: 8.10.138
+        version: 8.10.138
       '@types/node':
         specifier: 20.12.12
         version: 20.12.12
@@ -625,8 +625,8 @@ importers:
         specifier: 0.5.1
         version: 0.5.1
       '@types/aws-lambda':
-        specifier: 8.10.137
-        version: 8.10.137
+        specifier: 8.10.138
+        version: 8.10.138
       '@types/node':
         specifier: 20.12.12
         version: 20.12.12
@@ -677,8 +677,8 @@ importers:
         specifier: 0.5.1
         version: 0.5.1
       '@types/aws-lambda':
-        specifier: 8.10.137
-        version: 8.10.137
+        specifier: 8.10.138
+        version: 8.10.138
       '@types/got':
         specifier: 9.6.12
         version: 9.6.12
@@ -3014,8 +3014,8 @@ packages:
   '@ts-morph/common@0.23.0':
     resolution: {integrity: sha512-m7Lllj9n/S6sOkCkRftpM7L24uvmfXQFedlW/4hENcuJH1HHm9u5EgxZb9uVjQSCGrbBWBkOGgcTxNg36r6ywA==}
 
-  '@types/aws-lambda@8.10.137':
-    resolution: {integrity: sha512-YNFwzVarXAOXkjuFxONyDw1vgRNzyH8AuyN19s0bM+ChSu/bzxb5XPxYFLXoqoM+tvgzwR3k7fXcEOW125yJxg==}
+  '@types/aws-lambda@8.10.138':
+    resolution: {integrity: sha512-71EHMl70TPWIAsFuHd85NHq6S6T2OOjiisPTrH7RgcjzpJpPh4RQJv7PvVvIxc6PIp8CLV7F9B+TdjcAES5vcA==}
 
   '@types/conventional-commits-parser@5.0.0':
     resolution: {integrity: sha512-loB369iXNmAZglwWATL+WRe+CRMmmBPtpolYzIebFaX4YA3x+BEfLqhUAV9WanycKI3TG1IMr5bMJDajDKLlUQ==}
@@ -10822,7 +10822,7 @@ snapshots:
       mkdirp: 3.0.1
       path-browserify: 1.0.1
 
-  '@types/aws-lambda@8.10.137': {}
+  '@types/aws-lambda@8.10.138': {}
 
   '@types/conventional-commits-parser@5.0.0':
     dependencies:
