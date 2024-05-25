@@ -20,7 +20,7 @@
 		"@kynesis/lambda-logger": "workspace:*",
 		"@kynesis/pixel-enrichment-sqs": "workspace:*",
 		"@prisma/client": "5.14.0",
-		"got": "14.2.1",
+		"got": "14.3.0",
 		"zod": "3.23.8",
 		"zod-validation-error": "3.3.0"
 	},
