@@ -18,7 +18,7 @@
 		"@kynesis/error-codes": "workspace:*",
 		"@prisma/client": "5.14.0",
 		"docker-compose": "0.24.8",
-		"got": "14.2.1",
+		"got": "14.3.0",
 		"https-proxy-agent": "7.0.4",
 		"lodash.pickby": "4.6.0",
 		"node-html-parser": "6.1.13",
