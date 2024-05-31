@@ -13,8 +13,8 @@
 		"lint": "eslint -c ./.eslintrc.cjs --ignore-path ./.eslintignore \"./**/*.{ts,js,cjs}\""
 	},
 	"dependencies": {
-		"@aws-sdk/client-dynamodb": "3.582.0",
-		"@aws-sdk/client-sqs": "3.582.0",
+		"@aws-sdk/client-dynamodb": "3.583.0",
+		"@aws-sdk/client-sqs": "3.583.0",
 		"@kynesis/error-codes": "workspace:*",
 		"@kynesis/lambda-logger": "workspace:*",
 		"@kynesis/pixel-enrichment-sqs": "workspace:*",
