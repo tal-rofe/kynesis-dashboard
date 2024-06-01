@@ -166,8 +166,8 @@ importers:
         specifier: 0.4.0
         version: 0.4.0(typescript@5.4.5)
       nodemon:
-        specifier: 3.1.0
-        version: 3.1.0
+        specifier: 3.1.1
+        version: 3.1.1
       prisma:
         specifier: 5.14.0
         version: 5.14.0
@@ -312,8 +312,8 @@ importers:
         specifier: 0.4.0
         version: 0.4.0(typescript@5.4.5)
       nodemon:
-        specifier: 3.1.0
-        version: 3.1.0
+        specifier: 3.1.1
+        version: 3.1.1
       prisma:
         specifier: 5.14.0
         version: 5.14.0
@@ -551,8 +551,8 @@ importers:
         specifier: 0.4.0
         version: 0.4.0(typescript@5.4.5)
       nodemon:
-        specifier: 3.1.0
-        version: 3.1.0
+        specifier: 3.1.1
+        version: 3.1.1
       prisma:
         specifier: 5.14.0
         version: 5.14.0
@@ -597,8 +597,8 @@ importers:
         specifier: 0.4.0
         version: 0.4.0(typescript@5.4.5)
       nodemon:
-        specifier: 3.1.0
-        version: 3.1.0
+        specifier: 3.1.1
+        version: 3.1.1
       prisma:
         specifier: 5.14.0
         version: 5.14.0
@@ -637,8 +637,8 @@ importers:
         specifier: 0.4.0
         version: 0.4.0(typescript@5.4.5)
       nodemon:
-        specifier: 3.1.0
-        version: 3.1.0
+        specifier: 3.1.1
+        version: 3.1.1
 
   apps/pixel-enrichment-function:
     dependencies:
@@ -695,8 +695,8 @@ importers:
         specifier: 0.4.0
         version: 0.4.0(typescript@5.4.5)
       nodemon:
-        specifier: 3.1.0
-        version: 3.1.0
+        specifier: 3.1.1
+        version: 3.1.1
       prisma:
         specifier: 5.14.0
         version: 5.14.0
@@ -6129,8 +6129,8 @@ packages:
   node-releases@2.0.14:
     resolution: {integrity: sha512-y10wOWt8yZpqXmOgRo77WaHEmhYQYGNA6y421PKsKYWEK8aW+cqAphborZDhqfyKrbZEN92CN1X2KbafY2s7Yw==}
 
-  nodemon@3.1.0:
-    resolution: {integrity: sha512-xqlktYlDMCepBJd43ZQhjWwMw2obW/JRvkrLxq5RCNcuDDX1DbcPT+qT1IlIIdf+DhnWs90JpTMe+Y5KxOchvA==}
+  nodemon@3.1.1:
+    resolution: {integrity: sha512-k43xGaDtaDIcufn0Fc6fTtsdKSkV/hQzoQFigNH//GaKta28yoKVYXCnV+KXRqfT/YzsFaQU9VdeEG+HEyxr6A==}
     engines: {node: '>=10'}
     hasBin: true
 
@@ -11093,7 +11093,7 @@ snapshots:
       '@typescript-eslint/types': 6.21.0
       '@typescript-eslint/typescript-estree': 6.21.0(typescript@5.4.5)
       eslint: 8.57.0
-      semver: 7.6.0
+      semver: 7.6.2
     transitivePeerDependencies:
       - supports-color
       - typescript
@@ -11721,7 +11721,7 @@ snapshots:
   chokidar@3.6.0:
     dependencies:
       anymatch: 3.1.3
-      braces: 3.0.2
+      braces: 3.0.3
       glob-parent: 5.1.2
       is-binary-path: 2.1.0
       is-glob: 4.0.3
@@ -13103,7 +13103,7 @@ snapshots:
       minimatch: 3.1.2
       node-abort-controller: 3.1.1
       schema-utils: 3.3.0
-      semver: 7.6.0
+      semver: 7.6.2
       tapable: 2.2.1
       typescript: 5.3.3
       webpack: 5.90.1
@@ -13275,7 +13275,7 @@ snapshots:
     dependencies:
       foreground-child: 3.1.1
       jackspeak: 2.3.6
-      minimatch: 9.0.3
+      minimatch: 9.0.4
       minipass: 7.0.4
       path-scurry: 1.10.1
 
@@ -13283,7 +13283,7 @@ snapshots:
     dependencies:
       foreground-child: 3.1.1
       jackspeak: 2.3.6
-      minimatch: 9.0.3
+      minimatch: 9.0.4
       minipass: 7.0.4
       path-scurry: 1.10.2
 
@@ -14456,14 +14456,14 @@ snapshots:
 
   node-releases@2.0.14: {}
 
-  nodemon@3.1.0:
+  nodemon@3.1.1:
     dependencies:
       chokidar: 3.6.0
       debug: 4.3.4(supports-color@5.5.0)
       ignore-by-default: 1.0.1
       minimatch: 3.1.2
       pstree.remy: 1.1.8
-      semver: 7.6.0
+      semver: 7.6.2
       simple-update-notifier: 2.0.0
       supports-color: 5.5.0
       touch: 3.1.0
@@ -15435,7 +15435,7 @@ snapshots:
 
   simple-update-notifier@2.0.0:
     dependencies:
-      semver: 7.6.0
+      semver: 7.6.2
 
   slash@3.0.0: {}
 
