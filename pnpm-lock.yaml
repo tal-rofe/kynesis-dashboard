@@ -37,7 +37,7 @@ importers:
         version: 8.8.3
       cz-vinyl:
         specifier: 2.5.1
-        version: 2.5.1(@types/node@20.12.13)(inquirer@8.2.6)(typescript@5.4.5)
+        version: 2.5.1(@types/node@20.12.13)(inquirer@9.2.22)(typescript@5.4.5)
       eslint:
         specifier: 8.57.0
         version: 8.57.0
@@ -66,8 +66,8 @@ importers:
         specifier: 9.0.11
         version: 9.0.11
       inquirer:
-        specifier: 8.2.6
-        version: 8.2.6
+        specifier: 9.2.22
+        version: 9.2.22
       is-ci:
         specifier: 3.0.1
         version: 3.0.1
@@ -2027,6 +2027,10 @@ packages:
 
   '@humanwhocodes/object-schema@2.0.2':
     resolution: {integrity: sha512-6EwiSjwWYP7pTckG6I5eyFANjPhmPjUX9JRLUSfNPC7FX7zK9gyZAfUEaECL6ALTpGX5AjnBq3C9XmVWPitNpw==}
+
+  '@inquirer/figures@1.0.3':
+    resolution: {integrity: sha512-ErXXzENMH5pJt5/ssXV0DfWUZqly8nGzf0UcBV9xTnP+KyffE2mqyxIMBrZ8ijQck2nU0TQm40EQB53YreyWHw==}
+    engines: {node: '>=18'}
 
   '@isaacs/cliui@8.0.2':
     resolution: {integrity: sha512-O8jcjabXaleOG9DQ0+ARXWZBTfnP4WNAqzuiJK7ll44AmxGKv/J2M4TPjxjY3znBCfvBXFzucm1twdyFybFqEA==}
@@ -5320,6 +5324,10 @@ packages:
   inquirer@9.2.12:
     resolution: {integrity: sha512-mg3Fh9g2zfuVWJn6lhST0O7x4n03k7G8Tx5nvikJkbq8/CK47WDVm+UznF0G6s5Zi0KcyUisr6DU8T67N5U+1Q==}
     engines: {node: '>=14.18.0'}
+
+  inquirer@9.2.22:
+    resolution: {integrity: sha512-SqLLa/Oe5rZUagTR9z+Zd6izyatHglbmbvVofo1KzuVB54YHleWzeHNLoR7FOICGOeQSqeLh1cordb3MzhGcEw==}
+    engines: {node: '>=18'}
 
   internal-slot@1.0.7:
     resolution: {integrity: sha512-NGnrKwXzSms2qUUih/ILZ5JBqNTSa1+ZmP6flaIp6KmSElgE9qdndzS3cqjrDovwFdmwsGsLdeFgB6suw+1e9g==}
@@ -10001,6 +10009,8 @@ snapshots:
 
   '@humanwhocodes/object-schema@2.0.2': {}
 
+  '@inquirer/figures@1.0.3': {}
+
   '@isaacs/cliui@8.0.2':
     dependencies:
       string-width: 5.1.2
@@ -12411,12 +12421,12 @@ snapshots:
       - '@types/node'
       - typescript
 
-  cz-vinyl@2.5.1(@types/node@20.12.13)(inquirer@8.2.6)(typescript@5.4.5):
+  cz-vinyl@2.5.1(@types/node@20.12.13)(inquirer@9.2.22)(typescript@5.4.5):
     dependencies:
       cosmiconfig: 9.0.0(typescript@5.4.5)
       cosmiconfig-typescript-loader: 5.0.0(@types/node@20.12.13)(cosmiconfig@9.0.0(typescript@5.4.5))(typescript@5.4.5)
       fuse.js: 7.0.0
-      inquirer-autocomplete-prompt: 2.0.1(inquirer@8.2.6)
+      inquirer-autocomplete-prompt: 2.0.1(inquirer@9.2.22)
       inquirer-maxlength-input-prompt: 1.0.2
       openai: 4.20.0
       string-template: 1.0.0
@@ -13932,11 +13942,11 @@ snapshots:
 
   ini@4.1.1: {}
 
-  inquirer-autocomplete-prompt@2.0.1(inquirer@8.2.6):
+  inquirer-autocomplete-prompt@2.0.1(inquirer@9.2.22):
     dependencies:
       ansi-escapes: 4.3.2
       figures: 3.2.0
-      inquirer: 8.2.6
+      inquirer: 9.2.22
       picocolors: 1.0.0
       run-async: 2.4.1
       rxjs: 7.8.1
@@ -14010,6 +14020,24 @@ snapshots:
       cli-width: 4.1.0
       external-editor: 3.1.0
       figures: 5.0.0
+      lodash: 4.17.21
+      mute-stream: 1.0.0
+      ora: 5.4.1
+      run-async: 3.0.0
+      rxjs: 7.8.1
+      string-width: 4.2.3
+      strip-ansi: 6.0.1
+      wrap-ansi: 6.2.0
+
+  inquirer@9.2.22:
+    dependencies:
+      '@inquirer/figures': 1.0.3
+      '@ljharb/through': 2.3.13
+      ansi-escapes: 4.3.2
+      chalk: 5.3.0
+      cli-cursor: 3.1.0
+      cli-width: 4.1.0
+      external-editor: 3.1.0
       lodash: 4.17.21
       mute-stream: 1.0.0
       ora: 5.4.1
